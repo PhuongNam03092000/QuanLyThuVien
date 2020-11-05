@@ -4,8 +4,8 @@ namespace Domain.Entities
 {
     public class Sach
     {
-        public char MaSach { set; get; }
-        public char MaDS { set; get; }
+        public string MaSach { set; get; }
+        public string MaDS { set; get; }
         public int GiaBia { set; get; }
         public string ViTri { set; get; }
         public TrangThaiSach TrangThaiSach { set; get; }

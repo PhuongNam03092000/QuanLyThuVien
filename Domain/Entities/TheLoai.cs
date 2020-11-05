@@ -4,7 +4,7 @@ namespace Domain.Entities
 {
     public class TheLoai
     {
-        public char MaTL { set; get; }
+        public string MaTL { set; get; }
         public string TenTL { set; get; }
         public List<DauSach> DSDauSach { get; set; }
     }

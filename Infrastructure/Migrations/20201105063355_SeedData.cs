@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Infrastructure.Persistence.Migrations
+namespace Infrastructure.Migrations
 {
-    public partial class csdl : Migration
+    public partial class SeedData : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -231,7 +231,7 @@ namespace Infrastructure.Persistence.Migrations
                 columns: table => new
                 {
                     MaPM = table.Column<string>(unicode: false, maxLength: 10, nullable: false),
-                    MaDG = table.Column<string>(nullable: false),
+                    MaDG = table.Column<string>(nullable: true),
                     NgayMuon = table.Column<DateTime>(type: "Date", nullable: false),
                     TongPhiMuon = table.Column<int>(nullable: false),
                     UserId = table.Column<Guid>(nullable: false)
@@ -244,7 +244,7 @@ namespace Infrastructure.Persistence.Migrations
                         column: x => x.MaDG,
                         principalTable: "DocGia",
                         principalColumn: "MaDG",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PhieuMuon_AppUsers_UserId",
                         column: x => x.UserId,
@@ -258,7 +258,7 @@ namespace Infrastructure.Persistence.Migrations
                 columns: table => new
                 {
                     MaPP = table.Column<string>(unicode: false, maxLength: 10, nullable: false),
-                    MaDG = table.Column<string>(nullable: false),
+                    MaDG = table.Column<string>(nullable: true),
                     TongPhiPhat = table.Column<int>(nullable: false),
                     UserId = table.Column<Guid>(nullable: false)
                 },
@@ -270,7 +270,7 @@ namespace Infrastructure.Persistence.Migrations
                         column: x => x.MaDG,
                         principalTable: "DocGia",
                         principalColumn: "MaDG",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PhieuPhat_AppUsers_UserId",
                         column: x => x.UserId,
@@ -284,7 +284,7 @@ namespace Infrastructure.Persistence.Migrations
                 columns: table => new
                 {
                     MaPT = table.Column<string>(unicode: false, maxLength: 10, nullable: false),
-                    MaDG = table.Column<string>(nullable: false),
+                    MaDG = table.Column<string>(nullable: true),
                     NgayTra = table.Column<DateTime>(type: "Date", nullable: false),
                     TongPhiTra = table.Column<int>(nullable: false),
                     UserId = table.Column<Guid>(nullable: false)
@@ -297,7 +297,7 @@ namespace Infrastructure.Persistence.Migrations
                         column: x => x.MaDG,
                         principalTable: "DocGia",
                         principalColumn: "MaDG",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PhieuTra_AppUsers_UserId",
                         column: x => x.UserId,
@@ -311,7 +311,7 @@ namespace Infrastructure.Persistence.Migrations
                 columns: table => new
                 {
                     MaPN = table.Column<string>(unicode: false, maxLength: 10, nullable: false),
-                    MaNCC = table.Column<string>(nullable: false),
+                    MaNCC = table.Column<string>(nullable: true),
                     NgayNhap = table.Column<DateTime>(type: "Date", nullable: false),
                     TongTienNhap = table.Column<int>(nullable: false),
                     UserId = table.Column<Guid>(nullable: false)
@@ -324,7 +324,7 @@ namespace Infrastructure.Persistence.Migrations
                         column: x => x.MaNCC,
                         principalTable: "NhaCungCap",
                         principalColumn: "MaNCC",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PhieuNhap_AppUsers_UserId",
                         column: x => x.UserId,
@@ -338,9 +338,9 @@ namespace Infrastructure.Persistence.Migrations
                 columns: table => new
                 {
                     MaDS = table.Column<string>(unicode: false, maxLength: 10, nullable: false),
-                    MaTL = table.Column<string>(nullable: false),
-                    MaTG = table.Column<string>(nullable: false),
-                    MaNXB = table.Column<string>(nullable: false),
+                    MaTL = table.Column<string>(nullable: true),
+                    MaTG = table.Column<string>(nullable: true),
+                    MaNXB = table.Column<string>(nullable: true),
                     TenDS = table.Column<string>(maxLength: 100, nullable: false),
                     SoLuongDS = table.Column<int>(nullable: false)
                 },
@@ -352,19 +352,19 @@ namespace Infrastructure.Persistence.Migrations
                         column: x => x.MaNXB,
                         principalTable: "NhaXuatBan",
                         principalColumn: "MaNXB",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_DauSach_TacGia_MaTG",
                         column: x => x.MaTG,
                         principalTable: "TacGia",
                         principalColumn: "MaTG",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_DauSach_TheLoai_MaTL",
                         column: x => x.MaTL,
                         principalTable: "TheLoai",
                         principalColumn: "MaTL",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -398,7 +398,7 @@ namespace Infrastructure.Persistence.Migrations
                 columns: table => new
                 {
                     MaSach = table.Column<string>(unicode: false, maxLength: 10, nullable: false),
-                    MaDS = table.Column<string>(nullable: false),
+                    MaDS = table.Column<string>(nullable: true),
                     GiaBia = table.Column<int>(nullable: false),
                     ViTri = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
                     TrangThaiSach = table.Column<int>(nullable: false, defaultValue: 0)
@@ -411,7 +411,7 @@ namespace Infrastructure.Persistence.Migrations
                         column: x => x.MaDS,
                         principalTable: "DauSach",
                         principalColumn: "MaDS",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(

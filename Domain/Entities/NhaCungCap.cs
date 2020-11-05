@@ -4,7 +4,7 @@ namespace Domain.Entities
 {
     public class NhaCungCap
     {
-        public char MaNCC { set; get; }        
+        public string MaNCC { set; get; }        
         public string TenNCC { set; get; }        
         public string DiaChiNCC { set; get; }        
         public string SdtNCC { set; get; }      

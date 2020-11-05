@@ -4,16 +4,14 @@ using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Infrastructure.Persistence.Migrations
+namespace Infrastructure.Migrations
 {
     [DbContext(typeof(QLTVDbContext))]
-    [Migration("20201031073605_csdl")]
-    partial class csdl
+    partial class QLTVDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -234,21 +232,17 @@ namespace Infrastructure.Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.DauSach", b =>
                 {
                     b.Property<string>("MaDS")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("varchar(10)")
                         .HasMaxLength(10)
                         .IsUnicode(false);
 
                     b.Property<string>("MaNXB")
-                        .IsRequired()
                         .HasColumnType("varchar(10)");
 
                     b.Property<string>("MaTG")
-                        .IsRequired()
                         .HasColumnType("varchar(10)");
 
                     b.Property<string>("MaTL")
-                        .IsRequired()
                         .HasColumnType("varchar(10)");
 
                     b.Property<int>("SoLuongDS")
@@ -273,7 +267,6 @@ namespace Infrastructure.Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.DocGia", b =>
                 {
                     b.Property<string>("MaDG")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("varchar(10)")
                         .HasMaxLength(10)
                         .IsUnicode(false);
@@ -324,7 +317,6 @@ namespace Infrastructure.Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.NhaCungCap", b =>
                 {
                     b.Property<string>("MaNCC")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("varchar(10)")
                         .HasMaxLength(10)
                         .IsUnicode(false);
@@ -352,7 +344,6 @@ namespace Infrastructure.Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.NhaXuatBan", b =>
                 {
                     b.Property<string>("MaNXB")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("varchar(10)")
                         .HasMaxLength(10)
                         .IsUnicode(false);
@@ -371,13 +362,11 @@ namespace Infrastructure.Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.PhieuMuon", b =>
                 {
                     b.Property<string>("MaPM")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("varchar(10)")
                         .HasMaxLength(10)
                         .IsUnicode(false);
 
                     b.Property<string>("MaDG")
-                        .IsRequired()
                         .HasColumnType("varchar(10)");
 
                     b.Property<DateTime>("NgayMuon")
@@ -401,13 +390,11 @@ namespace Infrastructure.Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.PhieuNhap", b =>
                 {
                     b.Property<string>("MaPN")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("varchar(10)")
                         .HasMaxLength(10)
                         .IsUnicode(false);
 
                     b.Property<string>("MaNCC")
-                        .IsRequired()
                         .HasColumnType("varchar(10)");
 
                     b.Property<DateTime>("NgayNhap")
@@ -431,13 +418,11 @@ namespace Infrastructure.Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.PhieuPhat", b =>
                 {
                     b.Property<string>("MaPP")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("varchar(10)")
                         .HasMaxLength(10)
                         .IsUnicode(false);
 
                     b.Property<string>("MaDG")
-                        .IsRequired()
                         .HasColumnType("varchar(10)");
 
                     b.Property<int>("TongPhiPhat")
@@ -458,13 +443,11 @@ namespace Infrastructure.Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.PhieuTra", b =>
                 {
                     b.Property<string>("MaPT")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("varchar(10)")
                         .HasMaxLength(10)
                         .IsUnicode(false);
 
                     b.Property<string>("MaDG")
-                        .IsRequired()
                         .HasColumnType("varchar(10)");
 
                     b.Property<DateTime>("NgayTra")
@@ -488,7 +471,6 @@ namespace Infrastructure.Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.Sach", b =>
                 {
                     b.Property<string>("MaSach")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("varchar(10)")
                         .HasMaxLength(10)
                         .IsUnicode(false);
@@ -497,7 +479,6 @@ namespace Infrastructure.Persistence.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("MaDS")
-                        .IsRequired()
                         .HasColumnType("varchar(10)");
 
                     b.Property<int>("TrangThaiSach")
@@ -521,7 +502,6 @@ namespace Infrastructure.Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.TacGia", b =>
                 {
                     b.Property<string>("MaTG")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("varchar(10)")
                         .HasMaxLength(10)
                         .IsUnicode(false);
@@ -539,7 +519,6 @@ namespace Infrastructure.Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.TheLoai", b =>
                 {
                     b.Property<string>("MaTL")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("varchar(10)")
                         .HasMaxLength(10)
                         .IsUnicode(false);
@@ -719,30 +698,22 @@ namespace Infrastructure.Persistence.Migrations
                 {
                     b.HasOne("Domain.Entities.NhaXuatBan", "NhaXuatBan")
                         .WithMany("DSDauSach")
-                        .HasForeignKey("MaNXB")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MaNXB");
 
                     b.HasOne("Domain.Entities.TacGia", "TacGia")
                         .WithMany("DSDauSach")
-                        .HasForeignKey("MaTG")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MaTG");
 
                     b.HasOne("Domain.Entities.TheLoai", "TheLoai")
                         .WithMany("DSDauSach")
-                        .HasForeignKey("MaTL")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MaTL");
                 });
 
             modelBuilder.Entity("Domain.Entities.PhieuMuon", b =>
                 {
                     b.HasOne("Domain.Entities.DocGia", "DocGia")
                         .WithMany("DSPhieuMuon")
-                        .HasForeignKey("MaDG")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MaDG");
 
                     b.HasOne("Domain.Entities.AppUser", "AppUser")
                         .WithMany("DSPhieuMuon")
@@ -755,9 +726,7 @@ namespace Infrastructure.Persistence.Migrations
                 {
                     b.HasOne("Domain.Entities.NhaCungCap", "NhaCungCap")
                         .WithMany("DSPhieuNhap")
-                        .HasForeignKey("MaNCC")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MaNCC");
 
                     b.HasOne("Domain.Entities.AppUser", "AppUser")
                         .WithMany("DSPhieuNhap")
@@ -770,9 +739,7 @@ namespace Infrastructure.Persistence.Migrations
                 {
                     b.HasOne("Domain.Entities.DocGia", "DocGia")
                         .WithMany("DSPhieuPhat")
-                        .HasForeignKey("MaDG")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MaDG");
 
                     b.HasOne("Domain.Entities.AppUser", "AppUser")
                         .WithMany("DSPhieuPhat")
@@ -785,9 +752,7 @@ namespace Infrastructure.Persistence.Migrations
                 {
                     b.HasOne("Domain.Entities.DocGia", "DocGia")
                         .WithMany("DSPhieuTra")
-                        .HasForeignKey("MaDG")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MaDG");
 
                     b.HasOne("Domain.Entities.AppUser", "AppUser")
                         .WithMany("DSPhieuTra")
@@ -800,9 +765,7 @@ namespace Infrastructure.Persistence.Migrations
                 {
                     b.HasOne("Domain.Entities.DauSach", "DauSach")
                         .WithMany("DSSach")
-                        .HasForeignKey("MaDS")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MaDS");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

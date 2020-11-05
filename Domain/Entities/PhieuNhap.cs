@@ -5,9 +5,9 @@ namespace Domain.Entities
 {
     public class PhieuNhap
     {
-        public char MaPN { set; get; }
+        public string MaPN { set; get; }
         public NhaCungCap NhaCungCap {set; get; }
-        public char MaNCC { set; get; }
+        public string MaNCC { set; get; }
         public DateTime NgayNhap { set; get; }
         public int TongTienNhap { set; get; }
         public List<ChiTietPhieuNhap> DSChiTietPhieuNhap { get; set; }

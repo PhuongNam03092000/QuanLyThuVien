@@ -5,9 +5,9 @@ namespace Domain.Entities
 {
     public class PhieuMuon
     {
-        public char MaPM { set; get; }
+        public string MaPM { set; get; }
         public DocGia DocGia { get; set; }
-        public char MaDG { set; get; }
+        public string MaDG { set; get; }
         public DateTime NgayMuon { set; get; }
         public int TongPhiMuon { set; get; }       
         public List<ChiTietPhieuMuon> DSChiTietPhieuMuon { get; set; } 

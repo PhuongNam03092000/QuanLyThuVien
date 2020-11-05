@@ -5982,19 +5982,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\gia\\.nuget\\packages\\": {}
+    "C:\\Users\\Admin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\gia\\Desktop\\Đồ án C#\\QuanLyThuVien\\Infrastructure\\Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\Admin\\Downloads\\CNPM\\QuanLyThuVien\\Infrastructure\\Infrastructure.csproj",
       "projectName": "Infrastructure",
-      "projectPath": "C:\\Users\\gia\\Desktop\\Đồ án C#\\QuanLyThuVien\\Infrastructure\\Infrastructure.csproj",
-      "packagesPath": "C:\\Users\\gia\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\gia\\Desktop\\Đồ án C#\\QuanLyThuVien\\Infrastructure\\obj\\",
+      "projectPath": "C:\\Users\\Admin\\Downloads\\CNPM\\QuanLyThuVien\\Infrastructure\\Infrastructure.csproj",
+      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Admin\\Downloads\\CNPM\\QuanLyThuVien\\Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\gia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6007,8 +6007,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\gia\\Desktop\\Đồ án C#\\QuanLyThuVien\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\gia\\Desktop\\Đồ án C#\\QuanLyThuVien\\Domain\\Domain.csproj"
+            "C:\\Users\\Admin\\Downloads\\CNPM\\QuanLyThuVien\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\Admin\\Downloads\\CNPM\\QuanLyThuVien\\Domain\\Domain.csproj"
             }
           }
         }

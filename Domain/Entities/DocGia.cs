@@ -5,7 +5,7 @@ namespace Domain.Entities
 {
     public class DocGia
     {
-        public char MaDG { set; get; }
+        public string MaDG { set; get; }
         public string HoDG { set; get; }
         public string TenDG { set; get; }
         public DateTime DoBDG { set; get; }
