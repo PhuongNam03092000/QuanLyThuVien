@@ -494,6 +494,58 @@ namespace Infrastructure.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "NhaXuatBan",
+                columns: new[] { "MaNXB", "TenNXB" },
+                values: new object[] { "NXB001", "Nhà xuất bản trẻ" });
+
+            migrationBuilder.InsertData(
+                table: "TacGia",
+                columns: new[] { "MaTG", "TenTG" },
+                values: new object[,]
+                {
+                    { "TG001", "Nguyễn Nhật Ánh" },
+                    { "TG002", "Nguyễn Ngọc Tư" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "TheLoai",
+                columns: new[] { "MaTL", "TenTL" },
+                values: new object[,]
+                {
+                    { "TL001", "Truyện ngắn" },
+                    { "TL002", "Truyện dài" },
+                    { "TL003", "Thơ" },
+                    { "TL004", "Tản văn" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "DauSach",
+                columns: new[] { "MaDS", "MaNXB", "MaTG", "MaTL", "SoLuongDS", "TenDS" },
+                values: new object[] { "DS002", "NXB001", "TG001", "TL001", 5, "Cánh đồng bất tận" });
+
+            migrationBuilder.InsertData(
+                table: "DauSach",
+                columns: new[] { "MaDS", "MaNXB", "MaTG", "MaTL", "SoLuongDS", "TenDS" },
+                values: new object[] { "DS001", "NXB001", "TG001", "TL002", 5, "Tôi thấy hoa vàng trên cỏ xanh" });
+
+            migrationBuilder.InsertData(
+                table: "Sach",
+                columns: new[] { "MaSach", "GiaBia", "MaDS", "ViTri" },
+                values: new object[,]
+                {
+                    { "S006", 59000, "DS002", "E406" },
+                    { "S007", 59000, "DS002", "E407" },
+                    { "S008", 59000, "DS002", "E408" },
+                    { "S009", 59000, "DS002", "E409" },
+                    { "S010", 59000, "DS002", "E410" },
+                    { "S001", 99000, "DS001", "E401" },
+                    { "S002", 99000, "DS001", "E402" },
+                    { "S003", 99000, "DS001", "E403" },
+                    { "S004", 99000, "DS001", "E404" },
+                    { "S005", 99000, "DS001", "E405" }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "RoleNameIndex",
                 table: "AppRoles",

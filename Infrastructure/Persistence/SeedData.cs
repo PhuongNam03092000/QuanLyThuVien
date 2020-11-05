@@ -24,9 +24,18 @@ namespace Infrastructure.Persistence
                     new DauSach() { MaDS = "DS001",TenDS="Tôi thấy hoa vàng trên cỏ xanh",MaTG="TG001",MaTL="TL002",MaNXB="NXB001",SoLuongDS=5},
                     new DauSach() { MaDS = "DS002",TenDS="Cánh đồng bất tận",MaTG="TG001",MaTL="TL001",MaNXB="NXB001",SoLuongDS=5}
                 );
-           /* builder.Entity<Sach>().HasData(
-                    new Sach() { MaSach="S001",MaDS="DS001",GiaBia = }
-                );*/
+            builder.Entity<Sach>().HasData(
+                    new Sach() { MaSach="S001",MaDS="DS001",GiaBia = 99000,TrangThaiSach = TrangThaiSach.Khong,ViTri="E401"},
+                    new Sach() { MaSach = "S002", MaDS = "DS001", GiaBia = 99000, TrangThaiSach = TrangThaiSach.Khong, ViTri = "E402" },
+                    new Sach() { MaSach = "S003", MaDS = "DS001", GiaBia = 99000, TrangThaiSach = TrangThaiSach.Khong, ViTri = "E403" },
+                    new Sach() { MaSach = "S004", MaDS = "DS001", GiaBia = 99000, TrangThaiSach = TrangThaiSach.Khong, ViTri = "E404" },
+                    new Sach() { MaSach = "S005", MaDS = "DS001", GiaBia = 99000, TrangThaiSach = TrangThaiSach.Khong, ViTri = "E405" },
+                    new Sach() { MaSach = "S006",MaDS = "DS002",GiaBia = 59000,TrangThaiSach = TrangThaiSach.Khong,ViTri = "E406"},
+                    new Sach() { MaSach = "S007", MaDS = "DS002", GiaBia = 59000, TrangThaiSach = TrangThaiSach.Khong, ViTri = "E407" },
+                    new Sach() { MaSach = "S008", MaDS = "DS002", GiaBia = 59000, TrangThaiSach = TrangThaiSach.Khong, ViTri = "E408" },
+                    new Sach() { MaSach = "S009", MaDS = "DS002", GiaBia = 59000, TrangThaiSach = TrangThaiSach.Khong, ViTri = "E409" },
+                    new Sach() { MaSach = "S010", MaDS = "DS002", GiaBia = 59000, TrangThaiSach = TrangThaiSach.Khong, ViTri = "E410" }
+                );
         }        
     }
 }
