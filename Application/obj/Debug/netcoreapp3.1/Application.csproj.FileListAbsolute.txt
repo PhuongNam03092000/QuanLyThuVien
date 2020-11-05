@@ -24,3 +24,15 @@ C:\Users\lannhi\Desktop\New folder\QuanLyThuVien\Application\obj\Debug\netcoreap
 C:\Users\lannhi\Desktop\New folder\QuanLyThuVien\Application\obj\Debug\netcoreapp3.1\Application.csproj.CopyComplete
 C:\Users\lannhi\Desktop\New folder\QuanLyThuVien\Application\obj\Debug\netcoreapp3.1\Application.dll
 C:\Users\lannhi\Desktop\New folder\QuanLyThuVien\Application\obj\Debug\netcoreapp3.1\Application.pdb
+C:\Users\gia\Desktop\Đồ án C#\QuanLyThuVien\Application\bin\Debug\netcoreapp3.1\Application.deps.json
+C:\Users\gia\Desktop\Đồ án C#\QuanLyThuVien\Application\bin\Debug\netcoreapp3.1\Application.dll
+C:\Users\gia\Desktop\Đồ án C#\QuanLyThuVien\Application\bin\Debug\netcoreapp3.1\Application.pdb
+C:\Users\gia\Desktop\Đồ án C#\QuanLyThuVien\Application\bin\Debug\netcoreapp3.1\Domain.dll
+C:\Users\gia\Desktop\Đồ án C#\QuanLyThuVien\Application\bin\Debug\netcoreapp3.1\Domain.pdb
+C:\Users\gia\Desktop\Đồ án C#\QuanLyThuVien\Application\obj\Debug\netcoreapp3.1\Application.csprojAssemblyReference.cache
+C:\Users\gia\Desktop\Đồ án C#\QuanLyThuVien\Application\obj\Debug\netcoreapp3.1\Application.AssemblyInfoInputs.cache
+C:\Users\gia\Desktop\Đồ án C#\QuanLyThuVien\Application\obj\Debug\netcoreapp3.1\Application.AssemblyInfo.cs
+C:\Users\gia\Desktop\Đồ án C#\QuanLyThuVien\Application\obj\Debug\netcoreapp3.1\Application.csproj.CoreCompileInputs.cache
+C:\Users\gia\Desktop\Đồ án C#\QuanLyThuVien\Application\obj\Debug\netcoreapp3.1\Application.csproj.CopyComplete
+C:\Users\gia\Desktop\Đồ án C#\QuanLyThuVien\Application\obj\Debug\netcoreapp3.1\Application.dll
+C:\Users\gia\Desktop\Đồ án C#\QuanLyThuVien\Application\obj\Debug\netcoreapp3.1\Application.pdb
