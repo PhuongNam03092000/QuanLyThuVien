@@ -236,6 +236,9 @@ namespace Infrastructure.Migrations
                         .HasMaxLength(10)
                         .IsUnicode(false);
 
+                    b.Property<string>("HinhAnh")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("MaNXB")
                         .HasColumnType("varchar(10)");
 
@@ -262,6 +265,28 @@ namespace Infrastructure.Migrations
                     b.HasIndex("MaTL");
 
                     b.ToTable("DauSach");
+
+                    b.HasData(
+                        new
+                        {
+                            MaDS = "DS001",
+                            HinhAnh = "HinhAnhDauSach/DS001",
+                            MaNXB = "NXB001",
+                            MaTG = "TG001",
+                            MaTL = "TL002",
+                            SoLuongDS = 5,
+                            TenDS = "Tôi thấy hoa vàng trên cỏ xanh"
+                        },
+                        new
+                        {
+                            MaDS = "DS002",
+                            HinhAnh = "HinhAnhDauSach/DS002",
+                            MaNXB = "NXB001",
+                            MaTG = "TG001",
+                            MaTL = "TL001",
+                            SoLuongDS = 5,
+                            TenDS = "Cánh đồng bất tận"
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.DocGia", b =>
@@ -357,6 +382,13 @@ namespace Infrastructure.Migrations
                     b.HasKey("MaNXB");
 
                     b.ToTable("NhaXuatBan");
+
+                    b.HasData(
+                        new
+                        {
+                            MaNXB = "NXB001",
+                            TenNXB = "Nhà xuất bản trẻ"
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.PhieuMuon", b =>
@@ -497,6 +529,88 @@ namespace Infrastructure.Migrations
                     b.HasIndex("MaDS");
 
                     b.ToTable("Sach");
+
+                    b.HasData(
+                        new
+                        {
+                            MaSach = "S001",
+                            GiaBia = 99000,
+                            MaDS = "DS001",
+                            TrangThaiSach = 0,
+                            ViTri = "E401"
+                        },
+                        new
+                        {
+                            MaSach = "S002",
+                            GiaBia = 99000,
+                            MaDS = "DS001",
+                            TrangThaiSach = 0,
+                            ViTri = "E402"
+                        },
+                        new
+                        {
+                            MaSach = "S003",
+                            GiaBia = 99000,
+                            MaDS = "DS001",
+                            TrangThaiSach = 0,
+                            ViTri = "E403"
+                        },
+                        new
+                        {
+                            MaSach = "S004",
+                            GiaBia = 99000,
+                            MaDS = "DS001",
+                            TrangThaiSach = 0,
+                            ViTri = "E404"
+                        },
+                        new
+                        {
+                            MaSach = "S005",
+                            GiaBia = 99000,
+                            MaDS = "DS001",
+                            TrangThaiSach = 0,
+                            ViTri = "E405"
+                        },
+                        new
+                        {
+                            MaSach = "S006",
+                            GiaBia = 59000,
+                            MaDS = "DS002",
+                            TrangThaiSach = 0,
+                            ViTri = "E406"
+                        },
+                        new
+                        {
+                            MaSach = "S007",
+                            GiaBia = 59000,
+                            MaDS = "DS002",
+                            TrangThaiSach = 0,
+                            ViTri = "E407"
+                        },
+                        new
+                        {
+                            MaSach = "S008",
+                            GiaBia = 59000,
+                            MaDS = "DS002",
+                            TrangThaiSach = 0,
+                            ViTri = "E408"
+                        },
+                        new
+                        {
+                            MaSach = "S009",
+                            GiaBia = 59000,
+                            MaDS = "DS002",
+                            TrangThaiSach = 0,
+                            ViTri = "E409"
+                        },
+                        new
+                        {
+                            MaSach = "S010",
+                            GiaBia = 59000,
+                            MaDS = "DS002",
+                            TrangThaiSach = 0,
+                            ViTri = "E410"
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.TacGia", b =>
@@ -514,6 +628,18 @@ namespace Infrastructure.Migrations
                     b.HasKey("MaTG");
 
                     b.ToTable("TacGia");
+
+                    b.HasData(
+                        new
+                        {
+                            MaTG = "TG001",
+                            TenTG = "Nguyễn Nhật Ánh"
+                        },
+                        new
+                        {
+                            MaTG = "TG002",
+                            TenTG = "Nguyễn Ngọc Tư"
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.TheLoai", b =>
@@ -531,6 +657,28 @@ namespace Infrastructure.Migrations
                     b.HasKey("MaTL");
 
                     b.ToTable("TheLoai");
+
+                    b.HasData(
+                        new
+                        {
+                            MaTL = "TL001",
+                            TenTL = "Truyện ngắn"
+                        },
+                        new
+                        {
+                            MaTL = "TL002",
+                            TenTL = "Truyện dài"
+                        },
+                        new
+                        {
+                            MaTL = "TL003",
+                            TenTL = "Thơ"
+                        },
+                        new
+                        {
+                            MaTL = "TL004",
+                            TenTL = "Tản văn"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
