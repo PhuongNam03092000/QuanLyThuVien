@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
@@ -6,6 +6,29 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Common\Behaviours\" />
+    <Folder Include="Common\Interfaces\" />
+    <Folder Include="Common\Mappings\" />
+    <Folder Include="Common\Models\" />
+    <Folder Include="CTPM\" />
+    <Folder Include="CTPP\" />
+    <Folder Include="CTPN\" />
+    <Folder Include="NCC\" />
+    <Folder Include="CTPT\" />
+    <Folder Include="DauSach\" />
+    <Folder Include="DocGia\" />
+    <Folder Include="PhieuTra\" />
+    <Folder Include="TheLoai\" />
+    <Folder Include="TacGia\" />
+    <Folder Include="Sach\" />
+    <Folder Include="NXB\" />
+    <Folder Include="PhieuPhat\" />
+    <Folder Include="PhieuNhap\" />
+    <Folder Include="PhieuMuon\" />
+    <Folder Include="User\" />
   </ItemGroup>
 
   <PropertyGroup>
