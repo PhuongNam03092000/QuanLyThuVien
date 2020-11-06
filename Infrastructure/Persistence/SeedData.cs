@@ -21,8 +21,8 @@ namespace Infrastructure.Persistence
                     new TheLoai() { MaTL="TL004",TenTL="Tản văn"}
                 );
             builder.Entity<DauSach>().HasData(
-                    new DauSach() { MaDS = "DS001",TenDS="Tôi thấy hoa vàng trên cỏ xanh",MaTG="TG001",MaTL="TL002",MaNXB="NXB001",SoLuongDS=5},
-                    new DauSach() { MaDS = "DS002",TenDS="Cánh đồng bất tận",MaTG="TG001",MaTL="TL001",MaNXB="NXB001",SoLuongDS=5}
+                    new DauSach() { MaDS = "DS001",TenDS="Tôi thấy hoa vàng trên cỏ xanh",MaTG="TG001",MaTL="TL002",MaNXB="NXB001",SoLuongDS=5,HinhAnh="HinhAnhDauSach/DS001"},
+                    new DauSach() { MaDS = "DS002",TenDS="Cánh đồng bất tận",MaTG="TG001",MaTL="TL001",MaNXB="NXB001",SoLuongDS=5, HinhAnh="HinhAnhDauSach/DS002" }
                 );
             builder.Entity<Sach>().HasData(
                     new Sach() { MaSach="S001",MaDS="DS001",GiaBia = 99000,TrangThaiSach = TrangThaiSach.Khong,ViTri="E401"},

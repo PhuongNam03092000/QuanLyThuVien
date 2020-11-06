@@ -13,6 +13,7 @@ namespace Domain.Entities
         public string MaNXB { set; get; }
         public string TenDS { set; get; }
         public int SoLuongDS { set; get; }
+        public string HinhAnh { set; get; }
         public List<Sach> DSSach { get; set; }
         public List<ChiTietPhieuNhap> DSChiTietPhieuNhap { get; set; }
     }

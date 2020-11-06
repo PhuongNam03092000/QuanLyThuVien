@@ -236,6 +236,9 @@ namespace Infrastructure.Migrations
                         .HasMaxLength(10)
                         .IsUnicode(false);
 
+                    b.Property<string>("HinhAnh")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("MaNXB")
                         .HasColumnType("varchar(10)");
 
@@ -267,6 +270,7 @@ namespace Infrastructure.Migrations
                         new
                         {
                             MaDS = "DS001",
+                            HinhAnh = "HinhAnhDauSach/DS001",
                             MaNXB = "NXB001",
                             MaTG = "TG001",
                             MaTL = "TL002",
@@ -276,6 +280,7 @@ namespace Infrastructure.Migrations
                         new
                         {
                             MaDS = "DS002",
+                            HinhAnh = "HinhAnhDauSach/DS002",
                             MaNXB = "NXB001",
                             MaTG = "TG001",
                             MaTL = "TL001",
