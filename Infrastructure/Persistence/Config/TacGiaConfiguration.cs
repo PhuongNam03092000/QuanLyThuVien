@@ -10,7 +10,6 @@ namespace Infrastructure.Persistence
         {
             builder.ToTable("TacGia");
             builder.HasKey(tg => tg.MaTG);
-            builder.Property(tg => tg.MaTG).HasMaxLength(10).IsUnicode(false);
             builder.Property(tg => tg.TenTG).HasMaxLength(50).IsRequired();
         }
     }

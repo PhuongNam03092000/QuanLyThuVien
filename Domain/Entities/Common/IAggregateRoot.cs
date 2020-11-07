@@ -1,6 +1,6 @@
-namespace Domain.Entities.NhanVienAggregate
+namespace Domain.Entities.Common
 {
-    internal interface IAggregateRoot
+    public interface IAggregateRoot // marker
     {
     }
 }

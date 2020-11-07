@@ -9,9 +9,8 @@ namespace Infrastructure.Persistence
         public void Configure(EntityTypeBuilder<ChiTietPhieuNhap> builder)
         {
             builder.ToTable("ChiTietPhieuNhap");
-            builder.HasKey(ctpn => new {ctpn.MaPN, ctpn.MaDS});
-            builder.HasOne(pn => pn.PhieuNhap).WithMany(ctpn => ctpn.DSChiTietPhieuNhap).HasForeignKey(pn => pn.MaPN);
-            builder.HasOne(ds => ds.DauSach).WithMany(ctpn => ctpn.DSChiTietPhieuNhap).HasForeignKey(ds => ds.MaDS);
+            builder.HasKey(ctpn => new {ctpn.MaPN, ctpn.MaSach});
+            builder.HasOne(pn => pn.PhieuNhap).WithMany(ctpn => ctpn.ChiTietPhieuNhaps).HasForeignKey(pn => pn.MaPN);
             builder.Property(ctpn => ctpn.SoLuongNhap);
             builder.Property(ctpn => ctpn.DonGiaSach);
         }

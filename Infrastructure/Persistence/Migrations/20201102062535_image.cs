@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Infrastructure.Migrations
+namespace Infrastructure.Persistence.Migrations
 {
-    public partial class SeedData : Migration
+    public partial class image : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -55,7 +55,8 @@ namespace Infrastructure.Migrations
                 name: "DocGia",
                 columns: table => new
                 {
-                    MaDG = table.Column<string>(unicode: false, maxLength: 10, nullable: false),
+                    MaDG = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     HoDG = table.Column<string>(maxLength: 50, nullable: false),
                     TenDG = table.Column<string>(maxLength: 50, nullable: false),
                     DoBDG = table.Column<DateTime>(type: "Date", nullable: false),
@@ -74,7 +75,8 @@ namespace Infrastructure.Migrations
                 name: "NhaCungCap",
                 columns: table => new
                 {
-                    MaNCC = table.Column<string>(unicode: false, maxLength: 10, nullable: false),
+                    MaNCC = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     TenNCC = table.Column<string>(maxLength: 100, nullable: false),
                     DiaChiNCC = table.Column<string>(maxLength: 100, nullable: false),
                     SdtNCC = table.Column<string>(maxLength: 10, nullable: false)
@@ -88,7 +90,8 @@ namespace Infrastructure.Migrations
                 name: "NhaXuatBan",
                 columns: table => new
                 {
-                    MaNXB = table.Column<string>(unicode: false, maxLength: 10, nullable: false),
+                    MaNXB = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     TenNXB = table.Column<string>(maxLength: 50, nullable: false)
                 },
                 constraints: table =>
@@ -100,7 +103,8 @@ namespace Infrastructure.Migrations
                 name: "TacGia",
                 columns: table => new
                 {
-                    MaTG = table.Column<string>(unicode: false, maxLength: 10, nullable: false),
+                    MaTG = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     TenTG = table.Column<string>(maxLength: 50, nullable: false)
                 },
                 constraints: table =>
@@ -112,7 +116,8 @@ namespace Infrastructure.Migrations
                 name: "TheLoai",
                 columns: table => new
                 {
-                    MaTL = table.Column<string>(unicode: false, maxLength: 10, nullable: false),
+                    MaTL = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     TenTL = table.Column<string>(maxLength: 50, nullable: false)
                 },
                 constraints: table =>
@@ -230,8 +235,9 @@ namespace Infrastructure.Migrations
                 name: "PhieuMuon",
                 columns: table => new
                 {
-                    MaPM = table.Column<string>(unicode: false, maxLength: 10, nullable: false),
-                    MaDG = table.Column<string>(nullable: true),
+                    MaPM = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MaDG = table.Column<int>(nullable: false),
                     NgayMuon = table.Column<DateTime>(type: "Date", nullable: false),
                     TongPhiMuon = table.Column<int>(nullable: false),
                     UserId = table.Column<Guid>(nullable: false)
@@ -244,7 +250,7 @@ namespace Infrastructure.Migrations
                         column: x => x.MaDG,
                         principalTable: "DocGia",
                         principalColumn: "MaDG",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_PhieuMuon_AppUsers_UserId",
                         column: x => x.UserId,
@@ -257,8 +263,9 @@ namespace Infrastructure.Migrations
                 name: "PhieuPhat",
                 columns: table => new
                 {
-                    MaPP = table.Column<string>(unicode: false, maxLength: 10, nullable: false),
-                    MaDG = table.Column<string>(nullable: true),
+                    MaPP = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MaDG = table.Column<int>(nullable: false),
                     TongPhiPhat = table.Column<int>(nullable: false),
                     UserId = table.Column<Guid>(nullable: false)
                 },
@@ -270,7 +277,7 @@ namespace Infrastructure.Migrations
                         column: x => x.MaDG,
                         principalTable: "DocGia",
                         principalColumn: "MaDG",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_PhieuPhat_AppUsers_UserId",
                         column: x => x.UserId,
@@ -283,8 +290,9 @@ namespace Infrastructure.Migrations
                 name: "PhieuTra",
                 columns: table => new
                 {
-                    MaPT = table.Column<string>(unicode: false, maxLength: 10, nullable: false),
-                    MaDG = table.Column<string>(nullable: true),
+                    MaPT = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MaDG = table.Column<int>(nullable: false),
                     NgayTra = table.Column<DateTime>(type: "Date", nullable: false),
                     TongPhiTra = table.Column<int>(nullable: false),
                     UserId = table.Column<Guid>(nullable: false)
@@ -297,7 +305,7 @@ namespace Infrastructure.Migrations
                         column: x => x.MaDG,
                         principalTable: "DocGia",
                         principalColumn: "MaDG",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_PhieuTra_AppUsers_UserId",
                         column: x => x.UserId,
@@ -310,8 +318,9 @@ namespace Infrastructure.Migrations
                 name: "PhieuNhap",
                 columns: table => new
                 {
-                    MaPN = table.Column<string>(unicode: false, maxLength: 10, nullable: false),
-                    MaNCC = table.Column<string>(nullable: true),
+                    MaPN = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MaNCC = table.Column<int>(nullable: false),
                     NgayNhap = table.Column<DateTime>(type: "Date", nullable: false),
                     TongTienNhap = table.Column<int>(nullable: false),
                     UserId = table.Column<Guid>(nullable: false)
@@ -324,7 +333,7 @@ namespace Infrastructure.Migrations
                         column: x => x.MaNCC,
                         principalTable: "NhaCungCap",
                         principalColumn: "MaNCC",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_PhieuNhap_AppUsers_UserId",
                         column: x => x.UserId,
@@ -334,72 +343,15 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "DauSach",
-                columns: table => new
-                {
-                    MaDS = table.Column<string>(unicode: false, maxLength: 10, nullable: false),
-                    MaTL = table.Column<string>(nullable: true),
-                    MaTG = table.Column<string>(nullable: true),
-                    MaNXB = table.Column<string>(nullable: true),
-                    TenDS = table.Column<string>(maxLength: 100, nullable: false),
-                    SoLuongDS = table.Column<int>(nullable: false),
-                    HinhAnh = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DauSach", x => x.MaDS);
-                    table.ForeignKey(
-                        name: "FK_DauSach_NhaXuatBan_MaNXB",
-                        column: x => x.MaNXB,
-                        principalTable: "NhaXuatBan",
-                        principalColumn: "MaNXB",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_DauSach_TacGia_MaTG",
-                        column: x => x.MaTG,
-                        principalTable: "TacGia",
-                        principalColumn: "MaTG",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_DauSach_TheLoai_MaTL",
-                        column: x => x.MaTL,
-                        principalTable: "TheLoai",
-                        principalColumn: "MaTL",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ChiTietPhieuNhap",
-                columns: table => new
-                {
-                    MaPN = table.Column<string>(nullable: false),
-                    MaDS = table.Column<string>(nullable: false),
-                    SoLuongNhap = table.Column<int>(nullable: false),
-                    DonGiaSach = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ChiTietPhieuNhap", x => new { x.MaPN, x.MaDS });
-                    table.ForeignKey(
-                        name: "FK_ChiTietPhieuNhap_DauSach_MaDS",
-                        column: x => x.MaDS,
-                        principalTable: "DauSach",
-                        principalColumn: "MaDS",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ChiTietPhieuNhap_PhieuNhap_MaPN",
-                        column: x => x.MaPN,
-                        principalTable: "PhieuNhap",
-                        principalColumn: "MaPN",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Sach",
                 columns: table => new
                 {
-                    MaSach = table.Column<string>(unicode: false, maxLength: 10, nullable: false),
-                    MaDS = table.Column<string>(nullable: true),
+                    MaSach = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TenSach = table.Column<string>(maxLength: 100, nullable: false),
+                    MaTG = table.Column<int>(nullable: false),
+                    MaNXB = table.Column<int>(nullable: false),
+                    MaTL = table.Column<int>(nullable: false),
                     GiaBia = table.Column<int>(nullable: false),
                     ViTri = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
                     TrangThaiSach = table.Column<int>(nullable: false, defaultValue: 0)
@@ -408,19 +360,31 @@ namespace Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_Sach", x => x.MaSach);
                     table.ForeignKey(
-                        name: "FK_Sach_DauSach_MaDS",
-                        column: x => x.MaDS,
-                        principalTable: "DauSach",
-                        principalColumn: "MaDS",
-                        onDelete: ReferentialAction.Restrict);
+                        name: "FK_Sach_NhaXuatBan_MaNXB",
+                        column: x => x.MaNXB,
+                        principalTable: "NhaXuatBan",
+                        principalColumn: "MaNXB",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Sach_TacGia_MaTG",
+                        column: x => x.MaTG,
+                        principalTable: "TacGia",
+                        principalColumn: "MaTG",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Sach_TheLoai_MaTL",
+                        column: x => x.MaTL,
+                        principalTable: "TheLoai",
+                        principalColumn: "MaTL",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "ChiTietPhieuMuon",
                 columns: table => new
                 {
-                    MaPM = table.Column<string>(nullable: false),
-                    MaSach = table.Column<string>(nullable: false),
+                    MaPM = table.Column<int>(nullable: false),
+                    MaSach = table.Column<int>(nullable: false),
                     PhiMuon = table.Column<int>(nullable: false),
                     NgayHetHan = table.Column<DateTime>(type: "Date", nullable: false),
                     GiaHan = table.Column<DateTime>(type: "Date", nullable: false)
@@ -443,11 +407,37 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ChiTietPhieuNhap",
+                columns: table => new
+                {
+                    MaPN = table.Column<int>(nullable: false),
+                    MaSach = table.Column<int>(nullable: false),
+                    SoLuongNhap = table.Column<int>(nullable: false),
+                    DonGiaSach = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ChiTietPhieuNhap", x => new { x.MaPN, x.MaSach });
+                    table.ForeignKey(
+                        name: "FK_ChiTietPhieuNhap_PhieuNhap_MaPN",
+                        column: x => x.MaPN,
+                        principalTable: "PhieuNhap",
+                        principalColumn: "MaPN",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ChiTietPhieuNhap_Sach_MaPN",
+                        column: x => x.MaPN,
+                        principalTable: "Sach",
+                        principalColumn: "MaSach",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ChiTietPhieuPhat",
                 columns: table => new
                 {
-                    MaPP = table.Column<string>(nullable: false),
-                    MaSach = table.Column<string>(nullable: false),
+                    MaPP = table.Column<int>(nullable: false),
+                    MaSach = table.Column<int>(nullable: false),
                     NoiDungViPham = table.Column<string>(maxLength: 256, nullable: false),
                     XuLyViPham = table.Column<string>(maxLength: 256, nullable: false),
                     PhiPhat = table.Column<int>(nullable: false)
@@ -473,8 +463,8 @@ namespace Infrastructure.Migrations
                 name: "ChiTietPhieuTra",
                 columns: table => new
                 {
-                    MaPT = table.Column<string>(nullable: false),
-                    MaSach = table.Column<string>(nullable: false),
+                    MaPT = table.Column<int>(nullable: false),
+                    MaSach = table.Column<int>(nullable: false),
                     TrangThaiSachTra = table.Column<int>(nullable: false),
                     PhiTra = table.Column<int>(nullable: false)
                 },
@@ -495,56 +485,25 @@ namespace Infrastructure.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.InsertData(
-                table: "NhaXuatBan",
-                columns: new[] { "MaNXB", "TenNXB" },
-                values: new object[] { "NXB001", "Nhà xuất bản trẻ" });
-
-            migrationBuilder.InsertData(
-                table: "TacGia",
-                columns: new[] { "MaTG", "TenTG" },
-                values: new object[,]
+            migrationBuilder.CreateTable(
+                name: "SachImage",
+                columns: table => new
                 {
-                    { "TG001", "Nguyễn Nhật Ánh" },
-                    { "TG002", "Nguyễn Ngọc Tư" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "TheLoai",
-                columns: new[] { "MaTL", "TenTL" },
-                values: new object[,]
+                    ImageId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MaSach = table.Column<int>(nullable: false),
+                    ImagePath = table.Column<string>(maxLength: 256, nullable: false),
+                    ImageCaption = table.Column<string>(maxLength: 256, nullable: true)
+                },
+                constraints: table =>
                 {
-                    { "TL001", "Truyện ngắn" },
-                    { "TL002", "Truyện dài" },
-                    { "TL003", "Thơ" },
-                    { "TL004", "Tản văn" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "DauSach",
-                columns: new[] { "MaDS", "HinhAnh", "MaNXB", "MaTG", "MaTL", "SoLuongDS", "TenDS" },
-                values: new object[] { "DS002", "HinhAnhDauSach/DS002", "NXB001", "TG001", "TL001", 5, "Cánh đồng bất tận" });
-
-            migrationBuilder.InsertData(
-                table: "DauSach",
-                columns: new[] { "MaDS", "HinhAnh", "MaNXB", "MaTG", "MaTL", "SoLuongDS", "TenDS" },
-                values: new object[] { "DS001", "HinhAnhDauSach/DS001", "NXB001", "TG001", "TL002", 5, "Tôi thấy hoa vàng trên cỏ xanh" });
-
-            migrationBuilder.InsertData(
-                table: "Sach",
-                columns: new[] { "MaSach", "GiaBia", "MaDS", "ViTri" },
-                values: new object[,]
-                {
-                    { "S006", 59000, "DS002", "E406" },
-                    { "S007", 59000, "DS002", "E407" },
-                    { "S008", 59000, "DS002", "E408" },
-                    { "S009", 59000, "DS002", "E409" },
-                    { "S010", 59000, "DS002", "E410" },
-                    { "S001", 99000, "DS001", "E401" },
-                    { "S002", 99000, "DS001", "E402" },
-                    { "S003", 99000, "DS001", "E403" },
-                    { "S004", 99000, "DS001", "E404" },
-                    { "S005", 99000, "DS001", "E405" }
+                    table.PrimaryKey("PK_SachImage", x => x.ImageId);
+                    table.ForeignKey(
+                        name: "FK_SachImage_Sach_MaSach",
+                        column: x => x.MaSach,
+                        principalTable: "Sach",
+                        principalColumn: "MaSach",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -592,9 +551,10 @@ namespace Infrastructure.Migrations
                 column: "MaSach");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ChiTietPhieuNhap_MaDS",
+                name: "IX_ChiTietPhieuNhap_MaPN",
                 table: "ChiTietPhieuNhap",
-                column: "MaDS");
+                column: "MaPN",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ChiTietPhieuPhat_MaSach",
@@ -605,21 +565,6 @@ namespace Infrastructure.Migrations
                 name: "IX_ChiTietPhieuTra_MaSach",
                 table: "ChiTietPhieuTra",
                 column: "MaSach");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DauSach_MaNXB",
-                table: "DauSach",
-                column: "MaNXB");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DauSach_MaTG",
-                table: "DauSach",
-                column: "MaTG");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DauSach_MaTL",
-                table: "DauSach",
-                column: "MaTL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PhieuMuon_MaDG",
@@ -662,9 +607,24 @@ namespace Infrastructure.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sach_MaDS",
+                name: "IX_Sach_MaNXB",
                 table: "Sach",
-                column: "MaDS");
+                column: "MaNXB");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Sach_MaTG",
+                table: "Sach",
+                column: "MaTG");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Sach_MaTL",
+                table: "Sach",
+                column: "MaTL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SachImage_MaSach",
+                table: "SachImage",
+                column: "MaSach");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -697,6 +657,9 @@ namespace Infrastructure.Migrations
                 name: "ChiTietPhieuTra");
 
             migrationBuilder.DropTable(
+                name: "SachImage");
+
+            migrationBuilder.DropTable(
                 name: "AppRoles");
 
             migrationBuilder.DropTable(
@@ -722,9 +685,6 @@ namespace Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "AppUsers");
-
-            migrationBuilder.DropTable(
-                name: "DauSach");
 
             migrationBuilder.DropTable(
                 name: "NhaXuatBan");

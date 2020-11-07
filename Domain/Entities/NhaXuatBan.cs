@@ -4,8 +4,8 @@ namespace Domain.Entities
 {
     public class NhaXuatBan
     {
-        public string MaNXB { set; get; }
+        public int MaNXB { set; get; }
         public string TenNXB { set; get; }
-        public List<DauSach> DSDauSach { get; set; }
+        public List<Sach> Sachs { get; set; }
     }
 }

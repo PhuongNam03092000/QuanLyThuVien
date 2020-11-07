@@ -4,16 +4,14 @@ using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Infrastructure.Migrations
+namespace Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(QLTVDbContext))]
-    [Migration("20201106141145_SeedData")]
-    partial class SeedData
+    partial class QLTVDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -139,11 +137,11 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.ChiTietPhieuMuon", b =>
                 {
-                    b.Property<string>("MaPM")
-                        .HasColumnType("varchar(10)");
+                    b.Property<int>("MaPM")
+                        .HasColumnType("int");
 
-                    b.Property<string>("MaSach")
-                        .HasColumnType("varchar(10)");
+                    b.Property<int>("MaSach")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("GiaHan")
                         .HasColumnType("Date");
@@ -163,11 +161,11 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.ChiTietPhieuNhap", b =>
                 {
-                    b.Property<string>("MaPN")
-                        .HasColumnType("varchar(10)");
+                    b.Property<int>("MaPN")
+                        .HasColumnType("int");
 
-                    b.Property<string>("MaDS")
-                        .HasColumnType("varchar(10)");
+                    b.Property<int>("MaSach")
+                        .HasColumnType("int");
 
                     b.Property<int>("DonGiaSach")
                         .HasColumnType("int");
@@ -175,20 +173,21 @@ namespace Infrastructure.Migrations
                     b.Property<int>("SoLuongNhap")
                         .HasColumnType("int");
 
-                    b.HasKey("MaPN", "MaDS");
+                    b.HasKey("MaPN", "MaSach");
 
-                    b.HasIndex("MaDS");
+                    b.HasIndex("MaPN")
+                        .IsUnique();
 
                     b.ToTable("ChiTietPhieuNhap");
                 });
 
             modelBuilder.Entity("Domain.Entities.ChiTietPhieuPhat", b =>
                 {
-                    b.Property<string>("MaPP")
-                        .HasColumnType("varchar(10)");
+                    b.Property<int>("MaPP")
+                        .HasColumnType("int");
 
-                    b.Property<string>("MaSach")
-                        .HasColumnType("varchar(10)");
+                    b.Property<int>("MaSach")
+                        .HasColumnType("int");
 
                     b.Property<string>("NoiDungViPham")
                         .IsRequired()
@@ -212,11 +211,11 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.ChiTietPhieuTra", b =>
                 {
-                    b.Property<string>("MaPT")
-                        .HasColumnType("varchar(10)");
+                    b.Property<int>("MaPT")
+                        .HasColumnType("int");
 
-                    b.Property<string>("MaSach")
-                        .HasColumnType("varchar(10)");
+                    b.Property<int>("MaSach")
+                        .HasColumnType("int");
 
                     b.Property<int>("PhiTra")
                         .HasColumnType("int");
@@ -231,72 +230,12 @@ namespace Infrastructure.Migrations
                     b.ToTable("ChiTietPhieuTra");
                 });
 
-            modelBuilder.Entity("Domain.Entities.DauSach", b =>
-                {
-                    b.Property<string>("MaDS")
-                        .HasColumnType("varchar(10)")
-                        .HasMaxLength(10)
-                        .IsUnicode(false);
-
-                    b.Property<string>("HinhAnh")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MaNXB")
-                        .HasColumnType("varchar(10)");
-
-                    b.Property<string>("MaTG")
-                        .HasColumnType("varchar(10)");
-
-                    b.Property<string>("MaTL")
-                        .HasColumnType("varchar(10)");
-
-                    b.Property<int>("SoLuongDS")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TenDS")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.HasKey("MaDS");
-
-                    b.HasIndex("MaNXB");
-
-                    b.HasIndex("MaTG");
-
-                    b.HasIndex("MaTL");
-
-                    b.ToTable("DauSach");
-
-                    b.HasData(
-                        new
-                        {
-                            MaDS = "DS001",
-                            HinhAnh = "HinhAnhDauSach/DS001",
-                            MaNXB = "NXB001",
-                            MaTG = "TG001",
-                            MaTL = "TL002",
-                            SoLuongDS = 5,
-                            TenDS = "Tôi thấy hoa vàng trên cỏ xanh"
-                        },
-                        new
-                        {
-                            MaDS = "DS002",
-                            HinhAnh = "HinhAnhDauSach/DS002",
-                            MaNXB = "NXB001",
-                            MaTG = "TG001",
-                            MaTL = "TL001",
-                            SoLuongDS = 5,
-                            TenDS = "Cánh đồng bất tận"
-                        });
-                });
-
             modelBuilder.Entity("Domain.Entities.DocGia", b =>
                 {
-                    b.Property<string>("MaDG")
-                        .HasColumnType("varchar(10)")
-                        .HasMaxLength(10)
-                        .IsUnicode(false);
+                    b.Property<int>("MaDG")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("DiaChiDG")
                         .IsRequired()
@@ -343,10 +282,10 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.NhaCungCap", b =>
                 {
-                    b.Property<string>("MaNCC")
-                        .HasColumnType("varchar(10)")
-                        .HasMaxLength(10)
-                        .IsUnicode(false);
+                    b.Property<int>("MaNCC")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("DiaChiNCC")
                         .IsRequired()
@@ -370,10 +309,10 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.NhaXuatBan", b =>
                 {
-                    b.Property<string>("MaNXB")
-                        .HasColumnType("varchar(10)")
-                        .HasMaxLength(10)
-                        .IsUnicode(false);
+                    b.Property<int>("MaNXB")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("TenNXB")
                         .IsRequired()
@@ -384,24 +323,17 @@ namespace Infrastructure.Migrations
                     b.HasKey("MaNXB");
 
                     b.ToTable("NhaXuatBan");
-
-                    b.HasData(
-                        new
-                        {
-                            MaNXB = "NXB001",
-                            TenNXB = "Nhà xuất bản trẻ"
-                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.PhieuMuon", b =>
                 {
-                    b.Property<string>("MaPM")
-                        .HasColumnType("varchar(10)")
-                        .HasMaxLength(10)
-                        .IsUnicode(false);
+                    b.Property<int>("MaPM")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("MaDG")
-                        .HasColumnType("varchar(10)");
+                    b.Property<int>("MaDG")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("NgayMuon")
                         .HasColumnType("Date");
@@ -423,13 +355,13 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.PhieuNhap", b =>
                 {
-                    b.Property<string>("MaPN")
-                        .HasColumnType("varchar(10)")
-                        .HasMaxLength(10)
-                        .IsUnicode(false);
+                    b.Property<int>("MaPN")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("MaNCC")
-                        .HasColumnType("varchar(10)");
+                    b.Property<int>("MaNCC")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("NgayNhap")
                         .HasColumnType("Date");
@@ -451,13 +383,13 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.PhieuPhat", b =>
                 {
-                    b.Property<string>("MaPP")
-                        .HasColumnType("varchar(10)")
-                        .HasMaxLength(10)
-                        .IsUnicode(false);
+                    b.Property<int>("MaPP")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("MaDG")
-                        .HasColumnType("varchar(10)");
+                    b.Property<int>("MaDG")
+                        .HasColumnType("int");
 
                     b.Property<int>("TongPhiPhat")
                         .HasColumnType("int");
@@ -476,13 +408,13 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.PhieuTra", b =>
                 {
-                    b.Property<string>("MaPT")
-                        .HasColumnType("varchar(10)")
-                        .HasMaxLength(10)
-                        .IsUnicode(false);
+                    b.Property<int>("MaPT")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("MaDG")
-                        .HasColumnType("varchar(10)");
+                    b.Property<int>("MaDG")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("NgayTra")
                         .HasColumnType("Date");
@@ -504,16 +436,27 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Sach", b =>
                 {
-                    b.Property<string>("MaSach")
-                        .HasColumnType("varchar(10)")
-                        .HasMaxLength(10)
-                        .IsUnicode(false);
+                    b.Property<int>("MaSach")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("GiaBia")
                         .HasColumnType("int");
 
-                    b.Property<string>("MaDS")
-                        .HasColumnType("varchar(10)");
+                    b.Property<int>("MaNXB")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MaTG")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MaTL")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TenSach")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<int>("TrangThaiSach")
                         .ValueGeneratedOnAdd()
@@ -528,99 +471,47 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("MaSach");
 
-                    b.HasIndex("MaDS");
+                    b.HasIndex("MaNXB");
+
+                    b.HasIndex("MaTG");
+
+                    b.HasIndex("MaTL");
 
                     b.ToTable("Sach");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            MaSach = "S001",
-                            GiaBia = 99000,
-                            MaDS = "DS001",
-                            TrangThaiSach = 0,
-                            ViTri = "E401"
-                        },
-                        new
-                        {
-                            MaSach = "S002",
-                            GiaBia = 99000,
-                            MaDS = "DS001",
-                            TrangThaiSach = 0,
-                            ViTri = "E402"
-                        },
-                        new
-                        {
-                            MaSach = "S003",
-                            GiaBia = 99000,
-                            MaDS = "DS001",
-                            TrangThaiSach = 0,
-                            ViTri = "E403"
-                        },
-                        new
-                        {
-                            MaSach = "S004",
-                            GiaBia = 99000,
-                            MaDS = "DS001",
-                            TrangThaiSach = 0,
-                            ViTri = "E404"
-                        },
-                        new
-                        {
-                            MaSach = "S005",
-                            GiaBia = 99000,
-                            MaDS = "DS001",
-                            TrangThaiSach = 0,
-                            ViTri = "E405"
-                        },
-                        new
-                        {
-                            MaSach = "S006",
-                            GiaBia = 59000,
-                            MaDS = "DS002",
-                            TrangThaiSach = 0,
-                            ViTri = "E406"
-                        },
-                        new
-                        {
-                            MaSach = "S007",
-                            GiaBia = 59000,
-                            MaDS = "DS002",
-                            TrangThaiSach = 0,
-                            ViTri = "E407"
-                        },
-                        new
-                        {
-                            MaSach = "S008",
-                            GiaBia = 59000,
-                            MaDS = "DS002",
-                            TrangThaiSach = 0,
-                            ViTri = "E408"
-                        },
-                        new
-                        {
-                            MaSach = "S009",
-                            GiaBia = 59000,
-                            MaDS = "DS002",
-                            TrangThaiSach = 0,
-                            ViTri = "E409"
-                        },
-                        new
-                        {
-                            MaSach = "S010",
-                            GiaBia = 59000,
-                            MaDS = "DS002",
-                            TrangThaiSach = 0,
-                            ViTri = "E410"
-                        });
+            modelBuilder.Entity("Domain.Entities.SachImage", b =>
+                {
+                    b.Property<int>("ImageId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ImageCaption")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<int>("MaSach")
+                        .HasColumnType("int");
+
+                    b.HasKey("ImageId");
+
+                    b.HasIndex("MaSach");
+
+                    b.ToTable("SachImage");
                 });
 
             modelBuilder.Entity("Domain.Entities.TacGia", b =>
                 {
-                    b.Property<string>("MaTG")
-                        .HasColumnType("varchar(10)")
-                        .HasMaxLength(10)
-                        .IsUnicode(false);
+                    b.Property<int>("MaTG")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("TenTG")
                         .IsRequired()
@@ -630,26 +521,14 @@ namespace Infrastructure.Migrations
                     b.HasKey("MaTG");
 
                     b.ToTable("TacGia");
-
-                    b.HasData(
-                        new
-                        {
-                            MaTG = "TG001",
-                            TenTG = "Nguyễn Nhật Ánh"
-                        },
-                        new
-                        {
-                            MaTG = "TG002",
-                            TenTG = "Nguyễn Ngọc Tư"
-                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.TheLoai", b =>
                 {
-                    b.Property<string>("MaTL")
-                        .HasColumnType("varchar(10)")
-                        .HasMaxLength(10)
-                        .IsUnicode(false);
+                    b.Property<int>("MaTL")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("TenTL")
                         .IsRequired()
@@ -659,28 +538,6 @@ namespace Infrastructure.Migrations
                     b.HasKey("MaTL");
 
                     b.ToTable("TheLoai");
-
-                    b.HasData(
-                        new
-                        {
-                            MaTL = "TL001",
-                            TenTL = "Truyện ngắn"
-                        },
-                        new
-                        {
-                            MaTL = "TL002",
-                            TenTL = "Truyện dài"
-                        },
-                        new
-                        {
-                            MaTL = "TL003",
-                            TenTL = "Thơ"
-                        },
-                        new
-                        {
-                            MaTL = "TL004",
-                            TenTL = "Tản văn"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -787,13 +644,13 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.ChiTietPhieuMuon", b =>
                 {
                     b.HasOne("Domain.Entities.PhieuMuon", "PhieuMuon")
-                        .WithMany("DSChiTietPhieuMuon")
+                        .WithMany("ChiTietPhieuMuons")
                         .HasForeignKey("MaPM")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Sach", "Sach")
-                        .WithMany("DSChiTietPhieuMuon")
+                        .WithMany("ChiTietPhieuMuons")
                         .HasForeignKey("MaSach")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -801,15 +658,15 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.ChiTietPhieuNhap", b =>
                 {
-                    b.HasOne("Domain.Entities.DauSach", "DauSach")
-                        .WithMany("DSChiTietPhieuNhap")
-                        .HasForeignKey("MaDS")
+                    b.HasOne("Domain.Entities.PhieuNhap", "PhieuNhap")
+                        .WithMany("ChiTietPhieuNhaps")
+                        .HasForeignKey("MaPN")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.PhieuNhap", "PhieuNhap")
-                        .WithMany("DSChiTietPhieuNhap")
-                        .HasForeignKey("MaPN")
+                    b.HasOne("Domain.Entities.Sach", "Sach")
+                        .WithOne("ChiTietPhieuNhap")
+                        .HasForeignKey("Domain.Entities.ChiTietPhieuNhap", "MaPN")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -817,13 +674,13 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.ChiTietPhieuPhat", b =>
                 {
                     b.HasOne("Domain.Entities.PhieuPhat", "PhieuPhat")
-                        .WithMany("DSChiTietPhieuPhat")
+                        .WithMany("ChiTietPhieuPhats")
                         .HasForeignKey("MaPP")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Sach", "Sach")
-                        .WithMany("DSChiTietPhieuPhat")
+                        .WithMany("ChiTietPhieuPhats")
                         .HasForeignKey("MaSach")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -832,41 +689,28 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.ChiTietPhieuTra", b =>
                 {
                     b.HasOne("Domain.Entities.PhieuTra", "PhieuTra")
-                        .WithMany("DSChiTietPhieuTra")
+                        .WithMany("ChiTietPhieuTras")
                         .HasForeignKey("MaPT")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Sach", "Sach")
-                        .WithMany("DSChiTietPhieuTra")
+                        .WithMany("ChiTietPhieuTras")
                         .HasForeignKey("MaSach")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Domain.Entities.DauSach", b =>
-                {
-                    b.HasOne("Domain.Entities.NhaXuatBan", "NhaXuatBan")
-                        .WithMany("DSDauSach")
-                        .HasForeignKey("MaNXB");
-
-                    b.HasOne("Domain.Entities.TacGia", "TacGia")
-                        .WithMany("DSDauSach")
-                        .HasForeignKey("MaTG");
-
-                    b.HasOne("Domain.Entities.TheLoai", "TheLoai")
-                        .WithMany("DSDauSach")
-                        .HasForeignKey("MaTL");
-                });
-
             modelBuilder.Entity("Domain.Entities.PhieuMuon", b =>
                 {
                     b.HasOne("Domain.Entities.DocGia", "DocGia")
-                        .WithMany("DSPhieuMuon")
-                        .HasForeignKey("MaDG");
+                        .WithMany("PhieuMuons")
+                        .HasForeignKey("MaDG")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Domain.Entities.AppUser", "AppUser")
-                        .WithMany("DSPhieuMuon")
+                        .WithMany("PhieuMuons")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -875,11 +719,13 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.PhieuNhap", b =>
                 {
                     b.HasOne("Domain.Entities.NhaCungCap", "NhaCungCap")
-                        .WithMany("DSPhieuNhap")
-                        .HasForeignKey("MaNCC");
+                        .WithMany("PhieuNhaps")
+                        .HasForeignKey("MaNCC")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Domain.Entities.AppUser", "AppUser")
-                        .WithMany("DSPhieuNhap")
+                        .WithMany("PhieuNhaps")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -888,11 +734,13 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.PhieuPhat", b =>
                 {
                     b.HasOne("Domain.Entities.DocGia", "DocGia")
-                        .WithMany("DSPhieuPhat")
-                        .HasForeignKey("MaDG");
+                        .WithMany("PhieuPhats")
+                        .HasForeignKey("MaDG")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Domain.Entities.AppUser", "AppUser")
-                        .WithMany("DSPhieuPhat")
+                        .WithMany("PhieuPhats")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -901,11 +749,13 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.PhieuTra", b =>
                 {
                     b.HasOne("Domain.Entities.DocGia", "DocGia")
-                        .WithMany("DSPhieuTra")
-                        .HasForeignKey("MaDG");
+                        .WithMany("PhieuTras")
+                        .HasForeignKey("MaDG")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Domain.Entities.AppUser", "AppUser")
-                        .WithMany("DSPhieuTra")
+                        .WithMany("PhieuTras")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -913,9 +763,32 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Sach", b =>
                 {
-                    b.HasOne("Domain.Entities.DauSach", "DauSach")
-                        .WithMany("DSSach")
-                        .HasForeignKey("MaDS");
+                    b.HasOne("Domain.Entities.NhaXuatBan", "NhaXuatBan")
+                        .WithMany("Sachs")
+                        .HasForeignKey("MaNXB")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.TacGia", "TacGia")
+                        .WithMany("Sachs")
+                        .HasForeignKey("MaTG")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.TheLoai", "TheLoai")
+                        .WithMany("Sachs")
+                        .HasForeignKey("MaTL")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Entities.SachImage", b =>
+                {
+                    b.HasOne("Domain.Entities.Sach", "Sachs")
+                        .WithMany("SachImages")
+                        .HasForeignKey("MaSach")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

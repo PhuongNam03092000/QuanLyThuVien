@@ -4,10 +4,10 @@ namespace Domain.Entities
 {
     public class NhaCungCap
     {
-        public string MaNCC { set; get; }        
+        public int MaNCC { set; get; }        
         public string TenNCC { set; get; }        
         public string DiaChiNCC { set; get; }        
         public string SdtNCC { set; get; }      
-        public List<PhieuNhap> DSPhieuNhap { get; set; }
+        public List<PhieuNhap> PhieuNhaps { get; set; }
     }
 }

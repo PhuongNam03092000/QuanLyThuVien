@@ -23,20 +23,20 @@ namespace Infrastructure.Persistence
         //Dùng để làm Infrastruture/Persistence/Config
 
         //Lấy từ Domain/Entities
-        public DbSet<DauSach> DSDauSach { get; set; }
-        public DbSet<TheLoai> DSTheLoai { get; set; }
-        public DbSet<TacGia> DSTacGia { get; set; }
-        public DbSet<NhaXuatBan> DSNhaXuatBan { get; set; }
-        public DbSet<Sach> DSSach { get; set; }
-        public DbSet<DocGia> DSDocGia { get; set; }
-        public DbSet<NhaCungCap> DSNhaCungCap { get; set; }
-        public DbSet<PhieuNhap> DSPhieuNhap { get; set; }
-        public DbSet<ChiTietPhieuNhap> DSChiTietPhieuNhap { get; set; }
-        public DbSet<PhieuMuon> DSPhieuMuon { get; set;}
-        public DbSet<ChiTietPhieuMuon> DSChiTietPhieuMuon { get; set;}
-        public DbSet<PhieuTra> DSPhieuTra { get; set;}
-        public DbSet<ChiTietPhieuTra> DSChiTietPhieuTra { get; set;}
-        public DbSet<PhieuPhat> DSPhieuPhat { get; set;}
-        public DbSet<ChiTietPhieuPhat> DSChiTietPhieuPhat { get; set;}
+        public DbSet<TheLoai> TheLoais { get; set; }
+        public DbSet<TacGia> TacGias { get; set; }
+        public DbSet<NhaXuatBan> NhaXuatBans { get; set; }
+        public DbSet<Sach> Sachs { get; set; }
+        public DbSet<DocGia> DocGias { get; set; }
+        public DbSet<NhaCungCap> NhaCungCaps { get; set; }
+        public DbSet<PhieuNhap> PhieuNhaps { get; set; }
+        public DbSet<ChiTietPhieuNhap> ChiTietPhieuNhaps { get; set; }
+        public DbSet<PhieuMuon> PhieuMuons { get; set;}
+        public DbSet<ChiTietPhieuMuon> ChiTietPhieuMuons { get; set;}
+        public DbSet<PhieuTra> PhieuTras { get; set;}
+        public DbSet<ChiTietPhieuTra> ChiTietPhieuTras { get; set;}
+        public DbSet<PhieuPhat> PhieuPhats { get; set;}
+        public DbSet<ChiTietPhieuPhat> ChiTietPhieuPhats { get; set;}
+        public DbSet<SachImage> SachImages { get; set; }
     }
 }
