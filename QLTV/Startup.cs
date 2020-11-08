@@ -22,6 +22,16 @@ namespace QLTV
             services.AddControllersWithViews();
             services.AddDbContext<QLTVDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("QuanLyThuVienDB")));
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1",
+                    new Microsoft.OpenApi.Models.OpenApiInfo
+                    {
+                        Title ="Swagger Api",
+                        Description = "",
+                        Version = "Vs1"
+                    });
+            });
         } 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -29,6 +39,11 @@ namespace QLTV
         {
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseSwagger();
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger API");
+            });
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

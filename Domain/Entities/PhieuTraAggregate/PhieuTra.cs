@@ -1,9 +1,10 @@
+using Domain.Entities.Common;
 using System;
 using System.Collections.Generic;
 
 namespace Domain.Entities
 {
-    public class PhieuTra
+    public class PhieuTra : IAggregateRoot
     {
         public int MaPT { set; get; }
         public DocGia DocGia { get; set; }

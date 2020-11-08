@@ -1,9 +1,10 @@
+using Domain.Entities.Common;
 using Domain.Enums;
 using System.Collections.Generic;
 
 namespace Domain.Entities
 {
-    public class Sach
+    public class Sach : IAggregateRoot
     {
         public int MaSach { set; get; }
         public string TenSach { set; get; }
