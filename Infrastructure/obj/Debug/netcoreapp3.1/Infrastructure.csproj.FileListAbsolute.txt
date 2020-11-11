@@ -31,7 +31,6 @@ C:\Users\lannhi\Desktop\New folder\QuanLyThuVien\Infrastructure\obj\Debug\netcor
 C:\Users\Admin\Downloads\CNPM\QuanLyThuVien\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.csprojAssemblyReference.cache
 C:\Users\Admin\Downloads\CNPM\QuanLyThuVien\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.AssemblyInfoInputs.cache
 C:\Users\Admin\Downloads\CNPM\QuanLyThuVien\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.AssemblyInfo.cs
-C:\Users\Admin\Downloads\CNPM\QuanLyThuVien\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.csproj.CoreCompileInputs.cache
 C:\Users\Admin\Downloads\CNPM\QuanLyThuVien\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.dll
 C:\Users\Admin\Downloads\CNPM\QuanLyThuVien\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.pdb
 C:\Users\Admin\Downloads\CNPM\QuanLyThuVien\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.deps.json
@@ -43,18 +42,4 @@ C:\Users\Admin\Downloads\CNPM\QuanLyThuVien\Infrastructure\bin\Debug\netcoreapp3
 C:\Users\Admin\Downloads\CNPM\QuanLyThuVien\Infrastructure\bin\Debug\netcoreapp3.1\Domain.pdb
 C:\Users\Admin\Downloads\CNPM\QuanLyThuVien\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.csproj.CopyComplete
 C:\Users\Admin\Downloads\CNPM\QuanLyThuVien\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.genruntimeconfig.cache
-C:\Users\Gintarou\Source\Repos\QuanLyThuVien\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.deps.json
-C:\Users\Gintarou\Source\Repos\QuanLyThuVien\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.runtimeconfig.json
-C:\Users\Gintarou\Source\Repos\QuanLyThuVien\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.runtimeconfig.dev.json
-C:\Users\Gintarou\Source\Repos\QuanLyThuVien\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.dll
-C:\Users\Gintarou\Source\Repos\QuanLyThuVien\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.pdb
-C:\Users\Gintarou\Source\Repos\QuanLyThuVien\Infrastructure\bin\Debug\netcoreapp3.1\Domain.dll
-C:\Users\Gintarou\Source\Repos\QuanLyThuVien\Infrastructure\bin\Debug\netcoreapp3.1\Domain.pdb
-C:\Users\Gintarou\Source\Repos\QuanLyThuVien\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.csprojAssemblyReference.cache
-C:\Users\Gintarou\Source\Repos\QuanLyThuVien\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.AssemblyInfoInputs.cache
-C:\Users\Gintarou\Source\Repos\QuanLyThuVien\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.AssemblyInfo.cs
-C:\Users\Gintarou\Source\Repos\QuanLyThuVien\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.csproj.CoreCompileInputs.cache
-C:\Users\Gintarou\Source\Repos\QuanLyThuVien\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.csproj.CopyComplete
-C:\Users\Gintarou\Source\Repos\QuanLyThuVien\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.dll
-C:\Users\Gintarou\Source\Repos\QuanLyThuVien\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.pdb
-C:\Users\Gintarou\Source\Repos\QuanLyThuVien\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.genruntimeconfig.cache
+C:\Users\Admin\Downloads\CNPM\QuanLyThuVien\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.csproj.CoreCompileInputs.cache

@@ -1,4 +1,5 @@
 using Domain.Entities;
+using Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -10,7 +11,6 @@ namespace Infrastructure.Persistence
         {
             builder.ToTable("DocGia");
             builder.HasKey(dg => dg.MaDG);
-            builder.Property(dg => dg.MaDG).HasMaxLength(10).IsUnicode(false);
             builder.Property(dg => dg.HoDG).HasMaxLength(50).IsUnicode().IsRequired();
             builder.Property(dg => dg.TenDG).HasMaxLength(50).IsUnicode().IsRequired();
             builder.Property(dg => dg.DoBDG).HasColumnType("Date");

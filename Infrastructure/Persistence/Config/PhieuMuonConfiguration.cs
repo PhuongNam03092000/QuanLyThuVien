@@ -10,11 +10,10 @@ namespace Infrastructure.Persistence
         {
             builder.ToTable("PhieuMuon");
             builder.HasKey(pm => pm.MaPM);
-            builder.Property(pm => pm.MaPM).HasMaxLength(10).IsUnicode(false);
-            builder.HasOne(dg => dg.DocGia).WithMany(pm => pm.DSPhieuMuon).HasForeignKey(dg => dg.MaDG);
+            builder.HasOne(dg => dg.DocGia).WithMany(pm => pm.PhieuMuons).HasForeignKey(dg => dg.MaDG);
             builder.Property(pm => pm.NgayMuon).HasColumnType("Date");
             builder.Property(pm => pm.TongPhiMuon);
-            builder.HasOne(us => us.AppUser).WithMany(pm => pm.DSPhieuMuon).HasForeignKey(us => us.UserId);
+            builder.HasOne(us => us.AppUser).WithMany(pm => pm.PhieuMuons).HasForeignKey(us => us.UserId);
         }
     }
 }

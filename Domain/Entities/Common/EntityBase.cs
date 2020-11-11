@@ -1,4 +1,4 @@
-namespace Domain.Entities.NhanVienAggregate
+namespace Domain.Entities.Common
 {
     public class EntityBase
     {
