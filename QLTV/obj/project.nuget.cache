@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "CGBySSF/q0rRjCPZ7MmR9jcvjY/kTcaGmYH5FBBx5hyF7dMie8/KMTMYyPT3v7dI88eMOUNPzgMNOiVd9RO82w==",
+  "dgSpecHash": "GihGtme1i+ZdY7QY4e8RdAIeFDER1aRBrhzi3FGHhLM+o+BchOflGoERwEioDAQG34SlpZTXjCy9weGr3zm5VQ==",
   "success": true,
-  "projectFilePath": "D:\\HOCTAP\\C#\\DoAn\\QLThuVien1\\QLTV\\QLTV.csproj",
+  "projectFilePath": "C:\\Users\\Admin\\Downloads\\CNPM\\QuanLyThuVien\\QLTV\\QLTV.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\fluentvalidation\\9.2.0\\fluentvalidation.9.2.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\fluentvalidation.aspnetcore\\9.2.0\\fluentvalidation.aspnetcore.9.2.0.nupkg.sha512",
