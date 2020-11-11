@@ -2822,7 +2822,10 @@
         },
         "runtime": {
           "bin/placeholder/Application.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "Domain/1.0.0": {
         "type": "project",

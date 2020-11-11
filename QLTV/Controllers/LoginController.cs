@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using QLTV.Services;
 using System.Threading.Tasks;
 
 namespace QLTV.Controllers
@@ -11,14 +12,14 @@ namespace QLTV.Controllers
             return View();
         }
 
-        [HttpGet]
-        /*public async Task<IActionResult> Login()
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginRequest loginRequest)
         {
-            return View();
-        }*/
-        public string Login(string email,string password)
-        {
-            return "đã nhận get"+email + password;
+            if(ModelState.IsValid)
+            {
+                return RedirectToAction("index","home");
+            }
+            return RedirectToAction("index");
         }
 
     }

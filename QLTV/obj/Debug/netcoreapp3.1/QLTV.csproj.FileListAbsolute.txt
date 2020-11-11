@@ -534,4 +534,3 @@ C:\Users\Gintarou\Source\Repos\QuanLyThuVien\QLTV\bin\Debug\netcoreapp3.1\QLTV.V
 C:\Users\Gintarou\Source\Repos\QuanLyThuVien\QLTV\obj\Debug\netcoreapp3.1\staticwebassets\QLTV.StaticWebAssets.Manifest.cache
 C:\Users\Gintarou\Source\Repos\QuanLyThuVien\QLTV\obj\Debug\netcoreapp3.1\staticwebassets\QLTV.StaticWebAssets.xml
 C:\Users\Gintarou\Source\Repos\QuanLyThuVien\QLTV\obj\Debug\netcoreapp3.1\QLTV.genruntimeconfig.cache
-C:\Users\Gintarou\Source\Repos\QuanLyThuVien\QLTV\obj\Debug\netcoreapp3.1\Razor\Views\Login\Login.cshtml.g.cs
