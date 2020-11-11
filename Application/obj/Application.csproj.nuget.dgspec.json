@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\Application\\Application.csproj": {}
+    "C:\\Users\\Gintarou\\Source\\Repos\\QuanLyThuVien\\Application\\Application.csproj": {}
   },
   "projects": {
-    "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\Application\\Application.csproj": {
+    "C:\\Users\\Gintarou\\Source\\Repos\\QuanLyThuVien\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\Application\\Application.csproj",
+        "projectUniqueName": "C:\\Users\\Gintarou\\Source\\Repos\\QuanLyThuVien\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\Application\\Application.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\Application\\obj\\",
+        "projectPath": "C:\\Users\\Gintarou\\Source\\Repos\\QuanLyThuVien\\Application\\Application.csproj",
+        "packagesPath": "C:\\Users\\Gintarou\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Gintarou\\Source\\Repos\\QuanLyThuVien\\Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Gintarou\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -27,8 +27,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\Domain\\Domain.csproj": {
-                "projectPath": "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\Domain\\Domain.csproj"
+              "C:\\Users\\Gintarou\\Source\\Repos\\QuanLyThuVien\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\Gintarou\\Source\\Repos\\QuanLyThuVien\\Domain\\Domain.csproj"
               }
             }
           }
@@ -62,6 +62,9 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
@@ -70,17 +73,17 @@
         }
       }
     },
-    "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\Domain\\Domain.csproj": {
+    "C:\\Users\\Gintarou\\Source\\Repos\\QuanLyThuVien\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Gintarou\\Source\\Repos\\QuanLyThuVien\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\Gintarou\\Source\\Repos\\QuanLyThuVien\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\Gintarou\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Gintarou\\Source\\Repos\\QuanLyThuVien\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Gintarou\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

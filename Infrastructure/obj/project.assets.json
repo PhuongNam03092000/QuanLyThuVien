@@ -5982,19 +5982,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Admin\\.nuget\\packages\\": {}
+    "C:\\Users\\Gintarou\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\Infrastructure\\Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\Gintarou\\Source\\Repos\\QuanLyThuVien\\Infrastructure\\Infrastructure.csproj",
       "projectName": "Infrastructure",
-      "projectPath": "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\Infrastructure\\Infrastructure.csproj",
-      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\Infrastructure\\obj\\",
+      "projectPath": "C:\\Users\\Gintarou\\Source\\Repos\\QuanLyThuVien\\Infrastructure\\Infrastructure.csproj",
+      "packagesPath": "C:\\Users\\Gintarou\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Gintarou\\Source\\Repos\\QuanLyThuVien\\Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Gintarou\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6007,8 +6007,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\Domain\\Domain.csproj": {
-              "projectPath": "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\Domain\\Domain.csproj"
+            "C:\\Users\\Gintarou\\Source\\Repos\\QuanLyThuVien\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\Gintarou\\Source\\Repos\\QuanLyThuVien\\Domain\\Domain.csproj"
             }
           }
         }
@@ -6069,5 +6069,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\Gintarou\\Source\\Repos\\QuanLyThuVien\\Infrastructure\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
