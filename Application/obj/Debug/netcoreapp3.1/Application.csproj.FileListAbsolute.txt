@@ -48,3 +48,15 @@ C:\Users\Gintarou\Source\Repos\QuanLyThuVien\Application\bin\Debug\netcoreapp3.1
 C:\Users\Gintarou\Source\Repos\QuanLyThuVien\Application\bin\Debug\netcoreapp3.1\Domain.dll
 C:\Users\Gintarou\Source\Repos\QuanLyThuVien\Application\bin\Debug\netcoreapp3.1\Domain.pdb
 C:\Users\Gintarou\Source\Repos\QuanLyThuVien\Application\obj\Debug\netcoreapp3.1\Application.csproj.CopyComplete
+D:\HOCTAP\C#\DoAn\QuanLyThuVien\Application\bin\Debug\netcoreapp3.1\Application.deps.json
+D:\HOCTAP\C#\DoAn\QuanLyThuVien\Application\bin\Debug\netcoreapp3.1\Application.dll
+D:\HOCTAP\C#\DoAn\QuanLyThuVien\Application\bin\Debug\netcoreapp3.1\Application.pdb
+D:\HOCTAP\C#\DoAn\QuanLyThuVien\Application\bin\Debug\netcoreapp3.1\Domain.dll
+D:\HOCTAP\C#\DoAn\QuanLyThuVien\Application\bin\Debug\netcoreapp3.1\Domain.pdb
+D:\HOCTAP\C#\DoAn\QuanLyThuVien\Application\obj\Debug\netcoreapp3.1\Application.csprojAssemblyReference.cache
+D:\HOCTAP\C#\DoAn\QuanLyThuVien\Application\obj\Debug\netcoreapp3.1\Application.AssemblyInfoInputs.cache
+D:\HOCTAP\C#\DoAn\QuanLyThuVien\Application\obj\Debug\netcoreapp3.1\Application.AssemblyInfo.cs
+D:\HOCTAP\C#\DoAn\QuanLyThuVien\Application\obj\Debug\netcoreapp3.1\Application.csproj.CoreCompileInputs.cache
+D:\HOCTAP\C#\DoAn\QuanLyThuVien\Application\obj\Debug\netcoreapp3.1\Application.csproj.CopyComplete
+D:\HOCTAP\C#\DoAn\QuanLyThuVien\Application\obj\Debug\netcoreapp3.1\Application.dll
+D:\HOCTAP\C#\DoAn\QuanLyThuVien\Application\obj\Debug\netcoreapp3.1\Application.pdb
