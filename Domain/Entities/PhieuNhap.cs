@@ -1,10 +1,9 @@
-using Domain.Entities.Common;
 using System;
 using System.Collections.Generic;
 
 namespace Domain.Entities
 {
-    public class PhieuNhap : IAggregateRoot
+    public class PhieuNhap
     {
         public int MaPN { set; get; }
         public NhaCungCap NhaCungCap {set; get; }

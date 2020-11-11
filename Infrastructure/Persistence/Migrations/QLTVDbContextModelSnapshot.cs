@@ -784,7 +784,7 @@ namespace Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.SachImage", b =>
                 {
-                    b.HasOne("Domain.Entities.Sach", "Sach")
+                    b.HasOne("Domain.Entities.Sach", "Sachs")
                         .WithMany("SachImages")
                         .HasForeignKey("MaSach")
                         .OnDelete(DeleteBehavior.Cascade)
