@@ -2822,10 +2822,7 @@
         },
         "runtime": {
           "bin/placeholder/Application.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
+        }
       },
       "Domain/1.0.0": {
         "type": "project",
@@ -9050,11 +9047,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin\\Downloads\\CNPM\\QuanLyThuVien\\QLTV\\QLTV.csproj",
+      "projectUniqueName": "D:\\HOCTAP\\C#\\DoAn\\QLThuVien1\\QLTV\\QLTV.csproj",
       "projectName": "QLTV",
-      "projectPath": "C:\\Users\\Admin\\Downloads\\CNPM\\QuanLyThuVien\\QLTV\\QLTV.csproj",
+      "projectPath": "D:\\HOCTAP\\C#\\DoAn\\QLThuVien1\\QLTV\\QLTV.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\Downloads\\CNPM\\QuanLyThuVien\\QLTV\\obj\\",
+      "outputPath": "D:\\HOCTAP\\C#\\DoAn\\QLThuVien1\\QLTV\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -9070,14 +9067,14 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\Admin\\Downloads\\CNPM\\QuanLyThuVien\\Application\\Application.csproj": {
-              "projectPath": "C:\\Users\\Admin\\Downloads\\CNPM\\QuanLyThuVien\\Application\\Application.csproj"
+            "D:\\HOCTAP\\C#\\DoAn\\QLThuVien1\\Application\\Application.csproj": {
+              "projectPath": "D:\\HOCTAP\\C#\\DoAn\\QLThuVien1\\Application\\Application.csproj"
             },
-            "C:\\Users\\Admin\\Downloads\\CNPM\\QuanLyThuVien\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\Admin\\Downloads\\CNPM\\QuanLyThuVien\\Domain\\Domain.csproj"
+            "D:\\HOCTAP\\C#\\DoAn\\QLThuVien1\\Domain\\Domain.csproj": {
+              "projectPath": "D:\\HOCTAP\\C#\\DoAn\\QLThuVien1\\Domain\\Domain.csproj"
             },
-            "C:\\Users\\Admin\\Downloads\\CNPM\\QuanLyThuVien\\Infrastructure\\Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\Admin\\Downloads\\CNPM\\QuanLyThuVien\\Infrastructure\\Infrastructure.csproj"
+            "D:\\HOCTAP\\C#\\DoAn\\QLThuVien1\\Infrastructure\\Infrastructure.csproj": {
+              "projectPath": "D:\\HOCTAP\\C#\\DoAn\\QLThuVien1\\Infrastructure\\Infrastructure.csproj"
             }
           }
         }
@@ -9138,7 +9135,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
       }
     }
   }
