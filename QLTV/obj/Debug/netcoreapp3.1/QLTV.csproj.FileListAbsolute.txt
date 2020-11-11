@@ -711,3 +711,4 @@ D:\HOCTAP\C#\DoAn\QuanLyThuVien\QLTV\obj\Debug\netcoreapp3.1\QLTV.dll
 D:\HOCTAP\C#\DoAn\QuanLyThuVien\QLTV\obj\Debug\netcoreapp3.1\QLTV.pdb
 D:\HOCTAP\C#\DoAn\QuanLyThuVien\QLTV\obj\Debug\netcoreapp3.1\QLTV.genruntimeconfig.cache
 D:\HOCTAP\C#\DoAn\QuanLyThuVien\QLTV\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Shared\_Layout.cshtml.g.cs
+C:\Users\Admin\Downloads\CNPM\QuanLyThuVien\QLTV\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Shared\_Layout.cshtml.g.cs
