@@ -2822,10 +2822,7 @@
         },
         "runtime": {
           "bin/placeholder/Application.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
+        }
       },
       "Domain/1.0.0": {
         "type": "project",
@@ -9045,19 +9042,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Gintarou\\.nuget\\packages\\": {}
+    "C:\\Users\\Admin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Gintarou\\Source\\Repos\\QuanLyThuVien\\QLTV\\QLTV.csproj",
+      "projectUniqueName": "C:\\Users\\Admin\\Downloads\\CNPM\\QuanLyThuVien\\QLTV\\QLTV.csproj",
       "projectName": "QLTV",
-      "projectPath": "C:\\Users\\Gintarou\\Source\\Repos\\QuanLyThuVien\\QLTV\\QLTV.csproj",
-      "packagesPath": "C:\\Users\\Gintarou\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Gintarou\\Source\\Repos\\QuanLyThuVien\\QLTV\\obj\\",
+      "projectPath": "C:\\Users\\Admin\\Downloads\\CNPM\\QuanLyThuVien\\QLTV\\QLTV.csproj",
+      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Admin\\Downloads\\CNPM\\QuanLyThuVien\\QLTV\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Gintarou\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9070,14 +9067,14 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\Gintarou\\Source\\Repos\\QuanLyThuVien\\Application\\Application.csproj": {
-              "projectPath": "C:\\Users\\Gintarou\\Source\\Repos\\QuanLyThuVien\\Application\\Application.csproj"
+            "C:\\Users\\Admin\\Downloads\\CNPM\\QuanLyThuVien\\Application\\Application.csproj": {
+              "projectPath": "C:\\Users\\Admin\\Downloads\\CNPM\\QuanLyThuVien\\Application\\Application.csproj"
             },
-            "C:\\Users\\Gintarou\\Source\\Repos\\QuanLyThuVien\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\Gintarou\\Source\\Repos\\QuanLyThuVien\\Domain\\Domain.csproj"
+            "C:\\Users\\Admin\\Downloads\\CNPM\\QuanLyThuVien\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\Admin\\Downloads\\CNPM\\QuanLyThuVien\\Domain\\Domain.csproj"
             },
-            "C:\\Users\\Gintarou\\Source\\Repos\\QuanLyThuVien\\Infrastructure\\Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\Gintarou\\Source\\Repos\\QuanLyThuVien\\Infrastructure\\Infrastructure.csproj"
+            "C:\\Users\\Admin\\Downloads\\CNPM\\QuanLyThuVien\\Infrastructure\\Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\Admin\\Downloads\\CNPM\\QuanLyThuVien\\Infrastructure\\Infrastructure.csproj"
             }
           }
         }
@@ -9138,7 +9135,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
       }
     }
   }
