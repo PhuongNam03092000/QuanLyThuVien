@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ViaCtKG2CxXiXz5dZdSC672y+RRU6ocK14GyIa54w9eJG3jNz6EhYjSK+qsM0s95tKfL7LA55NkMxeRfMNMw5A==",
+  "dgSpecHash": "KUR/HoR2obvl8m4TWmdlnKGsQsTKR6REDYW0oTCWB2FCaE4+uk3Ql09xjohIc28ma8ImVD9aEqmIPwL4wFX5AA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\Downloads\\CNPM\\QuanLyThuVien\\Infrastructure\\Infrastructure.csproj",
+  "projectFilePath": "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\Infrastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.9\\microsoft.aspnetcore.cryptography.internal.3.1.9.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.9\\microsoft.aspnetcore.cryptography.keyderivation.3.1.9.nupkg.sha512",
