@@ -43,3 +43,12 @@ D:\HOCTAP\C#\DoAn\QuanLyThuVien\Domain\obj\Debug\netcoreapp3.1\Domain.AssemblyIn
 D:\HOCTAP\C#\DoAn\QuanLyThuVien\Domain\obj\Debug\netcoreapp3.1\Domain.csproj.CoreCompileInputs.cache
 D:\HOCTAP\C#\DoAn\QuanLyThuVien\Domain\obj\Debug\netcoreapp3.1\Domain.dll
 D:\HOCTAP\C#\DoAn\QuanLyThuVien\Domain\obj\Debug\netcoreapp3.1\Domain.pdb
+C:\Users\Gintarou\Source\Repos\QuanLyThuVien\Domain\bin\Debug\netcoreapp3.1\Domain.deps.json
+C:\Users\Gintarou\Source\Repos\QuanLyThuVien\Domain\bin\Debug\netcoreapp3.1\Domain.dll
+C:\Users\Gintarou\Source\Repos\QuanLyThuVien\Domain\bin\Debug\netcoreapp3.1\Domain.pdb
+C:\Users\Gintarou\Source\Repos\QuanLyThuVien\Domain\obj\Debug\netcoreapp3.1\Domain.csprojAssemblyReference.cache
+C:\Users\Gintarou\Source\Repos\QuanLyThuVien\Domain\obj\Debug\netcoreapp3.1\Domain.AssemblyInfoInputs.cache
+C:\Users\Gintarou\Source\Repos\QuanLyThuVien\Domain\obj\Debug\netcoreapp3.1\Domain.AssemblyInfo.cs
+C:\Users\Gintarou\Source\Repos\QuanLyThuVien\Domain\obj\Debug\netcoreapp3.1\Domain.csproj.CoreCompileInputs.cache
+C:\Users\Gintarou\Source\Repos\QuanLyThuVien\Domain\obj\Debug\netcoreapp3.1\Domain.dll
+C:\Users\Gintarou\Source\Repos\QuanLyThuVien\Domain\obj\Debug\netcoreapp3.1\Domain.pdb

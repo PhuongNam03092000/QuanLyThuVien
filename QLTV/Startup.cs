@@ -1,3 +1,4 @@
+using FluentValidation.AspNetCore;
 using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -6,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using System;
+using System.Reflection;
 
 namespace QLTV
 {
@@ -21,7 +23,7 @@ namespace QLTV
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddFluentValidation(fv => { fv.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly()); });
             services.AddDbContext<QLTVDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("QuanLyThuVienDB")));
             services.AddSwaggerGen(c => {
