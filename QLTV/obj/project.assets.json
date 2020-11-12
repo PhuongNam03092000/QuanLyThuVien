@@ -2822,16 +2822,17 @@
         },
         "runtime": {
           "bin/placeholder/Application.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
-          "FluentValidation.AspNetCore": "9.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "3.1.9",
-          "Microsoft.EntityFrameworkCore.SqlServer": "3.1.9",
-          "Swashbuckle.AspNetCore": "5.6.3"
+          "Microsoft.EntityFrameworkCore.SqlServer": "3.1.9"
         },
         "compile": {
           "bin/placeholder/Domain.dll": {}
@@ -2845,12 +2846,10 @@
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
           "Domain": "1.0.0",
-          "FluentValidation.AspNetCore": "9.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "3.1.9",
           "Microsoft.EntityFrameworkCore.SqlServer": "3.1.9",
           "Microsoft.Extensions.Configuration.FileExtensions": "3.1.9",
-          "Microsoft.Extensions.Configuration.Json": "3.1.9",
-          "Swashbuckle.AspNetCore": "5.6.3"
+          "Microsoft.Extensions.Configuration.Json": "3.1.9"
         },
         "compile": {
           "bin/placeholder/Infrastructure.dll": {}
@@ -9046,19 +9045,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\gia\\.nuget\\packages\\": {}
+    "C:\\Users\\Admin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\gia\\Desktop\\Đồ án C#\\QuanLyThuVien\\QLTV\\QLTV.csproj",
+      "projectUniqueName": "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\QLTV\\QLTV.csproj",
       "projectName": "QLTV",
-      "projectPath": "C:\\Users\\gia\\Desktop\\Đồ án C#\\QuanLyThuVien\\QLTV\\QLTV.csproj",
-      "packagesPath": "C:\\Users\\gia\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\gia\\Desktop\\Đồ án C#\\QuanLyThuVien\\QLTV\\obj\\",
+      "projectPath": "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\QLTV\\QLTV.csproj",
+      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+      "outputPath": "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\QLTV\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\gia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9071,14 +9070,14 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\gia\\Desktop\\Đồ án C#\\QuanLyThuVien\\Application\\Application.csproj": {
-              "projectPath": "C:\\Users\\gia\\Desktop\\Đồ án C#\\QuanLyThuVien\\Application\\Application.csproj"
+            "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\Application\\Application.csproj": {
+              "projectPath": "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\Application\\Application.csproj"
             },
-            "C:\\Users\\gia\\Desktop\\Đồ án C#\\QuanLyThuVien\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\gia\\Desktop\\Đồ án C#\\QuanLyThuVien\\Domain\\Domain.csproj"
+            "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\Domain\\Domain.csproj": {
+              "projectPath": "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\Domain\\Domain.csproj"
             },
-            "C:\\Users\\gia\\Desktop\\Đồ án C#\\QuanLyThuVien\\Infrastructure\\Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\gia\\Desktop\\Đồ án C#\\QuanLyThuVien\\Infrastructure\\Infrastructure.csproj"
+            "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\Infrastructure\\Infrastructure.csproj": {
+              "projectPath": "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\Infrastructure\\Infrastructure.csproj"
             }
           }
         }
@@ -9139,7 +9138,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

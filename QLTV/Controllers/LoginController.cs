@@ -1,34 +1,26 @@
-﻿
+﻿using Microsoft.AspNetCore.Mvc;
+using QLTV.Services;
 using System.Threading.Tasks;
-using Application.DTOs;
-using Application.Service.Users;
-using Microsoft.AspNetCore.Mvc;
+
 namespace QLTV.Controllers
 {
-   
     public class LoginController : Controller
     {
-        private readonly IUserApiClient _userApiClient;
-        public IActionResult Index()
-        {
-            return View();
-        }
-        [HttpGet]
-        public IActionResult Login()
+        // GET: LoginController
+        public async Task<IActionResult> Index()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginRequest request)
+        public async Task<IActionResult> Login(LoginRequest loginRequest)
         {
-            if (!ModelState.IsValid)
-                return View(ModelState);
-
-            var token = await _userApiClient.Authenticate(request);
-
-            return View(token);
+            if(ModelState.IsValid)
+            {
+                return RedirectToAction("index","home");
+            }
+            return RedirectToAction("index");
         }
+
     }
-   
 }

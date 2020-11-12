@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 
-namespace Application.DTOs.Users
 
+namespace QLTV.Services
 {
     public class LoginRequestValidator : AbstractValidator<LoginRequest>
     {
