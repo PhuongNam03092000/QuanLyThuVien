@@ -60,3 +60,15 @@ D:\HOCTAP\C#\DoAn\QuanLyThuVien\Application\obj\Debug\netcoreapp3.1\Application.
 D:\HOCTAP\C#\DoAn\QuanLyThuVien\Application\obj\Debug\netcoreapp3.1\Application.csproj.CopyComplete
 D:\HOCTAP\C#\DoAn\QuanLyThuVien\Application\obj\Debug\netcoreapp3.1\Application.dll
 D:\HOCTAP\C#\DoAn\QuanLyThuVien\Application\obj\Debug\netcoreapp3.1\Application.pdb
+C:\Users\Admin\source\repos\QuanLyThuVien\Application\bin\Debug\netcoreapp3.1\Application.deps.json
+C:\Users\Admin\source\repos\QuanLyThuVien\Application\bin\Debug\netcoreapp3.1\Application.dll
+C:\Users\Admin\source\repos\QuanLyThuVien\Application\bin\Debug\netcoreapp3.1\Application.pdb
+C:\Users\Admin\source\repos\QuanLyThuVien\Application\bin\Debug\netcoreapp3.1\Domain.dll
+C:\Users\Admin\source\repos\QuanLyThuVien\Application\bin\Debug\netcoreapp3.1\Domain.pdb
+C:\Users\Admin\source\repos\QuanLyThuVien\Application\obj\Debug\netcoreapp3.1\Application.csprojAssemblyReference.cache
+C:\Users\Admin\source\repos\QuanLyThuVien\Application\obj\Debug\netcoreapp3.1\Application.AssemblyInfoInputs.cache
+C:\Users\Admin\source\repos\QuanLyThuVien\Application\obj\Debug\netcoreapp3.1\Application.AssemblyInfo.cs
+C:\Users\Admin\source\repos\QuanLyThuVien\Application\obj\Debug\netcoreapp3.1\Application.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\QuanLyThuVien\Application\obj\Debug\netcoreapp3.1\Application.csproj.CopyComplete
+C:\Users\Admin\source\repos\QuanLyThuVien\Application\obj\Debug\netcoreapp3.1\Application.dll
+C:\Users\Admin\source\repos\QuanLyThuVien\Application\obj\Debug\netcoreapp3.1\Application.pdb

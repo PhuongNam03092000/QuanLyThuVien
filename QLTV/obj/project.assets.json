@@ -9050,11 +9050,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\QLTV\\QLTV.csproj",
+      "projectUniqueName": "C:\\Users\\Admin\\Source\\Repos\\QuanLyThuVien\\QLTV\\QLTV.csproj",
       "projectName": "QLTV",
-      "projectPath": "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\QLTV\\QLTV.csproj",
+      "projectPath": "C:\\Users\\Admin\\Source\\Repos\\QuanLyThuVien\\QLTV\\QLTV.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\QLTV\\obj\\",
+      "outputPath": "C:\\Users\\Admin\\Source\\Repos\\QuanLyThuVien\\QLTV\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -9070,14 +9070,14 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\Application\\Application.csproj": {
-              "projectPath": "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\Application\\Application.csproj"
+            "C:\\Users\\Admin\\Source\\Repos\\QuanLyThuVien\\Application\\Application.csproj": {
+              "projectPath": "C:\\Users\\Admin\\Source\\Repos\\QuanLyThuVien\\Application\\Application.csproj"
             },
-            "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\Domain\\Domain.csproj": {
-              "projectPath": "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\Domain\\Domain.csproj"
+            "C:\\Users\\Admin\\Source\\Repos\\QuanLyThuVien\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\Admin\\Source\\Repos\\QuanLyThuVien\\Domain\\Domain.csproj"
             },
-            "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\Infrastructure\\Infrastructure.csproj": {
-              "projectPath": "D:\\HOCTAP\\C#\\DoAn\\QuanLyThuVien\\Infrastructure\\Infrastructure.csproj"
+            "C:\\Users\\Admin\\Source\\Repos\\QuanLyThuVien\\Infrastructure\\Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\Admin\\Source\\Repos\\QuanLyThuVien\\Infrastructure\\Infrastructure.csproj"
             }
           }
         }
