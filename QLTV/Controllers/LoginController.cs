@@ -17,10 +17,11 @@ namespace QLTV.Controllers
         {
             if(ModelState.IsValid)
             {
-                return RedirectToAction("index","home");
+                return RedirectToAction("index","admin");
             }
             return RedirectToAction("index");
         }
 
     }
 }
+   
