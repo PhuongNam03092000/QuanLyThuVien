@@ -7,6 +7,7 @@ namespace Application.Dtos
 {
     public class SachDTO
     {
+
         public int MaSach { set; get; }
         public string TenSach { set; get; }
         public int MaTG { set; get; }
