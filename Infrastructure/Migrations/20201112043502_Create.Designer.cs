@@ -4,14 +4,16 @@ using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Infrastructure.Persistence.Migrations
+namespace Infrastructure.Migrations
 {
     [DbContext(typeof(QLTVDbContext))]
-    partial class QLTVDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201112043502_Create")]
+    partial class Create
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -784,7 +786,7 @@ namespace Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.SachImage", b =>
                 {
-                    b.HasOne("Domain.Entities.Sach", "Sachs")
+                    b.HasOne("Domain.Entities.Sach", "Sach")
                         .WithMany("SachImages")
                         .HasForeignKey("MaSach")
                         .OnDelete(DeleteBehavior.Cascade)

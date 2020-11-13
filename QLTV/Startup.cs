@@ -23,13 +23,14 @@ namespace QLTV
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddControllersWithViews().AddFluentValidation(fv => { fv.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly()); });
-            services.AddDbContext<QLTVDbContext>(options =>
+            services.AddDbContextPool<QLTVDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("QuanLyThuVienDB")));
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1",new OpenApiInfo { Title ="My API",Version="v1"});
             });
-            services.AddControllers();
+
         } 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
