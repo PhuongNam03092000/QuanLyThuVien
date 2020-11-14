@@ -5982,19 +5982,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Gintarou\\.nuget\\packages\\": {}
+    "C:\\Users\\Admin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Gintarou\\Source\\Repos\\QuanLyThuVien\\Infrastructure\\Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\Admin\\Source\\Repos\\QuanLyThuVien\\Infrastructure\\Infrastructure.csproj",
       "projectName": "Infrastructure",
-      "projectPath": "C:\\Users\\Gintarou\\Source\\Repos\\QuanLyThuVien\\Infrastructure\\Infrastructure.csproj",
-      "packagesPath": "C:\\Users\\Gintarou\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Gintarou\\Source\\Repos\\QuanLyThuVien\\Infrastructure\\obj\\",
+      "projectPath": "C:\\Users\\Admin\\Source\\Repos\\QuanLyThuVien\\Infrastructure\\Infrastructure.csproj",
+      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Admin\\Source\\Repos\\QuanLyThuVien\\Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Gintarou\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6006,10 +6006,9 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\Gintarou\\Source\\Repos\\QuanLyThuVien\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\Gintarou\\Source\\Repos\\QuanLyThuVien\\Domain\\Domain.csproj"
+            "C:\\Users\\Admin\\Source\\Repos\\QuanLyThuVien\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\Admin\\Source\\Repos\\QuanLyThuVien\\Domain\\Domain.csproj"
             }
           }
         }
@@ -6022,7 +6021,6 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
-        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
             "target": "Package",
@@ -6068,7 +6066,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -888,3 +888,5 @@ C:\Users\Admin\source\repos\QuanLyThuVien\QLTV\obj\Debug\netcoreapp3.1\staticweb
 C:\Users\Admin\source\repos\QuanLyThuVien\QLTV\obj\Debug\netcoreapp3.1\QLTV.dll
 C:\Users\Admin\source\repos\QuanLyThuVien\QLTV\obj\Debug\netcoreapp3.1\QLTV.pdb
 C:\Users\Admin\source\repos\QuanLyThuVien\QLTV\obj\Debug\netcoreapp3.1\QLTV.genruntimeconfig.cache
+C:\Users\Admin\Source\Repos\QuanLyThuVien\QLTV\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Shared\_LeftMenu.cshtml.g.cs
+C:\Users\Admin\Source\Repos\QuanLyThuVien\QLTV\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Sach\Index.cshtml.g.cs
