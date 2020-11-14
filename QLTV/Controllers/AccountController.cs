@@ -15,7 +15,7 @@ namespace QLTV.Controllers
         }
 
         // GET: LoginController
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             return View();
         }
@@ -27,6 +27,21 @@ namespace QLTV.Controllers
             {
                 var result = await signInManager.PasswordSignInAsync(loginRequest.UserName, loginRequest.Password,true,false);
                 if(result.Succeeded)
+                {
+                    return RedirectToAction("index", "admin");
+                }
+                ModelState.AddModelError(string.Empty, "Thông tin đăng nhập không hợp lệ");
+            }
+            return RedirectToAction("index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(LoginRequest loginRequest)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await signInManager.PasswordSignInAsync(loginRequest.UserName, loginRequest.Password, true, false);
+                if (result.Succeeded)
                 {
                     return RedirectToAction("index", "admin");
                 }
