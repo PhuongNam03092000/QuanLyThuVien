@@ -58,6 +58,11 @@ namespace QLTV
 
                 );
                 endpoints.MapControllerRoute(
+                    name : "chuyenhuongaccount",
+                    defaults: new { area="Admin",controller ="Home", action ="Index"},
+                    pattern: "/QuanLyThuVien"
+                    );
+                endpoints.MapControllerRoute(
                     name: "areas",
                     pattern: "{area:exists}/{controller=Home}/{action=Index}");
             });
