@@ -90,9 +90,10 @@
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" asp-area="Admin" asp-controller="Sach" asp-action="Index">
             <i class="fas fa-fw fa-table"></i>
             <span>Quản lý sách</span>
+            @Html.ActionLink("Quản lý sách", "Index", "Sach")
         </a>
     </li>
 
