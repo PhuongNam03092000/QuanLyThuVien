@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 // Entity là dùng để lưu dữ liệu còn DTO là dùng để lấy ra và hiển thị dữ liệu lên View
 

@@ -1,10 +1,11 @@
+using Domain.Entities.Common;
 using Domain.Enums;
 using System;
 using System.Collections.Generic;
 
 namespace Domain.Entities
 {
-    public class DocGia
+    public class DocGia :IAggregateRoot
     {
         public int MaDG { set; get; }
         public string HoDG { set; get; }

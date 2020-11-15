@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Domain.Repositories
+namespace Domain.Entities.Common
 {
     public interface IAggregateRoot
     {
