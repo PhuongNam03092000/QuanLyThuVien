@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-// Entity là dùng để lưu dữ liệu còn DTO là dùng để lấy ra và hiển thị dữ liệu lên View
-
-namespace Application.Dtos
+﻿namespace Application.DTOs
 {
-    public class SachDTO
+    public class SachDto
     {
-
-        public int MaSach { set; get; }
+        public int Id { get; set; }
         public string TenSach { set; get; }
-        public int MaTG { set; get; }
-        public int MaNXB { set; get; }
-        public int MaTL { set; get; }
+        public string TheLoai { get; set; }
+        public string TacGia { get; set; }
+        public string NhaXuatBan { get; set; }
         public int GiaBia { set; get; }
+        public string ViTri { set; get; }
     }
 }

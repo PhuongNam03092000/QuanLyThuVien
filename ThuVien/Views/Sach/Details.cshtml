@@ -1,0 +1,31 @@
+﻿@using Application.DTOs
+@model SachDto
+
+@{
+    ViewData["Title"] = "Chi tiết";
+}
+
+<h1>Chi tiết</h1>
+
+<div>
+    <h4>Sách</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.TenSach)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => Model.TenSach)</dd>
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.TheLoai)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => Model.TheLoai)</dd>
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.TacGia)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => Model.TacGia)</dd>
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.NhaXuatBan)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => Model.NhaXuatBan)</dd>
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.GiaBia)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => Model.GiaBia)</dd>
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.ViTri)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => Model.ViTri)</dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Sửa</a> |
+    <a asp-action="Index">Trở về danh sách</a>
+</div>
