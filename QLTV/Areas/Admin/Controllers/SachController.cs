@@ -7,7 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace QLTV.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class HomeController : Controller
+
+    public class SachController : Controller
     {
         public IActionResult Index()
         {
