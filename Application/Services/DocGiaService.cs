@@ -34,9 +34,17 @@ namespace Application.Services
             return docGia.MappingDTO();
         }
 
-        public void UpdateDocGia(DocGiaDTO docGia)
+        public IEnumerable<DocGiaDTO> GetDSDocGia()
         {
-            var docgia = docgiaRepository.GetBy(docGia.MaDG);
+            var dsdocgia = docgiaRepository.GetAll();
+            return dsdocgia.MappingDtos();
+        }
+
+        public void UpdateDocGia(DocGiaDTO docGiaDTO)
+        {
+            var docgia = docgiaRepository.GetBy(docGiaDTO.MaDG);
+            docGiaDTO.MappingDocGia(docgia);
+            docgiaRepository.Update(docgia);
         }
     }
 }

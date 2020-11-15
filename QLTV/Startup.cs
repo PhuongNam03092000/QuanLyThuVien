@@ -1,6 +1,10 @@
+using Application.Interfaces;
+using Application.Services;
 using Domain.Entities;
+using Domain.Repositories;
 using FluentValidation.AspNetCore;
 using Infrastructure.Persistence;
+using Infrastructure.Persistence.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -36,6 +40,8 @@ namespace QLTV
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1",new OpenApiInfo { Title ="My API",Version="v1"});
             });
+            services.AddScoped<IDocGiaRepository, DocGiaRepository>();
+            services.AddScoped<IDocGiaService, DocGiaService>();
 
         } 
 

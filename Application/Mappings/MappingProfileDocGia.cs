@@ -4,15 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
-/*public int MaDG { set; get; }
-public string HoDG { set; get; }
-public string TenDG { set; get; }
-public DateTime DoBDG { set; get; }
-public string EmailDG { set; get; }
-public string DiaChiDG { set; get; }
-public DateTime NgayDK { set; get; }
-public DateTime NgayHetHanDK { set; get; }*/
 namespace Application.Mappings
 {
     public static class MappingProfileDocGia
@@ -46,7 +37,7 @@ namespace Application.Mappings
                 NgayHetHanDK = docgiaDTO.NgayHetHanDK
             };
         }
-        public static void MappingDocGia(DocGia docgia, DocGiaDTO docgiaDTO)
+        public static void MappingDocGia(this DocGiaDTO docgiaDTO, DocGia docgia)
         {
             docgia.MaDG = docgiaDTO.MaDG;
             docgia.HoDG = docgiaDTO.HoDG;
@@ -57,7 +48,7 @@ namespace Application.Mappings
             docgia.NgayDK = docgiaDTO.NgayDK;
             docgia.NgayHetHanDK = docgiaDTO.NgayHetHanDK;
         }
-        public static IEnumerable<DocGiaDTO> MappingDtos(IEnumerable<DocGia> DSDocGia)
+        public static IEnumerable<DocGiaDTO> MappingDtos(this IEnumerable<DocGia> DSDocGia)
         {
             foreach(var docgia in DSDocGia)
             {

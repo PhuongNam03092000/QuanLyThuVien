@@ -32,7 +32,7 @@ namespace Application.Mappings
                 GiaBia = sachDTO    .GiaBia
             };
         }
-        public static void MappingSach(SachDTO sachDTO,Sach sach)
+        public static void MappingSach(this SachDTO sachDTO,Sach sach)
         {
 
             sach.MaSach = sachDTO.MaSach;

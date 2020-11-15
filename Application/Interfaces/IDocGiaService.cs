@@ -7,6 +7,7 @@ namespace Application.Interfaces
 {
     public interface IDocGiaService
     {
+        IEnumerable<DocGiaDTO> GetDSDocGia();
         DocGiaDTO GetDocGia(int MaDG);
         void CreateDocGia(DocGiaDTO docGia);
         void UpdateDocGia(DocGiaDTO docGia);
