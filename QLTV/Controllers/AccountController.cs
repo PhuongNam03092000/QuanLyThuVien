@@ -30,7 +30,7 @@ namespace QLTV.Controllers
                 var result = await signInManager.PasswordSignInAsync(loginRequest.UserName, loginRequest.Password, true, false);
                 if (result.Succeeded)
                 {
-                return RedirectToRoute("chuyenhuongaccount");
+                    return RedirectToRoute("trangchu");
                 }
                 ModelState.AddModelError(string.Empty, "Thông tin đăng nhập không hợp lệ");
             }

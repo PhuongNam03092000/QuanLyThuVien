@@ -1,4 +1,4 @@
-using Domain.Entities;
+﻿using Domain.Entities;
 using FluentValidation.AspNetCore;
 using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Builder;
@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System;
+using System.Data;
 using System.Reflection;
 
 namespace QLTV
@@ -55,12 +56,19 @@ namespace QLTV
                 endpoints.MapControllerRoute(
                     name: default,
                     pattern: "{controller=Account}/{action=Index}/{id?}"
-
                 );
+                // Tạo các Router để rút gọn - làm đẹp URL 
+                //URL Trang chủ
                 endpoints.MapControllerRoute(
-                    name : "chuyenhuongaccount",
-                    defaults: new { area="Admin",controller ="Home", action ="Index"},
-                    pattern: "/QuanLyThuVien"
+                    name:"trangchu",
+                    pattern:"/QuanLyThuVien",
+                    defaults: new { area = "Admin", Controller = "Home", Action = "index" }
+                    );
+                //URL Quản lý sách
+                endpoints.MapControllerRoute(
+                    name:"sach",
+                    pattern:"/QuanLySach",
+                    defaults: new { area = "Admin", Controller = "Sach", Action = "Index" }
                     );
                 endpoints.MapControllerRoute(
                     name: "areas",
