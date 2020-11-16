@@ -1,10 +1,6 @@
-using Application.Interfaces;
-using Application.Services;
-using Domain.Entities;
-using Domain.Repositories;
+﻿using Domain.Entities;
 using FluentValidation.AspNetCore;
 using Infrastructure.Persistence;
-using Infrastructure.Persistence.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -14,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System;
+using System.Data;
 using System.Reflection;
 
 namespace QLTV
@@ -40,8 +37,6 @@ namespace QLTV
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1",new OpenApiInfo { Title ="My API",Version="v1"});
             });
-            services.AddScoped<IDocGiaRepository, DocGiaRepository>();
-            services.AddScoped<IDocGiaService, DocGiaService>();
 
         } 
 
@@ -61,12 +56,19 @@ namespace QLTV
                 endpoints.MapControllerRoute(
                     name: default,
                     pattern: "{controller=Account}/{action=Index}/{id?}"
-
                 );
+                // Tạo các Router để rút gọn - làm đẹp URL 
+                //URL Trang chủ
                 endpoints.MapControllerRoute(
-                    name : "chuyenhuongaccount",
-                    defaults: new { area="Admin",controller ="Home", action ="Index"},
-                    pattern: "/QuanLyThuVien"
+                    name:"trangchu",
+                    pattern:"/QuanLyThuVien",
+                    defaults: new { area = "Admin", Controller = "Home", Action = "index" }
+                    );
+                //URL Quản lý sách
+                endpoints.MapControllerRoute(
+                    name:"sach",
+                    pattern:"/QuanLySach",
+                    defaults: new { area = "Admin", Controller = "Sach", Action = "Index" }
                     );
                 endpoints.MapControllerRoute(
                     name: "areas",
