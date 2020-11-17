@@ -13,5 +13,6 @@ namespace QLTV.Areas.Admin.Controllers
         {
             return View();
         }
+
     }
 }

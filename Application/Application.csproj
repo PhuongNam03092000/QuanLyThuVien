@@ -65,7 +65,6 @@
     <Folder Include="Common\Interfaces\" />
     <Folder Include="Common\Mappings\" />
     <Folder Include="Common\Models\" />
-    <Folder Include="Mapping\" />
   </ItemGroup>
 
   <PropertyGroup>

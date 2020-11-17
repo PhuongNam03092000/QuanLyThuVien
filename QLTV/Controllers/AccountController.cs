@@ -59,6 +59,12 @@ namespace QLTV.Controllers
             return View();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("index");
+        }
         
 
     }

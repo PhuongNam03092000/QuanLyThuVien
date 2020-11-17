@@ -1,12 +1,12 @@
-using Domain.Entities.Common;
-using Domain.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
-namespace Domain.Entities
+namespace Application.DTOs
 {
-    public class DocGia :IAggregateRoot
+    public class DocGiaDTO
     {
+
         public int MaDG { set; get; }
         public string HoDG { set; get; }
         public string TenDG { set; get; }
@@ -15,9 +15,5 @@ namespace Domain.Entities
         public string DiaChiDG { set; get; }
         public DateTime NgayDK { set; get; }
         public DateTime NgayHetHanDK { set; get; }
-        public TrangThaiThe TrangThaiThe { set; get;}
-        public List<PhieuMuon> PhieuMuons { get; set;}
-        public List<PhieuTra> PhieuTras { get; set;}
-        public List<PhieuPhat> PhieuPhats { get; set;}
     }
 }
