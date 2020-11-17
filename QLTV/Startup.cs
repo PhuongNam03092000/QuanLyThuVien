@@ -1,6 +1,11 @@
-﻿using Domain.Entities;
+﻿using Application.Interfaces;
+using Application.Services;
+using Domain.Entities;
+using Domain.Repositories;
 using FluentValidation.AspNetCore;
 using Infrastructure.Persistence;
+using Infrastructure.Persistence.EF;
+using Infrastructure.Persistence.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -38,7 +43,19 @@ namespace QLTV
                 c.SwaggerDoc("v1",new OpenApiInfo { Title ="My API",Version="v1"});
             });
 
-        } 
+            //==========================================================================================//
+            services.AddScoped(typeof(IRepository<>), typeof(EFRepository<>));
+            //==========================================================================================//
+            services.AddScoped<IDocGiaRepository, DocGiaRepository>();
+            services.AddScoped<ISachService, SachService>();
+            //==========================================================================================//
+            //==========================================================================================//
+            //==========================================================================================//
+            //==========================================================================================//
+            //==========================================================================================//
+            //==========================================================================================//
+
+        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
