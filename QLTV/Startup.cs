@@ -70,6 +70,48 @@ namespace QLTV
                     pattern:"/QuanLySach",
                     defaults: new { area = "Admin", Controller = "Sach", Action = "Index" }
                     );
+                //URL quản lý tài khoản
+                endpoints.MapControllerRoute(
+                    name:"taikhoan",
+                    pattern: "/QuanLyTaiKhoan",
+                    defaults:new { area = "Admin", Controller = "Home", Action = "Index" }
+                    );
+                //URL quản lý đầu sách
+                endpoints.MapControllerRoute(
+                    name: "dausach",
+                    pattern: "/QuanLyDauSach",
+                    defaults: new { area = "Admin", Controller = "Home", Action = "Index" }
+                    );
+                //URL quản lý nhà cc
+                endpoints.MapControllerRoute(
+                    name: "nhacungcap",
+                    pattern: "/QuanLyNhaCC",
+                    defaults: new { area = "Admin", Controller = "Home", Action = "Index" }
+                    );
+                //URL Nhập sách
+                endpoints.MapControllerRoute(
+                    name: "nhapsach",
+                    pattern: "/NhapSach",
+                    defaults: new { area = "Admin", Controller = "Home", Action = "Index" }
+                    );
+                //URL thống kê 
+                endpoints.MapControllerRoute(
+                    name: "thongke",
+                    pattern: "/ThongKe",
+                    defaults: new { area = "Admin", Controller = "Home", Action = "Index" }
+                    );
+                //URL nhân viên
+                endpoints.MapControllerRoute(
+                    name: "nhanvien",
+                    pattern: "/QuanLyNhanVien",
+                    defaults: new { area = "Admin", Controller = "Home", Action = "Index" }
+                    );
+                //URL quản lý độc giả
+                endpoints.MapControllerRoute(
+                    name: "docgia",
+                    pattern: "/QuanLyDocGia",
+                    defaults: new { area = "Admin", Controller = "Home", Action = "Index" }
+                    );
                 endpoints.MapControllerRoute(
                     name: "areas",
                     pattern: "{area:exists}/{controller=Home}/{action=Index}");
