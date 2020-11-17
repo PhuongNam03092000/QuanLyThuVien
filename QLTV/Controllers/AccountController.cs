@@ -37,11 +37,6 @@ namespace QLTV.Controllers
             return RedirectToAction("index");
         }
 
-        [HttpGet]
-        public IActionResult Register()
-        {
-            return View();
-        }
         [HttpPost]
         public async Task<IActionResult> Register(LoginRequest loginRequest)
         {
