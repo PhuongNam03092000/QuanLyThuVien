@@ -3,21 +3,7 @@
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-<script type="text/javascript">
-    var n = 2;
 
-    function insert_book()
-    {
-        var row = document.getElementById('ds_book').insertRow(n++);
-        var tt = row.insertCell(0);
-        var tensach = row.insertCell(1);
-        var giatien = row.insertCell(2);
-        var tacgia = row.insertCell(3);
-        var nxb = row.insertCell(4);
-        tt.innerHTML = n - 1;
-
-    }
-</script>
 
 <h3><b>Danh sách các loại sách:</b></h3>
 
