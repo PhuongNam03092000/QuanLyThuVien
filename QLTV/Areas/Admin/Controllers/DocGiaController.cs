@@ -47,11 +47,11 @@ namespace QLTV.Areas.Admin.Controllers
 
 
         [HttpPost]
-        public IActionResult Create(DocGiaDTO docGia)
+        public IActionResult Create(IndexViewModelDocGia indexVM)
         {
             if (ModelState.IsValid)
             {
-                docgiaService.CreateDocGia(docGia);
+                docgiaService.CreateDocGia(indexVM.docgiamoi);
                 return RedirectToAction("Index");
             }
             return View();
