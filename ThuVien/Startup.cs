@@ -1,12 +1,14 @@
-using Application.Interfaces;
-using Application.Services;
-using Domain.Repositories;
+﻿using Domain.Entities;
 using Infrastructure.Persistence;
-using Infrastructure.Persistence.Repositories;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Application.Interfaces;
+using Application.Services;
 
 namespace ThuVien
 {
@@ -22,24 +24,58 @@ namespace ThuVien
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<QLTVContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("ThuVienDB")));
 
-            services.AddScoped(typeof(IRepository<>), typeof(EFRepository<>));
-            services.AddScoped<ISachRepository, SachRepository>();
-            services.AddScoped<ISachService, SachService>();
+            services.AddIdentity<AppUser, AppRole>()
+             .AddEntityFrameworkStores<QLTVContext>()
+             .AddDefaultTokenProviders();
+
+            services.AddDbContextPool<QLTVContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("ThuVienDB")));
+
+            services.AddScoped<IAccountService, AccountService>();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequiredLength = 6;
+                options.Password.RequiredUniqueChars = 0;
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                //chỉnh sửa lại quy tắc tạo mật khẩu của Identity
+            });
+
+            services.ConfigureApplicationCookie(config =>
+            {
+                config.LoginPath = "/login";
+            });
         }
 
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: default,
-                    pattern: "{controller=Sach}/{action=Index}/{id?}"
-                );
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                //endpoints.MapControllerRoute(
+                //    name: default,
+                //    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "manager",
+                    pattern: "manager",
+                    defaults: new { area = "manager", Controller = "Home", Action = "Index" });
             });
         }
     }

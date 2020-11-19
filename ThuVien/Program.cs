@@ -15,7 +15,6 @@ namespace ThuVien
             {
                 var services = scope.ServiceProvider;
                 var context = services.GetRequiredService<QLTVContext>();
-                //SeedData.Initialize(context);
             }
 
             host.Run();

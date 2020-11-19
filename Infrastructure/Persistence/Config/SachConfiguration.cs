@@ -1,19 +1,19 @@
-﻿using Domain.Entities;
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Infrastructure.Persistence.Config
+namespace Infrastructure.Persistence
 {
     public class SachConfiguration : IEntityTypeConfiguration<Sach>
     {
         public void Configure(EntityTypeBuilder<Sach> builder)
         {
-            builder.Property(s => s.TenSach).HasMaxLength(100).IsRequired();
-            builder.Property(s => s.TheLoai).HasMaxLength(50).IsRequired();
-            builder.Property(s => s.TacGia).HasMaxLength(50).IsRequired();
-            builder.Property(s => s.NhaXuatBan).HasMaxLength(50).IsRequired();
-            builder.Property(s => s.ViTri).HasMaxLength(50).IsRequired();
-            builder.Property(s => s.GiaBia).IsRequired();
+            builder.ToTable("Sach");
+            builder.HasKey(s => s.MaSach);
+            builder.HasOne(tg => tg.TacGia).WithMany(s => s.Sachs).HasForeignKey(tg => tg.MaTG);
+            builder.HasOne(tl => tl.TheLoai).WithMany(s => s.Sachs).HasForeignKey(tl => tl.MaTL);
+            builder.HasOne(nxb => nxb.NhaXuatBan).WithMany(s => s.Sachs).HasForeignKey(nxb => nxb.MaNXB);
+            builder.HasOne(ctpn => ctpn.ChiTietPhieuNhap).WithOne(s => s.Sach).HasForeignKey<ChiTietPhieuNhap>(ctpn => ctpn.MaPN);
         }
     }
 }

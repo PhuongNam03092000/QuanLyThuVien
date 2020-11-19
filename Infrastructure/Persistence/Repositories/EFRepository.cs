@@ -1,11 +1,12 @@
-﻿using Domain.Common;
-using Domain.Repositories;
+﻿using Domain.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Infrastructure.Persistence.Repositories
 {
-    public class EFRepository<T> : IRepository<T> where T : class, IAggregateRoot
+    public class EFRepository<T> : IEFRepository<T> where T : class
     {
         protected readonly QLTVContext context;
 
