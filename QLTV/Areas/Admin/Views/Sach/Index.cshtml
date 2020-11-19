@@ -4,7 +4,8 @@
     ViewData["Title"] = "";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-
+@using QLTV.Areas.Admin.Models;
+@model SachModels
 <div class="col-lg-9">
     <!--<div class="row">
         @for (int i = 0; i < 4; i++)
@@ -22,6 +23,13 @@
                     <div class="card-footer">
                         <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                     </div>
+                    <h1>@Html.DisplayNameFor(model => model.tempList[0].MaSach)
+                    </h1>
+                    <h1>@Model.tempList[0].TenSach</h1>
+                    <h1>@Model.tempList[0].MaNXB</h1>
+                    <h1>@Model.tempList[0].MaTG</h1>
+                    <h1>@Model.tempList[0].MaTL</h1>
+                    <br /><br />
                 </div>
             </div>
         }
