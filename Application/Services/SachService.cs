@@ -1,10 +1,9 @@
-﻿using Application.Dtos;
+﻿using Application.DTOs;
 using Application.Interfaces;
 using Application.Mappings;
 using Domain.Repositories;
 using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace Application.Services
 {
@@ -21,6 +20,8 @@ namespace Application.Services
             sachRepository.Add(sach);
         }
 
+       
+
         public void DeleteSach(int Masach)
         {
             throw new NotImplementedException();
@@ -32,6 +33,13 @@ namespace Application.Services
         }
 
         public void UpdateSach(SachDTO sach)
+        {
+            throw new NotImplementedException();
+        }
+
+       
+
+        SachDTO ISachService.GetSach(int Masach)
         {
             throw new NotImplementedException();
         }
