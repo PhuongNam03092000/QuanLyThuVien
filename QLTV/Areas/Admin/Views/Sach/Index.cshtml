@@ -1,9 +1,24 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+@using QLTV.Areas.Admin.Models
+@model SachModels
+<script type="text/javascript">
+    var n = 2;
 
+    function insert_book()
+    {
+        var row = document.getElementById('ds_book').insertRow(n++);
+        var tt = row.insertCell(0);
+        var tensach = row.insertCell(1);
+        var giatien = row.insertCell(2);
+        var tacgia = row.insertCell(3);
+        var nxb = row.insertCell(4);
+        tt.innerHTML = n - 1;
+
+    }
+</script>
 
 <h3><b>Danh sách các loại sách:</b></h3>
 
@@ -58,11 +73,11 @@
 
 <table border="1" cellpadding="5" cellspacing="0" id="ds_book">
     <tr>
-        <th></th>	<th>Tên sách</th>	<th>Giá tiền</th>	<th>Tác giả</th> <th>Ngày xuất bản</th> <th></th>    
+        <th>STT</th>	<th>Tên sách</th>	<th>Giá tiền</th>	<th>Tác giả</th> <th>Ngày xuất bản</th> <th>So luong</th><th></th>    
     </tr>
     
     <tr>
-        <td>1</td>	<td>Tui thấy hoa vàng trên cỏ</td>	<td>69.000 vnđ</td>	<td>Nguyễn Nhật Ánh</td> <td>20/11/2005</td>
+        <td></td>	<td>Tui thấy hoa vàng trên cỏ</td>	<td>69.000 vnđ</td>	<td>Nguyễn Nhật Ánh</td> <td>20/11/2005</td>
         <td>
             <button onclick="" class="btn btn-danger">Chi tiết</button>
             <button onclick="" class="btn btn-primary">Xóa</button>

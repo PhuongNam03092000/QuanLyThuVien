@@ -15,5 +15,6 @@ namespace Application.DTOs
         public int MaNXB { set; get; }
         public int MaTL { set; get; }
         public int GiaBia { set; get; }
+        public int SoLuong { set; get; }
     }
 }

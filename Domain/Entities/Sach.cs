@@ -16,6 +16,7 @@ namespace Domain.Entities
         public TheLoai TheLoai { set; get; }
         public int MaTL { set; get; }
         public int GiaBia { set; get; }
+        public int SoLuong { set; get; }
         public List<SachImage> SachImages { get; set; }     
         public string ViTri { set; get; }
         public TrangThaiSach TrangThaiSach { set; get; }
