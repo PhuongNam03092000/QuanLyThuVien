@@ -7,5 +7,6 @@ namespace Domain.Repositories
 {
     public interface IDocGiaRepository : IRepository<DocGia>
     {
+       
     }
 }

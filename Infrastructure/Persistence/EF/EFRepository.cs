@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Infrastructure.Persistence.EF
 {
-    public class EFRepository<T> : IRepository<T> where T : class, IAggregateRoot
+    public class EFRepository<T> : IRepository<T> where T : class ,IAggregateRoot
     {
         protected readonly QLTVDbContext context;
         public EFRepository(QLTVDbContext context)

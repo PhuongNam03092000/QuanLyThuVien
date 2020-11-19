@@ -1,6 +1,11 @@
-﻿using Domain.Entities;
+﻿using Application.Interfaces;
+using Application.Services;
+using Domain.Entities;
+using Domain.Repositories;
 using FluentValidation.AspNetCore;
 using Infrastructure.Persistence;
+using Infrastructure.Persistence.EF;
+using Infrastructure.Persistence.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -45,7 +50,19 @@ namespace QLTV
             services.AddScoped<ISachService, SachService>();
             services.AddScoped<ISachRepository, SachRepository>();
 
-        } 
+            //==========================================================================================//
+            services.AddScoped(typeof(IRepository<>), typeof(EFRepository<>));
+            //==========================================================================================//
+            services.AddScoped<IDocGiaRepository, DocGiaRepository>();
+            services.AddScoped<IDocGiaService, DocGiaService>();
+            //==========================================================================================//
+            //==========================================================================================//
+            //==========================================================================================//
+            //==========================================================================================//
+            //==========================================================================================//
+            //==========================================================================================//
+
+        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -79,50 +96,45 @@ namespace QLTV
                     );
                 //URL quản lý tài khoản
                 endpoints.MapControllerRoute(
-                    name:"nhanvien",
-                    pattern: "/QuanLyNhanVien",
-                    defaults:new { area = "Admin", Controller = "NV", Action = "Index" }
+                    name:"taikhoan",
+                    pattern: "/QuanLyTaiKhoan",
+                    defaults:new { area = "Admin", Controller = "Home", Action = "Index" }
                     );
                 //URL quản lý đầu sách
                 endpoints.MapControllerRoute(
                     name: "dausach",
                     pattern: "/QuanLyDauSach",
-                    defaults: new { area = "Admin", Controller = "DauSach", Action = "Index" }
+                    defaults: new { area = "Admin", Controller = "Home", Action = "Index" }
                     );
                 //URL quản lý nhà cc
                 endpoints.MapControllerRoute(
                     name: "nhacungcap",
                     pattern: "/QuanLyNhaCC",
-                    defaults: new { area = "Admin", Controller = "NCC_", Action = "Index" }
+                    defaults: new { area = "Admin", Controller = "Home", Action = "Index" }
                     );
                 //URL Nhập sách
                 endpoints.MapControllerRoute(
                     name: "nhapsach",
                     pattern: "/NhapSach",
-                    defaults: new { area = "Admin", Controller = "NhapSach", Action = "Index" }
+                    defaults: new { area = "Admin", Controller = "Home", Action = "Index" }
                     );
                 //URL thống kê 
                 endpoints.MapControllerRoute(
                     name: "thongke",
                     pattern: "/ThongKe",
-                    defaults: new { area = "Admin", Controller = "ThongKe", Action = "Index" }
+                    defaults: new { area = "Admin", Controller = "Home", Action = "Index" }
                     );
                 //URL nhân viên
                 endpoints.MapControllerRoute(
-                    name: "taikhoan",
-                    pattern: "/QuanLyTaiKhoan",
-                    defaults: new { area = "Admin", Controller = "TaiKhoan", Action = "Index" }
+                    name: "nhanvien",
+                    pattern: "/QuanLyNhanVien",
+                    defaults: new { area = "Admin", Controller = "Home", Action = "Index" }
                     );
                 //URL quản lý độc giả
                 endpoints.MapControllerRoute(
                     name: "docgia",
                     pattern: "/QuanLyDocGia",
                     defaults: new { area = "Admin", Controller = "DocGia", Action = "Index" }
-                    );
-                endpoints.MapControllerRoute(
-                    name: "xuly",
-                    pattern: "/XuLy",
-                    defaults: new { area = "Admin", Controller = "XuLy", Action = "Index" }
                     );
                 endpoints.MapControllerRoute(
                     name: "areas",
