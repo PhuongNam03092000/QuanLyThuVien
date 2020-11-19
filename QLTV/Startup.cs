@@ -72,45 +72,50 @@ namespace QLTV
                     );
                 //URL quản lý tài khoản
                 endpoints.MapControllerRoute(
-                    name:"taikhoan",
-                    pattern: "/QuanLyTaiKhoan",
-                    defaults:new { area = "Admin", Controller = "Home", Action = "Index" }
+                    name:"nhanvien",
+                    pattern: "/QuanLyNhanVien",
+                    defaults:new { area = "Admin", Controller = "NV", Action = "Index" }
                     );
                 //URL quản lý đầu sách
                 endpoints.MapControllerRoute(
                     name: "dausach",
                     pattern: "/QuanLyDauSach",
-                    defaults: new { area = "Admin", Controller = "Home", Action = "Index" }
+                    defaults: new { area = "Admin", Controller = "DauSach", Action = "Index" }
                     );
                 //URL quản lý nhà cc
                 endpoints.MapControllerRoute(
                     name: "nhacungcap",
                     pattern: "/QuanLyNhaCC",
-                    defaults: new { area = "Admin", Controller = "Home", Action = "Index" }
+                    defaults: new { area = "Admin", Controller = "NCC_", Action = "Index" }
                     );
                 //URL Nhập sách
                 endpoints.MapControllerRoute(
                     name: "nhapsach",
                     pattern: "/NhapSach",
-                    defaults: new { area = "Admin", Controller = "Home", Action = "Index" }
+                    defaults: new { area = "Admin", Controller = "NhapSach", Action = "Index" }
                     );
                 //URL thống kê 
                 endpoints.MapControllerRoute(
                     name: "thongke",
                     pattern: "/ThongKe",
-                    defaults: new { area = "Admin", Controller = "Home", Action = "Index" }
+                    defaults: new { area = "Admin", Controller = "ThongKe", Action = "Index" }
                     );
                 //URL nhân viên
                 endpoints.MapControllerRoute(
-                    name: "nhanvien",
-                    pattern: "/QuanLyNhanVien",
-                    defaults: new { area = "Admin", Controller = "Home", Action = "Index" }
+                    name: "taikhoan",
+                    pattern: "/QuanLyTaiKhoan",
+                    defaults: new { area = "Admin", Controller = "TaiKhoan", Action = "Index" }
                     );
                 //URL quản lý độc giả
                 endpoints.MapControllerRoute(
                     name: "docgia",
                     pattern: "/QuanLyDocGia",
-                    defaults: new { area = "Admin", Controller = "Home", Action = "Index" }
+                    defaults: new { area = "Admin", Controller = "DocGia", Action = "Index" }
+                    );
+                endpoints.MapControllerRoute(
+                    name: "xuly",
+                    pattern: "/XuLy",
+                    defaults: new { area = "Admin", Controller = "XuLy", Action = "Index" }
                     );
                 endpoints.MapControllerRoute(
                     name: "areas",
