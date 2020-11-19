@@ -1,4 +1,4 @@
-﻿using Application.Dtos;
+﻿using Application.DTOs;
 using Application.Interfaces;
 using Application.Mappings;
 using Domain.Repositories;
@@ -34,6 +34,11 @@ namespace Application.Services
         public void UpdateSach(SachDTO sach)
         {
             throw new NotImplementedException();
+        }
+        public IEnumerable<SachDTO> GetAll()
+        {
+            var sach = this.sachRepository.GetAll().MappingDtos();
+            return sach;
         }
     }
 }

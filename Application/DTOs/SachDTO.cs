@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Text;
 // Entity là dùng để lưu dữ liệu còn DTO là dùng để lấy ra và hiển thị dữ liệu lên View
 
-namespace Application.Dtos
+namespace Application.DTOs
 {
     public class SachDTO
     {

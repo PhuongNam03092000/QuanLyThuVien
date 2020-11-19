@@ -1,8 +1,140 @@
-﻿
+﻿@using QLTV.ViewModel
+@model IndexViewModelDocGia
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Quản lý độc giả";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Quan lý độc giả</h2>
+<div class="container-fluid">
+   
+                <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#themDocGia">Thêm độc giả</button>
+    
+    
+    <button id="btnXoa" class="btn btn-danger">Xóa</button>
+    <button class="btn btn-warning">Cập nhật</button>
+</div>
+<div class="modal fade" id="themDocGia" tabindex="-1" asp-action="Create" asp-controller="DocGia" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
 
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thêm độc giả</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" >
+                    <!--<div class="form-group">
+                        <label for="maDocGia">Mã độc giả</label>
+                        <input class="form-control disabled" id="maDocGia" placeholder="Mã độc giả">
+                    </div>-->
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="hoDocGia" asp-for=docgiamoi.HoDG>Họ độc giả</label>
+                                <input class="form-control" id="maDocGia" asp-for=docgiamoi.HoDG placeholder="Họ độc giả">
+                            </div>
+                            <div class="col">
+                                <label for="tenDocGia" asp-for=docgiamoi.TenDG>Họ độc giả</label>
+                                <input class="form-control" asp-for=docgiamoi.TenDG id="tenDocGia" placeholder="Tên độc giả">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="DoB" asp-for=docgiamoi.DoBDG>Ngày sinh</label>
+                        <input class="form-control" asp-for=docgiamoi.DoBDG id="DoB" placeholder="Ngày sinh">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input class="form-control" asp-for=docgiamoi.EmailDG id="email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="diachi">Đia chỉ</label>
+                        <input class="form-control" asp-for=docgiamoi.EmailDG id="diachi" placeholder="Địa chỉ">
+                    </div>
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="ngaydk">Ngày đăng ký</label>
+                                <input class="form-control" asp-for=docgiamoi.NgayDK id="ngaydk" placeholder=@DateTime.Now>
+                            </div>
+                            <div class="col">
+                                <label for="ngayhethan" asp-for=docgiamoi.NgayHetHanDK>Ngày hết hạn</label>
+                                <input class="form-control" asp-for=docgiamoi.NgayHetHanDK id="ngayhethan" placeholder=@DateTime.Now.AddYears(1)>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" type="button" data-dismiss="modal" >Cancel</button>
+                <button class="btn btn-success" asp-action="Create">Thêm</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Danh sách độc giả</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Mã độc giả</th>
+                        <th>Họ</th>
+                        <th>Tên</th>
+                        <th>Ngày sinh</th>
+                        <th>Email</th>
+                        <th>Địa Chỉ</th>
+                        <th>Ngày đăng ký</th>
+                        <th>Ngày hết hạn</th>
+                    <tr/>
+                </thead>
+                <tbody>
+                    @foreach(var docgia in Model.DSDocGia)
+                    {
+                    <tr>
+                        <td>@docgia.MaDG</td>
+                        <td>@docgia.HoDG</td>
+                        <td>@docgia.TenDG</td>
+                        <td>@docgia.DoBDG</td>
+                        <td>@docgia.EmailDG</td>
+                        <td>@docgia.DiaChiDG</td>
+                        <td>@docgia.NgayDK</td>
+                        <td>@docgia.NgayHetHanDK</td>
+                        <td><input id="checkbox" type="checkbox" asp-route-id="@docgia.MaDG" ></td>
+                    </tr>
+                      
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- /.container-fluid -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    
+    $(document).ready(function () {
+        $("#btnXoa").click(function () {
+            var checked = $("input[type=checkBox]:checked");
+            if (checked.length > 0) {
+                if (confirm("Bạn có muốn xóa " + checked.length + " dòng đã chọn? ")) {
+                    var listID = [];
+                    checked.each(function () {
+                        var ID = $(this).closest("tr").find("td").eq(1).html();
+                        listID.push(ID);
+
+                    })
+                }
+            }
+        });
+    });
+</script>

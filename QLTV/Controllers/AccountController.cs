@@ -23,14 +23,21 @@ namespace QLTV.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginRequest loginRequest)
+        public async Task<IActionResult> Login(LoginRequest loginRequest,string returnUrl)
         {
             if (ModelState.IsValid)
             {
                 var result = await signInManager.PasswordSignInAsync(loginRequest.UserName, loginRequest.Password, true, false);
                 if (result.Succeeded)
                 {
-                    return RedirectToRoute("trangchu");
+                    if(!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                    {
+                        return Redirect(returnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToRoute("trangchu");
+                    }
                 }
                 ModelState.AddModelError(string.Empty, "Thông tin đăng nhập không hợp lệ");
             }
