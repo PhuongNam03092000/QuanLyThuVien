@@ -35,5 +35,10 @@ namespace Application.Services
         {
             throw new NotImplementedException();
         }
+        public IEnumerable<SachDTO> GetAll()
+        {
+            var sach = this.sachRepository.GetAll().MappingDtos();
+            return sach;
+        }
     }
 }

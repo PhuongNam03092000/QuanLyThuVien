@@ -25,16 +25,16 @@ namespace QLTV.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginRequest loginRequest)
         {
-            if (ModelState.IsValid)
-            {
-                var result = await signInManager.PasswordSignInAsync(loginRequest.UserName, loginRequest.Password, true, false);
-                if (result.Succeeded)
-                {
+            //if (ModelState.IsValid)
+            //{
+               // var result = await signInManager.PasswordSignInAsync(loginRequest.UserName, loginRequest.Password, true, false);
+               //if (result.Succeeded)
+               // {
                     return RedirectToRoute("trangchu");
-                }
-                ModelState.AddModelError(string.Empty, "Thông tin đăng nhập không hợp lệ");
-            }
-            return RedirectToAction("index");
+               // }
+               // ModelState.AddModelError(string.Empty, "Thông tin đăng nhập không hợp lệ");
+            //}
+            //return RedirectToAction("index");
         }
 
         [HttpPost]

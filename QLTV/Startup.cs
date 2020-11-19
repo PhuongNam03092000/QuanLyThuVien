@@ -9,6 +9,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Application.Services;
+using Application.Interfaces;
+using Domain.Repositories;
+using Infrastructure.Persistence.Repositories;
 using System;
 using System.Data;
 using System.Reflection;
@@ -37,6 +41,9 @@ namespace QLTV
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1",new OpenApiInfo { Title ="My API",Version="v1"});
             });
+            // add scope của sách
+            services.AddScoped<ISachService, SachService>();
+            services.AddScoped<ISachRepository, SachRepository>();
 
         } 
 
