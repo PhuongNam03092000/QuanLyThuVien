@@ -353,6 +353,7 @@ namespace Infrastructure.Migrations
                     MaNXB = table.Column<int>(nullable: false),
                     MaTL = table.Column<int>(nullable: false),
                     GiaBia = table.Column<int>(nullable: false),
+                    SoLuong = table.Column<int>(nullable: false),
                     ViTri = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
                     TrangThaiSach = table.Column<int>(nullable: false, defaultValue: 0)
                 },

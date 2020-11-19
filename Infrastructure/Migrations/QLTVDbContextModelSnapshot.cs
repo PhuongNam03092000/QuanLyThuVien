@@ -453,6 +453,9 @@ namespace Infrastructure.Migrations
                     b.Property<int>("MaTL")
                         .HasColumnType("int");
 
+                    b.Property<int>("SoLuong")
+                        .HasColumnType("int");
+
                     b.Property<string>("TenSach")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
