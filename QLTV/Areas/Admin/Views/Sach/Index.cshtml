@@ -1,30 +1,86 @@
 ﻿
 @{
-    ViewData["Title"] = "";
+    ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-<div class="col-lg-9">
-    <!--<div class="row">
-        @for (int i = 0; i < 4; i++)
-        {
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="~/Assets/Admin/HinhAnhDauSach/DS001.jpg" alt=""></a>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#">Item One</a>
-                        </h4>
-                        <h5>$24.99</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                    </div>
-                    
-                    <br /><br />
-                </div>
+<script type="text/javascript">
+    var n = 2;
+
+    function insert_book()
+    {
+        var row = document.getElementById('ds_book').insertRow(n++);
+        var tt = row.insertCell(0);
+        var tensach = row.insertCell(1);
+        var giatien = row.insertCell(2);
+        var tacgia = row.insertCell(3);
+        var nxb = row.insertCell(4);
+        tt.innerHTML = n - 1;
+
+    }
+</script>
+
+<h3><b>Danh sách các loại sách:</b></h3>
+
+<button class="btn btn-success" data-toggle="modal" data-target="#ThemSachModel">
+    Thêm sách
+</button>
+
+<div class="modal fade" id="ThemSachModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thêm sách</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
             </div>
-        }
-    </div>-->
-   
+
+            <div class="modal-body">
+                <form class="user">
+                    <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="Tên sách">
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Giá tiền">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Tác giả">
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Ngày xuất bản">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
+                <button class="btn btn-primary" onclick="insert_book()" >Thêm</button>
+            </div>
+
+        </div>
+    </div>
 </div>
+
+<p>
+
+</p>
+
+
+<table border="1" cellpadding="5" cellspacing="0" id="ds_book">
+    <tr>
+        <th></th>	<th>Tên sách</th>	<th>Giá tiền</th>	<th>Tác giả</th> <th>Ngày xuất bản</th> <th></th>    
+    </tr>
+    
+    <tr>
+        <td>1</td>	<td>Tui thấy hoa vàng trên cỏ</td>	<td>69.000 vnđ</td>	<td>Nguyễn Nhật Ánh</td> <td>20/11/2005</td>
+        <td>
+            <button onclick="" class="btn btn-danger">Chi tiết</button>
+            <button onclick="" class="btn btn-primary">Xóa</button>
+        </td>
+    </tr>
+
+</table>
