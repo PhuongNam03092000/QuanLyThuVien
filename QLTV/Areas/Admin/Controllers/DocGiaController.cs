@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Application.DTOs;
 using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using QLTV.Helpers;
+using QLTV.ViewModel;
 
 namespace QLTV.Areas.Admin.Controllers
 {
@@ -19,8 +21,16 @@ namespace QLTV.Areas.Admin.Controllers
         }
 
         public IActionResult Index()
+            
         {
-            return View();
+            var dsdocgia = docgiaService.GetDSDocGia();
+            var newDG = new DocGiaDTO();
+            var indexVM = new IndexViewModelDocGia()
+            {
+                DSDocGia = new PaginatedList<DocGiaDTO>(dsdocgia, 0, 0, 3),
+                docgiamoi = newDG
+            };
+            return View(indexVM);
         }
 
         public IActionResult GetAll()
