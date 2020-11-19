@@ -47,7 +47,7 @@ namespace QLTV
             services.AddScoped(typeof(IRepository<>), typeof(EFRepository<>));
             //==========================================================================================//
             services.AddScoped<IDocGiaRepository, DocGiaRepository>();
-            services.AddScoped<ISachService, SachService>();
+            services.AddScoped<IDocGiaService, DocGiaService>();
             //==========================================================================================//
             //==========================================================================================//
             //==========================================================================================//
@@ -127,7 +127,7 @@ namespace QLTV
                 endpoints.MapControllerRoute(
                     name: "docgia",
                     pattern: "/QuanLyDocGia",
-                    defaults: new { area = "Admin", Controller = "Home", Action = "Index" }
+                    defaults: new { area = "Admin", Controller = "DocGia", Action = "Index" }
                     );
                 endpoints.MapControllerRoute(
                     name: "areas",

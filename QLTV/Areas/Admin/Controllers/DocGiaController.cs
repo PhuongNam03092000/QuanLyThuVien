@@ -1,14 +1,16 @@
 ﻿using Application.DTOs;
 using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using QLTV.Helpers;
+using QLTV.ViewModel;
 using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace QLTV.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+    [Area("Admin")]
+  
     public class DocGiaController : Controller
     {
         private readonly IDocGiaService docgiaService;
@@ -19,14 +21,27 @@ namespace QLTV.Controllers
 
         public IActionResult Index()
         {
+            var dsdocgia = docgiaService.GetDSDocGia();
+            var newDocGiaDTO = new DocGiaDTO();
+            var indexVM = new IndexViewModelDocGia()
+            {
+                DSDocGia = new PaginatedList<DocGiaDTO>(dsdocgia, 0, 0, 3),
+                docgiamoi = newDocGiaDTO
+            };
+            return View(indexVM);
+        }
+
+        [HttpPost]
+        public IActionResult Create([FromBody] DocGiaDTO docGia)
+        {
+            if (!ModelState.IsValid)
+            {
+                docgiaService.CreateDocGia(docGia);
+                return BadRequest();
+            }
             return View();
         }
 
-        public IActionResult GetAll()
-        {
-            var model = docgiaService.GetDSDocGia();
-            return View(model);
-        }
         [HttpGet("MaDG")]
         public IActionResult Get(int MaDG)
         {
@@ -34,27 +49,18 @@ namespace QLTV.Controllers
             return RedirectToAction("Index");
         }
 
-
-        [HttpPost]
-        public IActionResult Create(DocGiaDTO docGia)
-        {
-            if (ModelState.IsValid)
-            {
-                docgiaService.CreateDocGia(docGia);
-                return RedirectToAction("Index");
-            }
-            return View();
-        }
-        [HttpPut("{id}")]
+       
+        [HttpPut("{MaDG}")]
         public IActionResult Edit([FromBody] DocGiaDTO docgia)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 docgiaService.UpdateDocGia(docgia);
                 return RedirectToAction("Index");
             }
             return View();
         }
+
         [HttpDelete("{MaDG}")]
         public IActionResult Delete(int MaDG)
         {
