@@ -78,6 +78,9 @@ namespace QLTV
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "areas",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}");
+                endpoints.MapControllerRoute(
                     name: default,
                     pattern: "{controller=Account}/{action=Index}/{id?}"
                 );
@@ -136,9 +139,7 @@ namespace QLTV
                     pattern: "/QuanLyDocGia",
                     defaults: new { area = "Admin", Controller = "DocGia", Action = "Index" }
                     );
-                endpoints.MapControllerRoute(
-                    name: "areas",
-                    pattern: "{area:exists}/{controller=Home}/{action=Index}");
+                
             });
             app.UseSwagger();
             app.UseSwaggerUI(c => {
