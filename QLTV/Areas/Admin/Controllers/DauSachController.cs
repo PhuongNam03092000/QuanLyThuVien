@@ -8,7 +8,7 @@ namespace QLTV.Areas.Admin.Controllers
 {
     [Area("Admin")]
 
-    public class DocGiaController : Controller
+    public class DauSachController : Controller
     {
         public IActionResult Index()
         {

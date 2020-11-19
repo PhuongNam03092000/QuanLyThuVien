@@ -8,7 +8,7 @@ namespace QLTV.Areas.Admin.Controllers
 {
     [Area("Admin")]
 
-    public class DocGiaController : Controller
+    public class NCC_Controller : Controller
     {
         public IActionResult Index()
         {
