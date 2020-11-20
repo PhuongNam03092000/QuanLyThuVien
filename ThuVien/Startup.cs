@@ -9,6 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Application.Interfaces;
 using Application.Services;
+using Domain.Interfaces;
+using Infrastructure.Persistence.Repositories;
 
 namespace ThuVien
 {
@@ -32,6 +34,15 @@ namespace ThuVien
             services.AddDbContextPool<QLTVContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("ThuVienDB")));
 
+            //EF
+            services.AddScoped(typeof(IEFRepository<>), typeof(EFRepository<>));
+
+            //TheLoai
+            services.AddScoped<ITheLoaiRepository, TheLoaiRepository>();
+            services.AddScoped<ITheLoaiService, TheLoaiService>();
+
+            //Account
+            services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<IAccountService, AccountService>();
 
             services.Configure<IdentityOptions>(options =>
@@ -70,7 +81,7 @@ namespace ThuVien
 
                 //endpoints.MapControllerRoute(
                 //    name: default,
-                //    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                //    pattern: "{area:exists}/{controller}/{action}/{id?}");
 
                 endpoints.MapControllerRoute(
                     name: "manager",
