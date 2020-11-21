@@ -4,9 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application.DTOs;
 using Application.Interfaces;
+
 using Microsoft.AspNetCore.Mvc;
 using QLTV.Helpers;
 using QLTV.ViewModel;
+using System.Web;
+using Microsoft.AspNetCore.Http;
 
 namespace QLTV.Areas.Admin.Controllers
 {
@@ -67,11 +70,19 @@ namespace QLTV.Areas.Admin.Controllers
             }
             return View();
         }
-        [HttpDelete("{MaDG}")]
-        public IActionResult Delete(int MaDG)
+
+       
+
+        [HttpPost]
+        public IActionResult Delete(IEnumerable<int> ExamPolicyIDs)
         {
-            docgiaService.DeleteDocGia(MaDG);
-            return RedirectToAction("Index");
+           
+            foreach(int id in ExamPolicyIDs)
+            {
+                var docgia = docgiaService.GetDocGia(id);
+                docgiaService.DeleteDocGia(docgia.MaDG);
+            }
+            return View("Index");
         }
     }
 }

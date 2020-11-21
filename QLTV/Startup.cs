@@ -95,7 +95,7 @@ namespace QLTV
                 endpoints.MapControllerRoute(
                     name:"sach",
                     pattern:"/QuanLySach",
-                    defaults: new { area = "Admin", Controller = "Sach", Action = "Index" }
+                    defaults: new { area = "Admin", Controller = "PhieuMuon", Action = "Index" }
                     );
                 //URL quản lý tài khoản
                 endpoints.MapControllerRoute(

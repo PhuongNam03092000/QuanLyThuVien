@@ -4,16 +4,19 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    var docgiaID=0;
     ViewData["Title"] = "Quản lý độc giả";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container-fluid">
-   
-                <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#themDocGia">Thêm độc giả</button>
-    
-    
-    <button id="btnXoa" class="btn btn-danger">Xóa</button>
+
+    <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#themDocGia">Thêm độc giả</button>
+
+    @using (Html.BeginForm("Delete", "DocGia", FormMethod.Post))
+    {
+        <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#xoaDocGia">Xóa</button>
+    }
     <button class="btn btn-warning">Cập nhật</button>
 </div>
 <div class="modal fade" id="themDocGia" tabindex="-1"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -94,6 +97,7 @@
                         <th>Địa Chỉ</th>
                         <th>Ngày đăng ký</th>
                         <th>Ngày hết hạn</th>
+                        <td><input id="checkAllItem" type="checkbox"></td>
                     <tr/>
                 </thead>
                 <tbody>
@@ -108,9 +112,8 @@
                         <td>@docgia.DiaChiDG</td>
                         <td>@docgia.NgayDK</td>
                         <td>@docgia.NgayHetHanDK</td>
-                        <td><input id="checkbox" type="checkbox" asp-route-id="@docgia.MaDG" ></td>
+                        <td><input id="checkItem" type="checkbox" name="MaDG" asp-route-id="@docgia.MaDG" ></td>
                     </tr>
-                      
                     }
                 </tbody>
             </table>
@@ -120,20 +123,17 @@
 <!-- /.container-fluid -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    
+
     $(document).ready(function () {
         $("#btnXoa").click(function () {
             var checked = $("input[type=checkBox]:checked");
-            if (checked.length > 0) {
-                if (confirm("Bạn có muốn xóa " + checked.length + " dòng đã chọn? ")) {
-                    var listID = [];
-                    checked.each(function () {
-                        var ID = $(this).closest("tr").find("td").eq(1).html();
-                        listID.push(ID);
-
+            checked.each(function () {
+                        var ID = $(this).closest("tr").find("td").eq(0).html();
+                        //listID.push(ID);
+                        @docgiaID = ID;
+                alert(ID);
                     })
-                }
-            }
+           
         });
     });
 </script>
