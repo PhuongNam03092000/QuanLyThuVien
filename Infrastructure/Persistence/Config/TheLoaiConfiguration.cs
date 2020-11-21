@@ -10,7 +10,6 @@ namespace Infrastructure.Persistence
         {
             builder.ToTable("TheLoai");
             builder.HasKey(tl => tl.MaTL);
-            builder.Property(tl => tl.TenTL).HasMaxLength(50).IsRequired();       
         }
     }
 }

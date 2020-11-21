@@ -1,9 +1,8 @@
-using Domain.Entities.Common;
 using System.Collections.Generic;
 
 namespace Domain.Entities
 {
-    public class NhaXuatBan : IAggregateRoot
+    public class NhaXuatBan
     {
         public int MaNXB { set; get; }
         public string TenNXB { set; get; }

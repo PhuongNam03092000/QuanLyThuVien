@@ -10,7 +10,6 @@ namespace Infrastructure.Persistence
         {
             builder.ToTable("NhaXuatBan");
             builder.HasKey(nxb => nxb.MaNXB);
-            builder.Property(nxb => nxb.TenNXB).HasMaxLength(50).IsUnicode().IsRequired();
         }
     }
 }

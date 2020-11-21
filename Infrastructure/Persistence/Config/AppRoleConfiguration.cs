@@ -9,7 +9,6 @@ namespace Infrastructure.Persistence
         public void Configure(EntityTypeBuilder<AppRole> builder)
         {
             builder.ToTable("AppRoles");
-            builder.Property(r => r.Description).HasMaxLength(256).IsRequired(false);
         }
     }
 }
