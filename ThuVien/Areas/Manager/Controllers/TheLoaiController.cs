@@ -8,7 +8,7 @@ using ThuVien.Helper;
 namespace ThuVien.Areas.Manager.Controllers
 {
     [Area("Manager")]
-    [Route("[Area]/[Controller]/[Action]")]
+    //[Route("[Area]/[Controller]/[Action]")]
     [Authorize]
     public class TheLoaiController : Controller
     {
@@ -19,18 +19,19 @@ namespace ThuVien.Areas.Manager.Controllers
             this.theLoaiService = theLoaiService;
         }
 
-        //[Route("manager/theloai/index")]
         public IActionResult Index(string sortOrder, string searchString, int pageIndex = 1)
         {
-            int pageSize = 2;
+            int pageSize = 10;
             int count;
             var theLoais = theLoaiService.GetTheLoais(sortOrder, searchString, pageIndex, pageSize, out count);
+            var theLoaiNew = new TheLoaiDTO();
 
             var theLoaiVM = new TheLoaiIndexVm()
             {
                 TheLoais = new PaginatedList<TheLoaiDTO>(theLoais, count, pageIndex, pageSize),
                 SearchString = searchString,
-                SortOrder = sortOrder
+                SortOrder = sortOrder,
+                theLoaiDto = theLoaiNew
             };
 
             return View(theLoaiVM);
@@ -42,11 +43,11 @@ namespace ThuVien.Areas.Manager.Controllers
         }
 
         [HttpPost]
-        public IActionResult Them(TheLoaiDTO theLoai)
+        public IActionResult Them(TheLoaiIndexVm theLoaiVM)
         {
             if (ModelState.IsValid)
             {
-                theLoaiService.TaoTheLoai(theLoai);
+                theLoaiService.TaoTheLoai(theLoaiVM.theLoaiDto);
                 return RedirectToAction("Index");
             }
             return View();
@@ -59,11 +60,11 @@ namespace ThuVien.Areas.Manager.Controllers
         }
 
         [HttpPost]
-        public IActionResult Sua(TheLoaiDTO theLoai)
+        public IActionResult Sua(TheLoaiIndexVm theLoaiVM)
         {
             if (ModelState.IsValid)
             {
-                theLoaiService.SuaTheLoai(theLoai);
+                theLoaiService.SuaTheLoai(theLoaiVM.theLoaiDto);
                 return RedirectToAction("Index");
             }
             return View();

@@ -77,16 +77,16 @@ namespace ThuVien
             {
                 endpoints.MapControllerRoute(
                     name: default,
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-
-                //endpoints.MapControllerRoute(
-                //    name: default,
-                //    pattern: "{area:exists}/{controller}/{action}/{id?}");
+                    pattern: "{area:exists}/{controller}/{action}/{id?}");
 
                 endpoints.MapControllerRoute(
-                    name: "manager",
-                    pattern: "manager",
-                    defaults: new { area = "manager", Controller = "Home", Action = "Index" });
+                    name: default,
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "Manager",
+                    pattern: "Manager",
+                    defaults: new { area = "Manager", Controller = "Home", Action = "Index" });
             });
         }
     }
