@@ -45,12 +45,24 @@ namespace ThuVien.Areas.Manager.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Delete(int MaDG)
+        public IActionResult Delete(DocGiaIndexVm vm)
         {
-            docGiaService.DeleteDocGia(MaDG);
+            docGiaService.DeleteDocGia(vm.docgia.MaDG);
 
             return RedirectToAction("Index");
         }
+
+        /*public string Delete(DocGiaIndexVm vm)
+        {
+            if(vm.docgia.HoDG.Length ==0 || vm.docgia.HoDG == null)
+            {
+                return "Cặt";
+            } else
+            {
+                return vm.docgia.HoDG;
+            }
+            
+        }*/
         public IActionResult Update(DocGiaIndexVm vm)
         {
             if (ModelState.IsValid)
@@ -60,7 +72,7 @@ namespace ThuVien.Areas.Manager.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View();
+            return View("index");
         }
     }
 }

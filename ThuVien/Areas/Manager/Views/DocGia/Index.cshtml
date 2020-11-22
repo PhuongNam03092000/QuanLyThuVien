@@ -99,24 +99,24 @@
                     <tr />
                 </thead>
                 <tbody>
-                    @foreach (var docgia1 in Model.DocGias)
+                    @foreach (var docgia in Model.DocGias)
                     {
                         <tr>
-                            <td>@docgia1.MaDG</td>
-                            <td>@docgia1.HoDG</td>
-                            <td>@docgia1.TenDG</td>
-                            <td>@docgia1.DoBDG</td>
-                            <td>@docgia1.EmailDG</td>
-                            <td>@docgia1.DiaChiDG</td>
-                            <td>@docgia1.NgayDK</td>
-                            <td>@docgia1.NgayHetHanDK</td>
+                            <td>@docgia.MaDG</td>
+                            <td>@docgia.HoDG</td>
+                            <td>@docgia.TenDG</td>
+                            <td>@docgia.DoBDG</td>
+                            <td>@docgia.EmailDG</td>
+                            <td>@docgia.DiaChiDG</td>
+                            <td>@docgia.NgayDK</td>
+                            <td>@docgia.NgayHetHanDK</td>
 
                             <td>
-                                <a data-toggle="modal" data-target="#xoaDocGia-@docgia1.MaDG" asp-route-id="@docgia1.MaDG">Xóa</a>
-                                <a data-toggle="modal" data-target="#capnhapDocGia-@docgia1.MaDG" asp-route-id="@docgia1.MaDG">Cập nhật</a>
+                                <a data-toggle="modal" data-target="#xoaDocGia-@docgia.MaDG">Xóa</a>
+                                <a data-toggle="modal" data-target="#capnhapDocGia-@docgia.MaDG" asp-route-id="@docgia.MaDG">Cập nhật</a>
                             </td>
                         </tr>
-                        <div class="modal fade" id="xoaDocGia-@docgia1.MaDG" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="xoaDocGia-@docgia.MaDG" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -127,16 +127,16 @@
                                     </div>
                                     <div class="modal-body">
                                         <form method="POST" asp-area="Manager" asp-action="Delete" asp-controller="DocGia">
-                                            
-                                            <input type="text" asp-for="@docgia1.MaDG" asp-route-id="@docgia1.MaDG" value="@docgia1.MaDG" />
-                                            <input type="submit" value="Delete" class="btn btn-danger" />
-                                            <a asp-action="Index">Back to list</a>
+
+                                            <input asp-for="@docgia.MaDG"/>
+                                            <button type="submit" class="btn btn-danger">Delete</button>
                                         </form>
+                                        <a asp-action="Index">Back to list</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="modal fade" id="capnhapDocGia-@docgia1.MaDG" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="capnhapDocGia-@docgia.MaDG" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -149,41 +149,41 @@
                                         <form method="POST" asp-area="Manager" asp-action="Update" asp-controller="DocGia">
                                             <div class="form-group">
                                                 <label for="maDocGia">Mã độc giả</label>
-                                                <input disabled class="form-control disabled" id="maDocGia" value="@docgia1.MaDG" placeholder="Mã độc giả">
+                                                <input disabled class="form-control disabled" id="maDocGia" value="@docgia.MaDG" placeholder="Mã độc giả">
                                             </div>
                                             <div class="form-group">
                                                 <div class="form-row">
                                                     <div class="col">
-                                                        <label for="hoDocGia" asp-for=@docgia1.HoDG>Họ độc giả</label>
-                                                        <input class="form-control" id="hoDocGia" value="@docgia1.HoDG" asp-for=@docgia1.HoDG placeholder="Họ độc giả">
+                                                        <label for="hoDocGia" asp-for=@docgia.HoDG>Họ độc giả</label>
+                                                        <input class="form-control" id="hoDocGia" value="@docgia.HoDG" asp-for=@docgia.HoDG placeholder="Họ độc giả">
                                                     </div>
                                                     <div class="col">
-                                                        <label for="tenDocGia" asp-for=@docgia1.TenDG>Họ độc giả</label>
-                                                        <input class="form-control" asp-for=@docgia1.TenDG value="@docgia1.TenDG" id="tenDocGia" placeholder="Tên độc giả">
+                                                        <label for="tenDocGia" asp-for=@docgia.TenDG>Họ độc giả</label>
+                                                        <input class="form-control" asp-for=@docgia.TenDG value="@docgia.TenDG" id="tenDocGia" placeholder="Tên độc giả">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="DoB" asp-for=@docgia1.DoBDG>Ngày sinh</label>
-                                                <input class="form-control" asp-for=@docgia1.DoBDG value="@docgia1.DoBDG" id="DoB" placeholder="Ngày sinh">
+                                                <label for="DoB" asp-for=@docgia.DoBDG>Ngày sinh</label>
+                                                <input class="form-control" asp-for=@docgia.DoBDG value="@docgia.DoBDG" id="DoB" placeholder="Ngày sinh">
                                             </div>
                                             <div class="form-group">
                                                 <label for="email">Email</label>
-                                                <input class="form-control" asp-for=@docgia1.EmailDG value="@docgia1.EmailDG" id="email" placeholder="Email">
+                                                <input class="form-control" asp-for=@docgia.EmailDG value="@docgia.EmailDG" id="email" placeholder="Email">
                                             </div>
                                             <div class="form-group">
                                                 <label for="diachi">Đia chỉ</label>
-                                                <input class="form-control" asp-for=@docgia1.DiaChiDG value="@docgia1.DiaChiDG" id="diachi" placeholder="Địa chỉ">
+                                                <input class="form-control" asp-for=@docgia.DiaChiDG value="@docgia.DiaChiDG" id="diachi" placeholder="Địa chỉ">
                                             </div>
                                             <div class="form-group">
                                                 <div class="form-row">
                                                     <div class="col">
                                                         <label for="ngaydk">Ngày đăng ký</label>
-                                                        <input class="form-control" asp-for=@docgia1.NgayDK value="@docgia1.NgayDK" id="ngaydk" placeholder=@DateTime.Now>
+                                                        <input class="form-control" asp-for=@docgia.NgayDK value="@docgia.NgayDK" id="ngaydk" placeholder=@DateTime.Now>
                                                     </div>
                                                     <div class="col">
-                                                        <label for="ngayhethan" asp-for=@docgia1.NgayHetHanDK>Ngày hết hạn</label>
-                                                        <input class="form-control" asp-for=@docgia1.NgayHetHanDK  value="@docgia1.NgayHetHanDK.ToString("dd/MM/yyyy")" id="ngayhethan" placeholder=@DateTime.Now.AddYears(1)>
+                                                        <label for="ngayhethan" asp-for=@docgia.NgayHetHanDK>Ngày hết hạn</label>
+                                                        <input class="form-control" asp-for=@docgia.NgayHetHanDK  value="@docgia.NgayHetHanDK.ToString("dd/MM/yyyy")" id="ngayhethan" placeholder=@DateTime.Now.AddYears(1)>
                                                     </div>
                                                 </div>
                                             </div>
