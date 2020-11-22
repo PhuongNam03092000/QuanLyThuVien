@@ -110,7 +110,6 @@
                             <td>@docgia1.DiaChiDG</td>
                             <td>@docgia1.NgayDK</td>
                             <td>@docgia1.NgayHetHanDK</td>
-
                             <td>
                                 <a data-toggle="modal" data-target="#xoaDocGia-@docgia1.MaDG" asp-route-id="@docgia1.MaDG">Xóa</a>
                                 <a data-toggle="modal" data-target="#capnhapDocGia-@docgia1.MaDG" asp-route-id="@docgia1.MaDG">Cập nhật</a>
@@ -128,7 +127,7 @@
                                     <div class="modal-body">
                                         <form method="POST" asp-area="Manager" asp-action="Delete" asp-controller="DocGia">
                                             
-                                            <input type="text" asp-for="@docgia1.MaDG" asp-route-id="@docgia1.MaDG" value="@docgia1.MaDG" />
+                                            <input type="text" asp-route-id="@docgia1.MaDG" value="@docgia1.MaDG" />
                                             <input type="submit" value="Delete" class="btn btn-danger" />
                                             <a asp-action="Index">Back to list</a>
                                         </form>
