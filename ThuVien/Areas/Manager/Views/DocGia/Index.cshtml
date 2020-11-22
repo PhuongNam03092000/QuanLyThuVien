@@ -23,35 +23,38 @@
                         <div class="form-row">
                             <div class="col">
                                 <label for="hoDocGia" asp-for=docgia.HoDG>Họ độc giả</label>
-                                <input class="form-control" id="maDocGia" asp-for=docgia.HoDG placeholder="Họ độc giả">
+                                <input class="form-control"  asp-for=docgia.HoDG placeholder="Họ độc giả">
                             </div>
                             <div class="col">
                                 <label for="tenDocGia" asp-for=docgia.TenDG>Họ độc giả</label>
-                                <input class="form-control" asp-for=docgia.TenDG id="tenDocGia" placeholder="Tên độc giả">
+                                <input class="form-control" asp-for=docgia.TenDG  placeholder="Tên độc giả">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="DoB" asp-for=docgia.DoBDG>Ngày sinh</label>
-                        <input class="form-control" asp-for=docgia.DoBDG id="DoB" placeholder="Ngày sinh">
+                        
+                        <input class="form-control" asp-for=docgia.DoBDG placeholder="@DateTime.Now">
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input class="form-control" asp-for=docgia.EmailDG id="email" placeholder="Email">
+                        <input class="form-control" asp-for=docgia.EmailDG placeholder="Email">
                     </div>
                     <div class="form-group">
                         <label for="diachi">Đia chỉ</label>
-                        <input class="form-control" asp-for=docgia.DiaChiDG id="diachi" placeholder="Địa chỉ">
+                        <input class="form-control" asp-for=docgia.DiaChiDG placeholder="Địa chỉ">
                     </div>
                     <div class="form-group">
                         <div class="form-row">
+                            @{ Model.docgia.NgayDK = DateTime.Now;
+                                Model.docgia.NgayHetHanDK = DateTime.Now.AddYears(1);}
                             <div class="col">
-                                <label for="ngaydk">Ngày đăng ký</label>
-                                <input class="form-control" asp-for=docgia.NgayDK id="ngaydk" placeholder=@DateTime.Now>
+                                <label for="ngaydk" asp-for=docgia.NgayDK>Ngày đăng ký</label>
+                                <input class="form-control" asp-for=docgia.NgayDK placeholder="@Model.docgia.NgayDK" >
                             </div>
                             <div class="col">
                                 <label for="ngayhethan" asp-for=docgia.NgayHetHanDK>Ngày hết hạn</label>
-                                <input class="form-control" asp-for=docgia.NgayHetHanDK id="ngayhethan" placeholder=@DateTime.Now.AddYears(1)>
+                                <input class="form-control" asp-for=docgia.NgayHetHanDK  placeholder="@Model.docgia.NgayHetHanDK">
                             </div>
                         </div>
                     </div>
