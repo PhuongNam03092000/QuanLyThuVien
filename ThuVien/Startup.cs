@@ -11,6 +11,10 @@ using Application.Interfaces;
 using Application.Services;
 using Domain.Interfaces;
 using Infrastructure.Persistence.Repositories;
+using FluentValidation.AspNetCore;
+using System.Reflection;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace ThuVien
 {
@@ -25,7 +29,13 @@ namespace ThuVien
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(config =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                                 .RequireAuthenticatedUser()
+                                 .Build();
+                config.Filters.Add(new AuthorizeFilter(policy));
+            }).AddFluentValidation(fv => { fv.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly()); });
 
             services.AddIdentity<AppUser, AppRole>()
              .AddEntityFrameworkStores<QLTVContext>()
@@ -45,6 +55,14 @@ namespace ThuVien
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<IAccountService, AccountService>();
 
+            //DocGia
+            services.AddScoped<IDocGiaRepository, DocGiaRepository>();
+            services.AddScoped<IDocGiaService, DocGiaService>();
+
+            //PhieuMuon
+            services.AddScoped<IPhieuMuonRepository, PhieuMuonRepository>();
+            services.AddScoped<IPhieuMuonService, PhieuMuonService>();
+
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequiredLength = 6;
@@ -54,6 +72,15 @@ namespace ThuVien
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
                 //chỉnh sửa lại quy tắc tạo mật khẩu của Identity
+            });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Admin",
+                    policy => policy.RequireClaim("Admin"));
+                options.AddPolicy("Employee",
+                    policy => policy.RequireClaim("Employee"));
+
             });
 
             services.ConfigureApplicationCookie(config =>
