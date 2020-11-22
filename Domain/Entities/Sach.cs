@@ -1,11 +1,8 @@
-using Domain.Entities.Common;
-using Domain.Enums;
-
 using System.Collections.Generic;
 
 namespace Domain.Entities
 {
-    public class Sach : IAggregateRoot
+    public class Sach
     {
         public int MaSach { set; get; }
         public string TenSach { set; get; }
@@ -16,12 +13,12 @@ namespace Domain.Entities
         public TheLoai TheLoai { set; get; }
         public int MaTL { set; get; }
         public int GiaBia { set; get; }
-        public List<SachImage> SachImages { get; set; }     
+        public string SachImage { get; set; }
         public string ViTri { set; get; }
-        public TrangThaiSach TrangThaiSach { set; get; }
+        public string TrangThaiSach { set; get; }
         public ChiTietPhieuNhap ChiTietPhieuNhap { get; set; }
         public List<ChiTietPhieuMuon> ChiTietPhieuMuons { get; set; }
         public List<ChiTietPhieuTra> ChiTietPhieuTras { get; set; }
-        public List<ChiTietPhieuPhat> ChiTietPhieuPhats { get; set; }        
+        public List<ChiTietPhieuPhat> ChiTietPhieuPhats { get; set; }
     }
 }

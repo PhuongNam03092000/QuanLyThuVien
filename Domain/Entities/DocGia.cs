@@ -1,11 +1,9 @@
-using Domain.Entities.Common;
-using Domain.Enums;
 using System;
 using System.Collections.Generic;
 
 namespace Domain.Entities
 {
-    public class DocGia :IAggregateRoot
+    public class DocGia
     {
         public int MaDG { set; get; }
         public string HoDG { set; get; }
@@ -15,9 +13,9 @@ namespace Domain.Entities
         public string DiaChiDG { set; get; }
         public DateTime NgayDK { set; get; }
         public DateTime NgayHetHanDK { set; get; }
-        public TrangThaiThe TrangThaiThe { set; get;}
-        public List<PhieuMuon> PhieuMuons { get; set;}
-        public List<PhieuTra> PhieuTras { get; set;}
-        public List<PhieuPhat> PhieuPhats { get; set;}
+        public string TrangThaiThe { set; get; }
+        public List<PhieuMuon> PhieuMuons { get; set; }
+        public List<PhieuTra> PhieuTras { get; set; }
+        public List<PhieuPhat> PhieuPhats { get; set; }
     }
 }

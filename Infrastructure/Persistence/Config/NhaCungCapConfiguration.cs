@@ -10,9 +10,6 @@ namespace Infrastructure.Persistence
         {
             builder.ToTable("NhaCungCap");
             builder.HasKey(ncc => ncc.MaNCC);
-            builder.Property(ncc => ncc.TenNCC).HasMaxLength(100).IsRequired();
-            builder.Property(ncc => ncc.DiaChiNCC).HasMaxLength(100).IsRequired();
-            builder.Property(ncc => ncc.SdtNCC).HasMaxLength(10).IsRequired();
         }
     }
 }

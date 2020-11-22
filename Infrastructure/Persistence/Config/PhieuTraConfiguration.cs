@@ -12,7 +12,7 @@ namespace Infrastructure.Persistence
             builder.HasKey(pt => pt.MaPT);
             builder.HasOne(dg => dg.DocGia).WithMany(pt => pt.PhieuTras).HasForeignKey(dg => dg.MaDG);
             builder.Property(pt => pt.NgayTra).HasColumnType("Date");
-            builder.Property(pt => pt.TongPhiTra);
+
             builder.HasOne(us => us.AppUser).WithMany(pt => pt.PhieuTras).HasForeignKey(us => us.UserId);
         }
     }

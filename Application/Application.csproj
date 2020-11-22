@@ -1,74 +1,16 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
-  <ItemGroup>
-    <Compile Remove="CTPM\**" />
-    <Compile Remove="CTPN\**" />
-    <Compile Remove="CTPP\**" />
-    <Compile Remove="CTPT\**" />
-    <Compile Remove="DauSach\**" />
-    <Compile Remove="DocGia\**" />
-    <Compile Remove="NCC\**" />
-    <Compile Remove="NXB\**" />
-    <Compile Remove="PhieuMuon\**" />
-    <Compile Remove="PhieuNhap\**" />
-    <Compile Remove="PhieuPhat\**" />
-    <Compile Remove="PhieuTra\**" />
-    <Compile Remove="Sach\**" />
-    <Compile Remove="TacGia\**" />
-    <Compile Remove="TheLoai\**" />
-    <Compile Remove="User\**" />
-    <EmbeddedResource Remove="CTPM\**" />
-    <EmbeddedResource Remove="CTPN\**" />
-    <EmbeddedResource Remove="CTPP\**" />
-    <EmbeddedResource Remove="CTPT\**" />
-    <EmbeddedResource Remove="DauSach\**" />
-    <EmbeddedResource Remove="DocGia\**" />
-    <EmbeddedResource Remove="NCC\**" />
-    <EmbeddedResource Remove="NXB\**" />
-    <EmbeddedResource Remove="PhieuMuon\**" />
-    <EmbeddedResource Remove="PhieuNhap\**" />
-    <EmbeddedResource Remove="PhieuPhat\**" />
-    <EmbeddedResource Remove="PhieuTra\**" />
-    <EmbeddedResource Remove="Sach\**" />
-    <EmbeddedResource Remove="TacGia\**" />
-    <EmbeddedResource Remove="TheLoai\**" />
-    <EmbeddedResource Remove="User\**" />
-    <None Remove="CTPM\**" />
-    <None Remove="CTPN\**" />
-    <None Remove="CTPP\**" />
-    <None Remove="CTPT\**" />
-    <None Remove="DauSach\**" />
-    <None Remove="DocGia\**" />
-    <None Remove="NCC\**" />
-    <None Remove="NXB\**" />
-    <None Remove="PhieuMuon\**" />
-    <None Remove="PhieuNhap\**" />
-    <None Remove="PhieuPhat\**" />
-    <None Remove="PhieuTra\**" />
-    <None Remove="Sach\**" />
-    <None Remove="TacGia\**" />
-    <None Remove="TheLoai\**" />
-    <None Remove="User\**" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Domain\Domain.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.9" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Common\Behaviours\" />
-    <Folder Include="Common\Interfaces\" />
-    <Folder Include="Common\Mappings\" />
-    <Folder Include="Common\Models\" />
-  </ItemGroup>
-
-  <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-  </PropertyGroup>
-
+	<ItemGroup>
+		<ProjectReference Include="..\Domain\Domain.csproj" />
+	</ItemGroup>
 </Project>

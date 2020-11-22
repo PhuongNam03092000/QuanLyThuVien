@@ -12,6 +12,6 @@ namespace Domain.Entities
         public int TongPhiTra { set; get; }
         public List<ChiTietPhieuTra> ChiTietPhieuTras { get; set; }
         public AppUser AppUser { get; set; }
-        public Guid UserId { set; get; }
+        public int UserId { set; get; }
     }
 }

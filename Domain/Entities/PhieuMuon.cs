@@ -9,9 +9,9 @@ namespace Domain.Entities
         public DocGia DocGia { get; set; }
         public int MaDG { set; get; }
         public DateTime NgayMuon { set; get; }
-        public int TongPhiMuon { set; get; }       
-        public List<ChiTietPhieuMuon> ChiTietPhieuMuons { get; set; } 
+        public int TongPhiMuon { set; get; }
+        public List<ChiTietPhieuMuon> ChiTietPhieuMuons { get; set; }
         public AppUser AppUser { get; set; }
-        public Guid UserId { set; get; }
+        public int UserId { set; get; }
     }
 }
