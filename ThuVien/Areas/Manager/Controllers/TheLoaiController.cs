@@ -9,7 +9,6 @@ namespace ThuVien.Areas.Manager.Controllers
 {
     [Area("Manager")]
     [Route("[Area]/[Controller]/[Action]")]
-    [Authorize]
     public class TheLoaiController : Controller
     {
         private readonly ITheLoaiService theLoaiService;
