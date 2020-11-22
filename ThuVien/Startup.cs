@@ -80,12 +80,11 @@ namespace ThuVien
                     policy => policy.RequireClaim("Admin"));
                 options.AddPolicy("Employee",
                     policy => policy.RequireClaim("Employee"));
-
             });
 
             services.ConfigureApplicationCookie(config =>
             {
-                config.LoginPath = "/login";
+                config.LoginPath = "/Login";
             });
         }
 
