@@ -31,19 +31,23 @@ namespace Application.Services
         public void SuaTheLoai(TheLoaiDTO theLoaiDto)
         {
             var theLoai = _theLoaiRepository.GetBy(theLoaiDto.MaTL);
+
             theLoaiDto.MappingTheLoai(theLoai);
+
             _theLoaiRepository.Update(theLoai);
         }
 
         public void TaoTheLoai(TheLoaiDTO theLoaiDto)
         {
             var theLoai = theLoaiDto.MappingTheLoai();
+
             _theLoaiRepository.Add(theLoai);
         }
 
         public void XoaTheLoai(int maTL)
         {
             var theLoai = _theLoaiRepository.GetBy(maTL);
+
             _theLoaiRepository.Delete(theLoai);
         }
     }

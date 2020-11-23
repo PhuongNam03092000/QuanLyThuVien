@@ -1,5 +1,6 @@
 ﻿using Application.DTOs;
 using Application.Interfaces;
+using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ThuVien.Areas.Manager.ViewModels;
@@ -30,15 +31,10 @@ namespace ThuVien.Areas.Manager.Controllers
                 TheLoais = new PaginatedList<TheLoaiDTO>(theLoais, count, pageIndex, pageSize),
                 SearchString = searchString,
                 SortOrder = sortOrder,
-                theLoaiDto = theLoaiNew
+                theLoai = theLoaiNew
             };
 
             return View(theLoaiVM);
-        }
-
-        public IActionResult Them()
-        {
-            return View();
         }
 
         [HttpPost]
@@ -46,7 +42,7 @@ namespace ThuVien.Areas.Manager.Controllers
         {
             if (ModelState.IsValid)
             {
-                theLoaiService.TaoTheLoai(theLoaiVM.theLoaiDto);
+                theLoaiService.TaoTheLoai(theLoaiVM.theLoai);
                 return RedirectToAction("Index");
             }
             return View();
@@ -55,36 +51,26 @@ namespace ThuVien.Areas.Manager.Controllers
         public IActionResult Sua(int maTL)
         {
             var theLoai = theLoaiService.GetTheLoai(maTL);
+
             return View(theLoai);
         }
 
         [HttpPost]
-        public IActionResult Sua(TheLoaiIndexVm theLoaiVM)
+        public IActionResult Sua(TheLoaiIndexVm theLoaiVm)
         {
             if (ModelState.IsValid)
             {
-                theLoaiService.SuaTheLoai(theLoaiVM.theLoaiDto);
+                theLoaiService.SuaTheLoai(theLoaiVm.theLoai);
                 return RedirectToAction("Index");
             }
+
             return View();
         }
 
-        public IActionResult ChiTiet(int maTL)
-        {
-            var theLoai = theLoaiService.GetTheLoai(maTL);
-            return View(theLoai);
-        }
-
-        public IActionResult Xoa(int maTL)
-        {
-            var theLoai = theLoaiService.GetTheLoai(maTL);
-            return View(theLoai);
-        }
-
         [HttpPost]
-        public IActionResult Xoa(int maTL, bool notUsed)
+        public IActionResult Xoa(TheLoaiIndexVm theLoaiVm)
         {
-            theLoaiService.XoaTheLoai(maTL);
+            theLoaiService.XoaTheLoai(theLoaiVm.theLoai.MaTL);
             return RedirectToAction("Index");
         }
     }
