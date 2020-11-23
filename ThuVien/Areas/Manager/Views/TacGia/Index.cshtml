@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Danh sách tác gải";
+    Layout = "~/Areas/Manager/Views/Shared/_ManagerLayout.cshtml";
+}
+@using ThuVien.Areas.Manager.ViewModels
+@model TacGiaIndexVm 
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Danh sách độc giả</h6>
+    </div>
+    <div class="card-body">
+        <form method="GET" id="formTiemKiem">
+            <div class="form-group">
+                <input type="text" asp-for="SearchString" />
+                <input class="btn btn-primary" type="submit" value="Tìm kiếm" />
+            </div>
+        </form>
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Mã tác giả</th>
+                        <th>Tên tác giả</th>
+                        <td><input id="checkAllItem" type="checkbox"></td>
+                    <tr />
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var tacgia in Model.TacGias)
+                        {
+                            <td>@tacgia.MaTG</td>
+                            <td>@tacgia.TenTG</td>
+                            <td>
+                                <a data-toggle="modal" data-target="#xoaTacGia-@tacgia.MaTG">Xóa</a>
+                                <a data-toggle="modal" data-target="#capnhapTacGia-@tacgia.MaTG">Cập nhật</a>
+                            </td>
+                        }
+                    }
+                    </tbody>
+                </table>
+        </div>
+    </div>
+</div>

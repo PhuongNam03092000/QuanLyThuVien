@@ -54,28 +54,15 @@ namespace ThuVien.Areas.Manager.Controllers
 
             return RedirectToAction("Index");
         }
-
-        /*public string Delete(DocGiaIndexVm vm)
-        {
-            if(vm.docgia.HoDG.Length ==0 || vm.docgia.HoDG == null)
-            {
-                return "Cặt";
-            } else
-            {
-                return vm.docgia.HoDG;
-            }
-        }*/
-
+        [HttpPost]
         public IActionResult Update(DocGiaIndexVm vm)
         {
-            if (ModelState.IsValid)
+            var docgia = vm.docgia;
+            if(vm.docgia.MaDG == 0)
             {
-                docGiaService.UpdateDocGia(vm.docgia);
-
-                return RedirectToAction("Index");
+                ViewBag["error"] = "Null";
             }
-
-            return View("index");
+            return View();
         }
     }
 }
