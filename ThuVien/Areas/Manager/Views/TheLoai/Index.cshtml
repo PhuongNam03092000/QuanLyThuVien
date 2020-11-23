@@ -7,9 +7,41 @@
 
     var tentlSort = (Model.SortOrder == "tentl") ? "tentl_desc" : "tentl";
 }
+
+@*Model thêm của Nam*@
 <p>
-    <a asp-action="Them">Thêm mới</a>
+    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#themTheLoai">Thêm</button>
+    <button id="btnXoa" class="btn btn-danger">Xóa</button>
 </p>
+
+@*Modal thêm thể loại*@
+<div class="modal fade" id="themTheLoai" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thêm thể loại</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form method="POST" asp-area="Manager" asp-controller="TheLoai" asp-action="Them">
+
+                    <div class="form-group">
+                        <label for="TenTL" asp-for=theLoaiDto.TenTL>Tên thể loại</label>
+                        <input class="form-control" id="maDocGia" asp-for=theLoaiDto.TenTL placeholder="Tên thể loại">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" type="button" data-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-success">Thêm</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
@@ -19,16 +51,16 @@
         <form method="GET">
             <p>
                 <input type="text" asp-for="SearchString" />
-                <input type="submit" value="Filter" />
+                <input class="btn btn-dark" type="submit" value="Filter" />
             </p>
         </form>
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        @*<th>
-                                Mã thể loại
-                            </th>*@
+                        <th>
+                            Mã thể loại
+                        </th>
                         <th>
                             <a asp-route-sortOrder="@tentlSort"
                                asp-route-searchString="@Model.SearchString">
@@ -42,12 +74,10 @@
                     @foreach (var theLoai in Model.TheLoais)
                     {
                         <tr>
-                            @*<td>@Html.DisplayFor(item => theLoai.MaTL)</td>*@
+                            <td>@Html.DisplayFor(item => theLoai.MaTL)</td>
                             <td>@theLoai.TenTL</td>
                             <td>
-                                <a asp-action="Edit" asp-route-id="@theLoai.MaTL">Sửa</a> |
-                                <a asp-action="Details" asp-route-id="@theLoai.MaTL">Chi tiết</a> |
-                                <a asp-action="Delete" asp-route-id="@theLoai.MaTL">Xóa</a>
+                                <button class="btn btn-success" type="submit" data-toggle="modal" data-target="#suaTheLoai"><i class="far fa-edit"></i></button>
                             </td>
                         </tr>
                     }

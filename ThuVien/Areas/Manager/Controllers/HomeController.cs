@@ -3,8 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ThuVien.Areas.Manager.Controllers
 {
-    [Area("manager")]
-    [Authorize]
+    [Area("Manager")]
     public class HomeController : Controller
     {
         public IActionResult Index()

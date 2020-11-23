@@ -2,6 +2,7 @@
 using Application.Interfaces;
 using Domain.Entities;
 using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Application.Services
@@ -43,5 +44,13 @@ namespace Application.Services
         {
             await _signInManager.SignOutAsync();
         }
+
+        /*public async Task GetClaimsAsync(LogInDTO logInDTO)
+        {
+            var user = await _userManager.FindByEmailAsync(logInDTO.Email);
+            var result = await _userManager.GetClaimsAsync(user);
+            return result;
+        }*/
+
     }
 }

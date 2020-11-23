@@ -1,26 +1,33 @@
 ﻿using Application.DTOs;
 using Application.Interfaces;
+using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace ThuVien.Controllers
 {
+    [AllowAnonymous]
     public class AccountController : Controller
     {
         private readonly IAccountService _accountService;
+        private readonly UserManager<AppUser> userManager;
 
-        public AccountController(IAccountService accountService)
+        public AccountController(IAccountService accountService, UserManager<AppUser> userManager)
         {
+            this.userManager = userManager;
             _accountService = accountService;
         }
 
-        [Route("signup")]
+        [Route("SignUp")]
+        [HttpGet]
         public IActionResult Signup()
         {
             return View();
         }
 
-        [Route("signup")]
+        [Route("SignUp")]
         [HttpPost]
         public async Task<IActionResult> Signup(SignUpDTO signUpDTO)
         {
@@ -44,31 +51,69 @@ namespace ThuVien.Controllers
             return View(signUpDTO);
         }
 
-        [Route("login")]
+        [Route("signuppro")]
+        [HttpPost]
+        public async Task<IActionResult> SignupPro(SignUpDTO signUpDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _accountService.CreateUserAsync(signUpDTO);
+                if (!result.Succeeded)
+                {
+                    foreach (var errorMessage in result.Errors)
+                    {
+                        ModelState.AddModelError("", errorMessage.Description);
+                    }
+
+                    return View(signUpDTO);
+                }
+                var user = await userManager.FindByNameAsync(signUpDTO.Email);
+                var claim = await userManager.AddClaimAsync(user, new System.Security.Claims.Claim("Admin", "Admin"));
+
+                if (claim.Succeeded)
+                {
+                    System.Diagnostics.Debug.WriteLine(claim);
+                    return RedirectToAction("Login", "Account");
+                }
+                return View(signUpDTO);
+            }
+
+            return View(signUpDTO);
+        }
+
+        [Route("Login")]
+        [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
 
-        [Route("login")]
+        [Route("Login")]
         [HttpPost]
-        public async Task<IActionResult> Login(LogInDTO logInDTO)
+        public async Task<IActionResult> Login(LogInDTO logInDTO, string returnUrl)
         {
             if (ModelState.IsValid)
             {
                 var result = await _accountService.PasswordSignInAsync(logInDTO);
                 if (result.Succeeded)
                 {
-                    return RedirectToRoute("manager");
+                    if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                    {
+                        return Redirect(returnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToRoute("Manager");
+                    }
                 }
 
-                ModelState.AddModelError("", "Invalid credentials");
+                ModelState.AddModelError(string.Empty, "Thông tin đăng nhập không hợp lệ.");
             }
 
             return View(logInDTO);
         }
 
-        [Route("logout")]
+        [Route("Logout")]
         public async Task<IActionResult> Logout()
         {
             await _accountService.SignOutAsync();
