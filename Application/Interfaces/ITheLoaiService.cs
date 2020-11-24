@@ -9,7 +9,7 @@ namespace Application.Interfaces
 
         TheLoaiDTO GetTheLoai(int maTL);
 
-        void TaoTheLoai(TheLoaiDTO theLoai);
+        void ThemTheLoai(TheLoaiDTO theLoai);
 
         void SuaTheLoai(TheLoaiDTO theLoai);
 
