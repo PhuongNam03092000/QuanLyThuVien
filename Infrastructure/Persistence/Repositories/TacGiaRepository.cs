@@ -1,13 +1,11 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Infrastructure.Persistence.Repositories
 {
-    public class TacGiaRepository : EFRepository<TacGia>,ITacGiaRepository
+    public class TacGiaRepository : EFRepository<TacGia>, ITacGiaRepository
     {
         public TacGiaRepository(QLTVContext context) : base(context)
         {
@@ -28,6 +26,7 @@ namespace Infrastructure.Persistence.Repositories
             return query.Skip((pageIndex - 1) * pageSize)
                         .Take(pageSize).ToList();
         }
+
         private static void SortTacGias(string sortOrder, ref IQueryable<TacGia> query)
         {
             switch (sortOrder)

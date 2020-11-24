@@ -1,43 +1,169 @@
-﻿@{
-    ViewData["Title"] = "Danh sách tác gải";
+﻿@using ThuVien.Areas.Manager.ViewModels
+@model TacGiaIndexVm
+
+@{
+    ViewData["Title"] = "Danh sách tác giả";
     Layout = "~/Areas/Manager/Views/Shared/_ManagerLayout.cshtml";
+
+    var tentgSort = (Model.SortOrder == "tentg") ? "tentg_desc" : "tentg";
 }
-@using ThuVien.Areas.Manager.ViewModels
-@model TacGiaIndexVm 
+
+@*Modal thêm*@
+<div class="modal fade" id="them" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thêm tác giả</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form method="POST" asp-area="Manager" asp-controller="TacGia" asp-action="Them">
+
+                    <div class="form-group">
+                        <label asp-for=tacGia.TenTG>Tên thể loại</label>
+                        <input class="form-control" asp-for=tacGia.TenTG placeholder="Tên thể loại">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" type="button" data-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-success">Thêm</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Danh sách độc giả</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Danh sách tác giả</h6>
     </div>
     <div class="card-body">
-        <form method="GET" id="formTiemKiem">
-            <div class="form-group">
+        <form method="GET">
+            <p>
                 <input type="text" asp-for="SearchString" />
-                <input class="btn btn-primary" type="submit" value="Tìm kiếm" />
-            </div>
+                <input class="btn btn-dark" type="submit" value="Filter" />
+            </p>
         </form>
+
+        @*Model thêm của Nam*@
+        <p>
+            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#them">Thêm</button>
+        </p>
+
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Mã tác giả</th>
-                        <th>Tên tác giả</th>
-                        <td><input id="checkAllItem" type="checkbox"></td>
-                    <tr />
+                        <th>
+                            @Html.DisplayNameFor(model => model.TacGias[0].MaTG)
+                        </th>
+                        <th>
+                            <a asp-route-sortOrder="@tentgSort"
+                               asp-route-searchString="@Model.SearchString">
+                                @Html.DisplayNameFor(model => model.TacGias[0].TenTG)
+                            </a>
+                        </th>
+                        <th></th>
+                    </tr>
                 </thead>
                 <tbody>
-                    @{
-                        foreach (var tacgia in Model.TacGias)
-                        {
-                            <td>@tacgia.MaTG</td>
-                            <td>@tacgia.TenTG</td>
+                    @foreach (var tacGia in Model.TacGias)
+                    {
+                        <tr>
+                            <td>@tacGia.MaTG</td>
+                            <td>@tacGia.TenTG</td>
                             <td>
-                                <a data-toggle="modal" data-target="#xoaTacGia-@tacgia.MaTG">Xóa</a>
-                                <a data-toggle="modal" data-target="#capnhapTacGia-@tacgia.MaTG">Cập nhật</a>
+                                <button class="btn btn-success" data-toggle="modal" data-target="#sua-@tacGia.MaTG" a><i class="far fa-edit"></i></button>
+                                <button class="btn btn-danger" data-toggle="modal" data-target="#xoa-@tacGia.MaTG"><i class="far fa-trash-alt"></i></button>
                             </td>
-                        }
+                        </tr>
+
+                        @*Modal xóa*@
+                        <div class="modal fade" id="xoa-@tacGia.MaTG" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Bạn có chắc muốn xóa tác giả này?</h5>
+                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="POST" asp-area="Manager" asp-action="Xoa" asp-controller="TacGia">
+
+                                            <div class="form-group">
+                                                <label asp-for="@tacGia.MaTG">Mã tác giả</label>
+                                                <input readonly="readonly" class="form-control" asp-for="@tacGia.MaTG" value="@tacGia.MaTG">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label asp-for="@tacGia.TenTG">Tên tác giả</label>
+                                                <input readonly="readonly" class="form-control" asp-for="@tacGia.TenTG" value="@tacGia.TenTG">
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button class="btn btn-dark" type="button" data-dismiss="modal">Đóng</button>
+                                                <button type="submit" class="btn btn-danger">Xóa</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        @*Modal sửa*@
+                        <div class="modal fade" id="sua-@tacGia.MaTG" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Cập nhật tác giả</h5>
+                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="POST" asp-area="Manager" asp-action="Sua" asp-controller="TacGia">
+                                            <div class="form-group">
+                                                <label asp-for="@tacGia.MaTG">Mã tác giả</label>
+                                                <input readonly="readonly" class="form-control" asp-for="@tacGia.MaTG" value="@tacGia.MaTG">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label asp-for="@tacGia.TenTG">Tên tác giả</label>
+                                                <input class="form-control" asp-for="@tacGia.TenTG" value="@tacGia.TenTG" placeholder="Tên tác giả">
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button class="btn btn-dark" type="button" data-dismiss="modal">Đóng</button>
+                                                <button type="submit" class="btn btn-success">Sửa</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     }
-                    </tbody>
-                </table>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
+
+@{
+    var prevDisabled = !Model.TacGias.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.TacGias.HasNextPage ? "disabled" : "";
+}
+
+<a class="btn btn-default @prevDisabled"
+   asp-route-sortOrder="@Model.SortOrder"
+   asp-route-searchString="@Model.SearchString"
+   asp-route-pageIndex="@(Model.TacGias.PageIndex -1)">Trước</a>
+<a class="btn btn-default @nextDisabled"
+   asp-route-sortOrder="@Model.SortOrder"
+   asp-route-searchString="@Model.SearchString"
+   asp-route-pageIndex="@(Model.TacGias.PageIndex +1)">Sau</a>

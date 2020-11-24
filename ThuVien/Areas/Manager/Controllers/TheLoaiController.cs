@@ -1,6 +1,5 @@
 ﻿using Application.DTOs;
 using Application.Interfaces;
-using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ThuVien.Areas.Manager.ViewModels;
@@ -42,17 +41,10 @@ namespace ThuVien.Areas.Manager.Controllers
         {
             if (ModelState.IsValid)
             {
-                theLoaiService.TaoTheLoai(theLoaiVM.theLoai);
+                theLoaiService.ThemTheLoai(theLoaiVM.theLoai);
                 return RedirectToAction("Index");
             }
             return View();
-        }
-
-        public IActionResult Sua(int maTL)
-        {
-            var theLoai = theLoaiService.GetTheLoai(maTL);
-
-            return View(theLoai);
         }
 
         [HttpPost]

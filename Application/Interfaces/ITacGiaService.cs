@@ -1,5 +1,5 @@
+﻿using Application.DTOs;
 using System.Collections.Generic;
-using Application.DTOs;
 
 namespace Application.Interfaces
 {
@@ -9,10 +9,10 @@ namespace Application.Interfaces
 
         TacGiaDTO GetTacGia(int maTG);
 
-        void CreateTacGia(TacGiaDTO tacGia);
+        void ThemTacGia(TacGiaDTO tacGia);
 
-        void UpdateTacGia(TacGiaDTO tacGia);
+        void SuaTacGia(TacGiaDTO tacGia);
 
-        void DeleteTacGia(int maTG);
+        void XoaTacGia(int maTG);
     }
 }

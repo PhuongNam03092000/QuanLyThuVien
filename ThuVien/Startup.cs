@@ -51,6 +51,10 @@ namespace ThuVien
             services.AddScoped<ITheLoaiRepository, TheLoaiRepository>();
             services.AddScoped<ITheLoaiService, TheLoaiService>();
 
+            //TacGia
+            services.AddScoped<ITacGiaRepository, TacGiaRepository>();
+            services.AddScoped<ITacGiaService, TacGiaService>();
+
             //Account
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<IAccountService, AccountService>();

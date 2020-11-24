@@ -1,44 +1,54 @@
 ﻿using Application.DTOs;
 using Application.Interfaces;
+using Application.Mappings;
 using Domain.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Application.Services
 {
     public class TacGiaService : ITacGiaService
     {
-        private readonly ITacGiaRepository tacgiaRepository; //Lấy từ Domain
+        private readonly ITacGiaRepository _tacGiaRepository; //Lấy từ Domain
 
-        public TacGiaService(ITacGiaRepository tacgiaRepository)
+        public TacGiaService(ITacGiaRepository tacGiaRepository)
         {
-            this.tacgiaRepository = tacgiaRepository;
-        }
-        public void CreateTacGia(TacGiaDTO tacGia)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteTacGia(int maTG)
-        {
-            throw new NotImplementedException();
-        }
-
-        public TacGiaDTO GetTacGia(int maTG)
-        {
-            throw new NotImplementedException();
+            _tacGiaRepository = tacGiaRepository;
         }
 
         public IEnumerable<TacGiaDTO> GetTacGias(string sortOrder, string searchString, int pageIndex, int pageSize, out int count)
         {
-            var tacgias = tacgiaRepository.Filter(sortOrder, searchString, pageIndex, pageSize, out count);
-            return tacgias;
+            var tacGias = _tacGiaRepository.Filter(sortOrder, searchString, pageIndex, pageSize, out count);
+            return tacGias.MappingTacGiaDtos();
         }
 
-        public void UpdateTacGia(TacGiaDTO tacGia)
+        public TacGiaDTO GetTacGia(int maTG)
         {
-            throw new NotImplementedException();
+            var tacgia = _tacGiaRepository.GetBy(maTG);
+
+            return tacgia.MappingTacGiaDto();
+        }
+
+        public void SuaTacGia(TacGiaDTO tacGiaDto)
+        {
+            var tacGia = _tacGiaRepository.GetBy(tacGiaDto.MaTG);
+
+            tacGiaDto.MappingTacGia(tacGia);
+
+            _tacGiaRepository.Update(tacGia);
+        }
+
+        public void ThemTacGia(TacGiaDTO tacGiaDto)
+        {
+            var tacGia = tacGiaDto.MappingTacGia();
+
+            _tacGiaRepository.Add(tacGia);
+        }
+
+        public void XoaTacGia(int maTG)
+        {
+            var tacGia = _tacGiaRepository.GetBy(maTG);
+
+            _tacGiaRepository.Delete(tacGia);
         }
     }
 }

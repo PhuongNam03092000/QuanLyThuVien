@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Application.DTOs;
+﻿using Application.DTOs;
 using Application.Interfaces;
-using Application.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ThuVien.Areas.Manager.ViewModels;
@@ -12,34 +7,63 @@ using ThuVien.Helper;
 
 namespace ThuVien.Areas.Manager.Controllers
 {
-
     [Area("Manager")]
-    //[Route("[Area]/[Controller]/[Action]")]
     [Authorize]
     public class TacGiaController : Controller
     {
         private readonly ITacGiaService tacGiaService;
 
-        public TacGiaController(ITacGiaService tacgiaService)
+        public TacGiaController(ITacGiaService tacGiaService)
         {
-            this.tacGiaService = tacgiaService;
+            this.tacGiaService = tacGiaService;
         }
+
         public IActionResult Index(string sortOrder, string searchString, int pageIndex = 1)
         {
             int pageSize = 10;
             int count;
-            var tacgias = tacGiaService.GetTacGias(sortOrder, searchString, pageIndex, pageSize, out count);
-            var tacgiaDTO = new TacGiaDTO();
+            var tacGias = tacGiaService.GetTacGias(sortOrder, searchString, pageIndex, pageSize, out count);
+            var tacGiaNew = new TacGiaDTO();
 
-            var tacgiaVM = new TacGiaIndexVm()
+            var tacGiaVM = new TacGiaIndexVm()
             {
-                TacGias = new PaginatedList<TacGiaDTO>(tacgias, count, pageIndex, pageSize),
+                TacGias = new PaginatedList<TacGiaDTO>(tacGias, count, pageIndex, pageSize),
                 SearchString = searchString,
                 SortOrder = sortOrder,
-                tacgiaDto = tacgiaDTO
+                tacGia = tacGiaNew
             };
 
-            return View(tacgiaVM);
+            return View(tacGiaVM);
+        }
+
+        [HttpPost]
+        public IActionResult Them(TacGiaIndexVm tacGiaVM)
+        {
+            if (ModelState.IsValid)
+            {
+                tacGiaService.ThemTacGia(tacGiaVM.tacGia);
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Sua(TacGiaIndexVm tacGiaVm)
+        {
+            if (ModelState.IsValid)
+            {
+                tacGiaService.SuaTacGia(tacGiaVm.tacGia);
+                return RedirectToAction("Index");
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Xoa(TacGiaIndexVm tacGiaVm)
+        {
+            tacGiaService.XoaTacGia(tacGiaVm.tacGia.MaTG);
+            return RedirectToAction("Index");
         }
     }
 }

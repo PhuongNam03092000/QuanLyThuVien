@@ -8,13 +8,8 @@
     var tentlSort = (Model.SortOrder == "tentl") ? "tentl_desc" : "tentl";
 }
 
-@*Model thêm của Nam*@
-<p>
-    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#themTheLoai">Thêm</button>
-</p>
-
 @*Modal thêm thể loại*@
-<div class="modal fade" id="themTheLoai" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="them" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -53,6 +48,12 @@
                 <input class="btn btn-dark" type="submit" value="Filter" />
             </p>
         </form>
+
+        @*Model thêm của Nam*@
+        <p>
+            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#them">Thêm</button>
+        </p>
+
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
@@ -76,17 +77,17 @@
                             <td>@theLoai.MaTL</td>
                             <td>@theLoai.TenTL</td>
                             <td>
-                                <button class="btn btn-success" data-toggle="modal" data-target="#suaTheLoai-@theLoai.MaTL" a><i class="far fa-edit"></i></button>
-                                <button class="btn btn-danger" data-toggle="modal" data-target="#xoaTheLoai-@theLoai.MaTL">Xóa</button>
+                                <button class="btn btn-success" data-toggle="modal" data-target="#sua-@theLoai.MaTL" a><i class="far fa-edit"></i></button>
+                                <button class="btn btn-danger" data-toggle="modal" data-target="#xoa-@theLoai.MaTL"><i class="far fa-trash-alt"></i></button>
                             </td>
                         </tr>
 
                         @*Modal xóa thể loại*@
-                        <div class="modal fade" id="xoaTheLoai-@theLoai.MaTL" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="xoa-@theLoai.MaTL" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Xóa thể loại</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Bạn có chắc muốn xóa thể loại này?</h5>
                                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
@@ -94,9 +95,20 @@
                                     <div class="modal-body">
                                         <form method="POST" asp-area="Manager" asp-action="Xoa" asp-controller="TheLoai">
 
-                                            <input asp-for="@theLoai.MaTL" />
-                                            @*<button class="btn btn-dark type="button" data-dismiss="modal">Đóng</button>*@
-                                            <button type="submit" class="btn btn-danger">Xóa</button>
+                                            <div class="form-group">
+                                                <label asp-for="@theLoai.MaTL">Mã thể loại</label>
+                                                <input readonly="readonly" class="form-control" asp-for="@theLoai.MaTL" value="@theLoai.MaTL">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label asp-for="@theLoai.TenTL">Tên thể loại</label>
+                                                <input readonly="readonly" class="form-control" asp-for="@theLoai.TenTL" value="@theLoai.TenTL">
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button class="btn btn-dark" type="button" data-dismiss="modal">Đóng</button>
+                                                <button type="submit" class="btn btn-danger">Xóa</button>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
@@ -104,7 +116,7 @@
                         </div>
 
                         @*Modal sửa thể loại*@
-                        <div class="modal fade" id="suaTheLoai-@theLoai.MaTL" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="sua-@theLoai.MaTL" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -117,7 +129,7 @@
                                         <form method="POST" asp-area="Manager" asp-action="Sua" asp-controller="TheLoai">
                                             <div class="form-group">
                                                 <label asp-for="@theLoai.MaTL">Mã thể loại</label>
-                                                <input readonly="readonly" class="form-control" asp-for="@theLoai.MaTL" value="@theLoai.MaTL" placeholder="Mã thể loại">
+                                                <input readonly="readonly" class="form-control" asp-for="@theLoai.MaTL" value="@theLoai.MaTL">
                                             </div>
 
                                             <div class="form-group">
@@ -126,7 +138,7 @@
                                             </div>
 
                                             <div class="modal-footer">
-                                                <button class="btn btn-danger" type="button" data-dismiss="modal">Đóng</button>
+                                                <button class="btn btn-dark" type="button" data-dismiss="modal">Đóng</button>
                                                 <button type="submit" class="btn btn-success">Sửa</button>
                                             </div>
                                         </form>
@@ -150,8 +162,8 @@
 <a class="btn btn-default @prevDisabled"
    asp-route-sortOrder="@Model.SortOrder"
    asp-route-searchString="@Model.SearchString"
-   asp-route-pageIndex="@(Model.TheLoais.PageIndex -1)">Previous</a>
+   asp-route-pageIndex="@(Model.TheLoais.PageIndex -1)">Trước</a>
 <a class="btn btn-default @nextDisabled"
    asp-route-sortOrder="@Model.SortOrder"
    asp-route-searchString="@Model.SearchString"
-   asp-route-pageIndex="@(Model.TheLoais.PageIndex +1)">Next</a>
+   asp-route-pageIndex="@(Model.TheLoais.PageIndex +1)">Sau</a>

@@ -1,4 +1,4 @@
-using Application.DTOs;
+﻿using Application.DTOs;
 using Domain.Entities;
 using System.Collections.Generic;
 
@@ -6,35 +6,35 @@ namespace Application.Mappings
 {
     public static class TacGiaMapping
     {
-        public static TacGiaDTO MappingTacGiaDto(this TacGia tacgia)
+        public static TacGiaDTO MappingTacGiaDto(this TacGia tacGia)
         {
             return new TacGiaDTO
             {
-                MaTG = tacgia.MaTG,
-                TenTG = tacgia.TenTG
+                MaTG = tacGia.MaTG,
+                TenTG = tacGia.TenTG
             };
         }
-            
-        public static TacGia MappingTacGia(this TacGiaDTO tacgiaDTO)
+
+        public static TacGia MappingTacGia(this TacGiaDTO tacGiaDto)
         {
             return new TacGia
             {
-                MaTG = tacgiaDTO.MaTG,
-                TenTG = tacgiaDTO.TenTG
+                MaTG = tacGiaDto.MaTG,
+                TenTG = tacGiaDto.TenTG
             };
         }
 
-        public static void MappingTacGia(this TacGiaDTO tacgiaDTO, TacGia tacgia)
+        public static void MappingTacGia(this TacGiaDTO tacGiaDto, TacGia tacGia)
         {
-            tacgia.MaTG = tacgiaDTO.MaTG;
-            tacgia.TenTG = tacgiaDTO.TenTG;
+            tacGia.MaTG = tacGiaDto.MaTG;
+            tacGia.TenTG = tacGiaDto.TenTG;
         }
 
-        public static IEnumerable<TacGiaDTO> MappingTacGiaDtos(this IEnumerable<TacGia> tacgias)
+        public static IEnumerable<TacGiaDTO> MappingTacGiaDtos(this IEnumerable<TacGia> tacGias)
         {
-            foreach (var tacgia in tacgias)
+            foreach (var tacGia in tacGias)
             {
-                yield return tacgia.MappingTacGiaDto();
+                yield return tacGia.MappingTacGiaDto();
             }
         }
     }

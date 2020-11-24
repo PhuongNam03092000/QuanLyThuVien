@@ -37,7 +37,7 @@ namespace Application.Services
             _theLoaiRepository.Update(theLoai);
         }
 
-        public void TaoTheLoai(TheLoaiDTO theLoaiDto)
+        public void ThemTheLoai(TheLoaiDTO theLoaiDto)
         {
             var theLoai = theLoaiDto.MappingTheLoai();
 
