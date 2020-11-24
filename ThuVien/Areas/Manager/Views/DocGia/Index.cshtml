@@ -149,41 +149,41 @@
                                         <form method="POST" asp-area="Manager" asp-action="Update" asp-controller="DocGia">
                                             <div class="form-group">
                                                 <label asp-for="@docgia.MaDG">Mã độc giả</label>
-                                                <input readonly class="form-control disabled" value="@docgia.MaDG" placeholder="Mã độc giả">
+                                                <input readonly="readonly" class="form-control" value="@docgia.MaDG" placeholder="Mã độc giả">
                                             </div>
                                             <div class="form-group">
                                                 <div class="form-row">
                                                     <div class="col">
                                                         <label asp-for="@docgia.HoDG">Họ độc giả</label>
-                                                        <input readonly class="form-control" value="@docgia.HoDG" asp-for="@docgia.HoDG" placeholder="Họ độc giả">
+                                                        <input class="form-control" value="@docgia.HoDG" asp-for="@docgia.HoDG" placeholder="Họ độc giả">
                                                     </div>
                                                     <div class="col">
                                                         <label  asp-for="@docgia.TenDG">Họ độc giả</label>
-                                                        <input readonly class="form-control" asp-for="@docgia.TenDG" value="@docgia.TenDG"  placeholder="Tên độc giả">
+                                                        <input class="form-control" asp-for="@docgia.TenDG" value="@docgia.TenDG"  placeholder="Tên độc giả">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="DoB" asp-for="@docgia.DoBDG">Ngày sinh</label>
-                                                <input readonly class="form-control" asp-for="@docgia.DoBDG" value="@docgia.DoBDG" placeholder="Ngày sinh">
+                                                <input class="form-control" asp-for="@docgia.DoBDG" value="@docgia.DoBDG" placeholder="Ngày sinh">
                                             </div>
                                             <div class="form-group">
                                                 <label asp-for="@docgia.EmailDG">Email</label>
-                                                <input readonly class="form-control" asp-for="@docgia.EmailDG" value="@docgia.EmailDG"  placeholder="Email">
+                                                <input class="form-control" asp-for="@docgia.EmailDG" value="@docgia.EmailDG"  placeholder="Email">
                                             </div>
                                             <div class="form-group">
                                                 <label for="diachi" asp-for="@docgia.DiaChiDG">Đia chỉ</label>
-                                                <input readonly class="form-control" asp-for=@docgia.DiaChiDG value="@docgia.DiaChiDG"  placeholder="Địa chỉ">
+                                                <input class="form-control" asp-for=@docgia.DiaChiDG value="@docgia.DiaChiDG"  placeholder="Địa chỉ">
                                             </div>
                                             <div class="form-group">
                                                 <div class="form-row">
                                                     <div class="col">
                                                         <label for="ngaydk">Ngày đăng ký</label>
-                                                        <input readonly class="form-control" asp-for=@docgia.NgayDK value="@docgia.NgayDK" placeholder="@docgia.NgayDK">
+                                                        <input class="form-control" asp-for=@docgia.NgayDK value="@docgia.NgayDK" placeholder="@docgia.NgayDK">
                                                     </div>
                                                     <div class="col">
                                                         <label for="ngayhethan" asp-for=@docgia.NgayHetHanDK>Ngày hết hạn</label>
-                                                        <input readonly class="form-control" asp-for=@docgia.NgayHetHanDK  value="@docgia.NgayHetHanDK" placeholder="@docgia.NgayHetHanDK">
+                                                        <input class="form-control" asp-for=@docgia.NgayHetHanDK  value="@docgia.NgayHetHanDK" placeholder="@docgia.NgayHetHanDK">
                                                     </div>
                                                 </div>
                                             </div>
