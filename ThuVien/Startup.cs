@@ -55,6 +55,10 @@ namespace ThuVien
             services.AddScoped<ITacGiaRepository, TacGiaRepository>();
             services.AddScoped<ITacGiaService, TacGiaService>();
 
+            //NhaXuatBan
+            services.AddScoped<INhaXuatBanRepository, NhaXuatBanRepository>();
+            services.AddScoped<INhaXuatBanService, NhaXuatBanService>();
+
             //Account
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<IAccountService, AccountService>();

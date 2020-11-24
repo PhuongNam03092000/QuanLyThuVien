@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Infrastructure.Persistence.Repositories
 {
-    public class NhaXuatBanRepository : EFRepository<NhaXuatBan>, INhaXuaBanRepository
+    public class NhaXuatBanRepository : EFRepository<NhaXuatBan>, INhaXuatBanRepository
     {
         public NhaXuatBanRepository(QLTVContext context) : base(context)
         {
@@ -33,6 +33,13 @@ namespace Infrastructure.Persistence.Repositories
         {
             switch (sortOrder)
             {
+                case "manxb_desc":
+                    query = query.OrderByDescending(nxb => nxb.MaNXB);
+                    break;
+
+                case "manxb":
+                    query = query.OrderBy(nxb => nxb.MaNXB);
+                    break;
                 case "tennxb_desc":
                     query = query.OrderByDescending(nxb => nxb.TenNXB);
                     break;

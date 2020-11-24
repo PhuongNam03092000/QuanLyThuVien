@@ -5,6 +5,7 @@
     ViewData["Title"] = "Danh sách tác giả";
     Layout = "~/Areas/Manager/Views/Shared/_ManagerLayout.cshtml";
 
+    var matgSort = (Model.SortOrder == "matg") ? "matg_desc" : "matg";
     var tentgSort = (Model.SortOrder == "tentg") ? "tentg_desc" : "tentg";
 }
 
@@ -59,7 +60,10 @@
                 <thead>
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.TacGias[0].MaTG)
+                            <a asp-route-sortOrder="@matgSort"
+                               asp-route-searchString="@Model.SearchString">
+                                @Html.DisplayNameFor(model => model.TacGias[0].MaTG)
+                            </a>
                         </th>
                         <th>
                             <a asp-route-sortOrder="@tentgSort"
