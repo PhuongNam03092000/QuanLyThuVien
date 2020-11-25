@@ -31,10 +31,15 @@ namespace Infrastructure.Persistence.Repositories
         {
             switch (sortOrder)
             {
+                case "matg_desc":
+                    query = query.OrderByDescending(tg => tg.MaTG);
+                    break;
+                case "matg":
+                    query = query.OrderBy(tg => tg.MaTG);
+                    break;
                 case "tentg_desc":
                     query = query.OrderByDescending(tg => tg.TenTG);
                     break;
-
                 case "tentg":
                     query = query.OrderBy(tg => tg.TenTG);
                     break;

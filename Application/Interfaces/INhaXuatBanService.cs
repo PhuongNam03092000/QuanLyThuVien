@@ -11,10 +11,10 @@ namespace Application.Interfaces
 
         NhaXuatBanDTO GetNhaXuatBan(int maNXB);
 
-        void ThemNhaXuatBan(TheLoaiDTO theLoai);
+        void ThemNhaXuatBan(NhaXuatBanDTO nhaXuatBan);
 
-        void SuaTheLoai(TheLoaiDTO theLoai);
+        void SuaNhaXuatBan(NhaXuatBanDTO nhaXuatBan);
 
-        void XoaTheLoai(int maTL);
+        void XoaNhaXuatBan(int maNXB);
     }
 }
