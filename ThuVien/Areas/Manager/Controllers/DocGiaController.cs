@@ -9,15 +9,17 @@ using ThuVien.Helper;
 namespace ThuVien.Areas.Manager.Controllers
 {
     [Area("Manager")]
-    [Route("[Area]/[Controller]/[Action]")]
+    //[Route("[Area]/[Controller]/[Action]")]
     [Authorize]
     public class DocGiaController : Controller
     {
         private readonly IDocGiaService docGiaService;
+
         public DocGiaController(IDocGiaService docgiaService)
         {
             this.docGiaService = docgiaService;
         }
+
         public IActionResult Index(string sortOrder, string searchString, int pageIndex = 1)
         {
             int pageSize = 4;
@@ -29,12 +31,12 @@ namespace ThuVien.Areas.Manager.Controllers
                 DocGias = new PaginatedList<DocGiaDTO>(dsdocgia, count, pageIndex, pageSize),
                 SearchString = searchString,
                 SortOrder = sortOrder,
-                docgia = docGia 
+                docgia = docGia
             };
 
             return View(docgiaVM);
         }
-       
+
         public IActionResult Create(DocGiaIndexVm vm)
         {
             if (ModelState.IsValid)
@@ -44,6 +46,7 @@ namespace ThuVien.Areas.Manager.Controllers
             }
             return View();
         }
+
         [HttpPost]
         public IActionResult Delete(DocGiaIndexVm vm)
         {
@@ -51,28 +54,16 @@ namespace ThuVien.Areas.Manager.Controllers
 
             return RedirectToAction("Index");
         }
-
-        /*public string Delete(DocGiaIndexVm vm)
-        {
-            if(vm.docgia.HoDG.Length ==0 || vm.docgia.HoDG == null)
-            {
-                return "Cặt";
-            } else
-            {
-                return vm.docgia.HoDG;
-            }
-            
-        }*/
+        [HttpPost]
         public IActionResult Update(DocGiaIndexVm vm)
         {
+
             if (ModelState.IsValid)
             {
                 docGiaService.UpdateDocGia(vm.docgia);
-
                 return RedirectToAction("Index");
             }
-
-            return View("index");
+            return View();
         }
     }
 }

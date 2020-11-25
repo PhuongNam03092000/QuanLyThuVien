@@ -23,14 +23,14 @@ namespace ThuVien.Controllers
             this.logger = logger;
         }
 
-        [Route("signup")]
+        [Route("SignUp")]
         [HttpGet]
         public IActionResult Signup()
         {
             return View();
         }
 
-        [Route("signup")]
+        [Route("SignUp")]
         [HttpPost]
         public async Task<IActionResult> Signup(SignUpDTO signUpDTO)
         {
@@ -73,7 +73,7 @@ namespace ThuVien.Controllers
                 var user = await userManager.FindByNameAsync(signUpDTO.Email);
                 var claim = await userManager.AddClaimAsync(user, new System.Security.Claims.Claim("Admin", "Admin"));
 
-                if(claim.Succeeded)
+                if (claim.Succeeded)
                 {
                     System.Diagnostics.Debug.WriteLine(claim);
                     return RedirectToAction("Login", "Account");
@@ -84,16 +84,16 @@ namespace ThuVien.Controllers
             return View(signUpDTO);
         }
 
-        [Route("login")]
+        [Route("Login")]
         [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
 
-        [Route("login")]
+        [Route("Login")]
         [HttpPost]
-        public async Task<IActionResult> Login(LogInDTO logInDTO,string returnUrl)
+        public async Task<IActionResult> Login(LogInDTO logInDTO, string returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -106,17 +106,17 @@ namespace ThuVien.Controllers
                     }
                     else
                     {
-                        return RedirectToRoute("manager");
+                        return RedirectToRoute("Manager");
                     }
                 }
 
-                ModelState.AddModelError(string.Empty, "Invalid credentials");
+                ModelState.AddModelError(string.Empty, "Thông tin đăng nhập không hợp lệ.");
             }
 
             return View(logInDTO);
         }
 
-        [Route("logout")]
+        [Route("Logout")]
         public async Task<IActionResult> Logout()
         {
             await _accountService.SignOutAsync();

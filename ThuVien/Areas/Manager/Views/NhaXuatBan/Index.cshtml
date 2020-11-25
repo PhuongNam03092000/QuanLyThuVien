@@ -1,31 +1,31 @@
 ﻿@using ThuVien.Areas.Manager.ViewModels
-@model TheLoaiIndexVm
+@model NhaXuatBanIndexVm
 
 @{
-    ViewData["Title"] = "Danh sách thể loại";
+    ViewData["Title"] = "Danh sách nhà xuất bản";
     Layout = "~/Areas/Manager/Views/Shared/_ManagerLayout.cshtml";
 
-    var matlSort = (Model.SortOrder == "matl") ? "matl_desc" : "matl";
-    var tentlSort = (Model.SortOrder == "tentl") ? "tentl_desc" : "tentl";
+    var manxbSort = (Model.SortOrder == "manxb") ? "manxb_desc" : "manxb";
+    var tennxbSort = (Model.SortOrder == "tennxb") ? "tennxb_desc" : "tennxb";
 }
 
-@*Modal thêm thể loại*@
+@*Modal thêm*@
 <div class="modal fade" id="them" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Thêm thể loại</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Thêm nhà xuất bản</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
 
             <div class="modal-body">
-                <form method="POST" asp-area="Manager" asp-controller="TheLoai" asp-action="Them">
+                <form method="POST" asp-area="Manager" asp-controller="NhaXuatBan" asp-action="Them">
 
                     <div class="form-group">
-                        <label asp-for=theLoai.TenTL>Tên thể loại</label>
-                        <input class="form-control" asp-for=theLoai.TenTL placeholder="Tên thể loại">
+                        <label asp-for=nhaXuatBan.TenNXB>Tên nhà xuất bản</label>
+                        <input class="form-control" asp-for=nhaXuatBan.TenNXB placeholder="Tên nhà xuất bản">
                     </div>
 
                     <div class="modal-footer">
@@ -40,7 +40,7 @@
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Danh sách thể loại</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Danh sách nhà xuất bản</h6>
     </div>
     <div class="card-body">
         <form method="GET">
@@ -60,53 +60,53 @@
                 <thead>
                     <tr>
                         <th>
-                            <a asp-route-sortOrder="@matlSort"
+                            <a asp-route-sortOrder="@manxbSort"
                                asp-route-searchString="@Model.SearchString">
-                                @Html.DisplayNameFor(model => model.TheLoais[0].MaTL)
+                                @Html.DisplayNameFor(model => model.NhaXuatBans[0].MaNXB)
                             </a>
                         </th>
                         <th>
-                            <a asp-route-sortOrder="@tentlSort"
+                            <a asp-route-sortOrder="@tennxbSort"
                                asp-route-searchString="@Model.SearchString">
-                                @Html.DisplayNameFor(model => model.TheLoais[0].TenTL)
+                                @Html.DisplayNameFor(model => model.NhaXuatBans[0].TenNXB)
                             </a>
                         </th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var theLoai in Model.TheLoais)
+                    @foreach (var nhaXuatBan in Model.NhaXuatBans)
                     {
                         <tr>
-                            <td>@theLoai.MaTL</td>
-                            <td>@theLoai.TenTL</td>
+                            <td>@nhaXuatBan.MaNXB</td>
+                            <td>@nhaXuatBan.TenNXB</td>
                             <td>
-                                <button class="btn btn-success" data-toggle="modal" data-target="#sua-@theLoai.MaTL" a><i class="far fa-edit"></i></button>
-                                <button class="btn btn-danger" data-toggle="modal" data-target="#xoa-@theLoai.MaTL"><i class="far fa-trash-alt"></i></button>
+                                <button class="btn btn-success" data-toggle="modal" data-target="#sua-@nhaXuatBan.MaNXB" a><i class="far fa-edit"></i></button>
+                                <button class="btn btn-danger" data-toggle="modal" data-target="#xoa-@nhaXuatBan.MaNXB"><i class="far fa-trash-alt"></i></button>
                             </td>
                         </tr>
 
-                        @*Modal xóa thể loại*@
-                        <div class="modal fade" id="xoa-@theLoai.MaTL" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        @*Modal xóa*@
+                        <div class="modal fade" id="xoa-@nhaXuatBan.MaNXB" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Bạn có chắc muốn xóa thể loại này?</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Bạn có chắc muốn xóa nhà xuất bản này?</h5>
                                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form method="POST" asp-area="Manager" asp-action="Xoa" asp-controller="TheLoai">
+                                        <form method="POST" asp-area="Manager" asp-action="Xoa" asp-controller="NhaXuatBan">
 
                                             <div class="form-group">
-                                                <label asp-for="@theLoai.MaTL">Mã thể loại</label>
-                                                <input readonly="readonly" class="form-control" asp-for="@theLoai.MaTL" value="@theLoai.MaTL">
+                                                <label asp-for="@nhaXuatBan.MaNXB">Mã tác giả</label>
+                                                <input readonly="readonly" class="form-control" asp-for="@nhaXuatBan.MaNXB" value="@nhaXuatBan.MaNXB">
                                             </div>
 
                                             <div class="form-group">
-                                                <label asp-for="@theLoai.TenTL">Tên thể loại</label>
-                                                <input readonly="readonly" class="form-control" asp-for="@theLoai.TenTL" value="@theLoai.TenTL">
+                                                <label asp-for="@nhaXuatBan.TenNXB">Tên tác giả</label>
+                                                <input readonly="readonly" class="form-control" asp-for="@nhaXuatBan.TenNXB" value="@nhaXuatBan.TenNXB">
                                             </div>
 
                                             <div class="modal-footer">
@@ -119,26 +119,26 @@
                             </div>
                         </div>
 
-                        @*Modal sửa thể loại*@
-                        <div class="modal fade" id="sua-@theLoai.MaTL" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        @*Modal sửa*@
+                        <div class="modal fade" id="sua-@nhaXuatBan.MaNXB" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Cập nhật thể loại</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Cập nhật nhà xuất bản</h5>
                                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form method="POST" asp-area="Manager" asp-action="Sua" asp-controller="TheLoai">
+                                        <form method="POST" asp-area="Manager" asp-action="Sua" asp-controller="NhaXuatBan">
                                             <div class="form-group">
-                                                <label asp-for="@theLoai.MaTL">Mã thể loại</label>
-                                                <input readonly="readonly" class="form-control" asp-for="@theLoai.MaTL" value="@theLoai.MaTL">
+                                                <label asp-for="@nhaXuatBan.MaNXB">Mã nhà xuất bản</label>
+                                                <input readonly="readonly" class="form-control" asp-for="@nhaXuatBan.MaNXB" value="@nhaXuatBan.MaNXB">
                                             </div>
 
                                             <div class="form-group">
-                                                <label asp-for="@theLoai.TenTL">Tên thể loại</label>
-                                                <input class="form-control" asp-for="@theLoai.TenTL" value="@theLoai.TenTL" placeholder="Tên thể loại">
+                                                <label asp-for="@nhaXuatBan.TenNXB">Tên nhà xuất bản</label>
+                                                <input class="form-control" asp-for="@nhaXuatBan.TenNXB" value="@nhaXuatBan.TenNXB" placeholder="Tên nhà xuất bản">
                                             </div>
 
                                             <div class="modal-footer">
@@ -159,15 +159,15 @@
 </div>
 
 @{
-    var prevDisabled = !Model.TheLoais.HasPreviousPage ? "disabled" : "";
-    var nextDisabled = !Model.TheLoais.HasNextPage ? "disabled" : "";
+    var prevDisabled = !Model.NhaXuatBans.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.NhaXuatBans.HasNextPage ? "disabled" : "";
 }
 
 <a class="btn btn-default @prevDisabled"
    asp-route-sortOrder="@Model.SortOrder"
    asp-route-searchString="@Model.SearchString"
-   asp-route-pageIndex="@(Model.TheLoais.PageIndex -1)">Trước</a>
+   asp-route-pageIndex="@(Model.NhaXuatBans.PageIndex -1)">Trước</a>
 <a class="btn btn-default @nextDisabled"
    asp-route-sortOrder="@Model.SortOrder"
    asp-route-searchString="@Model.SearchString"
-   asp-route-pageIndex="@(Model.TheLoais.PageIndex +1)">Sau</a>
+   asp-route-pageIndex="@(Model.NhaXuatBans.PageIndex +1)">Sau</a>

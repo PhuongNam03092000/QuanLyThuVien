@@ -51,6 +51,14 @@ namespace ThuVien
             services.AddScoped<ITheLoaiRepository, TheLoaiRepository>();
             services.AddScoped<ITheLoaiService, TheLoaiService>();
 
+            //TacGia
+            services.AddScoped<ITacGiaRepository, TacGiaRepository>();
+            services.AddScoped<ITacGiaService, TacGiaService>();
+
+            //NhaXuatBan
+            services.AddScoped<INhaXuatBanRepository, NhaXuatBanRepository>();
+            services.AddScoped<INhaXuatBanService, NhaXuatBanService>();
+
             //Account
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<IAccountService, AccountService>();
@@ -62,6 +70,10 @@ namespace ThuVien
             //PhieuMuon
             services.AddScoped<IPhieuMuonRepository, PhieuMuonRepository>();
             services.AddScoped<IPhieuMuonService, PhieuMuonService>();
+
+            //TacGia
+            services.AddScoped<ITacGiaRepository, TacGiaRepository>();
+            services.AddScoped<ITacGiaService, TacGiaService>();
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -80,12 +92,11 @@ namespace ThuVien
                     policy => policy.RequireClaim("Admin"));
                 options.AddPolicy("Employee",
                     policy => policy.RequireClaim("Employee"));
-
             });
 
             services.ConfigureApplicationCookie(config =>
             {
-                config.LoginPath = "/login";
+                config.LoginPath = "/Login";
             });
         }
 

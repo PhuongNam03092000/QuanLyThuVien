@@ -15,19 +15,19 @@ namespace Application.Mappings
             };
         }
 
-        public static TheLoai MappingTheLoai(this TheLoaiDTO theLoaiDTO)
+        public static TheLoai MappingTheLoai(this TheLoaiDTO theLoaiDto)
         {
             return new TheLoai
             {
-                MaTL = theLoaiDTO.MaTL,
-                TenTL = theLoaiDTO.TenTL
+                MaTL = theLoaiDto.MaTL,
+                TenTL = theLoaiDto.TenTL
             };
         }
 
-        public static void MappingTheLoai(this TheLoaiDTO theLoaiDTO, TheLoai theLoai)
+        public static void MappingTheLoai(this TheLoaiDTO theLoaiDto, TheLoai theLoai)
         {
-            theLoai.MaTL = theLoaiDTO.MaTL;
-            theLoai.TenTL = theLoaiDTO.TenTL;
+            theLoai.MaTL = theLoaiDto.MaTL;
+            theLoai.TenTL = theLoaiDto.TenTL;
         }
 
         public static IEnumerable<TheLoaiDTO> MappingTheLoaiDtos(this IEnumerable<TheLoai> theLoais)

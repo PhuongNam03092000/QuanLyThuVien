@@ -9,50 +9,50 @@ namespace ThuVien.Areas.Manager.Controllers
 {
     [Area("Manager")]
     [Authorize]
-    public class TheLoaiController : Controller
+    public class TacGiaController : Controller
     {
-        private readonly ITheLoaiService theLoaiService;
+        private readonly ITacGiaService tacGiaService;
 
-        public TheLoaiController(ITheLoaiService theLoaiService)
+        public TacGiaController(ITacGiaService tacGiaService)
         {
-            this.theLoaiService = theLoaiService;
+            this.tacGiaService = tacGiaService;
         }
 
         public IActionResult Index(string sortOrder, string searchString, int pageIndex = 1)
         {
             int pageSize = 10;
             int count;
-            var theLoais = theLoaiService.GetTheLoais(sortOrder, searchString, pageIndex, pageSize, out count);
-            var theLoaiNew = new TheLoaiDTO();
+            var tacGias = tacGiaService.GetTacGias(sortOrder, searchString, pageIndex, pageSize, out count);
+            var tacGiaNew = new TacGiaDTO();
 
-            var theLoaiVM = new TheLoaiIndexVm()
+            var tacGiaVM = new TacGiaIndexVm()
             {
-                TheLoais = new PaginatedList<TheLoaiDTO>(theLoais, count, pageIndex, pageSize),
+                TacGias = new PaginatedList<TacGiaDTO>(tacGias, count, pageIndex, pageSize),
                 SearchString = searchString,
                 SortOrder = sortOrder,
-                theLoai = theLoaiNew
+                tacGia = tacGiaNew
             };
 
-            return View(theLoaiVM);
+            return View(tacGiaVM);
         }
 
         [HttpPost]
-        public IActionResult Them(TheLoaiIndexVm theLoaiVM)
+        public IActionResult Them(TacGiaIndexVm tacGiaVM)
         {
             if (ModelState.IsValid)
             {
-                theLoaiService.ThemTheLoai(theLoaiVM.theLoai);
+                tacGiaService.ThemTacGia(tacGiaVM.tacGia);
                 return RedirectToAction("Index");
             }
             return View();
         }
 
         [HttpPost]
-        public IActionResult Sua(TheLoaiIndexVm theLoaiVm)
+        public IActionResult Sua(TacGiaIndexVm tacGiaVm)
         {
             if (ModelState.IsValid)
             {
-                theLoaiService.SuaTheLoai(theLoaiVm.theLoai);
+                tacGiaService.SuaTacGia(tacGiaVm.tacGia);
                 return RedirectToAction("Index");
             }
 
@@ -60,9 +60,9 @@ namespace ThuVien.Areas.Manager.Controllers
         }
 
         [HttpPost]
-        public IActionResult Xoa(TheLoaiIndexVm theLoaiVm)
+        public IActionResult Xoa(TacGiaIndexVm tacGiaVm)
         {
-            theLoaiService.XoaTheLoai(theLoaiVm.theLoai.MaTL);
+            tacGiaService.XoaTacGia(tacGiaVm.tacGia.MaTG);
             return RedirectToAction("Index");
         }
     }

@@ -12,7 +12,7 @@ using ThuVien.Helper;
 namespace QLTV.Controllers
 {
     [Area("Manager")]
-    [Route("[Area]/[Controller]/[Action]")]
+    //[Route("[Area]/[Controller]/[Action]")]
     [Authorize]
     public class PhieuMuonController : Controller
     {
@@ -22,6 +22,7 @@ namespace QLTV.Controllers
         {
             this.phieuMuonService = phieumuonService;
         }
+
         public IActionResult Index(string sortOrder, string searchString, int pageIndex = 1)
         {
             int pageSize = 4;
@@ -39,9 +40,9 @@ namespace QLTV.Controllers
             };
             return View(phieumuonVM);
         }
-        public IActionResult AddCTPM(int i,PhieuMuonIndexVm vm)
-        {
 
+        public IActionResult AddCTPM(int i, PhieuMuonIndexVm vm)
+        {
             System.Console.WriteLine(vm.ctpm.MaSach);
             return View();
         }
