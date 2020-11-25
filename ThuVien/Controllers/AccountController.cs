@@ -4,6 +4,7 @@ using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 
 namespace ThuVien.Controllers
@@ -13,11 +14,13 @@ namespace ThuVien.Controllers
     {
         private readonly IAccountService _accountService;
         private readonly UserManager<AppUser> userManager;
+        private readonly ILogger<AccountController> logger;
 
-        public AccountController(IAccountService accountService, UserManager<AppUser> userManager)
+        public AccountController(IAccountService accountService, UserManager<AppUser> userManager,ILogger<AccountController> logger)
         {
             this.userManager = userManager;
             _accountService = accountService;
+            this.logger = logger;
         }
 
         [Route("signup")]
