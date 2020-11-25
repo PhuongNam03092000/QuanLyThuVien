@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThuVien", "ThuVien\ThuVien.csproj", "{2B9BB10E-62F7-4A23-8003-2AF929369756}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{4FBB02E0-DB85-4C0F-A039-AC8D8AE7DCC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{4FBB02E0-DB85-4C0F-A039-AC8D8AE7DCC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{7A038405-B6E5-4DF7-B4CD-9AC782706CB4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{7A038405-B6E5-4DF7-B4CD-9AC782706CB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{D0E81A99-D83C-49D5-BAA8-04602E8878D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{D0E81A99-D83C-49D5-BAA8-04602E8878D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

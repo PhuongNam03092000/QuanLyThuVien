@@ -1,11 +1,15 @@
 ﻿using Application.DTOs;
 using Application.Interfaces;
 using Domain.Entities;
+using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using ThuVien.Areas.Manager.ViewModels;
 
 namespace ThuVien.Controllers
 {
@@ -122,5 +126,72 @@ namespace ThuVien.Controllers
             await _accountService.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Permission(string userID)
+        {
+            var user = await userManager.FindByIdAsync(userID);
+
+            if(user == null)
+            {
+                ViewBag.ErrorMessage = $"User with ID= {userID} not found.";
+                RedirectToAction("index");
+            }
+
+            var currentUserClaims = await userManager.GetClaimsAsync(user);
+            var model = new UserClaimsViewModel
+            {
+                UserID = userID
+            };
+
+            foreach(Claim claim in ClaimsStore.AllClaims)
+            {
+                var userClaim = new UserClaim
+                {
+                    ClaimType = claim.Type
+                };
+
+                if(currentUserClaims.Any(c => c.Type == claim.Type) )
+                {
+                    userClaim.IsSelected = true;
+                }
+                model.UserClaims.Add(userClaim);
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Permission(UserClaimsViewModel model)
+        {
+            var user = await userManager.FindByIdAsync(model.UserID);
+
+            if(user == null)
+            {
+                ViewBag.ErrorMessage = $"User with ID= {model.UserID} not found.";
+                RedirectToAction("index");
+            }
+
+            var currentUserClaims = await userManager.GetClaimsAsync(user);
+            var result = await userManager.RemoveClaimsAsync(user, currentUserClaims);
+
+            if(!result.Succeeded)
+            {
+                ModelState.AddModelError(string.Empty, "Can't remove existing user claims");
+                return View(model);
+            }
+
+            result = await userManager.AddClaimsAsync(user, 
+                model.UserClaims.Where(c => c.IsSelected).Select(c => new Claim(c.ClaimType, "true")));
+
+            if(!result.Succeeded)
+            {
+                ModelState.AddModelError(string.Empty, "Can't add user claims");
+                return View(model);
+            }
+
+            return View(model);
+        }
+
     }
 }

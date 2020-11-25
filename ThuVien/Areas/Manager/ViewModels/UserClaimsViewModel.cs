@@ -9,7 +9,7 @@ namespace ThuVien.Areas.Manager.ViewModels
 {
     public class UserClaimsViewModel
     {
-        public string userID { get; set; }
+        public string UserID { get; set; }
         public List<UserClaim> UserClaims { get; set; }
 
         public UserClaimsViewModel()
