@@ -16,12 +16,15 @@ namespace Application.DTOs
         [Display(Name = "Tên độc giả")]
         public string TenDG { set; get; }
         [DataType(DataType.Date)]
+    
         public DateTime DoBDG { set; get; }
         public string EmailDG { set; get; }
         public string DiaChiDG { set; get; }
         [DataType(DataType.Date)]
+       
         public DateTime NgayDK { set; get; }
         [DataType(DataType.Date)]
+        
         public DateTime NgayHetHanDK { set; get; }
 
     }
