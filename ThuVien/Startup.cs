@@ -47,7 +47,7 @@ namespace ThuVien
             //EF
             services.AddScoped(typeof(IEFRepository<>), typeof(EFRepository<>));
 
-            //TheLoai
+            //TheLoai 
             services.AddScoped<ITheLoaiRepository, TheLoaiRepository>();
             services.AddScoped<ITheLoaiService, TheLoaiService>();
 
