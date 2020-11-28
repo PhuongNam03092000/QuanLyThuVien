@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -75,14 +76,35 @@ namespace ThuVien.Controllers
                     return View(signUpDTO);
                 }
                 var user = await userManager.FindByNameAsync(signUpDTO.Email);
-                var claim = await userManager.AddClaimAsync(user, new System.Security.Claims.Claim("Admin", "Admin"));
-
-                if (claim.Succeeded)
+                if(signUpDTO.Role == 0)
                 {
-                    System.Diagnostics.Debug.WriteLine(claim);
-                    return RedirectToAction("Login", "Account");
+                    var permissionLibrarian = new List<Claim>(ClaimsStore.AllClaims);
+
+                    permissionLibrarian.RemoveAt(6);
+                    permissionLibrarian.RemoveAt(4);
+                    permissionLibrarian.RemoveAt(3);
+                    var claim = await userManager.AddClaimsAsync(user, permissionLibrarian);
+                    if (claim.Succeeded)
+                    {
+                        System.Diagnostics.Debug.WriteLine(claim);
+                        return RedirectToAction("Login", "Account");
+                    }
+                    return View(signUpDTO);
+                } else
+                {
+                    var permissionAdmin = new List<Claim>(ClaimsStore.AllClaims);
+                    permissionAdmin.RemoveAt(5);
+                    var claim = await userManager.AddClaimsAsync(user, permissionAdmin);
+                    if (claim.Succeeded)
+                    {
+                        System.Diagnostics.Debug.WriteLine(claim);
+                        return RedirectToAction("Login", "Account");
+                    }
+                    return View(signUpDTO);
                 }
-                return View(signUpDTO);
+                //var claim = await userManager.AddClaimAsync(user, new System.Security.Claims.Claim("Admin", "Admin"));
+                
+                
             }
 
             return View(signUpDTO);
@@ -192,6 +214,30 @@ namespace ThuVien.Controllers
 
             return View(model);
         }
+
+
+        public async Task<IActionResult> Info()
+        {
+            var model = await userManager.GetUserAsync(HttpContext.User);
+
+            return View(model);
+        }
+        /*public async Task<string> Test()
+        {
+            var model = await userManager.GetUserAsync(HttpContext.User);
+            if(HttpContext.User == null)
+            {
+                if(model == null)
+                {
+                    return "model null";
+                }
+                return "chưa có session claim";
+            } else
+            {
+                return model.HoNV +" "+ model.TenNV;
+            }
+            
+        }*/
 
     }
 }

@@ -89,9 +89,20 @@ namespace ThuVien
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("Admin",
-                    policy => policy.RequireClaim("Admin"));
-                options.AddPolicy("Employee",
-                    policy => policy.RequireClaim("Employee"));
+                    policy => policy.RequireClaim("Role","Admin"));
+                options.AddPolicy("Librarian",
+                    policy => policy.RequireClaim("Role","Librarian"));
+                options.AddPolicy("Create Member",
+                    policy => policy.RequireClaim("Create Member", "true"));
+                options.AddPolicy("Edit Member",
+                    policy => policy.RequireClaim("Edit Member", "true"));
+                options.AddPolicy("Delete Member",
+                    policy => policy.RequireClaim("Delete Member", "true"));
+                options.AddPolicy("Create Employee",
+                    policy => policy.RequireClaim("Create Employee", "true"));
+                options.AddPolicy("Edit Employee",
+                    policy => policy.RequireClaim("Edit Employee", "true"));
+
             });
 
             services.ConfigureApplicationCookie(config =>
