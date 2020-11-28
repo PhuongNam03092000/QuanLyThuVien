@@ -1,0 +1,260 @@
+﻿@using ThuVien.Areas.Manager.ViewModels
+@model NhanVienIndexVm
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Manager/Views/Shared/_ManagerLayout.cshtml";
+
+    var manvSort = (Model.SortOrder == "manv") ? "manv_desc" : "manv";
+    var honvSort = (Model.SortOrder == "honv") ? "honv_desc" : "tennv";
+    var tennvSort = (Model.SortOrder == "tennv") ? "tennv_desc" : "tennv";
+    var dobnvSort = (Model.SortOrder == "dobnv") ? "dobnv_desc" : "dobnv";
+    var sdtnvSort = (Model.SortOrder == "sdtnv") ? "sdtnv_desc" : "sdtnv";
+    var emailnvSort = (Model.SortOrder == "emailnv") ? "emailnv_desc" : "emailnv";
+    var diachinvSort = (Model.SortOrder == "diachinv") ? "diachinv_desc" : "diachinv";    
+}
+
+@* Trang model nhân viên của Hùng*@
+
+<div class="modal fade" id="them" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thêm nhân viên</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form method="POST" asp-area="Manager" asp-controller="NhanVien" asp-action="Them">
+
+                    <div class="form-group">
+                        <label asp-for=nhanVien.TenNV>Tên nhân viên</label>
+                        <input class="form-control" asp-for=nhanVien.TenNV placeholder="Tên nhân viên">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" type="button" data-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-success">Thêm</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Danh sách nhân viên</h6>
+    </div>
+    <div class="card-body">
+        <form method="GET">
+            <p>
+                <input type="text" asp-for="SearchString" />
+                <input class="btn btn-dark" type="submit" value="Filter" />
+            </p>
+        </form>
+
+        <p>
+            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#them">Thêm</button>
+        </p>
+
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            <a asp-route-sortOrder="@manvSort"
+                               asp-route-searchString="@Model.SearchString">
+                                @Html.DisplayNameFor(model => model.NhanViens[0].MaNV)
+                            </a>
+                        </th>
+                        <th>
+                            <a asp-route-sortOrder="@honvSort"
+                               asp-route-searchString="@Model.SearchString">
+                                @Html.DisplayNameFor(model => model.NhanViens[0].HoNV)
+                            </a>
+                        </th>
+                        <th>
+                            <a asp-route-sortOrder="@tennvSort"
+                               asp-route-searchString="@Model.SearchString">
+                                @Html.DisplayNameFor(model => model.NhanViens[0].TenNV)
+                            </a>
+                        </th>
+                        
+                        <th>
+                            <a asp-route-sortOrder="@dobnvSort"
+                               asp-route-searchString="@Model.SearchString">
+                                @Html.DisplayNameFor(model => model.NhanViens[0].DoBNV)
+                            </a>
+                        </th>
+                        <th>
+                            <a asp-route-sortOrder="@sdtnvSort"
+                               asp-route-searchString="@Model.SearchString">
+                                @Html.DisplayNameFor(model => model.NhanViens[0].SdtNV)
+                            </a>
+                        </th>
+                        <th>
+                            <a asp-route-sortOrder="@emailnvSort"
+                               asp-route-searchString="@Model.SearchString">
+                                @Html.DisplayNameFor(model => model.NhanViens[0].EmailNV)
+                            </a>
+                        </th>
+                        <th>
+                            <a asp-route-sortOrder="@diachinvSort"
+                               asp-route-searchString="@Model.SearchString">
+                                @Html.DisplayNameFor(model => model.NhanViens[0].DiaChiNV)
+                            </a>
+                        </th>
+                        
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var nhanVien in Model.NhanViens)
+                    {
+                    <tr>
+                        <td>@nhanVien.MaNV</td>
+                        <td>@nhanVien.HoNV</td>
+                        <td>@nhanVien.TenNV</td>
+                        
+                        <td>@nhanVien.DoBNV</td>
+                        <td>@nhanVien.SdtNV</td>
+                        <td>@nhanVien.EmailNV</td>
+                        <td>@nhanVien.DiaChiNV</td>
+                        
+                        <td>
+                            <button class="btn btn-success" data-toggle="modal" data-target="#sua-@nhanVien.MaNV" a><i class="far fa-edit"></i></button>
+                            <button class="btn btn-danger" data-toggle="modal" data-target="#xoa-@nhanVien.MaNV"><i class="far fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+
+                        @* Xóa NV *@
+                        <div class="modal fade" id="xoa-@nhanVien.MaNV" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Bạn có chắc muốn xóa nhân viên này?</h5>
+                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="POST" asp-area="Manager" asp-action="Xoa" asp-controller="NhanVien">
+
+                                            <div class="form-group">
+                                                <label asp-for="@nhanVien.MaNV">Mã nhân viên</label>
+                                                <input readonly="readonly" class="form-control" asp-for="@nhanVien.MaNV" value="@nhanVien.MaNV">
+                                            </div>
+                                            <div class="form-group">
+                                                <label asp-for="@nhanVien.HoNV">Họ nhân viên</label>
+                                                <input readonly="readonly" class="form-control" asp-for="@nhanVien.HoNV" value="@nhanVien.HoNV">
+                                            </div>
+                                            <div class="form-group">
+                                                <label asp-for="@nhanVien.TenNV">Tên nhân viên</label>
+                                                <input readonly="readonly" class="form-control" asp-for="@nhanVien.TenNV" value="@nhanVien.TenNV">
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label asp-for="@nhanVien.DoBNV">Ngày sinh nhân viên</label>
+                                                <input readonly="readonly" class="form-control" asp-for="@nhanVien.DoBNV" value="@nhanVien.DoBNV">
+                                            </div>
+                                            <div class="form-group">
+                                                <label asp-for="@nhanVien.SdtNV">SĐT nhân viên</label>
+                                                <input readonly="readonly" class="form-control" asp-for="@nhanVien.SdtNV" value="@nhanVien.SdtNV">
+                                            </div>
+                                            <div class="form-group">
+                                                <label asp-for="@nhanVien.EmailNV">Email nhân viên</label>
+                                                <input readonly="readonly" class="form-control" asp-for="@nhanVien.EmailNV" value="@nhanVien.EmailNV">
+                                            </div>
+                                            <div class="form-group">
+                                                <label asp-for="@nhanVien.DiaChiNV">Địa chỉ nhân viên</label>
+                                                <input readonly="readonly" class="form-control" asp-for="@nhanVien.DiaChiNV" value="@nhanVien.DiaChiNV">
+                                            </div>
+                                            
+                                            <div class="modal-footer">
+                                                <button class="btn btn-dark" type="button" data-dismiss="modal">Đóng</button>
+                                                <button type="submit" class="btn btn-danger">Xóa</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        //
+                        <div class="modal fade" id="sua-@nhanVien.MaNV" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Cập nhật nhân viên</h5>
+                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="POST" asp-area="Manager" asp-action="Sua" asp-controller="NhanVien">
+                                            <div class="form-group">
+                                                <label asp-for="@nhanVien.MaNV">Mã nhân viên</label>
+                                                <input readonly="readonly" class="form-control" asp-for="@nhanVien.MaNV" value="@nhanVien.MaNV">
+                                            </div>
+                                            <div class="form-group">
+                                                <label asp-for="@nhanVien.HoNV">Họ nhân viên</label>
+                                                <input class="form-control" asp-for="@nhanVien.HoNV" value="@nhanVien.HoNV" placeholder="Họ nhân viên">
+                                            </div>
+                                            <div class="form-group">
+                                                <label asp-for="@nhanVien.TenNV">Tên nhân viên</label>
+                                                <input class="form-control" asp-for="@nhanVien.TenNV" value="@nhanVien.TenNV" placeholder="Tên nhân viên">
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label asp-for="@nhanVien.DoBNV">Ngày sinh nhân viên</label>
+                                                <input readonly="readonly" class="form-control" asp-for="@nhanVien.DoBNV" value="@nhanVien.DoBNV">
+                                            </div>
+                                            <div class="form-group">
+                                                <label asp-for="@nhanVien.SdtNV">SĐT nhân viên</label>
+                                                <input class="form-control" asp-for="@nhanVien.SdtNV" value="@nhanVien.SdtNV" placeholder="SĐT nhân viên">
+                                            </div>
+                                            <div class="form-group">
+                                                <label asp-for="@nhanVien.EmailNV">Email nhân viên</label>
+                                                <input class="form-control" asp-for="@nhanVien.EmailNV" value="@nhanVien.EmailNV" placeholder="Email nhân viên">
+                                            </div>
+                                            <div class="form-group">
+                                                <label asp-for="@nhanVien.DiaChiNV">Địa chỉ nhân viên</label>
+                                                <input class="form-control" asp-for="@nhanVien.DiaChiNV" value="@nhanVien.DiaChiNV" placeholder="Địa chỉ nhân viên">
+                                            </div>
+                                            
+
+                                            <div class="modal-footer">
+                                                <button class="btn btn-dark" type="button" data-dismiss="modal">Đóng</button>
+                                                <button type="submit" class="btn btn-success">Sửa</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@{
+    var prevDisabled = !Model.NhanViens.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.NhanViens.HasNextPage ? "disabled" : "";
+}
+
+<a class="btn btn-default @prevDisabled"
+   asp-route-sortOrder="@Model.SortOrder"
+   asp-route-searchString="@Model.SearchString"
+   asp-route-pageIndex="@(Model.NhanViens.PageIndex -1)">Trước</a>
+<a class="btn btn-default @nextDisabled"
+   asp-route-sortOrder="@Model.SortOrder"
+   asp-route-searchString="@Model.SearchString"
+   asp-route-pageIndex="@(Model.NhanViens.PageIndex +1)">Sau</a>

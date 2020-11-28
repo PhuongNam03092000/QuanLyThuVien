@@ -47,9 +47,13 @@ namespace ThuVien
             //EF
             services.AddScoped(typeof(IEFRepository<>), typeof(EFRepository<>));
 
-            //TheLoai
+            //TheLoai 
             services.AddScoped<ITheLoaiRepository, TheLoaiRepository>();
             services.AddScoped<ITheLoaiService, TheLoaiService>();
+
+            //Nhanvien
+            services.AddScoped<INhanVienRepository, NhanVienRepository>();
+            services.AddScoped<INhanVienService, NhanVienService>();
 
             //TacGia
             services.AddScoped<ITacGiaRepository, TacGiaRepository>();
@@ -58,7 +62,7 @@ namespace ThuVien
             //NhaXuatBan
             services.AddScoped<INhaXuatBanRepository, NhaXuatBanRepository>();
             services.AddScoped<INhaXuatBanService, NhaXuatBanService>();
-
+            
             //Account
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<IAccountService, AccountService>();
