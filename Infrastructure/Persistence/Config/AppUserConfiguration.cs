@@ -9,7 +9,7 @@ namespace Infrastructure.Persistence
         public void Configure(EntityTypeBuilder<AppUser> builder)
         {
             builder.ToTable("AppUsers");
-            builder.Property(us => us.DoBNV).HasColumnType("Date");
+            builder.Property(us => us.DoBNV).HasColumnType("Date"); 
         }
     }
 }

@@ -20,6 +20,7 @@ namespace Infrastructure.Persistence
 
         public DbSet<Sach> Sachs { get; set; }
         public DbSet<TheLoai> TheLoais { get; set; }
+        public DbSet<AppUser> NhanViens { get; set; }
         public DbSet<TacGia> TacGias { get; set; }
         public DbSet<NhaXuatBan> NhaXuatBans { get; set; }
         public DbSet<DocGia> DocGias { get; set; }
