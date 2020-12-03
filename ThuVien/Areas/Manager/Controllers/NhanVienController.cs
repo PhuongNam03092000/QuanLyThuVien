@@ -2,15 +2,24 @@
 using Application.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 using ThuVien.Areas.Manager.ViewModels;
 using ThuVien.Helper;
 
 namespace ThuVien.Areas.Manager.Controllers
 {
     [Area("Manager")]
+    //[Route("[Area]/[Controller]/[Action]")]
     [Authorize]
     public class NhanVienController : Controller
     {
+        private readonly INhanVienService nhanVienService;
+
+        public NhanVienController(INhanVienService nhanVienService)
+        {
+            this.nhanVienService = nhanVienService;
+        }
+
         public IActionResult Index(string sortOrder, string searchString, int pageIndex = 1)
         {
             int pageSize = 10;
@@ -27,21 +36,14 @@ namespace ThuVien.Areas.Manager.Controllers
             };
 
             return View(nhanVienVM);
-        }
-
-        private readonly INhanVienService nhanVienService;
-
-        public NhanVienController(INhanVienService nhanVienService)
-        {
-            this.nhanVienService = nhanVienService;
-        }
+        }       
 
         [HttpPost]
-        public IActionResult Them(NhanVienIndexVm nhanVienVM)
+        public async Task<IActionResult> Them(NhanVienIndexVm nhanVienVM)
         {
             if (ModelState.IsValid)
             {
-                nhanVienService.ThemNhanVien(nhanVienVM.nhanVien);
+                await nhanVienService.ThemNhanVien(nhanVienVM.nhanVien);
                 return RedirectToAction("Index");
             }
             return View();
@@ -62,7 +64,7 @@ namespace ThuVien.Areas.Manager.Controllers
         [HttpPost]
         public IActionResult Xoa(NhanVienIndexVm nhanVienVM)
         {
-            nhanVienService.XoaNhanVien(nhanVienVM.nhanVien.MaNV);
+            //nhanVienService.XoaNhanVien(nhanVienVM.nhanVien.Id);
             return RedirectToAction("Index");
         }
     }

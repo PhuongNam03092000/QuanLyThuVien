@@ -2,21 +2,19 @@
 @model NhanVienIndexVm
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Danh sách nhân viên";
     Layout = "~/Areas/Manager/Views/Shared/_ManagerLayout.cshtml";
 
-    var manvSort = (Model.SortOrder == "manv") ? "manv_desc" : "manv";
     var honvSort = (Model.SortOrder == "honv") ? "honv_desc" : "tennv";
     var tennvSort = (Model.SortOrder == "tennv") ? "tennv_desc" : "tennv";
     var dobnvSort = (Model.SortOrder == "dobnv") ? "dobnv_desc" : "dobnv";
     var sdtnvSort = (Model.SortOrder == "sdtnv") ? "sdtnv_desc" : "sdtnv";
     var emailnvSort = (Model.SortOrder == "emailnv") ? "emailnv_desc" : "emailnv";
-    var diachinvSort = (Model.SortOrder == "diachinv") ? "diachinv_desc" : "diachinv";    
 }
 
-@* Trang model nhân viên của Hùng*@
+@* Trang nhân viên # Hùng*@
 
-<div class="modal fade" id="them" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="themNhanVien" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -27,11 +25,31 @@
             </div>
 
             <div class="modal-body">
-                <form method="POST" asp-area="Manager" asp-controller="NhanVien" asp-action="Them">
+                <form method="POST" asp-area="Manager" asp-action="Them" asp-controller="NhanVien">
 
                     <div class="form-group">
                         <label asp-for=nhanVien.TenNV>Tên nhân viên</label>
                         <input class="form-control" asp-for=nhanVien.TenNV placeholder="Tên nhân viên">
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="nhanVien.HoNV">Họ nhân viên</label>
+                        <input class="form-control" asp-for="nhanVien.HoNV" placeholder="Họ nhân viên">
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="nhanVien.DoBNV">Ngày sinh nhân viên</label>
+                        <input class="form-control" asp-for="nhanVien.DoBNV" placeholder="Birthday nhân viên">
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="nhanVien.PhoneNumber">SĐT nhân viên</label>
+                        <input class="form-control" asp-for="nhanVien.PhoneNumber" placeholder="SĐT nhân viên">
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="nhanVien.Email">Email nhân viên</label>
+                        <input class="form-control" asp-for="nhanVien.Email" placeholder="Email nhân viên">
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="nhanVien.PasswordNV">Password</label>
+                        <input class="form-control" asp-for="nhanVien.PasswordNV" placeholder="Password nhân viên">
                     </div>
 
                     <div class="modal-footer">
@@ -53,24 +71,18 @@
         <form method="GET">
             <p>
                 <input type="text" asp-for="SearchString" />
-                <input class="btn btn-dark" type="submit" value="Filter" />
+                <input class="btn btn-dark" type="submit" value="Tìm kiếm" />
             </p>
         </form>
 
         <p>
-            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#them">Thêm</button>
+            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#themNhanVien">Thêm</button>
         </p>
 
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>
-                            <a asp-route-sortOrder="@manvSort"
-                               asp-route-searchString="@Model.SearchString">
-                                @Html.DisplayNameFor(model => model.NhanViens[0].MaNV)
-                            </a>
-                        </th>
                         <th>
                             <a asp-route-sortOrder="@honvSort"
                                asp-route-searchString="@Model.SearchString">
@@ -83,7 +95,7 @@
                                 @Html.DisplayNameFor(model => model.NhanViens[0].TenNV)
                             </a>
                         </th>
-                        
+
                         <th>
                             <a asp-route-sortOrder="@dobnvSort"
                                asp-route-searchString="@Model.SearchString">
@@ -93,22 +105,16 @@
                         <th>
                             <a asp-route-sortOrder="@sdtnvSort"
                                asp-route-searchString="@Model.SearchString">
-                                @Html.DisplayNameFor(model => model.NhanViens[0].SdtNV)
+                                @Html.DisplayNameFor(model => model.NhanViens[0].PhoneNumber)
                             </a>
                         </th>
                         <th>
                             <a asp-route-sortOrder="@emailnvSort"
                                asp-route-searchString="@Model.SearchString">
-                                @Html.DisplayNameFor(model => model.NhanViens[0].EmailNV)
+                                @Html.DisplayNameFor(model => model.NhanViens[0].Email)
                             </a>
                         </th>
-                        <th>
-                            <a asp-route-sortOrder="@diachinvSort"
-                               asp-route-searchString="@Model.SearchString">
-                                @Html.DisplayNameFor(model => model.NhanViens[0].DiaChiNV)
-                            </a>
-                        </th>
-                        
+
 
                         <th></th>
                     </tr>
@@ -117,23 +123,20 @@
                     @foreach (var nhanVien in Model.NhanViens)
                     {
                     <tr>
-                        <td>@nhanVien.MaNV</td>
                         <td>@nhanVien.HoNV</td>
                         <td>@nhanVien.TenNV</td>
-                        
                         <td>@nhanVien.DoBNV</td>
-                        <td>@nhanVien.SdtNV</td>
-                        <td>@nhanVien.EmailNV</td>
-                        <td>@nhanVien.DiaChiNV</td>
+                        <td>@nhanVien.PhoneNumber</td>
+                        <td>@nhanVien.Email</td>
                         
                         <td>
-                            <button class="btn btn-success" data-toggle="modal" data-target="#sua-@nhanVien.MaNV" a><i class="far fa-edit"></i></button>
-                            <button class="btn btn-danger" data-toggle="modal" data-target="#xoa-@nhanVien.MaNV"><i class="far fa-trash-alt"></i></button>
+                            <button class="btn btn-success" data-toggle="modal" data-target="#sua-" a><i class="far fa-edit"></i></button>
+                            <button class="btn btn-danger" data-toggle="modal" data-target="#xoa-"><i class="far fa-trash-alt"></i></button>
                         </td>
                     </tr>
 
                         @* Xóa NV *@
-                        <div class="modal fade" id="xoa-@nhanVien.MaNV" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="xoa-" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -145,35 +148,7 @@
                                     <div class="modal-body">
                                         <form method="POST" asp-area="Manager" asp-action="Xoa" asp-controller="NhanVien">
 
-                                            <div class="form-group">
-                                                <label asp-for="@nhanVien.MaNV">Mã nhân viên</label>
-                                                <input readonly="readonly" class="form-control" asp-for="@nhanVien.MaNV" value="@nhanVien.MaNV">
-                                            </div>
-                                            <div class="form-group">
-                                                <label asp-for="@nhanVien.HoNV">Họ nhân viên</label>
-                                                <input readonly="readonly" class="form-control" asp-for="@nhanVien.HoNV" value="@nhanVien.HoNV">
-                                            </div>
-                                            <div class="form-group">
-                                                <label asp-for="@nhanVien.TenNV">Tên nhân viên</label>
-                                                <input readonly="readonly" class="form-control" asp-for="@nhanVien.TenNV" value="@nhanVien.TenNV">
-                                            </div>
-                                            
-                                            <div class="form-group">
-                                                <label asp-for="@nhanVien.DoBNV">Ngày sinh nhân viên</label>
-                                                <input readonly="readonly" class="form-control" asp-for="@nhanVien.DoBNV" value="@nhanVien.DoBNV">
-                                            </div>
-                                            <div class="form-group">
-                                                <label asp-for="@nhanVien.SdtNV">SĐT nhân viên</label>
-                                                <input readonly="readonly" class="form-control" asp-for="@nhanVien.SdtNV" value="@nhanVien.SdtNV">
-                                            </div>
-                                            <div class="form-group">
-                                                <label asp-for="@nhanVien.EmailNV">Email nhân viên</label>
-                                                <input readonly="readonly" class="form-control" asp-for="@nhanVien.EmailNV" value="@nhanVien.EmailNV">
-                                            </div>
-                                            <div class="form-group">
-                                                <label asp-for="@nhanVien.DiaChiNV">Địa chỉ nhân viên</label>
-                                                <input readonly="readonly" class="form-control" asp-for="@nhanVien.DiaChiNV" value="@nhanVien.DiaChiNV">
-                                            </div>
+                                                                                       
                                             
                                             <div class="modal-footer">
                                                 <button class="btn btn-dark" type="button" data-dismiss="modal">Đóng</button>
@@ -185,8 +160,8 @@
                             </div>
                         </div>
 
-                        //
-                        <div class="modal fade" id="sua-@nhanVien.MaNV" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        //Sửa NV
+                        <div class="modal fade" id="sua-" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -197,10 +172,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <form method="POST" asp-area="Manager" asp-action="Sua" asp-controller="NhanVien">
-                                            <div class="form-group">
-                                                <label asp-for="@nhanVien.MaNV">Mã nhân viên</label>
-                                                <input readonly="readonly" class="form-control" asp-for="@nhanVien.MaNV" value="@nhanVien.MaNV">
-                                            </div>
+                                           
                                             <div class="form-group">
                                                 <label asp-for="@nhanVien.HoNV">Họ nhân viên</label>
                                                 <input class="form-control" asp-for="@nhanVien.HoNV" value="@nhanVien.HoNV" placeholder="Họ nhân viên">
@@ -215,18 +187,13 @@
                                                 <input readonly="readonly" class="form-control" asp-for="@nhanVien.DoBNV" value="@nhanVien.DoBNV">
                                             </div>
                                             <div class="form-group">
-                                                <label asp-for="@nhanVien.SdtNV">SĐT nhân viên</label>
-                                                <input class="form-control" asp-for="@nhanVien.SdtNV" value="@nhanVien.SdtNV" placeholder="SĐT nhân viên">
+                                                <label asp-for="@nhanVien.PhoneNumber">SĐT nhân viên</label>
+                                                <input class="form-control" asp-for="@nhanVien.PhoneNumber" value="@nhanVien.PhoneNumber" placeholder="SĐT nhân viên">
                                             </div>
                                             <div class="form-group">
-                                                <label asp-for="@nhanVien.EmailNV">Email nhân viên</label>
-                                                <input class="form-control" asp-for="@nhanVien.EmailNV" value="@nhanVien.EmailNV" placeholder="Email nhân viên">
-                                            </div>
-                                            <div class="form-group">
-                                                <label asp-for="@nhanVien.DiaChiNV">Địa chỉ nhân viên</label>
-                                                <input class="form-control" asp-for="@nhanVien.DiaChiNV" value="@nhanVien.DiaChiNV" placeholder="Địa chỉ nhân viên">
-                                            </div>
-                                            
+                                                <label asp-for="@nhanVien.Email">Email nhân viên</label>
+                                                <input class="form-control" asp-for="@nhanVien.Email" value="@nhanVien.Email" placeholder="Email nhân viên">
+                                            </div>                                            
 
                                             <div class="modal-footer">
                                                 <button class="btn btn-dark" type="button" data-dismiss="modal">Đóng</button>

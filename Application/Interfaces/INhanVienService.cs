@@ -1,5 +1,7 @@
 ﻿using Application.DTOs;
+using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Application.Interfaces
 {
@@ -7,12 +9,12 @@ namespace Application.Interfaces
     {
         IEnumerable<NhanVienDTO> GetNhanViens(string sortOrder, string searchString, int pageIndex, int pageSize, out int count);
 
-        NhanVienDTO GetNhanVien(int maNV);
+        NhanVienDTO GetNhanVien(int Id);
 
-        void ThemNhanVien(NhanVienDTO nhanvien);
+        Task<IdentityResult> ThemNhanVien(NhanVienDTO nhanvien);
 
         void SuaNhanVien(NhanVienDTO nhanvien);
 
-        void XoaNhanVien(int maNV);
+        void XoaNhanVien(int Id);
     }
 }

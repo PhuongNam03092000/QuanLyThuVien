@@ -21,7 +21,7 @@ namespace Application.Mappings
             };
         }
 
-        public static PhieuMuon MappingDocGia(this PhieuMuonDTO pmDTO)
+        public static PhieuMuon MappingPhieuMuon(this PhieuMuonDTO pmDTO)
         {
             return new PhieuMuon
             {
@@ -33,7 +33,7 @@ namespace Application.Mappings
                 ChiTietPhieuMuons = pmDTO.ChiTietPhieuMuons
             };
         }
-        public static void MappingDocGia(this PhieuMuonDTO pmDTO, PhieuMuon pm)
+        public static void MappingPhieuMuon(this PhieuMuonDTO pmDTO, PhieuMuon pm)
         {
             pm.MaPM = pmDTO.MaPM;
             pm.MaDG = pmDTO.MaDG;

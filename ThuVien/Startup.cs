@@ -79,6 +79,13 @@ namespace ThuVien
             services.AddScoped<IPhieuMuonRepository, PhieuMuonRepository>();
             services.AddScoped<IPhieuMuonService, PhieuMuonService>();
 
+            //ChiTietPhieuMuon
+            services.AddScoped<IChiTietPhieuMuonRepository, ChiTietPhieuMuonRepository>();
+
+            //TacGia
+            services.AddScoped<ITacGiaRepository, TacGiaRepository>();
+            services.AddScoped<ITacGiaService, TacGiaService>();
+
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequiredLength = 6;
