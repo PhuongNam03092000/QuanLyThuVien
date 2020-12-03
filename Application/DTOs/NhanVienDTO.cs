@@ -7,16 +7,10 @@ namespace Application.DTOs
 {
     public class NhanVienDTO
     {
-        [Display(Name = "Mã nhân viên")]
-        public int MaNV { get; set; }
-      
-        [Required]
-        [Display(Name = "UserName")]
-        public string UsernameNV { get; set; }
-        
+        //public int Id { get; } 
+
         [Display(Name = "Password")]
         public string PasswordNV { get; set; }
-        
 
         [Display(Name = "Họ nhân viên")]
         public string HoNV { get; set; }
@@ -28,10 +22,10 @@ namespace Application.DTOs
         public DateTime DoBNV { get; set; }
 
         [Display(Name = "Số điện thoại")]
-        public int SdtNV { get; set; }
+        public string PhoneNumber { get; set; }
 
         [Display(Name = "Email nhân viên")]
-        public string EmailNV { get; set; }
+        public string Email { get; set; }
 
         [Display(Name = "Địa chỉ nhân viên")]
         public string DiaChiNV { get; set; }

@@ -31,6 +31,13 @@ namespace Infrastructure.Persistence.Repositories
         {
             switch (sortOrder)
             {
+                case "idnv_desc":
+                    query = query.OrderByDescending(nv => nv.Id);
+                    break;
+                case "idnv":
+                    query = query.OrderBy(nv => nv.Id);
+                    break;
+
                 case "honv_desc":
                     query = query.OrderByDescending(nv => nv.HoNV);
                     break;
@@ -52,6 +59,19 @@ namespace Infrastructure.Persistence.Repositories
                     query = query.OrderBy(nv => nv.DoBNV);
                     break;
 
+                case "sdtnv_desc":
+                    query = query.OrderByDescending(nv => nv.PhoneNumber);
+                    break;
+                case "sdtnv":
+                    query = query.OrderBy(nv => nv.PhoneNumber);
+                    break;
+
+                case "emailnv_desc":
+                    query = query.OrderByDescending(nv => nv.Email);
+                    break;
+                case "emailnv":
+                    query = query.OrderBy(nv => nv.Email);
+                    break;
             }
         }
     }

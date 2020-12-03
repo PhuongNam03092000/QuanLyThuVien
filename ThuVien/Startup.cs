@@ -129,6 +129,7 @@ namespace ThuVien
                     name: "Manager",
                     pattern: "Manager",
                     defaults: new { area = "Manager", Controller = "Home", Action = "Index" });
+
             });
         }
     }

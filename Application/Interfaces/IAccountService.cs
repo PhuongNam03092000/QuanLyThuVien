@@ -8,7 +8,7 @@ namespace Application.Interfaces
     public interface IAccountService
     {
         Task<IdentityResult> CreateUserAsync(SignUpDTO signUpDTO);
-
+        Task<IdentityResult> CreateUserAsync(NhanVienDTO nhanvienDto);
         Task<SignInResult> PasswordSignInAsync(LogInDTO logInDTO);
 
         Task SignOutAsync();

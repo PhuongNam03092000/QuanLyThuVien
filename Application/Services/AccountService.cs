@@ -34,6 +34,22 @@ namespace Application.Services
             var result = await _userManager.CreateAsync(user, signUpDTO.Password);
             return result;
         }
+        public async Task<IdentityResult> CreateUserAsync(NhanVienDTO nhanvienDto)
+        {
+            var user = new AppUser()
+            {
+                //mapping trực tiếp
+                HoNV = nhanvienDto.HoNV,
+                TenNV = nhanvienDto.TenNV,
+                DoBNV = nhanvienDto.DoBNV,
+                PhoneNumber = nhanvienDto.PhoneNumber,
+                Email = nhanvienDto.Email,
+                UserName = nhanvienDto.Email
+            };
+
+            var result = await _userManager.CreateAsync(user, nhanvienDto.PasswordNV);
+            return result;
+        }
 
         public async Task<SignInResult> PasswordSignInAsync(LogInDTO logInDTO)
         {
