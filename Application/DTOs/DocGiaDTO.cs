@@ -19,7 +19,6 @@ namespace Application.DTOs
         public string TenDG { set; get; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{dd-MM-yyyy:0}", ApplyFormatInEditMode = true)]
         public DateTime DoBDG { set; get; }
 
         public string EmailDG { set; get; }
