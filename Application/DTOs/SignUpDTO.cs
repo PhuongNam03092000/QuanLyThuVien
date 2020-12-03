@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Entities;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Application.DTOs
@@ -37,5 +38,8 @@ namespace Application.DTOs
         [Display(Name = "Nhập lại mật khẩu")]
         [DataType(DataType.Password)]
         public string ComfirmPassword { get; set; }
+
+        [Required(ErrorMessage = "Hãy chọn role cho người dùng")]
+        public Role Role { get; set; }
     }
 }
