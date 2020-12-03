@@ -1,8 +1,11 @@
 ﻿using Application.DTOs;
 using Application.Interfaces;
+using Application.Mappings;
+using Domain.Entities;
 using Domain.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Application.Services
@@ -10,38 +13,71 @@ namespace Application.Services
     public class PhieuMuonService : IPhieuMuonService
     {
         private readonly IPhieuMuonRepository phieumuonRepository; //Lấy từ Domain
-        public PhieuMuonService(IPhieuMuonRepository phieuMuonRepository)
+        private readonly IChiTietPhieuMuonRepository chiTietPhieuMuonRepository;
+        public PhieuMuonService(IPhieuMuonRepository phieuMuonRepository, IChiTietPhieuMuonRepository chiTietPhieuMuonRepository)
         {
             this.phieumuonRepository = phieuMuonRepository;
+            this.chiTietPhieuMuonRepository = chiTietPhieuMuonRepository;
         }
-        public void AddCTPM(int maPM, ChiTietPhieuMuonDTO ctpm)
+        public void AddCTPM(ChiTietPhieuMuonDTO ctpm)
         {
-            throw new NotImplementedException();
+            chiTietPhieuMuonRepository.Add(ctpm.MappingCTPM());
         }
 
-        public void CreatePhieuMuon(PhieuMuonDTO phieumuon)
+        public void DeleteCTPM(ChiTietPhieuMuonDTO ctpm)
         {
-            throw new NotImplementedException();
+            chiTietPhieuMuonRepository.Delete(ctpm.MappingCTPM());
         }
+
+        public void UpdateCTPM(ChiTietPhieuMuonDTO ctpm)
+        {
+            chiTietPhieuMuonRepository.Update(ctpm.MappingCTPM());
+        }
+
+        public void CreatePhieuMuon(PhieuMuonDTO phieumuonDTO)
+        {
+            var phieumuon = phieumuonDTO.MappingPhieuMuon();
+            phieumuonRepository.Add(phieumuon);
+        }
+
 
         public void DeletePhieuMuon(int maPM)
         {
-            throw new NotImplementedException();
+            var phieumuon = phieumuonRepository.GetBy(maPM);
+            phieumuonRepository.Delete(phieumuon);
         }
 
         public PhieuMuonDTO GetPhieuMuon(int maPM)
         {
-            throw new NotImplementedException();
+            var phieumuon = phieumuonRepository.GetBy(maPM);
+            var ctpms = chiTietPhieuMuonRepository.CTPMs(phieumuon.MaPM);
+            if (ctpms.Any())
+            {
+                phieumuon.ChiTietPhieuMuons = (List<ChiTietPhieuMuon>)ctpms;
+            }
+
+            return phieumuon.MappingDTO();
         }
 
         public IEnumerable<PhieuMuonDTO> GetPhieuMuons(string sortOrder, string searchString, int pageIndex, int pageSize, out int count)
         {
-            throw new NotImplementedException();
+            var phieuMuons = phieumuonRepository.Filter(sortOrder, searchString, pageIndex, pageSize, out count);
+            foreach(PhieuMuon pm in phieuMuons)
+            {
+                var ctpms = chiTietPhieuMuonRepository.CTPMs(pm.MaPM);
+                if(ctpms.Any())
+                {
+                    pm.ChiTietPhieuMuons = (List<ChiTietPhieuMuon>)ctpms;
+                }
+            }
+            return phieuMuons.MappingDtos();
         }
 
-        public void UpdatePhieuMuon(PhieuMuonDTO phieumuon)
+        public void UpdatePhieuMuon(PhieuMuonDTO phieumuonDTO)
         {
-            throw new NotImplementedException();
+            var phieumuon = phieumuonRepository.GetBy(phieumuonDTO.MaPM);
+            phieumuonDTO.MappingPhieuMuon(phieumuon);
+            phieumuonRepository.Update(phieumuon);
         }
     }
 }

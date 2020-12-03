@@ -2,6 +2,7 @@
 using Application.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 using ThuVien.Areas.Manager.ViewModels;
 using ThuVien.Helper;
 
@@ -38,11 +39,11 @@ namespace ThuVien.Areas.Manager.Controllers
         }       
 
         [HttpPost]
-        public IActionResult Them(NhanVienIndexVm nhanVienVM)
+        public async Task<IActionResult> Them(NhanVienIndexVm nhanVienVM)
         {
             if (ModelState.IsValid)
             {
-                nhanVienService.ThemNhanVien(nhanVienVM.nhanVien);
+                await nhanVienService.ThemNhanVien(nhanVienVM.nhanVien);
                 return RedirectToAction("Index");
             }
             return View();

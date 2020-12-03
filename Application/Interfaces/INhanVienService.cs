@@ -1,5 +1,7 @@
 ﻿using Application.DTOs;
+using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Application.Interfaces
 {
@@ -9,7 +11,7 @@ namespace Application.Interfaces
 
         NhanVienDTO GetNhanVien(int Id);
 
-        void ThemNhanVien(NhanVienDTO nhanvien);
+        Task<IdentityResult> ThemNhanVien(NhanVienDTO nhanvien);
 
         void SuaNhanVien(NhanVienDTO nhanvien);
 

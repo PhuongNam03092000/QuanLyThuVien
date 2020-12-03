@@ -105,11 +105,17 @@
                             <td>@docgia.MaDG</td>
                             <td>@docgia.HoDG</td>
                             <td>@docgia.TenDG</td>
-                            <td>@docgia.DoBDG</td>
+                            <td>@{
+                                    @docgia.DoBDG.ToShortDateString();
+                                }</td>
                             <td>@docgia.EmailDG</td>
                             <td>@docgia.DiaChiDG</td>
-                            <td>@docgia.NgayDK</td>
-                            <td>@docgia.NgayHetHanDK</td>
+                            <td>@{
+                                @docgia.NgayDK.ToShortDateString();
+                            }</td>
+                            <td>@{
+                                @docgia.NgayHetHanDK.ToShortDateString();
+                            }</td>
 
                             <td>
                                 <button class="btn btn-success" data-toggle="modal" data-target="#suaDocGia-@docgia.MaDG"><i class="far fa-edit"></i></button>

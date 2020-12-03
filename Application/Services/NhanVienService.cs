@@ -5,6 +5,7 @@ using Domain.Entities;
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Application.Services
 {
@@ -43,11 +44,12 @@ namespace Application.Services
             _nhanVienRepository.Update(nhanVien);*/
         }
 
-        public void ThemNhanVien(NhanVienDTO nhanVienDto)
+        public async Task<IdentityResult> ThemNhanVien(NhanVienDTO nhanVienDto)
         {
             var nhanVien = nhanVienDto.MappingNhanVien();
             //var result = _userManager.CreateAsync(nhanVien, nhanVienDto.PasswordNV);
-            _accountService.CreateUserAsync(nhanVienDto);
+            return await _accountService.CreateUserAsync(nhanVienDto);
+
             /*if(result.Succeeded)
             {
                 System.Console.WriteLine("Thành công");

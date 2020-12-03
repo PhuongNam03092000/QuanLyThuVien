@@ -1,9 +1,9 @@
 ﻿@using ThuVien.Areas.Manager.ViewModels
 @model PhieuMuonIndexVm
 @{
-    ViewData["Title"] = "Danh sách độc giả";
+    ViewData["Title"] = "Danh sách phiếu mượn";
     Layout = "~/Areas/Manager/Views/Shared/_ManagerLayout.cshtml";
-   
+
 }
 
 <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#themPhieuMuon">Thêm phiếu mượn</button>
@@ -33,8 +33,7 @@
                                     <input class="form-control" asp-for="phieumuon.NgayMuon" id="ngaymuon" placeholder=@DateTime.Now>
                                 </div>
                                 <div class="form-group">
-                                    <label for="tongphi" asp-for="phieumuon.TongPhiMuon" >Tổng phí mượn</label>
-                                    <input class="form-control" asp-for="phieumuon.TongPhiMuon" id="tongphi" placeholder="0">
+                                    <input class="form-control" asp-for="phieumuon.TongPhiMuon" type="hidden">
                                 </div>
                                 <div class="modal-footer">
                                     <button class="btn btn-danger" type="button" data-dismiss="modal">Cancel</button>
@@ -51,11 +50,11 @@
                                             <input class="form-control" asp-for="ctpm.MaSach" id="masach" placeholder="Mã sách">
                                         </div>
                                         <div class="col">
-                                            <label for="ngaytra"  asp-for="ctpm.NgayHetHan" >Ngày hết hạn</label>
-                                            <input class="form-control" asp-for="ctpm.NgayHetHan"  id="ngaytra">
+                                            <label for="ngaytra" asp-for="ctpm.NgayHetHan">Ngày hết hạn</label>
+                                            <input class="form-control" asp-for="ctpm.NgayHetHan" id="ngaytra">
                                         </div>
                                         <div class="col">
-                                            <label for="giahan" asp-for="ctpm.GiaHan" >Gia hạn</label>
+                                            <label for="giahan" asp-for="ctpm.GiaHan">Gia hạn</label>
                                             <input class="form-control" asp-for="ctpm.GiaHan" id="giahan">
                                         </div>
                                         <div class="col">
@@ -103,6 +102,21 @@
                     <tr />
                 </thead>
                 <tbody>
+                    @foreach (var phieumuon in Model.PhieuMuons)
+                    {
+                        <tr>
+                            <td>@phieumuon.MaPM</td>
+                            <td>@phieumuon.UserId</td>
+                            <td>@phieumuon.MaDG</td>
+                            <td>@phieumuon.NgayMuon</td>
+                            <td>@phieumuon.TongPhiMuon</td>
+
+                            <td>
+                                <button class="btn btn-success" data-toggle="modal" data-target="#"><i class="far fa-edit"></i></button>
+                                <button class="btn btn-danger" data-toggle="modal" data-target="#"><i class="far fa-trash-alt"></i></button>
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
