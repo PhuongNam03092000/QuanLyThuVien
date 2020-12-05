@@ -42,9 +42,13 @@
                             </form>
                         </div>   
                         <div class="col col-8">
-                            <form method="POST" asp-area="Manager" asp-action="AddCTPM" asp-controller="PhieuMuon">
+                            <form method="POST" asp-area="Manager" asp-action="CreateCTPM" asp-controller="PhieuMuon">
                                 <div class="form-group">
                                     <div class="form-row">
+                                        <div class="col">
+                                            <label for="sach" asp-for="ctpm.MaPM">Mã phiếu mượn</label>
+                                            <input class="form-control" asp-for="ctpm.MaPM" id="maphieumuon" placeholder="Mã phiếu mượn">
+                                        </div>
                                         <div class="col">
                                             <label for="sach" asp-for="ctpm.MaSach">Mã sách</label>
                                             <input class="form-control" asp-for="ctpm.MaSach" id="masach" placeholder="Mã sách">
@@ -56,6 +60,9 @@
                                         <div class="col">
                                             <label for="giahan" asp-for="ctpm.GiaHan">Gia hạn</label>
                                             <input class="form-control" asp-for="ctpm.GiaHan" id="giahan">
+                                        </div>
+                                        <div class="col">
+                                            <input type="hidden" asp-for="ctpm.PhiMuon" value="50000">
                                         </div>
                                         <div class="col">
                                             <button style="height:70px" type="submit" class="btn btn-success">Thêm chi tiết</button>
@@ -72,7 +79,22 @@
                                             <th>Ngày Hết Hạn</th>
                                             <th>Gia Hạn</th>
                                         <tr />
-                                    </thead>
+                                        <tr>
+                                        @{
+                                            foreach (var pm in Model.PhieuMuons)
+                                            {
+                                                foreach (var ctpm in pm.ChiTietPhieuMuons)
+                                                {
+                                                    <td>@ctpm.MaSach</td>
+                                                    <td>@ctpm.PhiMuon</td>
+                                                    <td>@ctpm.NgayHetHan</td>
+                                                    <td>@ctpm.GiaHan</td>
+                                                    <input type="checkbox" asp-for="@ctpm.IsSelected" />
+                                                }
+                                            }
+                                        }
+                                        </tr>
+                                        </thead>
                                     <tbody>
                                     </tbody>
                                 </table>

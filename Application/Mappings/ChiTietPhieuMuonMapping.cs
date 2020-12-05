@@ -47,5 +47,13 @@ namespace Application.Mappings
                 yield return ctpm.MappingDTO();
             }
         }
+
+        public static IEnumerable<ChiTietPhieuMuon> MappingCTPMs(this IEnumerable<ChiTietPhieuMuonDTO> DSCTPMDTO)
+        {
+            foreach (var ctpmDTO in DSCTPMDTO)
+            {
+                yield return ctpmDTO.MappingCTPM();
+            }
+        }
     }
 }

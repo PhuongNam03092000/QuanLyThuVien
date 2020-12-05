@@ -11,5 +11,6 @@ namespace Application.DTOs
         public int PhiMuon { set; get; }
         public DateTime NgayHetHan { set; get; }
         public DateTime GiaHan { set; get; }
+        public bool IsSelected { get; set; }
     }
 }

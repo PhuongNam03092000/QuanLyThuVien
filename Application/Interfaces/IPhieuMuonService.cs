@@ -17,8 +17,8 @@ namespace Application.Interfaces
 
         void DeletePhieuMuon(int maPM);
 
-        void AddCTPM(ChiTietPhieuMuonDTO ctpm);
-        void UpdateCTPM(ChiTietPhieuMuonDTO ctpm);
-        void DeleteCTPM(ChiTietPhieuMuonDTO ctpm);
+        void AddCTPM(ChiTietPhieuMuonDTO ctpmDTO);
+        void UpdateCTPM(ChiTietPhieuMuonDTO ctpmDTO);
+        void DeleteCTPM(IEnumerable<ChiTietPhieuMuonDTO> ctpmDTOList);
     }
 }

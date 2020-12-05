@@ -27,5 +27,11 @@ namespace Infrastructure.Persistence.Repositories
 
             return query.ToList();
         }
+
+
+        public ChiTietPhieuMuon GetBy(int maPM, int maSach)
+        {
+            return context.Set<ChiTietPhieuMuon>().Find(maPM, maSach);
+        }
     }
 }

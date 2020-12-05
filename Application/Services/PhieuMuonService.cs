@@ -19,19 +19,32 @@ namespace Application.Services
             this.phieumuonRepository = phieuMuonRepository;
             this.chiTietPhieuMuonRepository = chiTietPhieuMuonRepository;
         }
-        public void AddCTPM(ChiTietPhieuMuonDTO ctpm)
+        public void AddCTPM(ChiTietPhieuMuonDTO ctpmDTO)
         {
-            chiTietPhieuMuonRepository.Add(ctpm.MappingCTPM());
+            var ctpm = ctpmDTO.MappingCTPM();
+            chiTietPhieuMuonRepository.Add(ctpm);
         }
 
-        public void DeleteCTPM(ChiTietPhieuMuonDTO ctpm)
+        public void DeleteCTPM(IEnumerable<ChiTietPhieuMuonDTO> ctpmDTOList)
         {
-            chiTietPhieuMuonRepository.Delete(ctpm.MappingCTPM());
+            var list = ctpmDTOList.Where(c => c.IsSelected == true);
+
+            list.ToList().ForEach(c =>
+            {
+                var ctpm = chiTietPhieuMuonRepository.GetBy(c.MaPM, c.MaSach);
+                chiTietPhieuMuonRepository.Delete(ctpm);
+            });
+
+            /*var ctpm = chiTietPhieuMuonRepository.GetBy(c.MaPM, c.MaSach);
+            chiTietPhieuMuonRepository.Delete(ctpm);*/
+
         }
 
-        public void UpdateCTPM(ChiTietPhieuMuonDTO ctpm)
+        public void UpdateCTPM(ChiTietPhieuMuonDTO ctpmDTO)
         {
-            chiTietPhieuMuonRepository.Update(ctpm.MappingCTPM());
+            var ctpm = chiTietPhieuMuonRepository.GetBy(ctpmDTO.MaPM, ctpmDTO.MaSach);
+            ctpmDTO.MappingCTPM(ctpm);
+            chiTietPhieuMuonRepository.Update(ctpm);
         }
 
         public void CreatePhieuMuon(PhieuMuonDTO phieumuonDTO)

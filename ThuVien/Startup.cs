@@ -82,6 +82,10 @@ namespace ThuVien
             services.AddScoped<ITacGiaRepository, TacGiaRepository>();
             services.AddScoped<ITacGiaService, TacGiaService>();
 
+            //Sach
+            services.AddScoped<ISachRepository, SachRepository>();
+            services.AddScoped<ISachService, SachService>();
+
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequiredLength = 6;

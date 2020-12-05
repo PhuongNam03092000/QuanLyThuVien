@@ -32,7 +32,7 @@ namespace QLTV.Controllers
             var dsphieumuon = phieuMuonService.GetPhieuMuons(sortOrder, searchString, pageIndex, pageSize, out count);
             var phieumuon = new PhieuMuonDTO();
             var ctpm = new ChiTietPhieuMuonDTO();
-            var listSach = sachService.GetSachs(sortOrder, searchString, pageIndex, pageSize, out count);
+            //var listSach = sachService.GetSachs(sortOrder, searchString, pageIndex, pageSize, out count);
             var phieumuonVM = new PhieuMuonIndexVm()
             {
                 PhieuMuons = new PaginatedList<PhieuMuonDTO>(dsphieumuon, count, pageIndex, pageSize),
@@ -80,7 +80,31 @@ namespace QLTV.Controllers
         [HttpPost]
         public IActionResult CreateCTPM(PhieuMuonIndexVm vm)
         {
-            System.Console.WriteLine(vm.ctpm.MaSach);
+            if(ModelState.IsValid)
+            {
+                phieuMuonService.AddCTPM(vm.ctpm);
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+        [HttpPost]
+        public IActionResult UpdateCTPM(PhieuMuonIndexVm vm)
+        {
+            if (ModelState.IsValid)
+            {
+                phieuMuonService.AddCTPM(vm.ctpm);
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+        [HttpPost]
+        public IActionResult DeleteCTPM(PhieuMuonIndexVm vm)
+        {
+            if (ModelState.IsValid)
+            {
+                phieuMuonService.DeleteCTPM(vm.phieumuon.ChiTietPhieuMuons);
+                return RedirectToAction("Index");
+            }
             return View();
         }
     }
