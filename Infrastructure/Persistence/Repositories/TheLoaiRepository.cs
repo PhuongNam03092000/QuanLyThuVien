@@ -1,7 +1,9 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence.Repositories
 {
@@ -9,6 +11,14 @@ namespace Infrastructure.Persistence.Repositories
     {
         public TheLoaiRepository(QLTVContext context) : base(context)
         {
+        }
+
+        public IEnumerable<TheLoai> LayTheLoai()
+        {
+            List<TheLoai> tl = new List<TheLoai>();
+            tl = (from t in context.TheLoais select t).ToList();
+            tl.Insert(0, new TheLoai { MaTL = 0, TenTL = "Chọn thể loại" });
+            return tl;
         }
 
         public IEnumerable<TheLoai> Filter(string sortOrder, string searchString, int pageIndex, int pageSize, out int count)
@@ -34,12 +44,15 @@ namespace Infrastructure.Persistence.Repositories
                 case "matl_desc":
                     query = query.OrderByDescending(tl => tl.MaTL);
                     break;
+
                 case "matl":
                     query = query.OrderBy(tl => tl.MaTL);
                     break;
+
                 case "tentl_desc":
                     query = query.OrderByDescending(tl => tl.TenTL);
                     break;
+
                 case "tentl":
                     query = query.OrderBy(tl => tl.TenTL);
                     break;

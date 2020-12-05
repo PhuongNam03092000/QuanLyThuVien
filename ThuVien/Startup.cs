@@ -47,7 +47,7 @@ namespace ThuVien
             //EF
             services.AddScoped(typeof(IEFRepository<>), typeof(EFRepository<>));
 
-            //TheLoai 
+            //TheLoai
             services.AddScoped<ITheLoaiRepository, TheLoaiRepository>();
             services.AddScoped<ITheLoaiService, TheLoaiService>();
 
@@ -62,7 +62,11 @@ namespace ThuVien
             //NhaXuatBan
             services.AddScoped<INhaXuatBanRepository, NhaXuatBanRepository>();
             services.AddScoped<INhaXuatBanService, NhaXuatBanService>();
-            
+
+            //Sach
+            services.AddScoped<ISachRepository, SachRepository>();
+            services.AddScoped<ISachService, SachService>();
+
             //Account
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<IAccountService, AccountService>();
@@ -100,9 +104,9 @@ namespace ThuVien
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("Admin",
-                    policy => policy.RequireClaim("Role","Admin"));
+                    policy => policy.RequireClaim("Role", "Admin"));
                 options.AddPolicy("Librarian",
-                    policy => policy.RequireClaim("Role","Librarian"));
+                    policy => policy.RequireClaim("Role", "Librarian"));
                 options.AddPolicy("Create Member",
                     policy => policy.RequireClaim("Create Member", "true"));
                 options.AddPolicy("Edit Member",
@@ -113,7 +117,6 @@ namespace ThuVien
                     policy => policy.RequireClaim("Create Employee", "true"));
                 options.AddPolicy("Edit Employee",
                     policy => policy.RequireClaim("Edit Employee", "true"));
-
             });
 
             services.ConfigureApplicationCookie(config =>
@@ -147,7 +150,6 @@ namespace ThuVien
                     name: "Manager",
                     pattern: "Manager",
                     defaults: new { area = "Manager", Controller = "Home", Action = "Index" });
-
             });
         }
     }

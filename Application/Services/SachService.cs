@@ -10,37 +10,47 @@ namespace Application.Services
 {
     public class SachService : ISachService
     {
-        private readonly ISachRepository _sachRepository;
+        private readonly ISachRepository _sachRepository; //Lấy từ Domain
 
         public SachService(ISachRepository sachRepository)
         {
             _sachRepository = sachRepository;
         }
 
-        public void Create(SachDTO sach)
+        public IEnumerable<SachDTO> GetSachs(string sortOrder, string searchString, int pageIndex, int pageSize, out int count)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(int maS)
-        {
-            throw new NotImplementedException();
+            var sachs = _sachRepository.Filter(sortOrder, searchString, pageIndex, pageSize, out count);
+            return sachs.MappingSachDtos();
         }
 
         public SachDTO GetSach(int maS)
         {
-            throw new NotImplementedException();
+            var sach = _sachRepository.GetBy(maS);
+
+            return sach.MappingSachDto();
         }
 
-        public IEnumerable<SachDTO> GetSachs(string sortOrder, string searchString, int pageIndex, int pageSize, out int count)
+        public void SuaSach(SachDTO sachDto)
         {
-            var sachs = _sachRepository.Filter(sortOrder,searchString, pageIndex, pageSize, out count);
-            return sachs.MappingSachDTOs();
+            var sach = _sachRepository.GetBy(sachDto.MaSach);
+
+            sachDto.MappingSach(sach);
+
+            _sachRepository.Update(sach);
         }
 
-        public void Update(SachDTO sach)
+        public void ThemSach(SachDTO sachDto)
         {
-            throw new NotImplementedException();
+            var sach = sachDto.MappingSach();
+
+            _sachRepository.Add(sach);
+        }
+
+        public void XoaSach(int maS)
+        {
+            var sach = _sachRepository.GetBy(maS);
+
+            _sachRepository.Delete(sach);
         }
     }
 }

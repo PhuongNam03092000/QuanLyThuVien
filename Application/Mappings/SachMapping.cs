@@ -15,45 +15,39 @@ namespace Application.Mappings
                 MaSach = sach.MaSach,
                 TenSach = sach.TenSach,
                 MaTG = sach.MaTG,
-                MaNXB = sach.MaNXB,
                 MaTL = sach.MaTL,
+                MaNXB = sach.MaNXB,
                 GiaBia = sach.GiaBia,
-                SachImage = sach.SachImage,
-                ViTri = sach.ViTri,
-                TrangThaiSach = sach.TrangThaiSach
+                ViTri = sach.ViTri
             };
         }
 
-        public static Sach MappingSach(this SachDTO sachDTO)
+        public static Sach MappingSach(this SachDTO sachDto)
         {
             return new Sach
             {
-                MaSach = sachDTO.MaSach,
-                TenSach = sachDTO.TenSach,
-                MaTG = sachDTO.MaTG,
-                MaNXB = sachDTO.MaNXB,
-                MaTL = sachDTO.MaTL,
-                GiaBia = sachDTO.GiaBia,
-                SachImage = sachDTO.SachImage,
-                ViTri = sachDTO.ViTri,
-                TrangThaiSach = sachDTO.TrangThaiSach
+                MaSach = sachDto.MaSach,
+                TenSach = sachDto.TenSach,
+                MaTG = sachDto.MaTG,
+                MaTL = sachDto.MaTL,
+                MaNXB = sachDto.MaNXB,
+                GiaBia = sachDto.GiaBia,
+                ViTri = sachDto.ViTri
             };
         }
 
-        public static void MappingSach(this SachDTO sachDTO, Sach sach)
+        public static void MappingSach(this SachDTO sachDto, Sach sach)
         {
-            sach.MaSach = sachDTO.MaSach;
-            sach.TenSach = sachDTO.TenSach;
-            sach.MaTG = sachDTO.MaTG;
-            sach.MaNXB = sachDTO.MaNXB;
-            sach.MaTL = sachDTO.MaTL;
-            sach.GiaBia = sachDTO.GiaBia;
-            sach.SachImage = sachDTO.SachImage;
-            sach.ViTri = sachDTO.ViTri;
-            sach.TrangThaiSach = sachDTO.TrangThaiSach;
+            sach.MaSach = sachDto.MaSach;
+            sach.TenSach = sachDto.TenSach;
+            sach.MaTG = sachDto.MaTG;
+            sach.MaTL = sachDto.MaTL;
+            sach.MaNXB = sachDto.MaNXB;
+            sach.GiaBia = sachDto.GiaBia;
+            sach.ViTri = sachDto.ViTri;
         }
 
-        public static IEnumerable<SachDTO> MappingSachDTOs(this IEnumerable<Sach> sachs)
+        public static IEnumerable<SachDTO> MappingSachDtos(this IEnumerable<Sach> sachs)
         {
             foreach (var sach in sachs)
             {

@@ -1,0 +1,235 @@
+﻿@using ThuVien.Areas.Manager.ViewModels
+@model SachIndexVm
+
+@{
+    ViewData["Title"] = "Danh sách";
+    Layout = "~/Areas/Manager/Views/Shared/_ManagerLayout.cshtml";
+
+    var masSort = (Model.SortOrder == "mas") ? "mas_desc" : "mas";
+    var tensSort = (Model.SortOrder == "tens") ? "tens_desc" : "tens";
+}
+
+@*Modal thêm*@
+<div class="modal fade" id="them" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thêm sách</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form method="POST" asp-area="Manager" asp-controller="Sach" asp-action="Them">
+
+                    <div class="form-group">
+                        <label asp-for=sach.TenSach>Tên sách</label>
+                        <input class="form-control" asp-for=sach.TenSach placeholder="Tên sách">
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for=sach.MaTG>Mã tác giả</label>
+                        <input class="form-control" asp-for=sach.MaTG placeholder="Mã tác giả">
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for=sach.MaTL>Mã thể loại</label>
+                        <select asp-for=sach.MaTL asp-items="@(new SelectList(ViewBag.laytheloai, "MaTL", "TenTL"))">
+                            <option value="" selected disabled></option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for=sach.MaNXB>Mã nhà xuất bản</label>
+                        <input class="form-control" asp-for=sach.MaNXB placeholder="Mã nhà xuất bản">
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for=sach.GiaBia>Giá bìa</label>
+                        <input class="form-control" asp-for=sach.GiaBia placeholder="Giá bìa">
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for=sach.ViTri>Vị trí trưng bày</label>
+                        <input class="form-control" asp-for=sach.ViTri placeholder="Vị trí trưng bày">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" type="button" data-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-success">Thêm</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Danh sách</h6>
+    </div>
+    <div class="card-body">
+        <form method="GET">
+            <p>
+                <input type="text" asp-for="SearchString" />
+                <input class="btn btn-dark" type="submit" value="Filter" />
+            </p>
+        </form>
+
+        @*Model thêm của Nam*@
+        <p>
+            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#them">Thêm</button>
+        </p>
+
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            <a asp-route-sortOrder="@masSort"
+                               asp-route-searchString="@Model.SearchString">
+                                @Html.DisplayNameFor(model => model.Sachs[0].MaSach)
+                            </a>
+                        </th>
+                        <th>
+                            <a asp-route-sortOrder="@tensSort"
+                               asp-route-searchString="@Model.SearchString">
+                                @Html.DisplayNameFor(model => model.Sachs[0].TenSach)
+                            </a>
+                        </th>
+                        <th>Mã tác giả</th>
+                        <th>Mã thể loại</th>
+                        <th>Mã nhà xuất bản</th>
+                        <th>Giá bìa</th>
+                        <th>Vị trí</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var sach in Model.Sachs)
+                    {
+                        <tr>
+                            <td>@sach.MaSach</td>
+                            <td>@sach.TenSach</td>
+                            <td>@sach.MaTG</td>
+                            <td>@sach.MaTL</td>
+                            <td>@sach.MaNXB</td>
+                            <td>@sach.GiaBia</td>
+                            <td>@sach.ViTri</td>
+                            <td>
+                                <button class="btn btn-success" data-toggle="modal" data-target="#sua-@sach.MaSach" a><i class="far fa-edit"></i></button>
+                                <button class="btn btn-danger" data-toggle="modal" data-target="#xoa-@sach.MaSach"><i class="far fa-trash-alt"></i></button>
+                            </td>
+                        </tr>
+
+                        @*Modal xóa*@
+                        <div class="modal fade" id="xoa-@sach.MaSach" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Bạn có chắc muốn xóa sách này?</h5>
+                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="POST" asp-area="Manager" asp-action="Xoa" asp-controller="Sach">
+
+                                            <div class="form-group">
+                                                <label asp-for="@sach.MaSach">Mã sách</label>
+                                                <input readonly="readonly" class="form-control" asp-for="@sach.MaSach" value="@sach.MaSach">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label asp-for="@sach.TenSach">Tên sách</label>
+                                                <input readonly="readonly" class="form-control" asp-for="@sach.TenSach" value="@sach.TenSach">
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button class="btn btn-dark" type="button" data-dismiss="modal">Đóng</button>
+                                                <button type="submit" class="btn btn-danger">Xóa</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        @*Modal sửa*@
+                        <div class="modal fade" id="sua-@sach.MaSach" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Cập nhật sách</h5>
+                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="POST" asp-area="Manager" asp-action="Sua" asp-controller="Sach">
+                                            <div class="form-group">
+                                                <label asp-for="@sach.MaSach">Mã sách</label>
+                                                <input readonly="readonly" class="form-control" asp-for="@sach.MaSach" value="@sach.MaSach">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label asp-for="@sach.TenSach">Tên sách</label>
+                                                <input class="form-control" asp-for="@sach.TenSach" value="@sach.TenSach" placeholder="Tên sách">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label asp-for="@sach.MaTG">Mã tác giả</label>
+                                                <input class="form-control" asp-for="@sach.MaTG" value="@sach.MaTG" placeholder="Mã tác giả">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label asp-for="@sach.MaTL">Mã thể loại</label>
+                                                <input class="form-control" asp-for="@sach.MaTL" value="@sach.MaTL" placeholder="Mã thể loại">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label asp-for="@sach.MaNXB">Mã nhà xuất bản</label>
+                                                <input class="form-control" asp-for="@sach.MaNXB" value="@sach.MaNXB" placeholder="Mã nhà xuất bản">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label asp-for="@sach.GiaBia">Giá bìa</label>
+                                                <input class="form-control" asp-for="@sach.GiaBia" value="@sach.GiaBia" placeholder="Giá bìa">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label asp-for="@sach.ViTri">Vị trí trưng bày</label>
+                                                <input class="form-control" asp-for="@sach.ViTri" value="@sach.ViTri" placeholder="Vị trí trưng bày">
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button class="btn btn-dark" type="button" data-dismiss="modal">Đóng</button>
+                                                <button type="submit" class="btn btn-success">Sửa</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@{
+    var prevDisabled = !Model.Sachs.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.Sachs.HasNextPage ? "disabled" : "";
+}
+
+<a class="btn btn-default @prevDisabled"
+   asp-route-sortOrder="@Model.SortOrder"
+   asp-route-searchString="@Model.SearchString"
+   asp-route-pageIndex="@(Model.Sachs.PageIndex -1)">Trước</a>
+<a class="btn btn-default @nextDisabled"
+   asp-route-sortOrder="@Model.SortOrder"
+   asp-route-searchString="@Model.SearchString"
+   asp-route-pageIndex="@(Model.Sachs.PageIndex +1)">Sau</a>

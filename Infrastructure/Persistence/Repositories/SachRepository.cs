@@ -28,16 +28,25 @@ namespace Infrastructure.Persistence.Repositories
             return query.Skip((pageIndex - 1) * pageSize)
                         .Take(pageSize).ToList();
         }
+
         private static void SortSachs(string sortOrder, ref IQueryable<Sach> query)
         {
             switch (sortOrder)
             {
+                case "mas_desc":
+                    query = query.OrderByDescending(s => s.MaSach);
+                    break;
+
+                case "mas":
+                    query = query.OrderBy(s => s.MaSach);
+                    break;
+
                 case "tens_desc":
                     query = query.OrderByDescending(s => s.TenSach);
                     break;
 
                 case "tens":
-                    query = query.OrderBy(tl => tl.TenSach);
+                    query = query.OrderBy(s => s.TenSach);
                     break;
             }
         }
