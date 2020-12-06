@@ -35,36 +35,17 @@ namespace Application.Services
             return nhanvien.MappingNhanVienDto();
         }
 
-        public void SuaNhanVien(NhanVienDTO nhanVienDto)
+        public async Task<IdentityResult> SuaNhanVien(NhanVienDTO nhanVienDto)
         {
-        /*    var nhanVien = _nhanVienRepository.GetBy(nhanVienDto.Id);
-
-            nhanVienDto.MappingNhanVien(nhanVien);
-
-            _nhanVienRepository.Update(nhanVien);*/
+            var nhanVien = nhanVienDto.MappingNhanVien();
+            return await _accountService.UpdateUserAsync(nhanVienDto); 
         }
 
         public async Task<IdentityResult> ThemNhanVien(NhanVienDTO nhanVienDto)
         {
             var nhanVien = nhanVienDto.MappingNhanVien();
-            //var result = _userManager.CreateAsync(nhanVien, nhanVienDto.PasswordNV);
             return await _accountService.CreateUserAsync(nhanVienDto);
-
-            /*if(result.Succeeded)
-            {
-                System.Console.WriteLine("Thành công");
-            } else
-            {
-                System.Console.WriteLine("Thất bại"); 
-            }*/
-            //_nhanVienRepository.Add(nhanVien);
         }
 
-        public void XoaNhanVien(int Id)
-        {
-            var nhanVien = _nhanVienRepository.GetBy(Id);
-
-            _nhanVienRepository.Delete(nhanVien);
-        }
     }
 }

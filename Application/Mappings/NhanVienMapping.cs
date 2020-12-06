@@ -10,7 +10,7 @@ namespace Application.Mappings
         {
             return new NhanVienDTO
             {
-                //Id = nhanvien.Id,
+                Id = nhanvien.Id,
                 HoNV = nhanvien.HoNV,
                 TenNV = nhanvien.TenNV,
                 DoBNV = nhanvien.DoBNV,

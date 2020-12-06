@@ -10,7 +10,7 @@ namespace Application.Interfaces
         Task<IdentityResult> CreateUserAsync(SignUpDTO signUpDTO);
         Task<IdentityResult> CreateUserAsync(NhanVienDTO nhanvienDto);
         Task<SignInResult> PasswordSignInAsync(LogInDTO logInDTO);
-
+        Task<IdentityResult> UpdateUserAsync(NhanVienDTO nhanvienDto);
         Task SignOutAsync();
     }
 }

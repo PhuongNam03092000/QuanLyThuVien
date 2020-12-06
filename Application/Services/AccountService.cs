@@ -51,6 +51,30 @@ namespace Application.Services
             return result;
         }
 
+        public async Task<IdentityResult> UpdateUserAsync(NhanVienDTO nhanvienDto)
+        {
+            var user = await _userManager.FindByEmailAsync(nhanvienDto.Email);
+            user.HoNV = nhanvienDto.HoNV;
+            user.TenNV = nhanvienDto.TenNV;
+            user.DoBNV = nhanvienDto.DoBNV;
+            user.PhoneNumber = nhanvienDto.PhoneNumber;
+            user.Email = nhanvienDto.Email;
+            user.UserName = nhanvienDto.Email;
+
+            var result = await _userManager.UpdateAsync(user);
+            return result;
+        }
+        
+        /*
+        public async Task<IdentityResult> DeleteUserAsync(NhanVienDTO nhanvienDto)
+        {
+            var user = await _userManager.FindByEmailAsync(nhanvienDto.Email);
+
+            var result = await _userManager.DeleteAsync(user);
+            return result;
+        }
+        */
+
         public async Task<SignInResult> PasswordSignInAsync(LogInDTO logInDTO)
         {
             return await _signInManager.PasswordSignInAsync(logInDTO.Email, logInDTO.Password, logInDTO.RememberMe, true);

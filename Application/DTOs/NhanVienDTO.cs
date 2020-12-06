@@ -7,7 +7,7 @@ namespace Application.DTOs
 {
     public class NhanVienDTO
     {
-        //public int Id { get; } 
+        public int Id { get; set; } 
 
         [Display(Name = "Password")]
         public string PasswordNV { get; set; }

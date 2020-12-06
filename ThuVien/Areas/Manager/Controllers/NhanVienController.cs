@@ -9,7 +9,6 @@ using ThuVien.Helper;
 namespace ThuVien.Areas.Manager.Controllers
 {
     [Area("Manager")]
-    //[Route("[Area]/[Controller]/[Action]")]
     [Authorize]
     public class NhanVienController : Controller
     {
@@ -50,22 +49,14 @@ namespace ThuVien.Areas.Manager.Controllers
         }
 
         [HttpPost]
-        public IActionResult Sua(NhanVienIndexVm nhanVienVM)
+        public async Task<IActionResult> Sua(NhanVienIndexVm nhanVienVM)
         {
             if (ModelState.IsValid)
             {
-                nhanVienService.SuaNhanVien(nhanVienVM.nhanVien);
+                await nhanVienService.SuaNhanVien(nhanVienVM.nhanVien);
                 return RedirectToAction("Index");
             }
-
             return View();
-        }
-
-        [HttpPost]
-        public IActionResult Xoa(NhanVienIndexVm nhanVienVM)
-        {
-            //nhanVienService.XoaNhanVien(nhanVienVM.nhanVien.Id);
-            return RedirectToAction("Index");
         }
     }
 }

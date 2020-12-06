@@ -13,8 +13,8 @@ namespace Application.Interfaces
 
         Task<IdentityResult> ThemNhanVien(NhanVienDTO nhanvien);
 
-        void SuaNhanVien(NhanVienDTO nhanvien);
+        Task<IdentityResult> SuaNhanVien(NhanVienDTO nhanvien);
 
-        void XoaNhanVien(int Id);
+        //Task<IdentityResult> XoaNhanVien(int Id);
     }
 }
