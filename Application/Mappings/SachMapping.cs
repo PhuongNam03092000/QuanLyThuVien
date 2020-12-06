@@ -18,7 +18,10 @@ namespace Application.Mappings
                 MaTL = sach.MaTL,
                 MaNXB = sach.MaNXB,
                 GiaBia = sach.GiaBia,
-                ViTri = sach.ViTri
+                ViTri = sach.ViTri,
+                TenTL = sach.TheLoai.TenTL,
+                TenTG = sach.TacGia.TenTG,
+                TenNXB = sach.NhaXuatBan.TenNXB
             };
         }
 

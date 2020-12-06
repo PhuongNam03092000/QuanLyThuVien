@@ -29,20 +29,24 @@
                     </div>
 
                     <div class="form-group">
-                        <label asp-for=sach.MaTG>Mã tác giả</label>
-                        <input class="form-control" asp-for=sach.MaTG placeholder="Mã tác giả">
-                    </div>
-
-                    <div class="form-group">
-                        <label asp-for=sach.MaTL>Mã thể loại</label>
-                        <select asp-for=sach.MaTL asp-items="@(new SelectList(ViewBag.laytheloai, "MaTL", "TenTL"))">
+                        <label asp-for=sach.MaTG>Tác giả</label>
+                        <select asp-for=sach.MaTG asp-items="@(new SelectList(ViewBag.laytacgia, "MaTG", "TenTG"))" class="form-control">
                             <option value="" selected disabled></option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label asp-for=sach.MaNXB>Mã nhà xuất bản</label>
-                        <input class="form-control" asp-for=sach.MaNXB placeholder="Mã nhà xuất bản">
+                        <label asp-for=sach.MaTL>Thể loại</label>
+                        <select asp-for=sach.MaTL asp-items="@(new SelectList(ViewBag.laytheloai, "MaTL", "TenTL"))" class="form-control">
+                            <option value="" selected disabled></option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for=sach.MaNXB>Nhà xuất bản</label>
+                        <select asp-for=sach.MaNXB asp-items="@(new SelectList(ViewBag.laynxb, "MaNXB", "TenNXB"))" class="form-control">
+                            <option value="" selected disabled></option>
+                        </select>
                     </div>
 
                     <div class="form-group">
@@ -98,9 +102,9 @@
                                 @Html.DisplayNameFor(model => model.Sachs[0].TenSach)
                             </a>
                         </th>
-                        <th>Mã tác giả</th>
-                        <th>Mã thể loại</th>
-                        <th>Mã nhà xuất bản</th>
+                        <th>Tác giả</th>
+                        <th>Thể loại</th>
+                        <th>Nhà xuất bản</th>
                         <th>Giá bìa</th>
                         <th>Vị trí</th>
                         <th></th>
@@ -112,9 +116,9 @@
                         <tr>
                             <td>@sach.MaSach</td>
                             <td>@sach.TenSach</td>
-                            <td>@sach.MaTG</td>
-                            <td>@sach.MaTL</td>
-                            <td>@sach.MaNXB</td>
+                            <td>@sach.TenTG</td>
+                            <td>@sach.TenTL</td>
+                            <td>@sach.TenNXB</td>
                             <td>@sach.GiaBia</td>
                             <td>@sach.ViTri</td>
                             <td>
