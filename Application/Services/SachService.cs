@@ -1,5 +1,7 @@
 ﻿using Application.DTOs;
 using Application.Interfaces;
+using Application.Mappings;
+using Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,29 +10,47 @@ namespace Application.Services
 {
     public class SachService : ISachService
     {
-        public void Create(SachDTO sach)
-        {
-            throw new NotImplementedException();
-        }
+        private readonly ISachRepository _sachRepository; //Lấy từ Domain
 
-        public void Delete(int maS)
+        public SachService(ISachRepository sachRepository)
         {
-            throw new NotImplementedException();
-        }
-
-        public SachDTO GetSach(int maS)
-        {
-            throw new NotImplementedException();
+            _sachRepository = sachRepository;
         }
 
         public IEnumerable<SachDTO> GetSachs(string sortOrder, string searchString, int pageIndex, int pageSize, out int count)
         {
-            throw new NotImplementedException();
+            var sachs = _sachRepository.Filter(sortOrder, searchString, pageIndex, pageSize, out count);
+            return sachs.MappingSachDtos();
         }
 
-        public void Update(SachDTO sach)
+        public SachDTO GetSach(int maS)
         {
-            throw new NotImplementedException();
+            var sach = _sachRepository.GetBy(maS);
+
+            return sach.MappingSachDto();
+        }
+
+        public void SuaSach(SachDTO sachDto)
+        {
+            var sach = _sachRepository.GetBy(sachDto.MaSach);
+
+            sachDto.MappingSach(sach);
+
+            _sachRepository.Update(sach);
+        }
+
+        public void ThemSach(SachDTO sachDto)
+        {
+            var sach = sachDto.MappingSach();
+
+            _sachRepository.Add(sach);
+        }
+
+        public void XoaSach(int maS)
+        {
+            var sach = _sachRepository.GetBy(maS);
+
+            _sachRepository.Delete(sach);
         }
     }
 }
