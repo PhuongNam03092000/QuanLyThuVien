@@ -16,8 +16,11 @@ namespace Application.DTOs
         public string TenSach { set; get; }
 
         public int MaTG { set; get; }
+        public string TenTG { set; get; }
         public int MaNXB { set; get; }
+        public string TenNXB { get; set; }
         public int MaTL { set; get; }
+        public string TenTL { set; get; }
         public int GiaBia { set; get; }
         public string ViTri { set; get; }
     }

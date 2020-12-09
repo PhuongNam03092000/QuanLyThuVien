@@ -5,6 +5,8 @@ namespace Domain.Interfaces
 {
     public interface ITacGiaRepository : IEFRepository<TacGia>
     {
+        IEnumerable<TacGia> LayTacGia();
+
         IEnumerable<TacGia> Filter(string sortOrder, string searchString, int pageIndex, int pageSize, out int count);
     }
 }

@@ -22,13 +22,16 @@ namespace ThuVien.Areas.Manager.Controllers
     {
         private readonly ISachService sachService;
         private readonly ITheLoaiRepository theLoaiRepository;
-        private readonly QLTVContext db;
+        private readonly ITacGiaRepository tacGiaRepository;
+        private readonly INhaXuatBanRepository nhaXuatBanRepository;
 
-        public SachController(ISachService sachService, QLTVContext db, ITheLoaiRepository theLoaiRepository)
+        public SachController(ISachService sachService, ITheLoaiRepository theLoaiRepository,
+            ITacGiaRepository tacGiaRepository, INhaXuatBanRepository nhaXuatBanRepository)
         {
             this.sachService = sachService;
             this.theLoaiRepository = theLoaiRepository;
-            this.db = db;
+            this.tacGiaRepository = tacGiaRepository;
+            this.nhaXuatBanRepository = nhaXuatBanRepository;
         }
 
         public IActionResult Index(string sortOrder, string searchString, int pageIndex = 1)
@@ -47,6 +50,9 @@ namespace ThuVien.Areas.Manager.Controllers
             };
 
             ViewBag.laytheloai = theLoaiRepository.LayTheLoai();
+            ViewBag.laytacgia = tacGiaRepository.LayTacGia();
+            ViewBag.laynxb = nhaXuatBanRepository.LayNXB();
+
             return View(sachVM);
         }
 

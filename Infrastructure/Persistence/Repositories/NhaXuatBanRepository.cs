@@ -13,6 +13,14 @@ namespace Infrastructure.Persistence.Repositories
         {
         }
 
+        public IEnumerable<NhaXuatBan> LayNXB()
+        {
+            List<NhaXuatBan> nxb = new List<NhaXuatBan>();
+            nxb = (from n in context.NhaXuatBans select n).ToList();
+            nxb.Insert(0, new NhaXuatBan { MaNXB = 0, TenNXB = "Chọn nhà xuất bản" });
+            return nxb;
+        }
+
         public IEnumerable<NhaXuatBan> Filter(string sortOrder, string searchString, int pageIndex, int pageSize, out int count)
         {
             var query = context.NhaXuatBans.AsQueryable();
@@ -40,6 +48,7 @@ namespace Infrastructure.Persistence.Repositories
                 case "manxb":
                     query = query.OrderBy(nxb => nxb.MaNXB);
                     break;
+
                 case "tennxb_desc":
                     query = query.OrderByDescending(nxb => nxb.TenNXB);
                     break;
