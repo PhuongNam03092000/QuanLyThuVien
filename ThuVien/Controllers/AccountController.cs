@@ -166,7 +166,7 @@ namespace ThuVien.Controllers
                 UserID = userID
             };
 
-            foreach(Claim claim in ClaimsStore.AllClaims)
+            foreach(Claim claim in ClaimsStore.AllClaims.Where(c => c.Type != "Role") )
             {
                 var userClaim = new UserClaim
                 {
@@ -178,6 +178,19 @@ namespace ThuVien.Controllers
                     userClaim.IsSelected = true;
                 }
                 model.UserClaims.Add(userClaim);
+            }
+
+            if(currentUserClaims.Any(c => c.Type == "Role" && c.Value == "Librarian") )
+            {
+                model.role = Role.Librarian;
+                model.UserClaims.RemoveRange(3, 2);
+            } else
+            {
+                if(currentUserClaims.Any(c => c.Type == "Role" && c.Value == "Admin") )
+                {
+                    model.role = Role.Admin;
+                }
+                
             }
 
             return View(model);
@@ -195,22 +208,58 @@ namespace ThuVien.Controllers
             }
 
             var currentUserClaims = await userManager.GetClaimsAsync(user);
-            var result = await userManager.RemoveClaimsAsync(user, currentUserClaims);
+            /*var result = await userManager.RemoveClaimsAsync(user, currentUserClaims);
 
             if(!result.Succeeded)
             {
                 ModelState.AddModelError(string.Empty, "Can't remove existing user claims");
                 return View(model);
-            }
+            }*/
 
-            result = await userManager.AddClaimsAsync(user, 
-                model.UserClaims.Where(c => c.IsSelected).Select(c => new Claim(c.ClaimType, "true")));
-
-            if(!result.Succeeded)
+           // result = await userManager.AddClaimsAsync(user, 
+            //    model.UserClaims.Where(c => c.IsSelected).Select(c => new Claim(c.ClaimType, "true")));
+            
+            if(currentUserClaims.Any(c => c.Type == "Role" && c.Type == "Admin"))
             {
-                ModelState.AddModelError(string.Empty, "Can't add user claims");
-                return View(model);
+                if( model.role == Role.Librarian)
+                {
+                    model.UserClaims.RemoveRange(3, 2);
+                    var result = await userManager.RemoveClaimsAsync(user, currentUserClaims);
+
+                    if (!result.Succeeded)
+                    {
+                        ModelState.AddModelError(string.Empty, "Can't remove existing user claims");
+                        return View(model);
+                    }
+                    result = await userManager.AddClaimsAsync(user,
+                    model.UserClaims.Where(c => c.IsSelected).Select(c => new Claim(c.ClaimType, "true")));
+                    var result1 = await userManager.AddClaimAsync(user, new Claim("Role", "Librarian"));
+                    if (!result.Succeeded && !result1.Succeeded)
+                    {
+                        ModelState.AddModelError(string.Empty, "Can't add user claims");
+                        return View(model);
+                    }
+                }
+            }else
+            {
+                var result = await userManager.RemoveClaimsAsync(user, currentUserClaims);
+
+                if (!result.Succeeded)
+                {
+                    ModelState.AddModelError(string.Empty, "Can't remove existing user claims");
+                    return View(model);
+                }
+                result = await userManager.AddClaimsAsync(user,
+                model.UserClaims.Where(c => c.IsSelected).Select(c => new Claim(c.ClaimType, "true")));
+                var result1 = await userManager.AddClaimAsync(user, new Claim("Role", model.role.ToString()));
+                if (!result.Succeeded && !result1.Succeeded)
+                {
+                    ModelState.AddModelError(string.Empty, "Can't add user claims");
+                    return View(model);
+                }
             }
+
+
 
             return View(model);
         }

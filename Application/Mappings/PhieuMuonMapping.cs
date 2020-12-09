@@ -11,30 +11,58 @@ namespace Application.Mappings
     {
         public static PhieuMuonDTO MappingDTO(this PhieuMuon pm)
         {
-            return new PhieuMuonDTO
+            if(!(pm.ChiTietPhieuMuons == null))
             {
-                MaPM = pm.MaPM,
-                MaDG = pm.MaDG,
-                NgayMuon = pm.NgayMuon,
-                TongPhiMuon = pm.TongPhiMuon,
-                UserId = pm.UserId,
-                //ChiTietPhieuMuons = pm.ChiTietPhieuMuons
-                ChiTietPhieuMuons = pm.ChiTietPhieuMuons.MappingDtos().ToList()
-            };
+                return new PhieuMuonDTO
+                {
+                    MaPM = pm.MaPM,
+                    MaDG = pm.MaDG,
+                    NgayMuon = pm.NgayMuon,
+                    TongPhiMuon = pm.TongPhiMuon,
+                    UserId = pm.UserId,
+                    //ChiTietPhieuMuons = pm.ChiTietPhieuMuons
+                    ChiTietPhieuMuons = pm.ChiTietPhieuMuons.MappingDtos().ToList()
+                };
+            } else
+            {
+                return new PhieuMuonDTO
+                {
+                    MaPM = pm.MaPM,
+                    MaDG = pm.MaDG,
+                    NgayMuon = pm.NgayMuon,
+                    TongPhiMuon = pm.TongPhiMuon,
+                    UserId = pm.UserId,
+                };
+            }
+
         }
 
         public static PhieuMuon MappingPhieuMuon(this PhieuMuonDTO pmDTO)
         {
-            return new PhieuMuon
+            if(!(pmDTO.ChiTietPhieuMuons == null))
             {
-                MaPM = pmDTO.MaPM,
-                MaDG = pmDTO.MaDG,
-                NgayMuon = pmDTO.NgayMuon,
-                TongPhiMuon = pmDTO.TongPhiMuon,
-                UserId = pmDTO.UserId,
-                //ChiTietPhieuMuons = pmDTO.ChiTietPhieuMuons
-                ChiTietPhieuMuons = pmDTO.ChiTietPhieuMuons.MappingCTPMs().ToList()
-            };
+                return new PhieuMuon
+                {
+                    MaPM = pmDTO.MaPM,
+                    MaDG = pmDTO.MaDG,
+                    NgayMuon = pmDTO.NgayMuon,
+                    TongPhiMuon = pmDTO.TongPhiMuon,
+                    UserId = pmDTO.UserId,
+                    //ChiTietPhieuMuons = pmDTO.ChiTietPhieuMuons
+                    ChiTietPhieuMuons = pmDTO.ChiTietPhieuMuons.MappingCTPMs().ToList()
+                };
+            } else
+            {
+                return new PhieuMuon
+                {
+                    MaPM = pmDTO.MaPM,
+                    MaDG = pmDTO.MaDG,
+                    NgayMuon = pmDTO.NgayMuon,
+                    TongPhiMuon = pmDTO.TongPhiMuon,
+                    UserId = pmDTO.UserId,
+                };
+            }
+            
         }
         public static void MappingPhieuMuon(this PhieuMuonDTO pmDTO, PhieuMuon pm)
         {
@@ -44,7 +72,10 @@ namespace Application.Mappings
             pm.TongPhiMuon = pmDTO.TongPhiMuon;
             pm.UserId = pmDTO.UserId;
             //pm.ChiTietPhieuMuons = pmDTO.ChiTietPhieuMuons;
-            pm.ChiTietPhieuMuons = pmDTO.ChiTietPhieuMuons.MappingCTPMs().ToList();
+            if (pmDTO.ChiTietPhieuMuons != null) {
+                pm.ChiTietPhieuMuons = pmDTO.ChiTietPhieuMuons.MappingCTPMs().ToList();
+            }
+            
         }
         public static IEnumerable<PhieuMuonDTO> MappingDtos(this IEnumerable<PhieuMuon> DSPhieuMuon)
         {

@@ -11,7 +11,7 @@ namespace ThuVien.Areas.Manager.ViewModels
     {
         public string UserID { get; set; }
         public List<UserClaim> UserClaims { get; set; }
-
+        public Role role { get; set; }
         public UserClaimsViewModel()
         {
             UserClaims = new List<UserClaim>();

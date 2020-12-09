@@ -80,19 +80,26 @@
                                             <th>Gia Hạn</th>
                                         <tr />
                                         <tr>
-                                        @{
-                                            foreach (var pm in Model.PhieuMuons)
-                                            {
-                                                foreach (var ctpm in pm.ChiTietPhieuMuons)
+                                            @{
+                                                foreach (var pm in Model.PhieuMuons)
                                                 {
-                                                    <td>@ctpm.MaSach</td>
-                                                    <td>@ctpm.PhiMuon</td>
-                                                    <td>@ctpm.NgayHetHan</td>
-                                                    <td>@ctpm.GiaHan</td>
-                                                    <input type="checkbox" asp-for="@ctpm.IsSelected" />
+                                                    if (pm.ChiTietPhieuMuons != null)
+                                                    {
+                                                        foreach (var ctpm in pm.ChiTietPhieuMuons)
+                                                        {
+                                                            <td>@ctpm.MaSach</td>
+                                                            <td>@ctpm.PhiMuon</td>
+                                                            <td>@ctpm.NgayHetHan</td>
+                                                            <td>@ctpm.GiaHan</td>
+                                                            <input type="checkbox" asp-for="@ctpm.IsSelected" />
+                                                        }
+                                                    } else
+                                                    {
+                                                        <span>Trống</span>
+                                                    }
+
                                                 }
                                             }
-                                        }
                                         </tr>
                                         </thead>
                                     <tbody>
