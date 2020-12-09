@@ -55,6 +55,10 @@ namespace ThuVien
             services.AddScoped<INhanVienRepository, NhanVienRepository>();
             services.AddScoped<INhanVienService, NhanVienService>();
 
+            //NhaCungCap
+            services.AddScoped<INhaCungCapRepository, NhaCungCapRepository>();
+            services.AddScoped<INhaCungCapService, NhaCungCapService>();
+
             //TacGia
             services.AddScoped<ITacGiaRepository, TacGiaRepository>();
             services.AddScoped<ITacGiaService, TacGiaService>();
