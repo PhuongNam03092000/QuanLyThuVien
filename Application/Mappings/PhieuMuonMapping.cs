@@ -16,8 +16,8 @@ namespace Application.Mappings
                 MaDG = pm.MaDG,
                 NgayMuon = pm.NgayMuon,
                 TongPhiMuon = pm.TongPhiMuon,
-                UserId = pm.UserId,
-                ChiTietPhieuMuons = pm.ChiTietPhieuMuons
+                UserId = pm.UserId
+              
             };
         }
 
@@ -29,8 +29,8 @@ namespace Application.Mappings
                 MaDG = pmDTO.MaDG,
                 NgayMuon = pmDTO.NgayMuon,
                 TongPhiMuon = pmDTO.TongPhiMuon,
-                UserId = pmDTO.UserId,
-                ChiTietPhieuMuons = pmDTO.ChiTietPhieuMuons
+                UserId = pmDTO.UserId
+               
             };
         }
         public static void MappingDocGia(this PhieuMuonDTO pmDTO, PhieuMuon pm)
@@ -40,7 +40,7 @@ namespace Application.Mappings
             pm.NgayMuon = pmDTO.NgayMuon;
             pm.TongPhiMuon = pmDTO.TongPhiMuon;
             pm.UserId = pmDTO.UserId;
-            pm.ChiTietPhieuMuons = pmDTO.ChiTietPhieuMuons;
+            
         }
         public static IEnumerable<PhieuMuonDTO> MappingDtos(this IEnumerable<PhieuMuon> DSPhieuMuon)
         {

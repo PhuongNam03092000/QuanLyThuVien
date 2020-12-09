@@ -1,5 +1,6 @@
 ﻿using Application.DTOs;
 using Application.Interfaces;
+using Application.Mappings;
 using Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -19,9 +20,11 @@ namespace Application.Services
             throw new NotImplementedException();
         }
 
-        public void CreatePhieuMuon(PhieuMuonDTO phieumuon)
+        public void CreatePhieuMuon(PhieuMuonDTO phieumuonDTO)
         {
-            throw new NotImplementedException();
+            var phieumuon = phieumuonDTO.MappingDocGia();
+
+            phieumuonRepository.Add(phieumuon);
         }
 
         public void DeletePhieuMuon(int maPM)
@@ -36,7 +39,8 @@ namespace Application.Services
 
         public IEnumerable<PhieuMuonDTO> GetPhieuMuons(string sortOrder, string searchString, int pageIndex, int pageSize, out int count)
         {
-            throw new NotImplementedException();
+            var phieumuons = phieumuonRepository.Filter(sortOrder, searchString, pageIndex, pageSize, out count);
+            return phieumuons.MappingDtos();
         }
 
         public void UpdatePhieuMuon(PhieuMuonDTO phieumuon)

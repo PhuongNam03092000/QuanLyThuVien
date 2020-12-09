@@ -27,23 +27,28 @@ namespace QLTV.Controllers
         {
             int pageSize = 4;
             int count;
-            var dsdocgia = phieuMuonService.GetPhieuMuons(sortOrder, searchString, pageIndex, pageSize, out count);
+            var dsphieumuon = phieuMuonService.GetPhieuMuons(sortOrder, searchString, pageIndex, pageSize, out count);
             var phieumuon = new PhieuMuonDTO();
-            var ctpm = new ChiTietPhieuMuonDTO();
+            var chitiet = new ChiTietPhieuMuonDTO();
             var phieumuonVM = new PhieuMuonIndexVm()
             {
-                PhieuMuons = new PaginatedList<PhieuMuonDTO>(dsdocgia, count, pageIndex, pageSize),
+                PhieuMuons = new PaginatedList<PhieuMuonDTO>(dsphieumuon, count, pageIndex, pageSize),
                 SearchString = searchString,
                 SortOrder = sortOrder,
                 phieumuon = phieumuon,
-                ctpm = ctpm
+                ctpm = chitiet
             };
+
             return View(phieumuonVM);
         }
-
-        public IActionResult AddCTPM(int i, PhieuMuonIndexVm vm)
+        // vm bao gồm list chitiet 1 phieu
+        public IActionResult Create(PhieuMuonIndexVm vm)
         {
-            System.Console.WriteLine(vm.ctpm.MaSach);
+            if (ModelState.IsValid)
+            {
+                phieuMuonService.CreatePhieuMuon(vm.phieumuon);
+                return RedirectToAction("Index");
+            }
             return View();
         }
     }
