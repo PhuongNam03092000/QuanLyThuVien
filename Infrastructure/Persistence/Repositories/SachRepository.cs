@@ -20,7 +20,7 @@ namespace Infrastructure.Persistence.Repositories
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                query = query.Where(s => s.TenSach.Contains(searchString));
+                query = query.Where(s => s.TenSach.Contains(searchString) || s.TacGia.TenTG.Contains(searchString));
             }
 
             SortSachs(sortOrder, ref query);

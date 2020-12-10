@@ -21,7 +21,7 @@
             </div>
 
             <div class="modal-body">
-                <form method="POST" asp-area="Manager" asp-controller="Sach" asp-action="Them">
+                <form method="POST" enctype="multipart/form-data" asp-area="Manager" asp-controller="Sach" asp-action="Them">
 
                     <div class="form-group">
                         <label asp-for=sach.TenSach>Tên sách</label>
@@ -57,6 +57,11 @@
                     <div class="form-group">
                         <label asp-for=sach.ViTri>Vị trí trưng bày</label>
                         <input class="form-control" asp-for=sach.ViTri placeholder="Vị trí trưng bày">
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="sach.SachImage">Hình ảnh</label><br />
+                        <input asp-for="sach.SachImage" type="file">
                     </div>
 
                     <div class="modal-footer">
@@ -102,6 +107,7 @@
                                 @Html.DisplayNameFor(model => model.Sachs[0].TenSach)
                             </a>
                         </th>
+                        <th>Hình ảnh</th>
                         <th>Tác giả</th>
                         <th>Thể loại</th>
                         <th>Nhà xuất bản</th>
@@ -116,6 +122,7 @@
                         <tr>
                             <td>@sach.MaSach</td>
                             <td>@sach.TenSach</td>
+                            <td><img src="@(string.IsNullOrEmpty(sach.SachImageUrl) ? "/sach/noimage.png" : sach.SachImageUrl)" height="100" /></td>
                             <td>@sach.TenTG</td>
                             <td>@sach.TenTL</td>
                             <td>@sach.TenNXB</td>

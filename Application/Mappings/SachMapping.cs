@@ -21,7 +21,8 @@ namespace Application.Mappings
                 ViTri = sach.ViTri,
                 TenTL = sach.TheLoai.TenTL,
                 TenTG = sach.TacGia.TenTG,
-                TenNXB = sach.NhaXuatBan.TenNXB
+                TenNXB = sach.NhaXuatBan.TenNXB,
+                SachImageUrl = sach.SachImageUrl
             };
         }
 
@@ -35,7 +36,8 @@ namespace Application.Mappings
                 MaTL = sachDto.MaTL,
                 MaNXB = sachDto.MaNXB,
                 GiaBia = sachDto.GiaBia,
-                ViTri = sachDto.ViTri
+                ViTri = sachDto.ViTri,
+                SachImageUrl = sachDto.SachImageUrl
             };
         }
 
@@ -48,6 +50,7 @@ namespace Application.Mappings
             sach.MaNXB = sachDto.MaNXB;
             sach.GiaBia = sachDto.GiaBia;
             sach.ViTri = sachDto.ViTri;
+            sach.SachImageUrl = sachDto.SachImageUrl;
         }
 
         public static IEnumerable<SachDTO> MappingSachDtos(this IEnumerable<Sach> sachs)

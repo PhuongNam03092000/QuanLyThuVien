@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -23,5 +24,8 @@ namespace Application.DTOs
         public string TenTL { set; get; }
         public int GiaBia { set; get; }
         public string ViTri { set; get; }
+
+        public IFormFile SachImage { set; get; }
+        public string SachImageUrl { get; set; }
     }
 }
