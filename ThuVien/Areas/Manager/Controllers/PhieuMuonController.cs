@@ -17,10 +17,12 @@ namespace QLTV.Controllers
     public class PhieuMuonController : Controller
     {
         private readonly IPhieuMuonService phieuMuonService;
+        private readonly ISachService sachService;
 
-        public PhieuMuonController(IPhieuMuonService phieumuonService)
+        public PhieuMuonController(IPhieuMuonService phieumuonService, ISachService sachService)
         {
             this.phieuMuonService = phieumuonService;
+            this.sachService = sachService;
         }
 
         public IActionResult Index(string sortOrder, string searchString, int pageIndex = 1)
@@ -29,24 +31,78 @@ namespace QLTV.Controllers
             int count;
             var dsphieumuon = phieuMuonService.GetPhieuMuons(sortOrder, searchString, pageIndex, pageSize, out count);
             var phieumuon = new PhieuMuonDTO();
-            var chitiet = new ChiTietPhieuMuonDTO();
+            var ctpm = new ChiTietPhieuMuonDTO();
+            //var listSach = sachService.GetSachs(sortOrder, searchString, pageIndex, pageSize, out count);
             var phieumuonVM = new PhieuMuonIndexVm()
             {
                 PhieuMuons = new PaginatedList<PhieuMuonDTO>(dsphieumuon, count, pageIndex, pageSize),
                 SearchString = searchString,
                 SortOrder = sortOrder,
                 phieumuon = phieumuon,
-                ctpm = chitiet
+                ctpm = ctpm
             };
-
             return View(phieumuonVM);
         }
-        // vm bao gồm list chitiet 1 phieu
+
+        [HttpPost]
         public IActionResult Create(PhieuMuonIndexVm vm)
         {
             if (ModelState.IsValid)
             {
                 phieuMuonService.CreatePhieuMuon(vm.phieumuon);
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Update(PhieuMuonIndexVm vm)
+        {
+            if (ModelState.IsValid)
+            {
+                phieuMuonService.UpdatePhieuMuon(vm.phieumuon);
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Delete(PhieuMuonIndexVm vm)
+        {
+            if(ModelState.IsValid)
+            {
+                phieuMuonService.DeletePhieuMuon(vm.phieumuon.MaPM);
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateCTPM(PhieuMuonIndexVm vm)
+        {
+            if(ModelState.IsValid)
+            {
+                phieuMuonService.AddCTPM(vm.ctpm);
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+        [HttpPost]
+        public IActionResult UpdateCTPM(PhieuMuonIndexVm vm)
+        {
+            if (ModelState.IsValid)
+            {
+                phieuMuonService.AddCTPM(vm.ctpm);
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+        [HttpPost]
+        public IActionResult DeleteCTPM(PhieuMuonIndexVm vm)
+        {
+            if (ModelState.IsValid)
+            {
+                phieuMuonService.DeleteCTPM(vm.phieumuon.ChiTietPhieuMuons);
                 return RedirectToAction("Index");
             }
             return View();

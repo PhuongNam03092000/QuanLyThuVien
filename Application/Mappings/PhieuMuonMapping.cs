@@ -2,6 +2,7 @@
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Application.Mappings
@@ -16,12 +17,13 @@ namespace Application.Mappings
                 MaDG = pm.MaDG,
                 NgayMuon = pm.NgayMuon,
                 TongPhiMuon = pm.TongPhiMuon,
-                UserId = pm.UserId
-              
+                UserId = pm.UserId,
+                //ChiTietPhieuMuons = pm.ChiTietPhieuMuons
+                ChiTietPhieuMuons = pm.ChiTietPhieuMuons.MappingDtos().ToList()
             };
         }
 
-        public static PhieuMuon MappingDocGia(this PhieuMuonDTO pmDTO)
+        public static PhieuMuon MappingPhieuMuon(this PhieuMuonDTO pmDTO)
         {
             return new PhieuMuon
             {
@@ -29,18 +31,20 @@ namespace Application.Mappings
                 MaDG = pmDTO.MaDG,
                 NgayMuon = pmDTO.NgayMuon,
                 TongPhiMuon = pmDTO.TongPhiMuon,
-                UserId = pmDTO.UserId
-               
+                UserId = pmDTO.UserId,
+                //ChiTietPhieuMuons = pmDTO.ChiTietPhieuMuons
+                ChiTietPhieuMuons = pmDTO.ChiTietPhieuMuons.MappingCTPMs().ToList()
             };
         }
-        public static void MappingDocGia(this PhieuMuonDTO pmDTO, PhieuMuon pm)
+        public static void MappingPhieuMuon(this PhieuMuonDTO pmDTO, PhieuMuon pm)
         {
             pm.MaPM = pmDTO.MaPM;
             pm.MaDG = pmDTO.MaDG;
             pm.NgayMuon = pmDTO.NgayMuon;
             pm.TongPhiMuon = pmDTO.TongPhiMuon;
             pm.UserId = pmDTO.UserId;
-            
+            //pm.ChiTietPhieuMuons = pmDTO.ChiTietPhieuMuons;
+            pm.ChiTietPhieuMuons = pmDTO.ChiTietPhieuMuons.MappingCTPMs().ToList();
         }
         public static IEnumerable<PhieuMuonDTO> MappingDtos(this IEnumerable<PhieuMuon> DSPhieuMuon)
         {

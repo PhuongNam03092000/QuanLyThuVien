@@ -11,10 +11,10 @@ namespace Application.Interfaces
 
         SachDTO GetSach(int maS);
 
-        void Create(SachDTO sach);
+        void ThemSach(SachDTO sach);
 
-        void Update(SachDTO sach);
+        void SuaSach(SachDTO sach);
 
-        void Delete(int maS);
+        void XoaSach(int maS);
     }
 }

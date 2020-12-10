@@ -17,6 +17,7 @@ namespace Application.Mappings
                 PhiMuon = ctpm.PhiMuon,
                 NgayHetHan = ctpm.NgayHetHan,
                 GiaHan = ctpm.GiaHan
+
             };
         }
 
@@ -31,7 +32,7 @@ namespace Application.Mappings
                 GiaHan = ctpmDTO.GiaHan
             };
         }
-        public static void MappingDocGia(this ChiTietPhieuMuonDTO ctpmDTO, ChiTietPhieuMuon ctpm)
+        public static void MappingCTPM(this ChiTietPhieuMuonDTO ctpmDTO, ChiTietPhieuMuon ctpm)
         {
             ctpm.MaPM = ctpmDTO.MaPM;
             ctpm.MaSach = ctpmDTO.MaSach;
@@ -44,6 +45,14 @@ namespace Application.Mappings
             foreach (var ctpm in DSCTPM)
             {
                 yield return ctpm.MappingDTO();
+            }
+        }
+
+        public static IEnumerable<ChiTietPhieuMuon> MappingCTPMs(this IEnumerable<ChiTietPhieuMuonDTO> DSCTPMDTO)
+        {
+            foreach (var ctpmDTO in DSCTPMDTO)
+            {
+                yield return ctpmDTO.MappingCTPM();
             }
         }
     }

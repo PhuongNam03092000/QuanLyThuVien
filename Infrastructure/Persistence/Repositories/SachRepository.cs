@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace Infrastructure.Persistence.Repositories
 
         public IEnumerable<Sach> Filter(string sortOrder, string searchString, int pageIndex, int pageSize, out int count)
         {
-            var query = context.Sachs.AsQueryable();
+            var query = context.Sachs.Include(s => s.TheLoai).Include(s => s.TacGia).Include(s => s.NhaXuatBan).AsQueryable();
 
             if (!string.IsNullOrEmpty(searchString))
             {
@@ -23,21 +24,31 @@ namespace Infrastructure.Persistence.Repositories
             }
 
             SortSachs(sortOrder, ref query);
+
             count = query.Count();
 
             return query.Skip((pageIndex - 1) * pageSize)
                         .Take(pageSize).ToList();
         }
+
         private static void SortSachs(string sortOrder, ref IQueryable<Sach> query)
         {
             switch (sortOrder)
             {
+                case "mas_desc":
+                    query = query.OrderByDescending(s => s.MaSach);
+                    break;
+
+                case "mas":
+                    query = query.OrderBy(s => s.MaSach);
+                    break;
+
                 case "tens_desc":
                     query = query.OrderByDescending(s => s.TenSach);
                     break;
 
                 case "tens":
-                    query = query.OrderBy(tl => tl.TenSach);
+                    query = query.OrderBy(s => s.TenSach);
                     break;
             }
         }

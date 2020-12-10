@@ -11,6 +11,14 @@ namespace Infrastructure.Persistence.Repositories
         {
         }
 
+        public IEnumerable<TacGia> LayTacGia()
+        {
+            List<TacGia> tg = new List<TacGia>();
+            tg = (from t in context.TacGias select t).ToList();
+            tg.Insert(0, new TacGia { MaTG = 0, TenTG = "Chọn tác giả" });
+            return tg;
+        }
+
         public IEnumerable<TacGia> Filter(string sortOrder, string searchString, int pageIndex, int pageSize, out int count)
         {
             var query = context.TacGias.AsQueryable();
@@ -34,12 +42,15 @@ namespace Infrastructure.Persistence.Repositories
                 case "matg_desc":
                     query = query.OrderByDescending(tg => tg.MaTG);
                     break;
+
                 case "matg":
                     query = query.OrderBy(tg => tg.MaTG);
                     break;
+
                 case "tentg_desc":
                     query = query.OrderByDescending(tg => tg.TenTG);
                     break;
+
                 case "tentg":
                     query = query.OrderBy(tg => tg.TenTG);
                     break;
