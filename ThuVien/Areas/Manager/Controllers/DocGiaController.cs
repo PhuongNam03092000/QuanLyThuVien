@@ -35,7 +35,7 @@ namespace ThuVien.Areas.Manager.Controllers
                 docgia = docGia
             };
 
-            return View(docgiaVM);
+            return View();
         }
 
         public IActionResult Create(DocGiaIndexVm vm)
