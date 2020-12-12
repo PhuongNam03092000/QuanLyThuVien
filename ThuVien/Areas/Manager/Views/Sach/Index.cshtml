@@ -216,6 +216,11 @@
 
                                             @*Bug hình ảnh*@
 
+                                            <div class="form-group">
+                                                <label asp-for="@sach.SachImageUrl">Hình ảnh</label>
+                                                <input class="form-control" asp-for="@sach.SachImageUrl" value="@sach.SachImageUrl" placeholder="Hình ảnh">
+                                            </div>
+
                                             <div class="modal-footer">
                                                 <button class="btn btn-dark" type="button" data-dismiss="modal">Đóng</button>
                                                 <button type="submit" class="btn btn-success">Sửa</button>

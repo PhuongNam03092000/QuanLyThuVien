@@ -41,7 +41,7 @@ namespace ThuVien.Areas.Manager.Controllers
 
         public IActionResult Index(string sortOrder, string searchString, int pageIndex = 1)
         {
-            int pageSize = 10;
+            int pageSize = 8;
             int count;
             var sachs = sachService.GetSachs(sortOrder, searchString, pageIndex, pageSize, out count);
             var sachNew = new SachDTO();
