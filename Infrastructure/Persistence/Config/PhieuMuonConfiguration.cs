@@ -13,6 +13,7 @@ namespace Infrastructure.Persistence
             builder.HasOne(dg => dg.DocGia).WithMany(pm => pm.PhieuMuons).HasForeignKey(dg => dg.MaDG);
             builder.Property(pm => pm.NgayMuon).HasColumnType("Date");
             builder.HasOne(us => us.AppUser).WithMany(pm => pm.PhieuMuons).HasForeignKey(pm => pm.UserId);
+            builder.Property(pm => pm.TrangThai).HasColumnType("Int");
         }
     }
 }
