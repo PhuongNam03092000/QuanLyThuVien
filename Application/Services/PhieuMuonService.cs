@@ -14,14 +14,19 @@ namespace Application.Services
     {
         private readonly IPhieuMuonRepository phieumuonRepository; //Lấy từ Domain
         private readonly IChiTietPhieuMuonRepository chiTietPhieuMuonRepository;
-        public PhieuMuonService(IPhieuMuonRepository phieuMuonRepository, IChiTietPhieuMuonRepository chiTietPhieuMuonRepository)
+        private readonly ISachRepository sachRepository;
+        public PhieuMuonService(IPhieuMuonRepository phieuMuonRepository, IChiTietPhieuMuonRepository chiTietPhieuMuonRepository, ISachRepository sachRepository)
         {
             this.phieumuonRepository = phieuMuonRepository;
             this.chiTietPhieuMuonRepository = chiTietPhieuMuonRepository;
+            this.sachRepository = sachRepository;
         }
         public void AddCTPM(ChiTietPhieuMuonDTO ctpmDTO)
         {
             var ctpm = ctpmDTO.MappingCTPM();
+            var sach = sachRepository.GetBy(ctpmDTO.MaSach);
+            sach.TrangThaiSach = "Đã mượn";
+            sachRepository.Update(sach);
             chiTietPhieuMuonRepository.Add(ctpm);
         }
 
@@ -32,6 +37,9 @@ namespace Application.Services
             list.ToList().ForEach(c =>
             {
                 var ctpm = chiTietPhieuMuonRepository.GetBy(c.MaPM, c.MaSach);
+                var sach = sachRepository.GetBy(c.MaSach);
+                sach.TrangThaiSach = "Còn";
+                sachRepository.Update(sach);
                 chiTietPhieuMuonRepository.Delete(ctpm);
             });
 
