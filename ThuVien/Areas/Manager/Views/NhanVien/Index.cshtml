@@ -1,4 +1,5 @@
 ﻿@using ThuVien.Areas.Manager.ViewModels
+@using Domain.Entities
 @model NhanVienIndexVm
 
 @{
@@ -117,19 +118,20 @@
                 <tbody>
                     @foreach (var nhanVien in Model.NhanViens)
                     {
-                    <tr>
-                        <td>@nhanVien.HoNV</td>
-                        <td>@nhanVien.TenNV</td>
-                        <td>@nhanVien.DoBNV</td>
-                        <td>@nhanVien.PhoneNumber</td>
-                        <td>@nhanVien.Email</td>
-                        
-                        <td>
-                            <button class="btn btn-success" data-toggle="modal" data-target="#sua-@nhanVien.Id" a><i class="far fa-edit"></i></button>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>@nhanVien.HoNV</td>
+                            <td>@nhanVien.TenNV</td>
+                            <td>@nhanVien.DoBNV</td>
+                            <td>@nhanVien.PhoneNumber</td>
+                            <td>@nhanVien.Email</td>
 
-                     //Sửa NV
+                            <td>
+                                <button class="btn btn-success" data-toggle="modal" data-target="#sua-@nhanVien.Id" a><i class="far fa-edit"></i></button>
+                                <button class="btn btn-success" data-toggle="modal" data-target="#permission-@nhanVien.Id" a><i class="far fa-edit"></i></button>
+                            </td>
+                        </tr>
+
+                        //Sửa NV
                         <div class="modal fade" id="sua-@nhanVien.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -162,6 +164,51 @@
                                             <div class="form-group">
                                                 <label asp-for="@nhanVien.Email">Email nhân viên</label>
                                                 <input readonly="readonly" class="form-control" asp-for="@nhanVien.Email" value="@nhanVien.Email" placeholder="Email nhân viên">
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button class="btn btn-dark" type="button" data-dismiss="modal">Đóng</button>
+                                                <button type="submit" class="btn btn-success">Sửa</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="permission-@nhanVien.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Cập nhật nhân viên</h5>
+                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="POST" asp-area="Manager" asp-action="Permission" asp-controller="NhanVien">
+
+                                            <div class="form-group">
+                                                <input type="hidden" asp-for="@nhanVien.Id" />
+                                            </div>
+                                            <span>@nhanVien.UserClaims.Count</span>
+                                            @for (int i = 0; i < nhanVien.UserClaims.Count; i++)
+                                            {
+                                                <div class="form-group">
+                                                    <input type="hidden" asp-for="@nhanVien.UserClaims[i].ClaimType" />
+                                                    <input asp-for="@nhanVien.UserClaims[i].IsSelected" type="checkbox" class="form-control form-control-user">
+                                                    <label class="form-check-label" asp-for="@nhanVien.UserClaims[i].IsSelected">
+                                                        @nhanVien.UserClaims[i].ClaimType
+                                                    </label>
+                                                </div>
+                                            }
+
+
+                                            <div class="form-group">
+                                                <select asp-for="@nhanVien.Role" asp-items="Html.GetEnumSelectList<Role>()">
+                                                    <option value="">-- Chọn Role --</option>
+
+                                                </select>
                                             </div>
 
                                             <div class="modal-footer">
