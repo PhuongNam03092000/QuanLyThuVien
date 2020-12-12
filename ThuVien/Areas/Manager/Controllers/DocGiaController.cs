@@ -55,10 +55,10 @@ namespace ThuVien.Areas.Manager.Controllers
 
             return RedirectToAction("Index");
         }
+
         [HttpPost]
         public IActionResult Update(DocGiaIndexVm vm)
         {
-
             if (ModelState.IsValid)
             {
                 docGiaService.UpdateDocGia(vm.docgia);

@@ -20,7 +20,7 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-area="Manager" asp-controller="Home" asp-action="Index">
 
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
@@ -35,96 +35,90 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <div class="sidebar-heading">
-                Sách
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" asp-area="" asp-controller="Sach" asp-action="Index">
-                    <i></i>
-                    <span>Danh Sách</span>
-                </a>
-            </li>
 
-            <!-- Divider -->
+            <!-- Quản lý -->
             <hr class="sidebar-divider my-0">
 
-            <div class="sidebar-heading">
-                Xử lý
-            </div>
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" asp-area="" asp-controller="" asp-action="">
-                    <i></i>
-                    <span>Xử lý mượn</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" asp-area="" asp-controller="" asp-action="">
-                    <i></i>
-                    <span>Xử lý trả</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" asp-area="" asp-controller="" asp-action="">
-                    <i></i>
-                    <span>Xử lý vi phạm</span>
-                </a>
-            </li>
-
             <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+            <hr class="sidebar-divider">
 
             <div class="sidebar-heading">
                 Quản lý
             </div>
             <li class="nav-item">
-                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" asp-area="" asp-controller="" asp-action="">
+                <a class="nav-link collapsed" asp-area="Manager" asp-controller="NhanVien" asp-action="Index">
                     <i></i>
                     <span>Quản lý nhân viên</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" asp-area="" asp-controller="" asp-action="">
-                    <i></i>
-                    <span>Quản lý tài khoản</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" asp-area="" asp-controller="" asp-action="">
+                <a class="nav-link collapsed" asp-area="Manager" asp-controller="DocGia" asp-action="Index">
                     <i></i>
                     <span>Quản lý độc giả</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" asp-area="" asp-controller="" asp-action="">
+                <a class="nav-link collapsed" asp-area="Manager" asp-controller="Sach" asp-action="Index">
+                    <i></i>
+                    <span>Quản lý sách</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-area="Manager" asp-controller="TheLoai" asp-action="Index">
+                    <i></i>
+                    <span>Quản lý thể loại</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-area="Manager" asp-controller="TacGia" asp-action="Index">
+                    <i></i>
+                    <span>Quản lý tác giả</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-area="Manager" asp-controller="NhaXuatBan" asp-action="Index">
+                    <i></i>
+                    <span>Quản lý nhà xuất bản</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-area="Manager" asp-controller="NhaCungCap" asp-action="Index">
                     <i></i>
                     <span>Quản lý nhà cung cấp</span>
                 </a>
             </li>
 
-            <!-- Divider -->
+            <!-- Xử lý -->
             <hr class="sidebar-divider my-0">
 
-            <div class="sidebar-heading">
-                Khác
-            </div>
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" asp-area="" asp-controller="" asp-action="">
-                    <i></i>
-                    <span>Nhập sách</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" asp-area="" asp-controller="" asp-action="">
-                    <i></i>
-                    <span>Thống kê</span>
-                </a>
-            </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
 
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            <div class="sidebar-heading">
+                Xử lý
             </div>
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-area="Manager" asp-controller="PhieuMuon" asp-action="Index">
+                    <i></i>
+                    <span>Xử lý mượn sách</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-area="Manager" asp-controller="PhieuPhat" asp-action="Index">
+                    <i></i>
+                    <span>Xử lý vi phạm</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-area="Manager" asp-controller="PhieuNhap" asp-action="Index">
+                    <i></i>
+                    <span>Xử lý nhập sách</span>
+                </a>
+            </li>
         </ul>
         <!-- End of Sidebar -->
         <!-- Content Wrapper -->
@@ -140,7 +134,7 @@
                     </button>
 
                     <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto text-dark">
                         <!-- Nav Item - User Information -->
                         <partial name="_LoginInfo" />
                     </ul>

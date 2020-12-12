@@ -58,5 +58,11 @@ namespace Infrastructure.Persistence.Repositories
                     break;
             }
         }
+
+        public int CountNXB()
+        {
+            var c = context.NhaXuatBans.Count();
+            return c;
+        }
     }
 }
