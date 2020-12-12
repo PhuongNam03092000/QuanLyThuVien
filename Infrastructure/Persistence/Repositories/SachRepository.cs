@@ -52,5 +52,11 @@ namespace Infrastructure.Persistence.Repositories
                     break;
             }
         }
+
+        public int CountSach()
+        {
+            var c = context.Sachs.Count();
+            return c;
+        }
     }
 }
