@@ -35,7 +35,7 @@ namespace ThuVien.Areas.Manager.Controllers
                 docgia = docGia
             };
 
-            return View();
+            return View(docgiaVM);
         }
 
         public IActionResult Create(DocGiaIndexVm vm)
@@ -55,10 +55,10 @@ namespace ThuVien.Areas.Manager.Controllers
 
             return RedirectToAction("Index");
         }
+
         [HttpPost]
         public IActionResult Update(DocGiaIndexVm vm)
         {
-
             if (ModelState.IsValid)
             {
                 docGiaService.UpdateDocGia(vm.docgia);
