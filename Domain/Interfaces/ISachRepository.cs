@@ -7,6 +7,8 @@ namespace Domain.Interfaces
 {
     public interface ISachRepository : IEFRepository<Sach>
     {
+        int CountSach();
+
         IEnumerable<Sach> Filter(string sortOrder, string searchString, int pageIndex, int pageSize, out int count);
     }
 }

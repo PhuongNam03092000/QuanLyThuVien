@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Infrastructure.Persistence.Repositories
 {
-    public class DocGiaRepository : EFRepository<DocGia>,IDocGiaRepository
+    public class DocGiaRepository : EFRepository<DocGia>, IDocGiaRepository
     {
         public DocGiaRepository(QLTVContext context) : base(context)
         {
@@ -43,6 +43,10 @@ namespace Infrastructure.Persistence.Repositories
             }
         }
 
+        public int CountDocGia()
+        {
+            var c = context.DocGias.Count();
+            return c;
+        }
     }
 }
-
