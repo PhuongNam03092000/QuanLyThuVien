@@ -62,7 +62,6 @@
     </div>
 </div>
 
-
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Danh sách nhân viên</h6>
@@ -110,26 +109,29 @@
                             </a>
                         </th>
 
-
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var nhanVien in Model.NhanViens)
                     {
-                    <tr>
-                        <td>@nhanVien.HoNV</td>
-                        <td>@nhanVien.TenNV</td>
-                        <td>@nhanVien.DoBNV</td>
-                        <td>@nhanVien.PhoneNumber</td>
-                        <td>@nhanVien.Email</td>
-                        
-                        <td>
-                            <button class="btn btn-success" data-toggle="modal" data-target="#sua-@nhanVien.Id" a><i class="far fa-edit"></i></button>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>@nhanVien.HoNV</td>
+                            <td>@nhanVien.TenNV</td>
+                            <td>
+                                @{
+                                    @nhanVien.DoBNV.ToShortDateString();
+                                }
+                            </td>
+                            <td>@nhanVien.PhoneNumber</td>
+                            <td>@nhanVien.Email</td>
 
-                     //Sửa NV
+                            <td>
+                                <button class="btn btn-success" data-toggle="modal" data-target="#sua-@nhanVien.Id" a><i class="far fa-edit"></i></button>
+                            </td>
+                        </tr>
+
+                        //Sửa NV
                         <div class="modal fade" id="sua-@nhanVien.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
