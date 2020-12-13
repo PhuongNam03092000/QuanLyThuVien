@@ -11,11 +11,9 @@ namespace Application.DTOs
     {
         [Display(Name = "Mã sách")]
         public int MaSach { set; get; }
-
         [Required]
         [Display(Name = "Tên sách")]
         public string TenSach { set; get; }
-
         public int MaTG { set; get; }
         public string TenTG { set; get; }
         public int MaNXB { set; get; }

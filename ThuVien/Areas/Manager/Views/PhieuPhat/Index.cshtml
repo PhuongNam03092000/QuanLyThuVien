@@ -1,13 +1,13 @@
-﻿@using ThuVien.Areas.Manager.ViewModels
-@model PhieuMuonIndexVm
+@using ThuVien.Areas.Manager.ViewModels
+@model PhieuPhatIndexVm
 @{
     ViewData["Title"] = "Danh sách phiếu mượn";
     Layout = "~/Areas/Manager/Views/Shared/_ManagerLayout.cshtml";
 
 }
 
-<button type="submit" class="btn btn-success" data-toggle="modal" data-target="#themPhieuMuon">Thêm phiếu mượn</button>
-<div class="modal fade" id="themPhieuMuon" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<button type="submit" class="btn btn-success" data-toggle="modal" data-target="#themPhieuPhat">Thêm phiếu mượn</button>
+<div class="modal fade" id="themPhieuPhat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true" width="100%">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -21,21 +21,21 @@
 
                 <form method="POST" asp-area="Manager" asp-action="Create" asp-controller="PhieuMuon">
                     <div class="form-group">
-                        <label for="userID" asp-for="phieumuon.UserId">Mã nhân viên</label>
-                        <input readonly="true" class="form-control" asp-for="phieumuon.UserId" id="userID"
+                        <label for="userID">Mã nhân viên</label>
+                        <input readonly="true" class="form-control"  id="userID"
                             placeholder="">
                     </div>
                     <div class="form-group">
-                        <label for="moDocGia" asp-for="phieumuon.MaDG">Mã độc giả</label>
-                        <input class="form-control" asp-for="phieumuon.MaDG" id="maDocGia" placeholder="Mã độc giả">
+                        <label for="moDocGia" >Mã độc giả</label>
+                        <input class="form-control"  id="maDocGia" placeholder="Mã độc giả">
                     </div>
                     <div class="form-group">
-                        <label for="ngaymuon" asp-for="phieumuon.NgayMuon">Ngày mượn</label>
-                        <input class="form-control" asp-for="phieumuon.NgayMuon" id="ngaymuon"
+                        <label for="ngaymuon">Ngày mượn</label>
+                        <input class="form-control"  id="ngaymuon"
                             placeholder=@DateTime.Now>
                     </div>
                     <div class="form-group">
-                        <input class="form-control" asp-for="phieumuon.TongPhiMuon" type="hidden">
+                        <input class="form-control"  type="hidden">
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-danger" type="button" data-dismiss="modal">Cancel</button>
@@ -61,17 +61,16 @@
                         <th>Mã phiếu</th>
                         <th>Mã nhân viên</th>
                         <th>Mã độc giả</th>
-                        <th>Ngày mượn</th>
-                        <th>Tổng phí mượn</th>
+                        <th>Tổng phí phạt</th>
                         <th>Thao tác</th>
-                        <tr />
+                    <tr />
                 </thead>
                 <tbody>
                     @* @foreach (var phieumuon in Model.PhieuMuons)
                         {
                         <tr>
                         <td>@phieumuon.MaPM</td>
-                        <td>@phieumuon.UserId</td>
+                        <td>@</td>
                         <td>@phieumuon.MaDG</td>
                         <td>@phieumuon.NgayMuon</td>
                         <td>@phieumuon.TongPhiMuon</td>
@@ -84,8 +83,8 @@
                         </td>
                         </tr>
                         } *@
-                    <!--Chỗ này cho chạy for nên phải sau data-target="#themCTPM-x"-->
-                    <!--Chỗ này cho chạy for nên phải sau data-target="#xoaCTPM-x"-->
+                    <!--Chỗ này cho chạy for nên phải sau data-target="#themCTPP-x"-->
+                    <!--Chỗ này cho chạy for nên phải sau data-target="#xoaCTPP-x"-->
                     <!--Chỗ này cho chạy for nên phải sau data-target="#chitietCTPM-x"-->
                     @* @{x là @mapm} *@
                     <tr style="box-shadow: solid 0 0 10px #000000;">
@@ -94,14 +93,13 @@
                         <td>DG001</td>
                         <td>20/11/2020</td>
                         <td>10.000đ</td>
-                        <td><button class="btn btn-success " data-toggle="modal" data-target="#themCTPM">Thêm chi
+                        <td><button class="btn btn-success " data-toggle="modal" data-target="#themCTPP">Thêm chi
                                 tiết</button>
                             <button class="btn btn-warning" data-toggle="collapse" data-target="#chitiet">Chi tiết
                                 phiếu</button>
-                            <button class="btn btn-danger" data-toggle="modal" data-target="#xoaPM">Xóa</button>
-                        </td>
+                            <button class="btn btn-danger" data-toggle="modal" data-target="#xoaPP">Xóa</button></td>
                     </tr>
-                    <div class="modal fade" role="dialog" id="xoaPM">
+                    <div class="modal fade" role="dialog" id="xoaPP">
                         <div class="modal-dialog">
                             <!-- Modal content-->
                             <div class="modal-content">
@@ -124,7 +122,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal fade" role="dialog" id="themCTPM">
+                    <div class="modal fade" role="dialog" id="themCTPP">
                         <div class="modal-dialog">
                             <!-- Modal content-->
                             <div class="modal-content">
@@ -136,16 +134,24 @@
                                 <div class="modal-body">
                                     <form action="">
                                         <div class="form-group">
-                                            <label>Mã sách</label>
-                                            <input class="form-control" placeholder="">
+                                            <label >Mã sách</label>
+                                            <input class="form-control" 
+                                            placeholder="">
                                         </div>
                                         <div class="form-group">
-                                            <label>Ngày trả</label>
-                                            <input type="date" class="form-control" placeholder="">
+                                            <label>Nội dung vi phạm</label>
+                                             <input  type="date" class="form-control" 
+                                            placeholder="">
                                         </div>
                                         <div class="form-group">
-                                            <label>Ngày gia hạn</label>
-                                            <input type="date" class="form-control" placeholder="">
+                                             <label>Xử lý vi phạm</label>
+                                             <input  type="date" class="form-control" 
+                                            placeholder="">
+                                        </div>
+                                         <div class="form-group">
+                                             <label>Phí phạt</label>
+                                             <input  type="date" class="form-control" 
+                                            placeholder="">
                                         </div>
                                         <!--cái này không nhớ thuộc tính lắm nên coi lại hộ-->
 
@@ -177,8 +183,8 @@
                                 <th>10.000đ</th>
                                 <!--Cái data-target ở đây cũng phải thêm vào cuối là -masach-->
                                 <th> <button class="btn btn-danger" data-toggle="modal"
-                                        data-target="#xoaCTPM">Xóa</button></th>
-                                <div class="modal fade" role="dialog" id="xoaCTPM">
+                                        data-target="#xoaCTPP">Xóa</button></th>
+                                <div class="modal fade" role="dialog" id="xoaCTPP">
                                     <div class="modal-dialog">
                                         <!-- Modal content-->
                                         <div class="modal-content">
