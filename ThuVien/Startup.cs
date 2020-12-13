@@ -86,6 +86,13 @@ namespace ThuVien
             //ChiTietPhieuMuon
             services.AddScoped<IChiTietPhieuMuonRepository, ChiTietPhieuMuonRepository>();
 
+            //PhieuNhap
+            services.AddScoped<IPhieuNhapRepository, PhieuNhapRepository>();
+            services.AddScoped<IPhieuNhapService, PhieuNhapService>();
+
+            //ChiTietPhieuNhap
+            services.AddScoped<IChiTietPhieuNhapRepository, ChiTietPhieuNhapRepository>();
+
             //TacGia
             services.AddScoped<ITacGiaRepository, TacGiaRepository>();
             services.AddScoped<ITacGiaService, TacGiaService>();

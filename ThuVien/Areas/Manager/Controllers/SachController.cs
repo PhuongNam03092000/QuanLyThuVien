@@ -25,8 +25,8 @@ namespace ThuVien.Areas.Manager.Controllers
         private readonly ITacGiaRepository tacGiaRepository;
         private readonly INhaXuatBanRepository nhaXuatBanRepository;
 
-        public SachController(ISachService sachService, ITheLoaiRepository theLoaiRepository,
-            ITacGiaRepository tacGiaRepository, INhaXuatBanRepository nhaXuatBanRepository)
+        public SachController(ISachService sachService, ITheLoaiRepository theLoaiRepository, ITacGiaRepository tacGiaRepository, 
+            INhaXuatBanRepository nhaXuatBanRepository)
         {
             this.sachService = sachService;
             this.theLoaiRepository = theLoaiRepository;

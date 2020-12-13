@@ -15,12 +15,14 @@ namespace Application.Services
         private readonly IPhieuMuonRepository phieumuonRepository; //Lấy từ Domain
         private readonly IChiTietPhieuMuonRepository chiTietPhieuMuonRepository;
         private readonly ISachRepository sachRepository;
+
         public PhieuMuonService(IPhieuMuonRepository phieuMuonRepository, IChiTietPhieuMuonRepository chiTietPhieuMuonRepository, ISachRepository sachRepository)
         {
             this.phieumuonRepository = phieuMuonRepository;
             this.chiTietPhieuMuonRepository = chiTietPhieuMuonRepository;
             this.sachRepository = sachRepository;
         }
+
         public void AddCTPM(ChiTietPhieuMuonDTO ctpmDTO)
         {
             var ctpm = ctpmDTO.MappingCTPM();
