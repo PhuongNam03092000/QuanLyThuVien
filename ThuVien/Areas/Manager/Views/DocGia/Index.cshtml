@@ -7,6 +7,7 @@
 }
 
 
+
 <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#themDocGia">Thêm độc giả</button>
 <div class="modal fade" id="themDocGia" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -23,26 +24,26 @@
                         <div class="form-row">
                             <div class="col">
                                 <label for="hoDocGia" asp-for=docgia.HoDG>Họ độc giả</label>
-                                <input class="form-control"  asp-for=docgia.HoDG placeholder="Họ độc giả">
+                                <input class="form-control" id="hoDG" asp-for=docgia.HoDG placeholder="Họ độc giả">
                             </div>
                             <div class="col">
                                 <label for="tenDocGia" asp-for=docgia.TenDG>Họ độc giả</label>
-                                <input class="form-control" asp-for=docgia.TenDG  placeholder="Tên độc giả">
+                                <input class="form-control" id="tenDG" asp-for=docgia.TenDG placeholder="Tên độc giả">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="DoB" asp-for=docgia.DoBDG>Ngày sinh</label>
-                        
-                        <input class="form-control" asp-for=docgia.DoBDG placeholder="@DateTime.Now">
+
+                        <input class="form-control" id="DoBDG" asp-for=docgia.DoBDG placeholder="">
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input class="form-control" asp-for=docgia.EmailDG placeholder="Email">
+                        <input class="form-control" id="emailDG" asp-for=docgia.EmailDG placeholder="Email">
                     </div>
                     <div class="form-group">
                         <label for="diachi">Đia chỉ</label>
-                        <input class="form-control" asp-for=docgia.DiaChiDG placeholder="Địa chỉ">
+                        <input class="form-control" id="diachiDG" asp-for=docgia.DiaChiDG placeholder="Địa chỉ">
                     </div>
                     <div class="form-group">
                         <div class="form-row">
@@ -50,17 +51,17 @@
                                 Model.docgia.NgayHetHanDK = DateTime.Now.AddYears(1);}
                             <div class="col">
                                 <label for="ngaydk" asp-for=docgia.NgayDK>Ngày đăng ký</label>
-                                <input class="form-control" asp-for=docgia.NgayDK placeholder="@Model.docgia.NgayDK" >
+                                <input class="form-control" asp-for=docgia.NgayDK placeholder="@Model.docgia.NgayDK">
                             </div>
                             <div class="col">
                                 <label for="ngayhethan" asp-for=docgia.NgayHetHanDK>Ngày hết hạn</label>
-                                <input class="form-control" asp-for=docgia.NgayHetHanDK  placeholder="@Model.docgia.NgayHetHanDK">
+                                <input class="form-control" asp-for=docgia.NgayHetHanDK placeholder="@Model.docgia.NgayHetHanDK">
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-danger" type="button" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-success">Thêm</button>
+                        <button type="submit" class="btn btn-success" onclick="return validate(); ">Thêm</button>
                     </div>
                 </form>
             </div>
@@ -105,107 +106,113 @@
                             <td>@docgia.MaDG</td>
                             <td>@docgia.HoDG</td>
                             <td>@docgia.TenDG</td>
-                            <td>@{
-                                    @docgia.DoBDG.ToShortDateString();
-                                }</td>
-                            <td>@docgia.EmailDG</td>
-                            <td>@docgia.DiaChiDG</td>
-                            <td>@{
-                                @docgia.NgayDK.ToShortDateString();
-                            }</td>
-                            <td>@{
-                                @docgia.NgayHetHanDK.ToShortDateString();
-                            }</td>
-
                             <td>
-                                <button class="btn btn-success" data-toggle="modal" data-target="#suaDocGia-@docgia.MaDG"><i class="far fa-edit"></i></button>
-                                <button class="btn btn-danger" data-toggle="modal" data-target="#xoaDocGia-@docgia.MaDG"><i class="far fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
-                        <div class="modal fade" id="xoaDocGia-@docgia.MaDG" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Thêm độc giả</h5>
-                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form method="POST" asp-area="Manager" asp-action="Delete" asp-controller="DocGia">
-
-                                            <input asp-for="@docgia.MaDG" />
-                                            <button type="submit" class="btn btn-danger">Delete</button>
-                                        </form>
-                                        <a asp-action="Index">Back to list</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal fade" id="suaDocGia-@docgia.MaDG" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Bạn có chắc muốn xóa thể loại này?</h5>
-                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form method="POST" asp-area="Manager" asp-action="Update" asp-controller="DocGia">
-                                            <div class="form-group">
-                                                <label asp-for="@docgia.MaDG">Mã độc giả</label>
-                                                <input readonly="readonly" class="form-control" asp-for="@docgia.MaDG" value="@docgia.MaDG">
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="form-row">
-                                                    <div class="col">
-                                                        <label asp-for="@docgia.HoDG">Họ độc giả</label>
-                                                        <input class="form-control" asp-for="@docgia.HoDG" placeholder="Họ độc giả">
-                                                    </div>
-                                                    <div class="col">
-                                                        <label asp-for="@docgia.TenDG">Họ độc giả</label>
-                                                        <input  class="form-control" asp-for="@docgia.TenDG" placeholder="Tên độc giả">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label asp-for="@docgia.DoBDG">Ngày sinh</label>
-
-                                                <input class="form-control" asp-for="@docgia.DoBDG" placeholder="@DateTime.Now">
-                                            </div>
-                                            <div class="form-group">
-                                                <label asp-for="@docgia.EmailDG">Email</label>
-                                                <input class="form-control" asp-for="@docgia.EmailDG" placeholder="Email">
-                                            </div>
-                                            <div class="form-group">
-                                                <label asp-for="@docgia.DiaChiDG">Đia chỉ</label>
-                                                <input class="form-control" asp-for="@docgia.DiaChiDG" placeholder="Địa chỉ">
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="form-row">
-                                                    @{ Model.docgia.NgayDK = DateTime.Now;
-                                                        Model.docgia.NgayHetHanDK = DateTime.Now.AddYears(1);}
-                                                    <div class="col">
-                                                        <label asp-for="@docgia.NgayDK">Ngày đăng ký</label>
-                                                        <input class="form-control" asp-for="@docgia.NgayDK" placeholder="@docgia.NgayHetHanDK">
-                                                    </div>
-                                                    <div class="col">
-                                                        <label asp-for="@docgia.NgayHetHanDK">Ngày hết hạn</label>
-                                                        <input class="form-control" asp-for="@docgia.NgayHetHanDK" placeholder="@docgia.NgayHetHanDK">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button class="btn btn-danger" type="button" data-dismiss="modal">Cancel</button>
-                                                <button type="submit" class="btn btn-success">Sửa</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                @{
+                                    @docgia.DoBDG.ToShortDateString();
+                            }
+                        </td>
+                        <td>@docgia.EmailDG</td>
+                        <td>@docgia.DiaChiDG</td>
+                        <td>
+                            @{
+                                @docgia.NgayDK.ToShortDateString();
+                        }
+                    </td>
+                    <td>
+                        @{
+                            @docgia.NgayHetHanDK.ToShortDateString();
                     }
+                </td>
+
+                <td>
+                    <button class="btn btn-success" data-toggle="modal" data-target="#suaDocGia-@docgia.MaDG"><i class="far fa-edit"></i></button>
+                    <button class="btn btn-danger" data-toggle="modal" data-target="#xoaDocGia-@docgia.MaDG"><i class="far fa-trash-alt"></i></button>
+                </td>
+            </tr>
+            <div class="modal fade" id="xoaDocGia-@docgia.MaDG" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Thêm độc giả</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST" asp-area="Manager" asp-action="Delete" asp-controller="DocGia">
+
+                                <input asp-for="@docgia.MaDG" />
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                            <a asp-action="Index">Back to list</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="suaDocGia-@docgia.MaDG" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Bạn có chắc muốn xóa thể loại này?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST" asp-area="Manager" asp-action="Update" asp-controller="DocGia">
+                                <div class="form-group">
+                                    <label asp-for="@docgia.MaDG">Mã độc giả</label>
+                                    <input readonly="readonly" class="form-control" asp-for="@docgia.MaDG" value="@docgia.MaDG">
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <label asp-for="@docgia.HoDG">Họ độc giả</label>
+                                            <input class="form-control" asp-for="@docgia.HoDG" placeholder="Họ độc giả">
+                                        </div>
+                                        <div class="col">
+                                            <label asp-for="@docgia.TenDG">Họ độc giả</label>
+                                            <input class="form-control" asp-for="@docgia.TenDG" placeholder="Tên độc giả">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="@docgia.DoBDG">Ngày sinh</label>
+
+                                    <input class="form-control" asp-for="@docgia.DoBDG" placeholder="@DateTime.Now">
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="@docgia.EmailDG">Email</label>
+                                    <input class="form-control" asp-for="@docgia.EmailDG" placeholder="Email">
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="@docgia.DiaChiDG">Đia chỉ</label>
+                                    <input class="form-control" asp-for="@docgia.DiaChiDG" placeholder="Địa chỉ">
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        @{ Model.docgia.NgayDK = DateTime.Now;
+                                            Model.docgia.NgayHetHanDK = DateTime.Now.AddYears(1);}
+                                        <div class="col">
+                                            <label asp-for="@docgia.NgayDK">Ngày đăng ký</label>
+                                            <input class="form-control" asp-for="@docgia.NgayDK" placeholder="@docgia.NgayHetHanDK">
+                                        </div>
+                                        <div class="col">
+                                            <label asp-for="@docgia.NgayHetHanDK">Ngày hết hạn</label>
+                                            <input class="form-control" asp-for="@docgia.NgayHetHanDK" placeholder="@docgia.NgayHetHanDK">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-danger" type="button" data-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-success">Sửa</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
                 </tbody>
             </table>
         </div>
@@ -224,3 +231,18 @@
    asp-route-sortOrder="@Model.SortOrder"
    asp-route-searchString="@Model.SearchString"
    asp-route-pageIndex="@(Model.DocGias.PageIndex +1)">Next</a>
+<script>
+    function validate() {
+        var hoDG = document.getElementById("hoDG");
+        var tenDG = document.getElementById("tenDG");
+        var DoBDG = document.getElementById("DoBDG");
+        var emailDG = document.getElementById("emailDG");
+        var diachiDG = document.getElementById("diachiDG");
+        if (hoDG.value != "" && tenDG.value != "" && DoBDG.value != "" && emailDG.value != "" && diachiDG.value != "") {
+            return true;
+        } else {
+            alert("Hãy kiểm tra lại thông tin bạn vừa nhập");
+            return false;
+        }
+    }
+</script>

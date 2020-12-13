@@ -13,6 +13,7 @@ namespace ThuVien.Areas.Manager.ViewModels
         public string SearchString { get; set; }
         public string SortOrder { get; set; }
         public PhieuMuonDTO phieumuon { get; set; }
-        public ChiTietPhieuMuonDTO ctpm { get; set; }
+        public ChiTietPhieuMuonDTO ctpm{ get; set; }
+        // tối đa đang mượn là 5 quyền
     }
 }

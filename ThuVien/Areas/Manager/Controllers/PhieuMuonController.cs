@@ -27,21 +27,23 @@ namespace QLTV.Controllers
 
         public IActionResult Index(string sortOrder, string searchString, int pageIndex = 1)
         {
-            int pageSize = 4;
-            int count;
-            var dsphieumuon = phieuMuonService.GetPhieuMuons(sortOrder, searchString, pageIndex, pageSize, out count);
-            var phieumuon = new PhieuMuonDTO();
-            var ctpm = new ChiTietPhieuMuonDTO();
-            //var listSach = sachService.GetSachs(sortOrder, searchString, pageIndex, pageSize, out count);
-            var phieumuonVM = new PhieuMuonIndexVm()
-            {
-                PhieuMuons = new PaginatedList<PhieuMuonDTO>(dsphieumuon, count, pageIndex, pageSize),
-                SearchString = searchString,
-                SortOrder = sortOrder,
-                phieumuon = phieumuon,
-                ctpm = ctpm
-            };
-            return View(phieumuonVM);
+        // {
+        //     int pageSize = 4;
+        //     int count;
+        //     var dsphieumuon = phieuMuonService.GetPhieuMuons(sortOrder, searchString, pageIndex, pageSize, out count);
+        //     var phieumuon = new PhieuMuonDTO();
+        //     var ctpm = new ChiTietPhieuMuonDTO();
+        //     //var listSach = sachService.GetSachs(sortOrder, searchString, pageIndex, pageSize, out count);
+        //     var phieumuonVM = new PhieuMuonIndexVm()
+        //     {
+        //         PhieuMuons = new PaginatedList<PhieuMuonDTO>(dsphieumuon, count, pageIndex, pageSize),
+        //         SearchString = searchString,
+        //         SortOrder = sortOrder,
+        //         phieumuon = phieumuon,
+        //         ctpm = ctpm
+        //     };
+        //     return View(phieumuonVM);
+            return View();
         }
 
         [HttpPost]

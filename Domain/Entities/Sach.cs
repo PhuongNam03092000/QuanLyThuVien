@@ -13,7 +13,7 @@ namespace Domain.Entities
         public TheLoai TheLoai { set; get; }
         public int MaTL { set; get; }
         public int GiaBia { set; get; }
-        public string SachImage { get; set; }
+        public string SachImageUrl { get; set; }
         public string ViTri { set; get; }
         public string TrangThaiSach { set; get; }
         public ChiTietPhieuNhap ChiTietPhieuNhap { get; set; }

@@ -58,5 +58,11 @@ namespace Infrastructure.Persistence.Repositories
                     break;
             }
         }
+
+        public int CountTheLoai()
+        {
+            var c = context.TheLoais.Count();
+            return c;
+        }
     }
 }

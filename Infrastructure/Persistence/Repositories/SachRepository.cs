@@ -20,7 +20,7 @@ namespace Infrastructure.Persistence.Repositories
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                query = query.Where(s => s.TenSach.Contains(searchString));
+                query = query.Where(s => s.TenSach.Contains(searchString) || s.TacGia.TenTG.Contains(searchString));
             }
 
             SortSachs(sortOrder, ref query);
@@ -51,6 +51,12 @@ namespace Infrastructure.Persistence.Repositories
                     query = query.OrderBy(s => s.TenSach);
                     break;
             }
+        }
+
+        public int CountSach()
+        {
+            var c = context.Sachs.Count();
+            return c;
         }
     }
 }
