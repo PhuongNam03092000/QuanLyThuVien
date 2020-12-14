@@ -26,30 +26,25 @@ namespace Application.Services
         public SachDTO GetSach(int maS)
         {
             var sach = _sachRepository.GetBy(maS);
-
             return sach.MappingSachDto();
         }
 
         public void SuaSach(SachDTO sachDto)
         {
             var sach = _sachRepository.GetBy(sachDto.MaSach);
-
             sachDto.MappingSach(sach);
-
             _sachRepository.Update(sach);
         }
 
         public void ThemSach(SachDTO sachDto)
         {
             var sach = sachDto.MappingSach();
-
             _sachRepository.Add(sach);
         }
 
         public void XoaSach(int maS)
         {
             var sach = _sachRepository.GetBy(maS);
-
             _sachRepository.Delete(sach);
         }
     }

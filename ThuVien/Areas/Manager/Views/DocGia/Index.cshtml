@@ -70,7 +70,7 @@
 </div>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Danh sách độc giả</h6>
+        <h5 class="m-0 font-weight-bold text-primary">Danh sách độc giả</h5>
     </div>
     
     <div class="card-body">
@@ -86,7 +86,7 @@
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
-                    <tr>
+                    <tr style="text-align:center">
                         <th>Mã độc giả</th>
                         <th>Họ</th>
                         <th>
@@ -100,7 +100,7 @@
                         <th>Địa Chỉ</th>
                         <th>Ngày đăng ký</th>
                         <th>Ngày hết hạn</th>
-                        <td><input id="checkAllItem" type="checkbox"></td>
+                        <th>Thao tác</th>
                     <tr />
                 </thead>
                 <tbody>
@@ -128,36 +128,19 @@
                     }
                 </td>
 
-                <td>
-                    <button class="btn btn-success" data-toggle="modal" data-target="#suaDocGia-@docgia.MaDG"><i class="far fa-edit"></i></button>
-                    <button class="btn btn-danger" data-toggle="modal" data-target="#xoaDocGia-@docgia.MaDG"><i class="far fa-trash-alt"></i></button>
+                <td >
+                    <div style="width:85px;height:32px">
+                        <button style="" class="btn btn-success" data-toggle="modal" data-target="#suaDocGia-@docgia.MaDG"><i class="far fa-edit" style="width:14px"></i></button>
+                        <button style="" class="btn btn-danger" data-toggle="modal" data-target="#xoaDocGia-@docgia.MaDG"><i class="far fa-trash-alt"></i></button>
+                    </div>
                 </td>
             </tr>
-            <div class="modal fade" id="xoaDocGia-@docgia.MaDG" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Thêm độc giả</h5>
-                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form method="POST" asp-area="Manager" asp-action="Delete" asp-controller="DocGia">
-
-                                <input asp-for="@docgia.MaDG" />
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                            <a asp-action="Index">Back to list</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
             <div class="modal fade" id="suaDocGia-@docgia.MaDG" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Bạn có chắc muốn xóa thể loại này?</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Thông tin độc giả</h5>
                             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
@@ -208,10 +191,29 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button class="btn btn-danger" type="button" data-dismiss="modal">Cancel</button>
+                                    <button class="btn btn-danger" type="button" data-dismiss="modal">Thoát</button>
                                     <button type="submit" class="btn btn-success">Sửa</button>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                </div>
+            </div><div class="modal fade" id="xoaDocGia-@docgia.MaDG" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Bạn có chắc muốn xóa độc giả này?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST" asp-area="Manager" asp-action="Delete" asp-controller="DocGia">
+
+                                <input asp-for="@docgia.MaDG" readonly="readonly"/>
+                                <button type="submit" class="btn btn-danger">Xóa</button>
+                            </form>
+                            <a asp-action="Index">Quay lại</a>
                         </div>
                     </div>
                 </div>
