@@ -8,7 +8,7 @@
 
 
 
-<button type="submit" class="btn btn-success" data-toggle="modal" data-target="#themDocGia">Thêm độc giả</button>
+
 <div class="modal fade" id="themDocGia" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -72,13 +72,17 @@
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Danh sách độc giả</h6>
     </div>
+    
     <div class="card-body">
+        
         <form method="GET" id="formTiemKiem">
             <div class="form-group">
-                <input type="text" asp-for="SearchString" />
-                <input class="btn btn-primary" type="submit" value="Tìm kiếm" />
+                <input type="text" asp-for="SearchString"/>
+                <input class="btn btn-dark" type="submit" value="Tìm kiếm" />
             </div>
         </form>
+        <p> <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#themDocGia">Thêm</button></p>
+       
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
