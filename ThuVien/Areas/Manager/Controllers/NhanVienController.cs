@@ -34,16 +34,20 @@ namespace ThuVien.Areas.Manager.Controllers
             var nhanViens = nhanVienService.GetNhanViens(sortOrder, searchString, pageIndex, pageSize, out count);
             var nhanVienNew = new NhanVienDTO();
 
-            foreach (var nhanVien in nhanViens)
+            
+
+            var test = nhanViens.ToList();
+
+            foreach (var nhanVien in test)
             {
                 var user = await userManager.FindByIdAsync(nhanVien.Id.ToString());
                 if (user == null)
                 {
-                    ViewBag.ErrorMessage = $"User with ID= {nhanVien.Id} not found.";
+                    ViewBag.ErrorMessage = $"User with ID= {nhanVien.Id.ToString()} not found.";
                 }
 
                 var currentUserClaims = await userManager.GetClaimsAsync(user);
-                //nhanVien.UserClaims = new List<UserClaim>();
+
                 foreach (Claim claim in ClaimsStore.AllClaims.Where(c => c.Type != "Role"))
                 {
                     var userClaim = new UserClaim
@@ -65,18 +69,17 @@ namespace ThuVien.Areas.Manager.Controllers
                 }
                 else
                 {
-                    if (currentUserClaims.Any(c => c.Type == "Role" && c.Value == "Admin"))
+                    if (currentUserClaims.Any(c => c.Type == "Role" && c.Value == "Admin") )
                     {
                         nhanVien.Role = Role.Admin;
                     }
-                };
+                }
             }
 
-            var test = nhanViens;
 
-        var nhanVienVM = new NhanVienIndexVm()
+            var nhanVienVM = new NhanVienIndexVm()
             {
-                NhanViens = new PaginatedList<NhanVienDTO>(nhanViens, count, pageIndex, pageSize),
+                NhanViens = new PaginatedList<NhanVienDTO>(test, count, pageIndex, pageSize),
                 SearchString = searchString,
                 SortOrder = sortOrder,
                 nhanVien = nhanVienNew

@@ -37,7 +37,7 @@ namespace QLTV.Controllers
             var phieumuonVM = new PhieuMuonIndexVm()
             {
                PhieuMuons = new PaginatedList<PhieuMuonDTO>(dsphieumuon, count, pageIndex, pageSize),
-              SearchString = searchString,
+               SearchString = searchString,
                SortOrder = sortOrder,
                phieumuon = phieumuon,
                ctpm = ctpm
@@ -99,6 +99,17 @@ namespace QLTV.Controllers
             }
             return View();
         }
+
+        [HttpPost]
+        public IActionResult UpdateTinhTrangCTPM(PhieuMuonIndexVm vm)
+        {
+            if(ModelState.IsValid)
+            {
+               
+            }
+            return View();
+        }
+
         [HttpPost]
         public IActionResult DeleteCTPM(PhieuMuonIndexVm vm)
         {
