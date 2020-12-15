@@ -8,7 +8,7 @@
 
 <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#themPhieuMuon">Thêm phiếu mượn</button>
 <div class="modal fade" id="themPhieuMuon" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true" width="100%">
+     aria-hidden="true" width="100%">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -23,7 +23,7 @@
                     <div class="form-group">
                         <label for="userID" asp-for="phieumuon.UserId">Mã nhân viên</label>
                         <input readonly="true" class="form-control" asp-for="phieumuon.UserId" id="userID"
-                            placeholder="">
+                               placeholder="">
                     </div>
                     <div class="form-group">
                         <label for="moDocGia" asp-for="phieumuon.MaDG">Mã độc giả</label>
@@ -32,7 +32,7 @@
                     <div class="form-group">
                         <label for="ngaymuon" asp-for="phieumuon.NgayMuon">Ngày mượn</label>
                         <input class="form-control" asp-for="phieumuon.NgayMuon" id="ngaymuon"
-                            placeholder=@DateTime.Now>
+                               placeholder=@DateTime.Now>
                     </div>
                     <div class="form-group">
                         <input class="form-control" asp-for="phieumuon.TongPhiMuon" type="hidden">
@@ -64,43 +64,61 @@
                         <th>Ngày mượn</th>
                         <th>Tổng phí mượn</th>
                         <th>Thao tác</th>
-                        <tr />
+                    <tr />
                 </thead>
                 <tbody>
-                    @* @foreach (var phieumuon in Model.PhieuMuons)
-                        {
+                    @foreach (var phieumuon in Model.PhieuMuons)
+                    {
                         <tr>
-                        <td>@phieumuon.MaPM</td>
-                        <td>@phieumuon.UserId</td>
-                        <td>@phieumuon.MaDG</td>
-                        <td>@phieumuon.NgayMuon</td>
-                        <td>@phieumuon.TongPhiMuon</td>
-
-                        <td>
-                        <button class="btn btn-success" data-toggle="modal" data-target="#"><i class="far
-                        fa-edit"></i></button>
-                        <button class="btn btn-danger" data-toggle="modal" data-target="#"><i class="far
-                        fa-trash-alt"></i></button>
-                        </td>
+                            <td>@phieumuon.MaPM</td>
+                            <td>@phieumuon.UserId</td>
+                            <td>@phieumuon.MaDG</td>
+                            <td>@phieumuon.NgayMuon</td>
+                            <td>@phieumuon.TongPhiMuon</td>
+                            <td>
+                                <button class="btn btn-success" data-toggle="modal" data-target="#themCTPM-@phieumuon.MaPM"><i class="far fa-edit"></i></button>
+                                <button class="btn btn-warning" data-toggle="collapse" data-target="#chitiet-@phieumuon.MaPM">
+                                    Chi tiết
+                                    phiếu
+                                </button>
+                                <button class="btn btn-danger" data-toggle="modal" data-target="#xoaPM-@phieumuon.MaPM"><i class="far fa-trash-alt"></i></button>
+                            </td>
                         </tr>
-                        } *@
-                    <!--Chỗ này cho chạy for nên phải sau data-target="#themCTPM-x"-->
-                    <!--Chỗ này cho chạy for nên phải sau data-target="#xoaCTPM-x"-->
-                    <!--Chỗ này cho chạy for nên phải sau data-target="#chitietCTPM-x"-->
-                    @* @{x là @mapm} *@
-                    <tr style="box-shadow: solid 0 0 10px #000000;">
-                        <td>PM001</td>
-                        <td>NV001</td>
-                        <td>DG001</td>
-                        <td>20/11/2020</td>
-                        <td>10.000đ</td>
-                        <td>
-                            <button class="btn btn-success " data-toggle="modal" data-target="#themCTPM">Thêm chi tiết</button>
-                            <button class="btn btn-warning" data-toggle="collapse" data-target="#chitiet">Chi tiết phiếu</button>
-                            <button class="btn btn-danger" data-toggle="modal" data-target="#xoaPM">Xóa</button>
-                        </td>
+                        <tr>
+                            <table class="table collapse" id="chitiet-@phieumuon.MaPM" style="table-layout:fixed;">
+                                <thead>
+                                <th>Mã sách</th>
+                                <th>Ngày trả</th>
+                                <th>Ngày gia hạn</th>
+                                <th>Phí mượn</th>
+                                <th>
+                                    <button class="btn btn-danger" data-toggle="modal"
+                                            data-target="#xoaCTPM">
+                                        Xóa
+                                    </button>
+                                </th>
+                                
+                                </thead>
+                                <!--Dây là bát đầu chạy vòng lặp for cho ctpm-->
+                                <tbody>
+                                    @{
+                                        foreach (var ctpm in phieumuon.ChiTietPhieuMuons)
+                                        {
+                                        <th>@ctpm.MaSach</th>
+                                        <th>@ctpm.NgayHetHan</th>
+                                        <th>@ctpm.GiaHan</th>
+                                        <th>@ctpm.PhiMuon</th>
+                                        <th><input type="checkbox" /></th>
+                                    }
+                                    }
+
+
+                   
+
+                        </tbody>
+                    </table>
                     </tr>
-                    <div class="modal fade" role="dialog" id="xoaPM">
+                    <div class="modal fade" role="dialog" id="xoaPM-@phieumuon.MaPM">
                         <div class="modal-dialog">
                             <!-- Modal content-->
                             <div class="modal-content">
@@ -111,8 +129,6 @@
                                 <div class="modal-body">
                                     <form action="">
                                         <!--cái này không nhớ thuộc tính lắm nên coi lại hộ-->
-
-
                                         <div class="form-group">
                                             <button class="btn btn-light" type="submit">Hủy</button>
                                             <button class="btn btn-success" type="submit">Xóa phiếu</button>
@@ -123,7 +139,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal fade" role="dialog" id="themCTPM">
+                    <div class="modal fade" role="dialog" id="themCTPM-@phieumuon.MaPM">
                         <div class="modal-dialog">
                             <!-- Modal content-->
                             <div class="modal-content">
@@ -158,52 +174,9 @@
                             </div>
                         </div>
                     </div>
-                    <tr>
-                        <table class="table collapse" id="chitiet" style="table-layout:fixed;">
-                            <thead>
-                                <th>Mã sách</th>
-                                <th>Ngày trả</th>
-                                <th>Ngày gia hạn</th>
-                                <th>Phí mượn</th>
-                                <th>Thao tác</th>
-                                <th><span></span></th>
-                            </thead>
-                            <!--Dây là bát đầu chạy vòng lặp for cho ctpm-->
-                            <tbody>
-                                <th>MS001</th>
-                                <th>22/11/2020</th>
-                                <th>/</th>
-                                <th>10.000đ</th>
-                                <!--Cái data-target ở đây cũng phải thêm vào cuối là -masach-->
-                                <th> <button class="btn btn-danger" data-toggle="modal"
-                                        data-target="#xoaCTPM">Xóa</button></th>
-                                <div class="modal fade" role="dialog" id="xoaCTPM">
-                                    <div class="modal-dialog">
-                                        <!-- Modal content-->
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title">Xóa chi tiết</h4>
-                                                <button type="button" class="close"
-                                                    data-dismiss="modal">&times;</button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form action="">
-                                                    <div class="form-group">
-                                                        <button class="btn btn-light" type="submit">Hủy</button>
-                                                        <button class="btn btn-danger" type="submit">Xóa</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <th><span></span></th>
-                            </tbody>
-                        </table>
-                    </tr>
-                </tbody>
-            </table>
+                }
+                    </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
