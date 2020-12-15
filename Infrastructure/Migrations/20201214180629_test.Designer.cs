@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(QLTVContext))]
-    [Migration("20201120170200_test4")]
-    partial class test4
+    [Migration("20201214180629_test")]
+    partial class test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -305,6 +305,9 @@ namespace Infrastructure.Migrations
                     b.Property<int>("TongPhiMuon")
                         .HasColumnType("int");
 
+                    b.Property<int>("TrangThai")
+                        .HasColumnType("Int");
+
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
@@ -417,7 +420,7 @@ namespace Infrastructure.Migrations
                     b.Property<int>("MaTL")
                         .HasColumnType("int");
 
-                    b.Property<string>("SachImage")
+                    b.Property<string>("SachImageUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TenSach")

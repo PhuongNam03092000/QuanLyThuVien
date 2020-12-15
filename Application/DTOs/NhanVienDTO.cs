@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -29,6 +30,12 @@ namespace Application.DTOs
 
         [Display(Name = "Địa chỉ nhân viên")]
         public string DiaChiNV { get; set; }
-        
+        public List<UserClaim> UserClaims { get; set; }
+        public Role Role { get; set; }
+
+        public NhanVienDTO()
+        {
+            UserClaims = new List<UserClaim>();
+        }
     }
 }

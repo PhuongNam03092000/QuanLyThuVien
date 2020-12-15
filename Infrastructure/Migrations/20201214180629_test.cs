@@ -240,7 +240,8 @@ namespace Infrastructure.Migrations
                     MaDG = table.Column<int>(type: "int", nullable: false),
                     NgayMuon = table.Column<DateTime>(type: "Date", nullable: false),
                     TongPhiMuon = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    TrangThai = table.Column<int>(type: "Int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -353,7 +354,7 @@ namespace Infrastructure.Migrations
                     MaNXB = table.Column<int>(type: "int", nullable: false),
                     MaTL = table.Column<int>(type: "int", nullable: false),
                     GiaBia = table.Column<int>(type: "int", nullable: false),
-                    SachImages = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SachImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ViTri = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TrangThaiSach = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
