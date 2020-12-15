@@ -27,7 +27,7 @@
                                 <input class="form-control" id="hoDG" asp-for=docgia.HoDG placeholder="Họ độc giả">
                             </div>
                             <div class="col">
-                                <label for="tenDocGia" asp-for=docgia.TenDG>Họ độc giả</label>
+                                <label for="tenDocGia" asp-for=docgia.TenDG>Tên độc giả</label>
                                 <input class="form-control" id="tenDG" asp-for=docgia.TenDG placeholder="Tên độc giả">
                             </div>
                         </div>
@@ -140,7 +140,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Thông tin độc giả</h5>
+                            <h5 class="modal-title" id="exampleModalLabel" style="color:cornflowerblue">Thông tin độc giả</h5>
                             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
@@ -148,32 +148,32 @@
                         <div class="modal-body">
                             <form method="POST" asp-area="Manager" asp-action="Update" asp-controller="DocGia">
                                 <div class="form-group">
-                                    <label asp-for="@docgia.MaDG">Mã độc giả</label>
+                                    <label asp-for="@docgia.MaDG" style="color:black">Mã độc giả</label>
                                     <input readonly="readonly" class="form-control" asp-for="@docgia.MaDG" value="@docgia.MaDG">
                                 </div>
                                 <div class="form-group">
                                     <div class="form-row">
                                         <div class="col">
-                                            <label asp-for="@docgia.HoDG">Họ độc giả</label>
+                                            <label asp-for="@docgia.HoDG" style="color:black">Họ độc giả</label>
                                             <input class="form-control" asp-for="@docgia.HoDG" placeholder="Họ độc giả">
                                         </div>
                                         <div class="col">
-                                            <label asp-for="@docgia.TenDG">Họ độc giả</label>
+                                            <label asp-for="@docgia.TenDG" style="color:black">Tên độc giả</label>
                                             <input class="form-control" asp-for="@docgia.TenDG" placeholder="Tên độc giả">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label asp-for="@docgia.DoBDG">Ngày sinh</label>
+                                    <label asp-for="@docgia.DoBDG" style="color:black">Ngày sinh</label>
 
                                     <input class="form-control" asp-for="@docgia.DoBDG" placeholder="@DateTime.Now">
                                 </div>
                                 <div class="form-group">
-                                    <label asp-for="@docgia.EmailDG">Email</label>
+                                    <label asp-for="@docgia.EmailDG" style="color:black">Email</label>
                                     <input class="form-control" asp-for="@docgia.EmailDG" placeholder="Email">
                                 </div>
                                 <div class="form-group">
-                                    <label asp-for="@docgia.DiaChiDG">Đia chỉ</label>
+                                    <label asp-for="@docgia.DiaChiDG" style="color:black">Đia chỉ</label>
                                     <input class="form-control" asp-for="@docgia.DiaChiDG" placeholder="Địa chỉ">
                                 </div>
                                 <div class="form-group">
@@ -181,11 +181,11 @@
                                         @{ Model.docgia.NgayDK = DateTime.Now;
                                             Model.docgia.NgayHetHanDK = DateTime.Now.AddYears(1);}
                                         <div class="col">
-                                            <label asp-for="@docgia.NgayDK">Ngày đăng ký</label>
+                                            <label asp-for="@docgia.NgayDK" style="color:black">Ngày đăng ký</label>
                                             <input class="form-control" asp-for="@docgia.NgayDK" placeholder="@docgia.NgayHetHanDK">
                                         </div>
                                         <div class="col">
-                                            <label asp-for="@docgia.NgayHetHanDK">Ngày hết hạn</label>
+                                            <label asp-for="@docgia.NgayHetHanDK" style="color:black    ">Ngày hết hạn</label>
                                             <input class="form-control" asp-for="@docgia.NgayHetHanDK" placeholder="@docgia.NgayHetHanDK">
                                         </div>
                                     </div>
