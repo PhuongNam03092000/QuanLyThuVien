@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ThuVien.Areas.Manager.Controllers
 {
     [Area("Manager")]
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ISachRepository sachRepository;
