@@ -66,6 +66,7 @@
                         <th>Mã độc giả</th>
                         <th>Ngày mượn</th>
                         <th>Tổng phí mượn</th>
+                        <th>Trạng thái</th>
                         <th>Thao tác</th>
                     <tr/>
                 </thead>
@@ -77,7 +78,16 @@
                             <td>@phieumuon.UserId</td>
                             <td>@phieumuon.MaDG</td>
                             <td>@phieumuon.NgayMuon</td>
+                            @{
+                            var trangthai = new String("");
+                                if(phieumuon.TrangThai == 0){
+                                    trangthai = "Chưa trả";
+                                }else{
+                                    trangthai = "Đã trã";
+                                }
+                            }
                             <td>@phieumuon.TongPhiMuon</td>
+                            <td>@phieumuon.TrangThai</td>
                             <td>
                                 <button class="btn btn-success" data-toggle="modal" data-target="#themCTPM-@phieumuon.MaPM"><i class="far fa-edit"></i></button>
                                 <button class="btn btn-warning" data-toggle="modal" data-target="#chitiet-@phieumuon.MaPM">Chi tiết phiếu</button>
