@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(QLTVContext))]
-    [Migration("20201213121035__test8")]
-    partial class _test8
+    [Migration("20201216113504_ts")]
+    partial class ts
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -363,6 +363,9 @@ namespace Infrastructure.Migrations
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
+
+                    b.Property<int>("trangthai")
+                        .HasColumnType("Int");
 
                     b.HasKey("MaPP");
 

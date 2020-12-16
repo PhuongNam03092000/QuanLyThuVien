@@ -13,5 +13,6 @@ namespace Domain.Entities
         public List<ChiTietPhieuTra> ChiTietPhieuTras { get; set; }
         public AppUser AppUser { get; set; }
         public int UserId { set; get; }
+
     }
 }

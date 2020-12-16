@@ -12,5 +12,6 @@ namespace Application.DTOs
         public int TongPhiPhat { set; get; }
         public int UserId { set; get; }
         public List<ChiTietPhieuPhatDTO> ChiTietPhieuPhats { get; set; }
+        public int trangthai { set; get; }
     }
 }

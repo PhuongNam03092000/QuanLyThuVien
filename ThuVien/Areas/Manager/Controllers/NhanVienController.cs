@@ -15,7 +15,8 @@ using ThuVien.Helper;
 namespace ThuVien.Areas.Manager.Controllers
 {
     [Area("Manager")]
-    [Authorize(Policy = "Admin")]
+    [Authorize]
+    //[Authorize(Policy = "Admin")]
     public class NhanVienController : Controller
     {
         private readonly INhanVienService nhanVienService;
@@ -118,7 +119,7 @@ namespace ThuVien.Areas.Manager.Controllers
             if (user == null)
             {
                 ViewBag.ErrorMessage = $"User with ID= {vm.nhanVien.Id} not found.";
-                RedirectToAction("index");
+                return RedirectToAction("Index");
             }
 
             var currentUserClaims = await userManager.GetClaimsAsync(user);
@@ -143,15 +144,15 @@ namespace ThuVien.Areas.Manager.Controllers
                     if (!result.Succeeded)
                     {
                         ModelState.AddModelError(string.Empty, "Can't remove existing user claims");
-                        return View(vm);
+                        return View(vm.nhanVien);
                     }
                     result = await userManager.AddClaimsAsync(user,
-                    vm.nhanVien.UserClaims.Where(c => c.IsSelected).Select(c => new Claim(c.ClaimType, "true")));
+                    vm.nhanVien.UserClaims.Where(c => c.IsSelected).Select(c => new Claim(c.ClaimType, c.IsSelected.ToString() )));
                     var result1 = await userManager.AddClaimAsync(user, new Claim("Role", "Librarian"));
                     if (!result.Succeeded && !result1.Succeeded)
                     {
                         ModelState.AddModelError(string.Empty, "Can't add user claims");
-                        return View(vm);
+                        return View(vm.nhanVien);
                     }
                 }
             }
@@ -162,22 +163,19 @@ namespace ThuVien.Areas.Manager.Controllers
                 if (!result.Succeeded)
                 {
                     ModelState.AddModelError(string.Empty, "Can't remove existing user claims");
-                    return View(vm);
+                    return View(vm.nhanVien);
                 }
                 result = await userManager.AddClaimsAsync(user,
-                vm.nhanVien.UserClaims.Where(c => c.IsSelected).Select(c => new Claim(c.ClaimType, "true")));
+                vm.nhanVien.UserClaims.Where(c => c.IsSelected).Select(c => new Claim(c.ClaimType, c.IsSelected.ToString() )));
                 var result1 = await userManager.AddClaimAsync(user, new Claim("Role", vm.nhanVien.Role.ToString()));
                 if (!result.Succeeded && !result1.Succeeded)
                 {
                     ModelState.AddModelError(string.Empty, "Can't add user claims");
-                    return View(vm);
+                    return View(vm.nhanVien);
                 }
+                return RedirectToAction("Index", vm);
             }
-
-
-
-            return View(vm);
+            return View();
         }
-
     }
 }

@@ -21,6 +21,7 @@ namespace Application.Mappings
                     TongPhiMuon = pm.TongPhiMuon,
                     UserId = pm.UserId,
                     //ChiTietPhieuMuons = pm.ChiTietPhieuMuons
+                    TrangThai = pm.TrangThai,
                     ChiTietPhieuMuons = pm.ChiTietPhieuMuons.MappingDtos().ToList()
                 };
             } else
@@ -31,6 +32,7 @@ namespace Application.Mappings
                     MaDG = pm.MaDG,
                     NgayMuon = pm.NgayMuon,
                     TongPhiMuon = pm.TongPhiMuon,
+                    TrangThai = pm.TrangThai,
                     UserId = pm.UserId,
                 };
             }

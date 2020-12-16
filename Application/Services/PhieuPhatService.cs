@@ -27,9 +27,25 @@ namespace Application.Services
         {
             var ctpp = ctppDTO.MappingCTPP();
             var sach = sachRepository.GetBy(ctppDTO.MaSach);
-            sach.TrangThaiSach = "Đã mượn";
-            sachRepository.Update(sach);
+            var phieuphat = phieuphatRepository.GetBy(ctppDTO.MaPP);
+            if(ctpp.NoiDungViPham == "Trễ hạn sách")
+            {
+                ctpp.PhiPhat += (int)(sach.GiaBia *0.2); 
+            }
+            if (ctpp.NoiDungViPham == "Hư sách")
+            {
+                ctpp.PhiPhat += (int)(sach.GiaBia * 0.3);
+            }
+            if (ctpp.NoiDungViPham == "Mất sách")
+            {
+                ctpp.PhiPhat += (int)(sach.GiaBia * 1.2);
+            }
+            
+            phieuphat.TongPhiPhat += ctpp.PhiPhat;
+            
+            
             chiTietPhieuPhatRepository.Add(ctpp);
+            phieuphatRepository.Update(phieuphat);
         }
 
         public void DeleteCTPP(IEnumerable<ChiTietPhieuPhatDTO> ctppDTOList)
@@ -39,9 +55,7 @@ namespace Application.Services
             list.ToList().ForEach(c =>
             {
                 var ctpp = chiTietPhieuPhatRepository.GetBy(c.MaPP, c.MaSach);
-                var sach = sachRepository.GetBy(c.MaSach);
-                sach.TrangThaiSach = "Còn";
-                sachRepository.Update(sach);
+
                 chiTietPhieuPhatRepository.Delete(ctpp);
             });
 
@@ -50,6 +64,7 @@ namespace Application.Services
         public void UpdateCTPP(ChiTietPhieuPhatDTO ctppDTO)
         {
             var ctpp = chiTietPhieuPhatRepository.GetBy(ctppDTO.MaPP, ctppDTO.MaSach);
+            
             ctppDTO.MappingCTPP(ctpp);
             chiTietPhieuPhatRepository.Update(ctpp);
         }
@@ -61,7 +76,10 @@ namespace Application.Services
         public void DeletePhieuPhat(int maPP)
         {
             var phieuphat = phieuphatRepository.GetBy(maPP);
-            phieuphatRepository.Delete(phieuphat);
+            phieuphat.trangthai = 0;
+
+            phieuphatRepository.Update(phieuphat);
+
         }
 
         public PhieuPhatDTO GetPhieuPhat(int maPP)

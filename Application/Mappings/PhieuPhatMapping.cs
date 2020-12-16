@@ -18,6 +18,7 @@ namespace Application.Mappings
                     MaDG = pp.MaDG,
                     TongPhiPhat = pp.TongPhiPhat,
                     UserId = pp.UserId,
+                    trangthai = pp.trangthai,
                     ChiTietPhieuPhats = pp.ChiTietPhieuPhats.MappingDtos().ToList()
                 };
             }
@@ -29,6 +30,7 @@ namespace Application.Mappings
                     MaDG = pp.MaDG,
                     TongPhiPhat = pp.TongPhiPhat,
                     UserId = pp.UserId,
+                    trangthai = pp.trangthai,
                 };
             }
         }
@@ -43,6 +45,7 @@ namespace Application.Mappings
                     MaDG = ppDTO.MaDG,
                     TongPhiPhat = ppDTO.TongPhiPhat,
                     UserId = ppDTO.UserId,
+                    trangthai = ppDTO.trangthai,
                     ChiTietPhieuPhats = ppDTO.ChiTietPhieuPhats.MappingCTPPs().ToList()
                 };
             }
@@ -54,6 +57,7 @@ namespace Application.Mappings
                     MaDG = ppDTO.MaDG,
                     TongPhiPhat = ppDTO.TongPhiPhat,
                     UserId = ppDTO.UserId,
+                    trangthai = ppDTO.trangthai,
                 };
             }
         }
@@ -64,6 +68,7 @@ namespace Application.Mappings
             pp.MaDG = ppDTO.MaDG;
             pp.TongPhiPhat = ppDTO.TongPhiPhat;
             pp.UserId = ppDTO.UserId;
+            pp.trangthai = ppDTO.trangthai;
             if (ppDTO.ChiTietPhieuPhats != null)
             {
                 pp.ChiTietPhieuPhats = ppDTO.ChiTietPhieuPhats.MappingCTPPs().ToList();

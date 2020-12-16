@@ -29,22 +29,27 @@ namespace Application.Services
             var sach = sachRepository.GetBy(ctpmDTO.MaSach);
             sach.TrangThaiSach = "Đã mượn";
             sachRepository.Update(sach);
+            var pm = phieumuonRepository.GetBy(ctpm.MaPM);
+            ctpm.PhiMuon = (int)(sach.GiaBia * 0.2);
+            pm.TongPhiMuon = pm.TongPhiMuon + ctpm.PhiMuon;
+            phieumuonRepository.Update(pm);
             chiTietPhieuMuonRepository.Add(ctpm);
         }
 
         public void DeleteCTPM(IEnumerable<ChiTietPhieuMuonDTO> ctpmDTOList)
         {
             var list = ctpmDTOList.Where(c => c.IsSelected == true);
-
+            var pm = phieumuonRepository.GetBy(ctpmDTOList.FirstOrDefault().MaPM);
             list.ToList().ForEach(c =>
             {
                 var ctpm = chiTietPhieuMuonRepository.GetBy(c.MaPM, c.MaSach);
                 var sach = sachRepository.GetBy(c.MaSach);
                 sach.TrangThaiSach = "Còn";
                 sachRepository.Update(sach);
+                pm.TongPhiMuon -= ctpm.PhiMuon;
                 chiTietPhieuMuonRepository.Delete(ctpm);
             });
-
+            phieumuonRepository.Update(pm);
             /*var ctpm = chiTietPhieuMuonRepository.GetBy(c.MaPM, c.MaSach);
             chiTietPhieuMuonRepository.Delete(ctpm);*/
 
@@ -60,9 +65,15 @@ namespace Application.Services
         public void CreatePhieuMuon(PhieuMuonDTO phieumuonDTO)
         {
             var phieumuon = phieumuonDTO.MappingPhieuMuon();
+            phieumuon.TrangThai = 1;
             phieumuonRepository.Add(phieumuon);
         }
-
+        public void UpdatePhieuMuon(PhieuMuonDTO phieumuonDTO)
+        {
+            var phieumuon = phieumuonRepository.GetBy(phieumuonDTO.MaPM);
+            phieumuon.TrangThai = 0;
+            phieumuonRepository.Update(phieumuon);
+        }
 
         public void DeletePhieuMuon(int maPM)
         {
@@ -94,13 +105,6 @@ namespace Application.Services
                 }
             }
             return phieuMuons.MappingDtos();
-        }
-
-        public void UpdatePhieuMuon(PhieuMuonDTO phieumuonDTO)
-        {
-            var phieumuon = phieumuonRepository.GetBy(phieumuonDTO.MaPM);
-            phieumuonDTO.MappingPhieuMuon(phieumuon);
-            phieumuonRepository.Update(phieumuon);
         }
     }
 }

@@ -89,7 +89,8 @@ namespace QLTV.Controllers
             }
             return View();
         }
-        [HttpPost]
+        
+        /*[HttpPost]
         public IActionResult UpdateCTPM(PhieuMuonIndexVm vm)
         {
             if (ModelState.IsValid)
@@ -98,21 +99,12 @@ namespace QLTV.Controllers
                 return RedirectToAction("Index");
             }
             return View();
-        }
-
-        [HttpPost]
-        public IActionResult UpdateTinhTrangCTPM(PhieuMuonIndexVm vm)
-        {
-            if(ModelState.IsValid)
-            {
-               
-            }
-            return View();
-        }
+        }*/
 
         [HttpPost]
         public IActionResult DeleteCTPM(PhieuMuonIndexVm vm)
         {
+            var a = 123;
             if (ModelState.IsValid)
             {
                 phieuMuonService.DeleteCTPM(vm.phieumuon.ChiTietPhieuMuons);

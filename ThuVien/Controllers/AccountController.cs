@@ -216,12 +216,12 @@ namespace ThuVien.Controllers
                 return View(model);
             }*/
 
-           // result = await userManager.AddClaimsAsync(user, 
+            // result = await userManager.AddClaimsAsync(user, 
             //    model.UserClaims.Where(c => c.IsSelected).Select(c => new Claim(c.ClaimType, "true")));
-            
-            if(currentUserClaims.Any(c => c.Type == "Role" && c.Type == "Admin"))
+
+            if (currentUserClaims.Any(c => c.Type == "Role" && c.Type == "Admin"))
             {
-                if( model.role == Role.Librarian)
+                if (model.role == Role.Librarian)
                 {
                     model.UserClaims.RemoveRange(3, 2);
                     var result = await userManager.RemoveClaimsAsync(user, currentUserClaims);
@@ -240,7 +240,8 @@ namespace ThuVien.Controllers
                         return View(model);
                     }
                 }
-            }else
+            }
+            else
             {
                 var result = await userManager.RemoveClaimsAsync(user, currentUserClaims);
 
@@ -258,9 +259,6 @@ namespace ThuVien.Controllers
                     return View(model);
                 }
             }
-
-
-
             return View(model);
         }
 
