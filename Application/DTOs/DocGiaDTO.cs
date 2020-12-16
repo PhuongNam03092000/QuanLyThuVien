@@ -20,13 +20,14 @@ namespace Application.DTOs
 
         [DataType(DataType.Date)]
         public DateTime DoBDG { set; get; }
-
+        [Required]
         public string EmailDG { set; get; }
+        [Required]
         public string DiaChiDG { set; get; }
-
+        [Required]
         [DataType(DataType.Date)]
         public DateTime NgayDK { set; get; }
-
+        [Required]
         [DataType(DataType.Date)]
         public DateTime NgayHetHanDK { set; get; }
     }

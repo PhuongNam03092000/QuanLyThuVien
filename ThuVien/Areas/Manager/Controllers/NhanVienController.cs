@@ -15,7 +15,7 @@ using ThuVien.Helper;
 namespace ThuVien.Areas.Manager.Controllers
 {
     [Area("Manager")]
-    [Authorize]
+    [Authorize(Policy = "Admin")]
     public class NhanVienController : Controller
     {
         private readonly INhanVienService nhanVienService;
