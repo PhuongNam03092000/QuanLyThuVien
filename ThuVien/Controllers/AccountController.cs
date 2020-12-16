@@ -262,6 +262,11 @@ namespace ThuVien.Controllers
             return View(model);
         }
 
+        [AllowAnonymous]
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
 
         public async Task<IActionResult> Info()
         {
