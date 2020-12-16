@@ -28,7 +28,7 @@ namespace ThuVien.Areas.Manager.Controllers
 
         public IActionResult Index(string sortOrder, string searchString, int pageIndex = 1)
         {
-            int pageSize = 4;
+            int pageSize = 8;
             int count;
             var dsdocgia = docGiaService.GetDSDocGia(sortOrder, searchString, pageIndex, pageSize, out count);
             var docGia = new DocGiaDTO();

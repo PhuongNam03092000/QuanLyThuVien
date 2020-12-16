@@ -11,7 +11,6 @@ namespace Application.DTOs
     {
         [Display(Name = "Mã sách")]
         public int MaSach { set; get; }
-        [Required]
         [Display(Name = "Tên sách")]
         public string TenSach { set; get; }
         public int MaTG { set; get; }
@@ -22,7 +21,6 @@ namespace Application.DTOs
         public string TenTL { set; get; }
         public int GiaBia { set; get; }
         public string ViTri { set; get; }
-
         public IFormFile SachImage { set; get; }
         public string SachImageUrl { get; set; }
     }

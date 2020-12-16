@@ -30,7 +30,7 @@ namespace ThuVien.Areas.Manager.Controllers
 
         public async Task<IActionResult> Index(string sortOrder, string searchString, int pageIndex = 1)
         {
-            int pageSize = 10;
+            int pageSize = 8;
             int count;
             var nhanViens = nhanVienService.GetNhanViens(sortOrder, searchString, pageIndex, pageSize, out count);
             var nhanVienNew = new NhanVienDTO();

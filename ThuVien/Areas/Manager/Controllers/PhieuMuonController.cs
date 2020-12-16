@@ -28,7 +28,7 @@ namespace QLTV.Controllers
         public IActionResult Index(string sortOrder, string searchString, int pageIndex = 1)
         {
          
-            int pageSize = 4;
+            int pageSize = 8;
             int count;
             var dsphieumuon = phieuMuonService.GetPhieuMuons(sortOrder, searchString, pageIndex, pageSize, out count);
             var phieumuon = new PhieuMuonDTO();

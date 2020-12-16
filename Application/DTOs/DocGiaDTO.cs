@@ -9,25 +9,16 @@ namespace Application.DTOs
     {
         [Display(Name = "Mã độc giả")]
         public int MaDG { set; get; }
-
-        [Required]
         [Display(Name = "Họ độc giả")]
         public string HoDG { set; get; }
-
-        [Required]
         [Display(Name = "Tên độc giả")]
         public string TenDG { set; get; }
-
         [DataType(DataType.Date)]
         public DateTime DoBDG { set; get; }
-        [Required]
         public string EmailDG { set; get; }
-        [Required]
         public string DiaChiDG { set; get; }
-        [Required]
         [DataType(DataType.Date)]
         public DateTime NgayDK { set; get; }
-        [Required]
         [DataType(DataType.Date)]
         public DateTime NgayHetHanDK { set; get; }
     }

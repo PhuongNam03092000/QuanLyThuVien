@@ -49,9 +49,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <div class="sidebar-heading">
-                Quản lý
-            </div>
+            
             <li class="nav-item">
                 <a class="nav-link collapsed" asp-area="Manager" asp-controller="NhanVien" asp-action="Index">
                     <i></i>
@@ -88,12 +86,7 @@
                     <span>Quản lý nhà xuất bản</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" asp-area="Manager" asp-controller="NhaCungCap" asp-action="Index">
-                    <i></i>
-                    <span>Quản lý nhà cung cấp</span>
-                </a>
-            </li>
+           
             @{
                 //Get user id nè
                 User.Claims.Any(c => c.Type == "Role" && c.Value == "Librarian");//Kiểm tra thủ thư
@@ -102,15 +95,7 @@
                 //Admin thì show đủ, thủ thư thì chắc khỏi show =))
             }
 
-            <!-- Xử lý -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <div class="sidebar-heading">
-                Xử lý
-            </div>
+           
             <li class="nav-item">
                 <a class="nav-link collapsed" asp-area="Manager" asp-controller="PhieuMuon" asp-action="Index">
                     <i></i>
@@ -122,13 +107,7 @@
                     <i></i>
                     <span>Xử lý vi phạm</span>
                 </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" asp-area="Manager" asp-controller="PhieuNhap" asp-action="Index">
-                    <i></i>
-                    <span>Xử lý nhập sách</span>
-                </a>
-            </li>
+            </li>           
         </ul>
         <!-- End of Sidebar -->
         <!-- Content Wrapper -->
