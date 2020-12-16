@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Infrastructure.Persistence.Migrations
+namespace Infrastructure.Migrations
 {
     [DbContext(typeof(QLTVContext))]
-    [Migration("20201216135037_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20201216152012_Data")]
+    partial class Data
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

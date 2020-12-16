@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Infrastructure.Persistence.Migrations
+namespace Infrastructure.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Data : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
