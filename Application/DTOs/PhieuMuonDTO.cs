@@ -12,6 +12,7 @@ namespace Application.DTOs
         public DateTime NgayMuon { set; get; }
         public int TongPhiMuon { set; get; }
         public int UserId { set; get; }
+        public int TrangThai { get; set; }
         public List<ChiTietPhieuMuonDTO> ChiTietPhieuMuons { get; set; }
     }
 }

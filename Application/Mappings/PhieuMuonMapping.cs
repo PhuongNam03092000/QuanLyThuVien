@@ -21,6 +21,7 @@ namespace Application.Mappings
                     TongPhiMuon = pm.TongPhiMuon,
                     UserId = pm.UserId,
                     //ChiTietPhieuMuons = pm.ChiTietPhieuMuons
+                    TrangThai = pm.TrangThai,
                     ChiTietPhieuMuons = pm.ChiTietPhieuMuons.MappingDtos().ToList()
                 };
             } else

@@ -362,6 +362,9 @@ namespace Infrastructure.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
+                    b.Property<int>("trangthai")
+                        .HasColumnType("Int");
+
                     b.HasKey("MaPP");
 
                     b.HasIndex("MaDG");

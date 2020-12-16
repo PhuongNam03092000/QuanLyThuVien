@@ -182,7 +182,7 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Cập nhật nhân viên</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Cập nhật quyền</h5>
                                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
@@ -197,7 +197,7 @@
                                             {
                                                 <div class="form-group">
                                                     <input type="hidden" asp-for="@nhanVien.UserClaims[i].ClaimType" />
-                                                    <input asp-for="@nhanVien.UserClaims[i].IsSelected" type="checkbox" class="form-control form-control-user">
+                                                    <input asp-for="@nhanVien.UserClaims[i].IsSelected" type="checkbox" >
                                                     <label class="form-check-label" asp-for="@nhanVien.UserClaims[i].IsSelected">
                                                         @nhanVien.UserClaims[i].ClaimType
                                                     </label>

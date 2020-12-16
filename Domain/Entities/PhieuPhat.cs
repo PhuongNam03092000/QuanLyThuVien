@@ -12,5 +12,6 @@ namespace Domain.Entities
         public List<ChiTietPhieuPhat> ChiTietPhieuPhats { get; set; }
         public AppUser AppUser { get; set; }
         public int UserId { set; get; }
+        public int trangthai { set; get; }
     }
 }

@@ -27,7 +27,7 @@ namespace ThuVien.Areas.Manager.Controllers
 
         public IActionResult Index(string sortOrder, string searchString, int pageIndex = 1)
         {
-            int pageSize = 4;
+            int pageSize = 10;
             int count;
             var dsphieuphat = phieuPhatService.GetPhieuPhats(sortOrder, searchString, pageIndex, pageSize, out count);
             var phieuphat = new PhieuPhatDTO();

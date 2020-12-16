@@ -12,6 +12,7 @@ namespace Infrastructure.Persistence
             builder.HasKey(pp => pp.MaPP);
             builder.HasOne(dg => dg.DocGia).WithMany(pt => pt.PhieuPhats).HasForeignKey(dg => dg.MaDG);
             builder.HasOne(us => us.AppUser).WithMany(pp => pp.PhieuPhats).HasForeignKey(us => us.UserId);
+            builder.Property(pp => pp.trangthai).HasColumnType("Int");
         }
     }
 }
