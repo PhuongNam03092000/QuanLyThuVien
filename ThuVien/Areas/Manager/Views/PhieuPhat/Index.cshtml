@@ -1,9 +1,12 @@
 @using ThuVien.Areas.Manager.ViewModels
+@using Domain.Entities
+@inject Microsoft.AspNetCore.Identity.SignInManager<AppUser> _signin
+@inject Microsoft.AspNetCore.Identity.UserManager<AppUser> _user
 @model PhieuPhatIndexVm
+
 @{
     ViewData["Title"] = "Danh sách phiếu phạt";
     Layout = "~/Areas/Manager/Views/Shared/_ManagerLayout.cshtml";
-
 }
 
 <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#themPhieuPhat">Thêm phiếu phạt</button>
@@ -11,38 +14,35 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Thêm phiếu phạt</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Thêm Phiếu phạt</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">
 
+            <div class="modal-body">
                 <form method="POST" asp-area="Manager" asp-action="Create" asp-controller="PhieuPhat">
                     <div class="form-group">
-                        <label for="userID" asp-for="phieuphat.MaPP">Mã Phiếu phạt</label>
+                        <label for="userID" asp-for="phieuphat.MaPP">Mã phiếu phạt</label>
                         <input readonly="true" class="form-control" asp-for="phieuphat.MaPP" id="maPP" placeholder="">
                     </div>
                     <div class="form-group">
                         <label for="userID" asp-for="phieuphat.UserId">Mã nhân viên</label>
-                        <input  class="form-control" asp-for="phieuphat.UserId" id="userID" placeholder="">
+                        <input class="form-control" asp-for="phieuphat.UserId" id="userID" value="@_user.GetUserId(User)" readonly="readonly">
                     </div>
                     <div class="form-group">
                         <label for="moDocGia" asp-for="phieuphat.MaDG">Mã độc giả</label>
-                        <input class="form-control" asp-for="phieuphat.MaDG" id="maDocGia" placeholder="Mã độc giả">
+                        <input class="form-control" asp-for="phieuphat.MaDG" id="maNhaCungCap" placeholder="Mã độc giả">
                     </div>
                     <div class="form-group">
                         <label for="ngaymuon" asp-for="phieuphat.TongPhiPhat">Tổng phí phạt</label>
                         <input class="form-control" asp-for="phieuphat.TongPhiPhat" id="tongphiphat">
                     </div>
-
                     <div class="modal-footer">
-                        <button class="btn btn-danger" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-danger" type="button" data-dismiss="modal">Hủy</button>
                         <button type="submit" class="btn btn-success">Thêm</button>
                     </div>
                 </form>
-
-
             </div>
         </div>
     </div>
@@ -61,11 +61,10 @@
                         <th>Mã nhân viên</th>
                         <th>Mã độc giả</th>
                         <th>Tổng phí phạt</th>
-                        <th>Thao tác</th>
-                    <tr />
+                        <th>Giao tác</th>
+                    </tr>
                 </thead>
                 <tbody>
-
                     @foreach (var phieuphat in Model.PhieuPhats)
                     {
                         <tr>
@@ -74,115 +73,158 @@
                             <td>@phieuphat.MaDG</td>
                             <td>@phieuphat.TongPhiPhat</td>
                             <td>
-                                <button class="btn btn-success" data-toggle="modal" data-target="#themCTPP-@phieuphat.MaPP"><i class="far fa-edit"></i></button>
-                                <button class="btn btn-warning" data-toggle="collapse" data-target="#chitiet-@phieuphat.MaPP">Chi tiết phiếu</button>
-                                <button class="btn btn-danger" data-toggle="modal" data-target="#xoaPP-@phieuphat.MaPP"><i class="far fa-trash-alt"></i></button>
+                                <button class="btn btn-success " data-toggle="modal" data-target="#themCTPP-@phieuphat.MaPP">Thêm chi tiết</button>
+                                <button class="btn btn-warning" data-toggle="collapse" data-target="#chitietpp-@phieuphat.MaPP">Chi tiết phiếu</button>
+                                <button class="btn btn-danger" data-toggle="modal" data-target="#xoaPP-@phieuphat.MaPP">Xóa</button>
                             </td>
                         </tr>
                     }
+                </tbody>
+                @foreach (var phieuphat in Model.PhieuPhats)
+                {
+                    @*================== Form chi tiết phiếu phạt ==================*@
 
-                    @foreach (var phieuphat in Model.PhieuPhats)
-                    {
-                        <tr>
-                            <table class="table collapse" id="chitiet-@phieuphat.MaPP" style="table-layout:fixed;">
-                                <thead>
+                    <table class="table collapse" id="chitietpp-@phieuphat.MaPP" style="table-layout:fixed;">
+                        <thead>
+                            <tr>
                                 <th>Mã sách</th>
                                 <th>Nội dung vi phạm</th>
                                 <th>Xử lý vi phạm</th>
                                 <th>Phí phạt</th>
-                                <th>
-                                    <button class="btn btn-danger" data-toggle="modal" data-target="#xoaCTPP"> Xóa </button>
-                                </th>
-                                </thead>
-                                <tbody>
-                                    @{
-                                        if (phieuphat.ChiTietPhieuPhats != null)
-                                        {
-                                            foreach (var ctpp in phieuphat.ChiTietPhieuPhats)
-                                            {
-                                                <th>@ctpp.MaSach</th>
-                                                <th>@ctpp.NoiDungViPham</th>
-                                                <th>@ctpp.XuLyViPham</th>
-                                                <th>@ctpp.PhiPhat</th>
-                                                <th><input type="checkbox" /></th>
-                                            }
-                                        }
-                                    }
-                                </tbody>
-                            </table>
-                        </tr>
-                    }
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                    @foreach (var phieuphat in Model.PhieuPhats)
-                    {
+                            @{
+                                if (phieuphat.ChiTietPhieuPhats != null)
+                                {
+                                    foreach (var ctpp in phieuphat.ChiTietPhieuPhats)
+                                    {
+                                        <tr>
 
-                        <div class="modal fade" role="dialog" id="xoaPP-@phieuphat.MaPP">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title">Xác nhận xóa</h4>
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form action="">
-                                            <div class="form-group">
-                                                <button class="btn btn-light" type="submit">Hủy</button>
-                                                <button class="btn btn-success" type="submit">Xóa phiếu</button>
+                                            <td>@ctpp.MaSach</td>
+                                            <td>@ctpp.NoiDungViPham</td>
+                                            <td>@ctpp.XuLyViPham</td>
+                                            <td>@ctpp.PhiPhat</td>
+
+                                            <td><button class="btn btn-danger" data-toggle="modal" data-target="#xoaCTPP-@ctpp.MaPP">Xóa</button></td>
+                                            <!--form xóa chi tiết-->
+                                            <div class="modal fade" role="dialog" id="xoaCTPP-@phieuphat.MaPP">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Xóa chi tiết</h4>
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form action="">
+                                                                <div class="form-group">
+                                                                    <button class="btn btn-light" type="submit">Hủy</button>
+                                                                    <button class="btn btn-danger" type="submit">Xóa</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </form>
-                                    </div>
+                                        </tr>
+                                    }
+
+                                }
+                            }
+                    </table>
+
+
+
+
+
+
+
+
+                    @*================== Form thêm chi tiết ==================*@
+                    <div class="modal fade" role="dialog" id="themCTPP-@phieuphat.MaPP">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Thêm chi tiết phiếu phạt</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="POST" asp-area="Manager" asp-action="CreateCTPP" asp-controller="PhieuPhat">
+                                        <div class="form-group">
+                                            <label>Mã phiếu phạt</label>
+                                            <input readonly="readonly" class="form-control" id="maPP" value="@phieuphat.MaPP">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Mã sách</label>
+                                            <input class="form-control" id="maSach">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Nội dung vi phạm</label>
+                                            <input class="form-control" id="noidungvipham">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Xử lý vi phạm</label>
+                                            <input class="form-control" a id="xulyvipham">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Phí phạt</label>
+                                            <input class="form-control" id="phiphat">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-danger" type="button" data-dismiss="modal">Hủy</button>
+                                            <button type="submit" class="btn btn-success">Thêm chi tiết</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-                    }
+                    </div>
 
-                    @foreach (var phieuphat in Model.PhieuPhats)
-                    {
-                        if (phieuphat.ChiTietPhieuPhats != null)
-                        {
-                            foreach (var ctpp in phieuphat.ChiTietPhieuPhats)
-                            {
-                                <div class="modal fade" role="dialog" id="themCTPP-@ctpp.MaSach">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title">Thêm chi tiết phiếu phạt</h4>
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form action="">
-                                                    <div class="form-group">
-                                                        <label asp-for="@ctpp.MaSach">Mã sách</label>
-                                                        <input class="form-control" asp-for="@ctpp.MaSach" id="maSach">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label asp-for="@ctpp.NoiDungViPham">Nội dung vi phạm</label>
-                                                        <input class="form-control" asp-for="@ctpp.NoiDungViPham" id="noidungvipham">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label asp-for="@ctpp.XuLyViPham">Xử lý vi phạm</label>
-                                                        <input class="form-control" asp-for="@ctpp.XuLyViPham" id="xulyvipham">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label asp-for="@ctpp.PhiPhat">Phí phạt</label>
-                                                        <input class="form-control" asp-for="@ctpp.PhiPhat" id="phiphat">
-                                                    </div>
 
-                                                    <div class="modal-footer">
-                                                        <button class="btn btn-light" type="submit">Hủy</button>
-                                                        <button class="btn btn-success" type="submit">Thêm phiếu</button>
-                                                    </div>
-                                                </form>
-                                            </div>
 
-                                        </div>
-                                    </div>
+
+
+
+                    <!--Form xóa phiếu Phạt-->
+                    <div class="modal fade" role="dialog" id="xoaPP-@phieuphat.MaPP">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Xác nhận xóa</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 </div>
-                            }
-                        }
-                    }
-                    </tbody>
-                    </table>
-                </div>
-            </div>
+                                <div class="modal-body">
+                                    <form method="post" asp-area="Manager" asp-action="Delete" asp-controller="PhieuPhat">
+                                        <div class="form-group">
+                                            <input type="text" value="@phieuphat.MaPP" />
+                                            <button class="btn btn-light" type="button" data-dismiss="modal">Hủy</button>
+                                            <button class="btn btn-success" type="submit">Xóa phiếu</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                }
+
+
+            </table>
         </div>
+    </div>
+</div>
