@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Domain.Entities
+@inject Microsoft.AspNetCore.Identity.SignInManager<AppUser> _signInManager
+
+<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="utf-8">
@@ -91,6 +94,13 @@
                     <span>Quản lý nhà cung cấp</span>
                 </a>
             </li>
+            @{
+                //Get user id nè
+                User.Claims.Any(c => c.Type == "Role" && c.Value == "Librarian");//Kiểm tra thủ thư
+                User.Claims.Any(c => c.Type == "Role" && c.Value == "Admin"); // Kiểm tra admin
+
+                //Admin thì show đủ, thủ thư thì chắc khỏi show =))
+            }
 
             <!-- Xử lý -->
             <hr class="sidebar-divider my-0">

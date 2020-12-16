@@ -11,7 +11,12 @@ namespace ThuVien.Areas.Manager.Controllers
 {
     [Area("Manager")]
     //[Route("[Area]/[Controller]/[Action]")]
+    //Này là authorize bt, chỉ cần đăng nhập là xem dc
     [Authorize]
+    //Authorize Admin
+    //[Authorize(Policy = "Admin")]
+    //Authorize Thủ thư
+    //[Authorize(Policy = "Librarian")]
     public class DocGiaController : Controller
     {
         private readonly IDocGiaService docGiaService;
@@ -38,6 +43,9 @@ namespace ThuVien.Areas.Manager.Controllers
             return View(docgiaVM);
         }
 
+        //Còn trong trường hợp muốn cụ thể ai có quyền mới làm dc
+        //Nếu làm vậy thì những ai có thể vào xem dc index nhưng ko có quyền create member thì vẫn ko create dc
+        //[Authorize(Policy = "Create Member")]
         public IActionResult Create(DocGiaIndexVm vm)
         {
             if (ModelState.IsValid)
