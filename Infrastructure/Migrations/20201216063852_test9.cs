@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infrastructure.Migrations
 {
-    public partial class test : Migration
+    public partial class test9 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -268,7 +268,8 @@ namespace Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MaDG = table.Column<int>(type: "int", nullable: false),
                     TongPhiPhat = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    trangthai = table.Column<int>(type: "Int", nullable: false)
                 },
                 constraints: table =>
                 {
