@@ -1,4 +1,7 @@
 ﻿@using ThuVien.Areas.Manager.ViewModels
+@using Domain.Entities
+@inject Microsoft.AspNetCore.Identity.SignInManager<AppUser> _signInManager
+@inject Microsoft.AspNetCore.Identity.UserManager<AppUser> _userManager
 @model PhieuMuonIndexVm
 @{
     ViewData["Title"] = "Danh sách phiếu mượn";
@@ -22,7 +25,7 @@
                 <form method="POST" asp-area="Manager" asp-action="Create" asp-controller="PhieuMuon">
                     <div class="form-group">
                         <label for="userID" asp-for="phieumuon.UserId">Mã nhân viên</label>
-                        <input readonly="true" class="form-control" asp-for="phieumuon.UserId" id="userID"
+                        <input readonly="true" class="form-control" asp-for="phieumuon.UserId" id="userID" value="@_userManager.GetUserId(User)"
                                placeholder="">
                     </div>
                     <div class="form-group">
@@ -32,7 +35,7 @@
                     <div class="form-group">
                         <label for="ngaymuon" asp-for="phieumuon.NgayMuon">Ngày mượn</label>
                         <input class="form-control" asp-for="phieumuon.NgayMuon" id="ngaymuon"
-                               placeholder=@DateTime.Now>
+                               value="">
                     </div>
                     <div class="form-group">
                         <input class="form-control" asp-for="phieumuon.TongPhiMuon" type="hidden">
@@ -64,7 +67,7 @@
                         <th>Ngày mượn</th>
                         <th>Tổng phí mượn</th>
                         <th>Thao tác</th>
-                    <tr />
+                    <tr/>
                 </thead>
                 <tbody>
                     @foreach (var phieumuon in Model.PhieuMuons)
@@ -77,47 +80,11 @@
                             <td>@phieumuon.TongPhiMuon</td>
                             <td>
                                 <button class="btn btn-success" data-toggle="modal" data-target="#themCTPM-@phieumuon.MaPM"><i class="far fa-edit"></i></button>
-                                <button class="btn btn-warning" data-toggle="collapse" data-target="#chitiet-@phieumuon.MaPM">
-                                    Chi tiết
-                                    phiếu
-                                </button>
+                                <button class="btn btn-warning" data-toggle="modal" data-target="#chitiet-@phieumuon.MaPM">Chi tiết phiếu</button>
                                 <button class="btn btn-danger" data-toggle="modal" data-target="#xoaPM-@phieumuon.MaPM"><i class="far fa-trash-alt"></i></button>
                             </td>
                         </tr>
-                        <tr>
-                            <table class="table collapse" id="chitiet-@phieumuon.MaPM" style="table-layout:fixed;">
-                                <thead>
-                                <th>Mã sách</th>
-                                <th>Ngày trả</th>
-                                <th>Ngày gia hạn</th>
-                                <th>Phí mượn</th>
-                                <th>
-                                    <button class="btn btn-danger" data-toggle="modal"
-                                            data-target="#xoaCTPM">
-                                        Xóa
-                                    </button>
-                                </th>
-                                
-                                </thead>
-                                <!--Dây là bát đầu chạy vòng lặp for cho ctpm-->
-                                <tbody>
-                                    @{
-                                        foreach (var ctpm in phieumuon.ChiTietPhieuMuons)
-                                        {
-                                        <th>@ctpm.MaSach</th>
-                                        <th>@ctpm.NgayHetHan</th>
-                                        <th>@ctpm.GiaHan</th>
-                                        <th>@ctpm.PhiMuon</th>
-                                        <th><input type="checkbox" /></th>
-                                    }
-                                    }
-
-
-                   
-
-                        </tbody>
-                    </table>
-                    </tr>
+                      
                     <div class="modal fade" role="dialog" id="xoaPM-@phieumuon.MaPM">
                         <div class="modal-dialog">
                             <!-- Modal content-->
@@ -146,21 +113,23 @@
                                 <div class="modal-header">
                                     <h4 class="modal-title">Thêm phiếu mượn</h4>
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-
                                 </div>
                                 <div class="modal-body">
-                                    <form action="">
+                                    <form asp-area="Manager" asp-action="CreateCTPM" asp-controller="PhieuMuon" method="post">
+                                        <div class="form-group">
+                                            <input type="hidden" class="form-control" placeholder="" asp-for="ctpm.MaPM" value="@phieumuon.MaPM">
+                                        </div>
                                         <div class="form-group">
                                             <label>Mã sách</label>
-                                            <input class="form-control" placeholder="">
+                                            <input class="form-control" placeholder="" asp-for="ctpm.MaSach">
                                         </div>
                                         <div class="form-group">
                                             <label>Ngày trả</label>
-                                            <input type="date" class="form-control" placeholder="">
+                                            <input type="date" class="form-control" placeholder="" asp-for="ctpm.NgayHetHan">
                                         </div>
                                         <div class="form-group">
                                             <label>Ngày gia hạn</label>
-                                            <input type="date" class="form-control" placeholder="">
+                                            <input type="date" class="form-control" placeholder="" asp-for="ctpm.GiaHan">
                                         </div>
                                         <!--cái này không nhớ thuộc tính lắm nên coi lại hộ-->
 
@@ -174,9 +143,74 @@
                             </div>
                         </div>
                     </div>
-                }
-                    </tbody>
-                    </table>
-                </div>
-            </div>
+                    }
+                </tbody>
+            </table>
         </div>
+        @foreach(var phieumuon in Model.PhieuMuons)
+	    {
+            <div class="modal fade" role="dialog" id="chitiet-@phieumuon.MaPM">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Xác nhận xóa</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <form asp-area="Manager" asp-action="DeleteCTPM" asp-controller="PhieuMuon" method="Post">
+                                       <table class="table"  style="table-layout:fixed;">
+                                <thead>
+                                <th>Mã sách</th>
+                                <th>Ngày trả</th>
+                                <th>Ngày gia hạn</th>
+                                <th>Phí mượn</th>
+                                    <th>
+                                        <button class="btn btn-danger" data-toggle="modal"
+                                                data-target="#xoaCTPM">
+                                            Xóa
+                                        </button>
+                                    </th>
+
+                                    </thead>
+                                    <!--Dây là bát đầu chạy vòng lặp for cho ctpm-->
+                                    <tbody>
+                                        @{ if (phieumuon.ChiTietPhieuMuons != null)
+                                            {
+                                                /*foreach (var ctpm in phieumuon.ChiTietPhieuMuons)
+                                                {
+                                                    <tr>
+                                                        <th><input readonly value="@ctpm.MaSach" asp-for="phieumuon.ChiTietPhieuMuons." style="border:none"/></th>
+                                                        <th><input readonly value="@ctpm.NgayHetHan" asp-for="ctpm.NgayHetHan" style="border:none" /></th>
+                                                        <th><input readonly value="@ctpm.GiaHan" asp-for="ctpm.GiaHan" style="border:none" /></th>
+                                                        <th><input readonly value="@ctpm.PhiMuon" asp-for="ctpm.PhiMuon" style="border:none" /></th>
+                                                        <th><input type="checkbox" asp-for="ctpm.IsSelected" /></th>
+                                                    </tr>
+
+                                                }*/
+
+                                                for (int i = 0; i < phieumuon.ChiTietPhieuMuons.Count(); i++)
+                                                {
+                                                    <tr>
+                                                        <input type="hidden" value="@phieumuon.MaPM" asp-for="phieumuon.ChiTietPhieuMuons[i].MaPM" />
+                                                        <th><input readonly value="@phieumuon.ChiTietPhieuMuons[i].MaSach" asp-for="phieumuon.ChiTietPhieuMuons[i].MaSach" style="border:none" /></th>
+                                                        <th><input readonly value="@phieumuon.ChiTietPhieuMuons[i].NgayHetHan" asp-for="phieumuon.ChiTietPhieuMuons[i].NgayHetHan" style="border:none" /></th>
+                                                        <th><input readonly value="@phieumuon.ChiTietPhieuMuons[i].GiaHan" asp-for="phieumuon.ChiTietPhieuMuons[i].GiaHan" style="border:none" /></th>
+                                                        <th><input readonly value="@phieumuon.ChiTietPhieuMuons[i].PhiMuon" asp-for="phieumuon.ChiTietPhieuMuons[i].PhiMuon" style="border:none" /></th>
+                                                        <th><input type="checkbox" asp-for="phieumuon.ChiTietPhieuMuons[i].IsSelected" /></th>
+                                                    </tr>
+                                                }
+                                            }
+                                        }
+                                    </tbody>
+                                
+                            </table>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+        }
+    </div>
+</div>

@@ -39,6 +39,7 @@ namespace Application.Services
         public void ThemSach(SachDTO sachDto)
         {
             var sach = sachDto.MappingSach();
+            sach.TrangThaiSach = "Còn";
             _sachRepository.Add(sach);
         }
 
