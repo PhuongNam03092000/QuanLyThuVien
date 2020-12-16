@@ -80,14 +80,14 @@
                             <td>@phieumuon.NgayMuon</td>
                             @{
                             var trangthai = new String("");
-                                if(phieumuon.TrangThai == 0){
+                                if(phieumuon.TrangThai == 1){
                                     trangthai = "Chưa trả";
                                 }else{
                                     trangthai = "Đã trã";
                                 }
                             }
                             <td>@phieumuon.TongPhiMuon</td>
-                            <td>@phieumuon.TrangThai</td>
+                            <td>@trangthai</td>
                             <td>
                                 <button class="btn btn-success" data-toggle="modal" data-target="#themCTPM-@phieumuon.MaPM"><i class="far fa-edit"></i></button>
                                 <button class="btn btn-warning" data-toggle="modal" data-target="#chitiet-@phieumuon.MaPM">Chi tiết phiếu</button>
@@ -104,8 +104,9 @@
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="">
+                                    <form asp-area="Manager" asp-action="Update" asp-controller="PhieuMuon" method="Post">
                                         <!--cái này không nhớ thuộc tính lắm nên coi lại hộ-->
+                                        <input type="hidden" value="@phieumuon.MaPM" asp-for=phieumuon.MaPM />
                                         <div class="form-group">
                                             <button class="btn btn-light" type="submit">Hủy</button>
                                             <button class="btn btn-success" type="submit">Xóa phiếu</button>

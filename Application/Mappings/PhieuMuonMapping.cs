@@ -32,6 +32,7 @@ namespace Application.Mappings
                     MaDG = pm.MaDG,
                     NgayMuon = pm.NgayMuon,
                     TongPhiMuon = pm.TongPhiMuon,
+                    TrangThai = pm.TrangThai,
                     UserId = pm.UserId,
                 };
             }

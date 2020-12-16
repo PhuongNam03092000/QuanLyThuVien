@@ -71,7 +71,6 @@ namespace Application.Services
         public void UpdatePhieuMuon(PhieuMuonDTO phieumuonDTO)
         {
             var phieumuon = phieumuonRepository.GetBy(phieumuonDTO.MaPM);
-            phieumuonDTO.MappingPhieuMuon(phieumuon);
             phieumuon.TrangThai = 0;
             phieumuonRepository.Update(phieumuon);
         }

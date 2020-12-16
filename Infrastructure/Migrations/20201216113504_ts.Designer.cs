@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(QLTVContext))]
-    [Migration("20201216103729_test10")]
-    partial class test10
+    [Migration("20201216113504_ts")]
+    partial class ts
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
