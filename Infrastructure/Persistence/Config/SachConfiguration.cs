@@ -13,7 +13,6 @@ namespace Infrastructure.Persistence
             builder.HasOne(tg => tg.TacGia).WithMany(s => s.Sachs).HasForeignKey(tg => tg.MaTG);
             builder.HasOne(tl => tl.TheLoai).WithMany(s => s.Sachs).HasForeignKey(tl => tl.MaTL);
             builder.HasOne(nxb => nxb.NhaXuatBan).WithMany(s => s.Sachs).HasForeignKey(nxb => nxb.MaNXB);
-            builder.HasOne(ctpn => ctpn.ChiTietPhieuNhap).WithOne(s => s.Sach).HasForeignKey<ChiTietPhieuNhap>(ctpn => ctpn.MaPN);
         }
     }
 }

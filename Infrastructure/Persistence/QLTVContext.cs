@@ -24,13 +24,8 @@ namespace Infrastructure.Persistence
         public DbSet<TacGia> TacGias { get; set; }
         public DbSet<NhaXuatBan> NhaXuatBans { get; set; }
         public DbSet<DocGia> DocGias { get; set; }
-        public DbSet<NhaCungCap> NhaCungCaps { get; set; }
-        public DbSet<PhieuNhap> PhieuNhaps { get; set; }
-        public DbSet<ChiTietPhieuNhap> ChiTietPhieuNhaps { get; set; }
         public DbSet<PhieuMuon> PhieuMuons { get; set; }
         public DbSet<ChiTietPhieuMuon> ChiTietPhieuMuons { get; set; }
-        public DbSet<PhieuTra> PhieuTras { get; set; }
-        public DbSet<ChiTietPhieuTra> ChiTietPhieuTras { get; set; }
         public DbSet<PhieuPhat> PhieuPhats { get; set; }
         public DbSet<ChiTietPhieuPhat> ChiTietPhieuPhats { get; set; }
     }

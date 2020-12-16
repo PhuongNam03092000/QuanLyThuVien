@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Infrastructure.Migrations
+namespace Infrastructure.Persistence.Migrations
 {
-    public partial class ts : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -69,21 +69,6 @@ namespace Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DocGia", x => x.MaDG);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "NhaCungCap",
-                columns: table => new
-                {
-                    MaNCC = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TenNCC = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DiaChiNCC = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SdtNCC = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_NhaCungCap", x => x.MaNCC);
                 });
 
             migrationBuilder.CreateTable(
@@ -289,62 +274,6 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PhieuTra",
-                columns: table => new
-                {
-                    MaPT = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    MaDG = table.Column<int>(type: "int", nullable: false),
-                    NgayTra = table.Column<DateTime>(type: "Date", nullable: false),
-                    TongPhiTra = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PhieuTra", x => x.MaPT);
-                    table.ForeignKey(
-                        name: "FK_PhieuTra_AppUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AppUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_PhieuTra_DocGia_MaDG",
-                        column: x => x.MaDG,
-                        principalTable: "DocGia",
-                        principalColumn: "MaDG",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PhieuNhap",
-                columns: table => new
-                {
-                    MaPN = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    MaNCC = table.Column<int>(type: "int", nullable: false),
-                    NgayNhap = table.Column<DateTime>(type: "Date", nullable: false),
-                    TongTienNhap = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PhieuNhap", x => x.MaPN);
-                    table.ForeignKey(
-                        name: "FK_PhieuNhap_AppUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AppUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_PhieuNhap_NhaCungCap_MaNCC",
-                        column: x => x.MaNCC,
-                        principalTable: "NhaCungCap",
-                        principalColumn: "MaNCC",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Sach",
                 columns: table => new
                 {
@@ -410,32 +339,6 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ChiTietPhieuNhap",
-                columns: table => new
-                {
-                    MaPN = table.Column<int>(type: "int", nullable: false),
-                    MaSach = table.Column<int>(type: "int", nullable: false),
-                    SoLuongNhap = table.Column<int>(type: "int", nullable: false),
-                    DonGiaSach = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ChiTietPhieuNhap", x => new { x.MaPN, x.MaSach });
-                    table.ForeignKey(
-                        name: "FK_ChiTietPhieuNhap_PhieuNhap_MaPN",
-                        column: x => x.MaPN,
-                        principalTable: "PhieuNhap",
-                        principalColumn: "MaPN",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ChiTietPhieuNhap_Sach_MaPN",
-                        column: x => x.MaPN,
-                        principalTable: "Sach",
-                        principalColumn: "MaSach",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "ChiTietPhieuPhat",
                 columns: table => new
                 {
@@ -456,32 +359,6 @@ namespace Infrastructure.Migrations
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ChiTietPhieuPhat_Sach_MaSach",
-                        column: x => x.MaSach,
-                        principalTable: "Sach",
-                        principalColumn: "MaSach",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ChiTietPhieuTra",
-                columns: table => new
-                {
-                    MaPT = table.Column<int>(type: "int", nullable: false),
-                    MaSach = table.Column<int>(type: "int", nullable: false),
-                    TrangThaiSachTra = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhiTra = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ChiTietPhieuTra", x => new { x.MaPT, x.MaSach });
-                    table.ForeignKey(
-                        name: "FK_ChiTietPhieuTra_PhieuTra_MaPT",
-                        column: x => x.MaPT,
-                        principalTable: "PhieuTra",
-                        principalColumn: "MaPT",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ChiTietPhieuTra_Sach_MaSach",
                         column: x => x.MaSach,
                         principalTable: "Sach",
                         principalColumn: "MaSach",
@@ -533,19 +410,8 @@ namespace Infrastructure.Migrations
                 column: "MaSach");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ChiTietPhieuNhap_MaPN",
-                table: "ChiTietPhieuNhap",
-                column: "MaPN",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ChiTietPhieuPhat_MaSach",
                 table: "ChiTietPhieuPhat",
-                column: "MaSach");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ChiTietPhieuTra_MaSach",
-                table: "ChiTietPhieuTra",
                 column: "MaSach");
 
             migrationBuilder.CreateIndex(
@@ -559,16 +425,6 @@ namespace Infrastructure.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PhieuNhap_MaNCC",
-                table: "PhieuNhap",
-                column: "MaNCC");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PhieuNhap_UserId",
-                table: "PhieuNhap",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_PhieuPhat_MaDG",
                 table: "PhieuPhat",
                 column: "MaDG");
@@ -576,16 +432,6 @@ namespace Infrastructure.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_PhieuPhat_UserId",
                 table: "PhieuPhat",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PhieuTra_MaDG",
-                table: "PhieuTra",
-                column: "MaDG");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PhieuTra_UserId",
-                table: "PhieuTra",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -625,13 +471,7 @@ namespace Infrastructure.Migrations
                 name: "ChiTietPhieuMuon");
 
             migrationBuilder.DropTable(
-                name: "ChiTietPhieuNhap");
-
-            migrationBuilder.DropTable(
                 name: "ChiTietPhieuPhat");
-
-            migrationBuilder.DropTable(
-                name: "ChiTietPhieuTra");
 
             migrationBuilder.DropTable(
                 name: "AppRoles");
@@ -640,19 +480,10 @@ namespace Infrastructure.Migrations
                 name: "PhieuMuon");
 
             migrationBuilder.DropTable(
-                name: "PhieuNhap");
-
-            migrationBuilder.DropTable(
                 name: "PhieuPhat");
 
             migrationBuilder.DropTable(
-                name: "PhieuTra");
-
-            migrationBuilder.DropTable(
                 name: "Sach");
-
-            migrationBuilder.DropTable(
-                name: "NhaCungCap");
 
             migrationBuilder.DropTable(
                 name: "AppUsers");

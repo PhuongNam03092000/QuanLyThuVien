@@ -55,10 +55,6 @@ namespace ThuVien
             services.AddScoped<INhanVienRepository, NhanVienRepository>();
             services.AddScoped<INhanVienService, NhanVienService>();
 
-            //NhaCungCap
-            services.AddScoped<INhaCungCapRepository, NhaCungCapRepository>();
-            services.AddScoped<INhaCungCapService, NhaCungCapService>();
-
             //TacGia
             services.AddScoped<ITacGiaRepository, TacGiaRepository>();
             services.AddScoped<ITacGiaService, TacGiaService>();
@@ -85,13 +81,6 @@ namespace ThuVien
 
             //ChiTietPhieuMuon
             services.AddScoped<IChiTietPhieuMuonRepository, ChiTietPhieuMuonRepository>();
-
-            //PhieuNhap
-            services.AddScoped<IPhieuNhapRepository, PhieuNhapRepository>();
-            services.AddScoped<IPhieuNhapService, PhieuNhapService>();
-
-            //ChiTietPhieuNhap
-            services.AddScoped<IChiTietPhieuNhapRepository, ChiTietPhieuNhapRepository>();
 
             //PhieuPhat
             services.AddScoped<IPhieuPhatRepository, PhieuPhatRepository>();

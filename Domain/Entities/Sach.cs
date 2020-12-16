@@ -16,9 +16,7 @@ namespace Domain.Entities
         public string SachImageUrl { get; set; }
         public string ViTri { set; get; }
         public string TrangThaiSach { set; get; }
-        public ChiTietPhieuNhap ChiTietPhieuNhap { get; set; }
         public List<ChiTietPhieuMuon> ChiTietPhieuMuons { get; set; }
-        public List<ChiTietPhieuTra> ChiTietPhieuTras { get; set; }
         public List<ChiTietPhieuPhat> ChiTietPhieuPhats { get; set; }
     }
 }

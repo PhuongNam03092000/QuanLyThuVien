@@ -15,7 +15,6 @@ namespace Domain.Entities
         public DateTime NgayHetHanDK { set; get; }
         public string TrangThaiThe { set; get; }
         public List<PhieuMuon> PhieuMuons { get; set; }
-        public List<PhieuTra> PhieuTras { get; set; }
         public List<PhieuPhat> PhieuPhats { get; set; }
     }
 }

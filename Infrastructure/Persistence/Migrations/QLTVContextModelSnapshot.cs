@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Infrastructure.Migrations
+namespace Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(QLTVContext))]
     partial class QLTVContextModelSnapshot : ModelSnapshot
@@ -148,28 +148,6 @@ namespace Infrastructure.Migrations
                     b.ToTable("ChiTietPhieuMuon");
                 });
 
-            modelBuilder.Entity("Domain.Entities.ChiTietPhieuNhap", b =>
-                {
-                    b.Property<int>("MaPN")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MaSach")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DonGiaSach")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SoLuongNhap")
-                        .HasColumnType("int");
-
-                    b.HasKey("MaPN", "MaSach");
-
-                    b.HasIndex("MaPN")
-                        .IsUnique();
-
-                    b.ToTable("ChiTietPhieuNhap");
-                });
-
             modelBuilder.Entity("Domain.Entities.ChiTietPhieuPhat", b =>
                 {
                     b.Property<int>("MaPP")
@@ -192,27 +170,6 @@ namespace Infrastructure.Migrations
                     b.HasIndex("MaSach");
 
                     b.ToTable("ChiTietPhieuPhat");
-                });
-
-            modelBuilder.Entity("Domain.Entities.ChiTietPhieuTra", b =>
-                {
-                    b.Property<int>("MaPT")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MaSach")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PhiTra")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TrangThaiSachTra")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("MaPT", "MaSach");
-
-                    b.HasIndex("MaSach");
-
-                    b.ToTable("ChiTietPhieuTra");
                 });
 
             modelBuilder.Entity("Domain.Entities.DocGia", b =>
@@ -249,27 +206,6 @@ namespace Infrastructure.Migrations
                     b.HasKey("MaDG");
 
                     b.ToTable("DocGia");
-                });
-
-            modelBuilder.Entity("Domain.Entities.NhaCungCap", b =>
-                {
-                    b.Property<int>("MaNCC")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("DiaChiNCC")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SdtNCC")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TenNCC")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("MaNCC");
-
-                    b.ToTable("NhaCungCap");
                 });
 
             modelBuilder.Entity("Domain.Entities.NhaXuatBan", b =>
@@ -318,34 +254,6 @@ namespace Infrastructure.Migrations
                     b.ToTable("PhieuMuon");
                 });
 
-            modelBuilder.Entity("Domain.Entities.PhieuNhap", b =>
-                {
-                    b.Property<int>("MaPN")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("MaNCC")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("NgayNhap")
-                        .HasColumnType("Date");
-
-                    b.Property<int>("TongTienNhap")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("MaPN");
-
-                    b.HasIndex("MaNCC");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("PhieuNhap");
-                });
-
             modelBuilder.Entity("Domain.Entities.PhieuPhat", b =>
                 {
                     b.Property<int>("MaPP")
@@ -372,34 +280,6 @@ namespace Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("PhieuPhat");
-                });
-
-            modelBuilder.Entity("Domain.Entities.PhieuTra", b =>
-                {
-                    b.Property<int>("MaPT")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("MaDG")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("NgayTra")
-                        .HasColumnType("Date");
-
-                    b.Property<int>("TongPhiTra")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("MaPT");
-
-                    b.HasIndex("MaDG");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("PhieuTra");
                 });
 
             modelBuilder.Entity("Domain.Entities.Sach", b =>
@@ -596,25 +476,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("Sach");
                 });
 
-            modelBuilder.Entity("Domain.Entities.ChiTietPhieuNhap", b =>
-                {
-                    b.HasOne("Domain.Entities.PhieuNhap", "PhieuNhap")
-                        .WithMany("ChiTietPhieuNhaps")
-                        .HasForeignKey("MaPN")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Sach", "Sach")
-                        .WithOne("ChiTietPhieuNhap")
-                        .HasForeignKey("Domain.Entities.ChiTietPhieuNhap", "MaPN")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("PhieuNhap");
-
-                    b.Navigation("Sach");
-                });
-
             modelBuilder.Entity("Domain.Entities.ChiTietPhieuPhat", b =>
                 {
                     b.HasOne("Domain.Entities.PhieuPhat", "PhieuPhat")
@@ -630,25 +491,6 @@ namespace Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("PhieuPhat");
-
-                    b.Navigation("Sach");
-                });
-
-            modelBuilder.Entity("Domain.Entities.ChiTietPhieuTra", b =>
-                {
-                    b.HasOne("Domain.Entities.PhieuTra", "PhieuTra")
-                        .WithMany("ChiTietPhieuTras")
-                        .HasForeignKey("MaPT")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Sach", "Sach")
-                        .WithMany("ChiTietPhieuTras")
-                        .HasForeignKey("MaSach")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("PhieuTra");
 
                     b.Navigation("Sach");
                 });
@@ -672,25 +514,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("DocGia");
                 });
 
-            modelBuilder.Entity("Domain.Entities.PhieuNhap", b =>
-                {
-                    b.HasOne("Domain.Entities.NhaCungCap", "NhaCungCap")
-                        .WithMany("PhieuNhaps")
-                        .HasForeignKey("MaNCC")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.AppUser", "AppUser")
-                        .WithMany("PhieuNhaps")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AppUser");
-
-                    b.Navigation("NhaCungCap");
-                });
-
             modelBuilder.Entity("Domain.Entities.PhieuPhat", b =>
                 {
                     b.HasOne("Domain.Entities.DocGia", "DocGia")
@@ -701,25 +524,6 @@ namespace Infrastructure.Migrations
 
                     b.HasOne("Domain.Entities.AppUser", "AppUser")
                         .WithMany("PhieuPhats")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AppUser");
-
-                    b.Navigation("DocGia");
-                });
-
-            modelBuilder.Entity("Domain.Entities.PhieuTra", b =>
-                {
-                    b.HasOne("Domain.Entities.DocGia", "DocGia")
-                        .WithMany("PhieuTras")
-                        .HasForeignKey("MaDG")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.AppUser", "AppUser")
-                        .WithMany("PhieuTras")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -811,11 +615,7 @@ namespace Infrastructure.Migrations
                 {
                     b.Navigation("PhieuMuons");
 
-                    b.Navigation("PhieuNhaps");
-
                     b.Navigation("PhieuPhats");
-
-                    b.Navigation("PhieuTras");
                 });
 
             modelBuilder.Entity("Domain.Entities.DocGia", b =>
@@ -823,13 +623,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("PhieuMuons");
 
                     b.Navigation("PhieuPhats");
-
-                    b.Navigation("PhieuTras");
-                });
-
-            modelBuilder.Entity("Domain.Entities.NhaCungCap", b =>
-                {
-                    b.Navigation("PhieuNhaps");
                 });
 
             modelBuilder.Entity("Domain.Entities.NhaXuatBan", b =>
@@ -842,30 +635,16 @@ namespace Infrastructure.Migrations
                     b.Navigation("ChiTietPhieuMuons");
                 });
 
-            modelBuilder.Entity("Domain.Entities.PhieuNhap", b =>
-                {
-                    b.Navigation("ChiTietPhieuNhaps");
-                });
-
             modelBuilder.Entity("Domain.Entities.PhieuPhat", b =>
                 {
                     b.Navigation("ChiTietPhieuPhats");
-                });
-
-            modelBuilder.Entity("Domain.Entities.PhieuTra", b =>
-                {
-                    b.Navigation("ChiTietPhieuTras");
                 });
 
             modelBuilder.Entity("Domain.Entities.Sach", b =>
                 {
                     b.Navigation("ChiTietPhieuMuons");
 
-                    b.Navigation("ChiTietPhieuNhap");
-
                     b.Navigation("ChiTietPhieuPhats");
-
-                    b.Navigation("ChiTietPhieuTras");
                 });
 
             modelBuilder.Entity("Domain.Entities.TacGia", b =>
