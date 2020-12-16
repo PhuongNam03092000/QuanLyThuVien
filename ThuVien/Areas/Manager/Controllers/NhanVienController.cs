@@ -15,17 +15,19 @@ using ThuVien.Helper;
 namespace ThuVien.Areas.Manager.Controllers
 {
     [Area("Manager")]
-    [Authorize]
-    //[Authorize(Policy = "Admin")]
+    //[Authorize]
+    [Authorize(Policy = "Admin")]
     public class NhanVienController : Controller
     {
         private readonly INhanVienService nhanVienService;
         private readonly UserManager<AppUser> userManager;
+        private readonly SignInManager<AppUser> signInManager;
 
-        public NhanVienController(INhanVienService nhanVienService, UserManager<AppUser> userManager)
+        public NhanVienController(INhanVienService nhanVienService, UserManager<AppUser> userManager,SignInManager<AppUser> signInManager)
         {
             this.nhanVienService = nhanVienService;
             this.userManager = userManager;
+            this.signInManager = signInManager;
         }
 
         public async Task<IActionResult> Index(string sortOrder, string searchString, int pageIndex = 1)
@@ -34,8 +36,6 @@ namespace ThuVien.Areas.Manager.Controllers
             int count;
             var nhanViens = nhanVienService.GetNhanViens(sortOrder, searchString, pageIndex, pageSize, out count);
             var nhanVienNew = new NhanVienDTO();
-
-            
 
             var test = nhanViens.ToList();
 
@@ -88,18 +88,44 @@ namespace ThuVien.Areas.Manager.Controllers
 
             return View(nhanVienVM);
         }       
-
+        [Authorize(Policy = "Create Employee")]
         [HttpPost]
         public async Task<IActionResult> Them(NhanVienIndexVm nhanVienVM)
         {
             if (ModelState.IsValid)
             {
                 await nhanVienService.ThemNhanVien(nhanVienVM.nhanVien);
+                var user = await userManager.FindByNameAsync(nhanVienVM.nhanVien.Email);
+                if (nhanVienVM.nhanVien.Role == 0)
+                {
+                    var permissionLibrarian = new List<Claim>(ClaimsStore.AllClaims);
+
+                    permissionLibrarian.RemoveAt(6);
+                    permissionLibrarian.RemoveAt(4);
+                    permissionLibrarian.RemoveAt(3);
+                    var claim = await userManager.AddClaimsAsync(user, permissionLibrarian);
+                    if (claim.Succeeded)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    var permissionAdmin = new List<Claim>(ClaimsStore.AllClaims);
+                    permissionAdmin.RemoveAt(5);
+                    var claim = await userManager.AddClaimsAsync(user, permissionAdmin);
+                    if (claim.Succeeded)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    return RedirectToAction("Index");
+                }
                 return RedirectToAction("Index");
             }
             return View();
         }
-
+        [Authorize(Policy = "Edit Employee")]
         [HttpPost]
         public async Task<IActionResult> Sua(NhanVienIndexVm nhanVienVM)
         {
@@ -110,7 +136,7 @@ namespace ThuVien.Areas.Manager.Controllers
             }
             return View();
         }
-
+        [Authorize(Policy = "Edit Employee")]
         [HttpPost]
         public async Task<IActionResult> Permission(NhanVienIndexVm vm)
         {
@@ -147,13 +173,15 @@ namespace ThuVien.Areas.Manager.Controllers
                         return View(vm.nhanVien);
                     }
                     result = await userManager.AddClaimsAsync(user,
-                    vm.nhanVien.UserClaims.Where(c => c.IsSelected).Select(c => new Claim(c.ClaimType, c.IsSelected.ToString() )));
+                    vm.nhanVien.UserClaims.Where(c => c.IsSelected).Select(c => new Claim(c.ClaimType, c.IsSelected.ToString().ToLower() )));
                     var result1 = await userManager.AddClaimAsync(user, new Claim("Role", "Librarian"));
                     if (!result.Succeeded && !result1.Succeeded)
                     {
                         ModelState.AddModelError(string.Empty, "Can't add user claims");
                         return View(vm.nhanVien);
                     }
+                    await signInManager.RefreshSignInAsync(await userManager.FindByNameAsync(User.Identity.Name));
+                    return RedirectToAction("Index");
                 }
             }
             else
@@ -166,13 +194,14 @@ namespace ThuVien.Areas.Manager.Controllers
                     return View(vm.nhanVien);
                 }
                 result = await userManager.AddClaimsAsync(user,
-                vm.nhanVien.UserClaims.Where(c => c.IsSelected).Select(c => new Claim(c.ClaimType, c.IsSelected.ToString() )));
+                vm.nhanVien.UserClaims.Where(c => c.IsSelected).Select(c => new Claim(c.ClaimType, c.IsSelected.ToString().ToLower() )));
                 var result1 = await userManager.AddClaimAsync(user, new Claim("Role", vm.nhanVien.Role.ToString()));
                 if (!result.Succeeded && !result1.Succeeded)
                 {
                     ModelState.AddModelError(string.Empty, "Can't add user claims");
                     return View(vm.nhanVien);
                 }
+                await signInManager.RefreshSignInAsync(await userManager.FindByNameAsync(User.Identity.Name));
                 return RedirectToAction("Index", vm);
             }
             return View();

@@ -45,7 +45,7 @@ namespace ThuVien.Areas.Manager.Controllers
 
         //Còn trong trường hợp muốn cụ thể ai có quyền mới làm dc
         //Nếu làm vậy thì những ai có thể vào xem dc index nhưng ko có quyền create member thì vẫn ko create dc
-        //[Authorize(Policy = "Create Member")]
+        [Authorize(Policy = "Create Member")]
         public IActionResult Create(DocGiaIndexVm vm)
         {
             if (ModelState.IsValid)
@@ -55,8 +55,9 @@ namespace ThuVien.Areas.Manager.Controllers
             }
             return View();
         }
-
+        
         [HttpPost]
+        [Authorize(Policy = "Delete Member")]
         public IActionResult Delete(DocGiaIndexVm vm)
         {
             docGiaService.DeleteDocGia(vm.docgia.MaDG);
@@ -64,7 +65,9 @@ namespace ThuVien.Areas.Manager.Controllers
             return RedirectToAction("Index");
         }
 
+        
         [HttpPost]
+        [Authorize(Policy = "Edit Member")]
         public IActionResult Update(DocGiaIndexVm vm)
         {
             if (ModelState.IsValid)
